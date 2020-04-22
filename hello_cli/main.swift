@@ -99,12 +99,15 @@ public class GatewayResponse: Decodable, CustomStringConvertible {
     }
 }
 
-public struct SpreedlyError: Error {
+public struct SpreedlyError: Error, CustomStringConvertible {
+    public var description: String {
+        "SpreedlyError: \(message)"
+    }
+
      public let message: String
 }
 
-
-func getGateway<T>(completion: @escaping (T) -> ()) throws where T: Decodable{
+func retrieve<T>(completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
     let urlString = BASE_URL + "/v1/gateways.json"
 
     guard let url = URL(string: urlString) else {
@@ -115,6 +118,7 @@ func getGateway<T>(completion: @escaping (T) -> ()) throws where T: Decodable{
     session.dataTask(with: url) { data, res, err in
         guard err == nil else {
             print("Error retrieving url \(urlString)", err)
+            completion(nil, err)
             return
         }
 
@@ -133,19 +137,24 @@ func getGateway<T>(completion: @escaping (T) -> ()) throws where T: Decodable{
             print("error occurred \(error)")
             return
         }
-        completion(gw)
+        completion(gw, nil)
     }.resume()
 }
 
-func onGatewayComplete(response: GatewayResponse) {
-    print(response)
+func onGatewayComplete(response: GatewayResponse?, err: Error?) {
+    if let err = err {
+        print(err)
+    }
+    if let response = response {
+        print(response)
+    }
 }
 
 let ENV_KEY = ProcessInfo.processInfo.environment["ENV_KEY"]
 let ENV_SECRET = ProcessInfo.processInfo.environment["ENV_SECRET"]
 
 print("Getting gateway")
-try getGateway(completion: onGatewayComplete)
+try retrieve(completion: onGatewayComplete)
 print("Done requesting gateway")
 
 CFRunLoopRun()
