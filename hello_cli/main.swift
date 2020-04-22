@@ -177,7 +177,6 @@ func getGateway(completion: @escaping (GatewayResponse) -> ()) {
 
 func onGatewayComplete(response: GatewayResponse) {
     print(response)
-    CFRunLoopStop(CFRunLoopGetCurrent())
 }
 
 print("Getting gateway")
