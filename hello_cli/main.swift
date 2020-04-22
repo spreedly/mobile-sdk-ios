@@ -40,8 +40,8 @@ let BASE_URL = "https://core.spreedly.com"
 
 func urlSession() -> URLSession {
     let config = URLSessionConfiguration.default
-    let envKey = "A54wvT9knP8Sc6ati68epUcq72l"
-    let secret = "0f0Cpq17bb5mAAUxtx0QmY2mXyHnEk26uYTrPttn4PIMKZC4zdTJVJSk4YHbe1Ij"
+    let envKey = ENV_KEY // TODO: replace me with an injected value
+    let secret = ENV_SECRET
     let userPasswordString = "\(envKey):\(secret)"
     let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
     let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
@@ -186,6 +186,9 @@ func getGateway(completion: @escaping (GatewayResponse) -> ()) throws {
 func onGatewayComplete(response: GatewayResponse) {
     print(response)
 }
+
+let ENV_KEY = ProcessInfo.processInfo.environment["ENV_KEY"]
+let ENV_SECRET = ProcessInfo.processInfo.environment["ENV_SECRET"]
 
 print("Getting gateway")
 try getGateway(completion: onGatewayComplete)
