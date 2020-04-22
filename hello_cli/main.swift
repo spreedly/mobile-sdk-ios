@@ -79,23 +79,6 @@ func getJson<T>(url urlString: String, completion: @escaping (T) -> ()) throws w
 
 }
 
-
-//func getJson(completion: @escaping (Response) -> ()) {
-//    let urlString = "/v1/payment_methods.json"
-//    if let url = URL(string: urlString) {
-//        URLSession.shared.dataTask(with: url) { data, res, err in
-//            if let data = data {
-//                print ("hey")
-//
-//                let decoder = JSONDecoder()
-//                if let json = try? decoder.decode(Response.self, from: data) {
-//                    completion(json)
-//                }
-//            }
-//        }.resume()
-//    }
-//}
-
 public class Gateway: Decodable, CustomStringConvertible {
     public var description: String {
         "Gateway(name: \(name))"
