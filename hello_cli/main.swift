@@ -104,7 +104,7 @@ public struct SpreedlyError: Error {
 }
 
 
-func getGateway(completion: @escaping (GatewayResponse) -> ()) throws {
+func getGateway<T>(completion: @escaping (T) -> ()) throws where T: Decodable{
     let urlString = BASE_URL + "/v1/gateways.json"
 
     guard let url = URL(string: urlString) else {
@@ -126,9 +126,9 @@ func getGateway(completion: @escaping (GatewayResponse) -> ()) throws {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        let gw: GatewayResponse
+        let gw: T
         do {
-            gw = try decoder.decode(GatewayResponse.self, from: data)
+            gw = try decoder.decode(T.self, from: data)
         } catch {
             print("error occurred \(error)")
             return
