@@ -80,6 +80,8 @@ func getJson<T>(url urlString: String, completion: @escaping (T) -> ()) throws w
 }
 
 public class Gateway: Decodable, CustomStringConvertible {
+    public static let endpoint = "/v1/gateways.json"
+
     public var description: String {
         "Gateway(name: \(name))"
     }
@@ -107,9 +109,7 @@ public struct SpreedlyError: Error, CustomStringConvertible {
      public let message: String
 }
 
-func retrieve<T>(completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
-    let urlString = BASE_URL + "/v1/gateways.json"
-
+func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
     guard let url = URL(string: urlString) else {
         throw SpreedlyError(message: "Unable to create url from \(urlString)")
     }
@@ -134,7 +134,8 @@ func retrieve<T>(completion: @escaping (T?, Error?) -> ()) throws where T: Decod
         do {
             gw = try decoder.decode(T.self, from: data)
         } catch {
-            print("error occurred \(error)")
+            print("error occurred while decoding \(error)")
+            completion(nil, error)
             return
         }
         completion(gw, nil)
@@ -154,7 +155,8 @@ let ENV_KEY = ProcessInfo.processInfo.environment["ENV_KEY"]
 let ENV_SECRET = ProcessInfo.processInfo.environment["ENV_SECRET"]
 
 print("Getting gateway")
-try retrieve(completion: onGatewayComplete)
+let url = BASE_URL + Gateway.endpoint
+try retrieve(url, completion: onGatewayComplete)
 print("Done requesting gateway")
 
 CFRunLoopRun()
