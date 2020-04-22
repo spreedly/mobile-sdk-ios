@@ -116,16 +116,24 @@ public class GatewayResponse: Decodable, CustomStringConvertible {
     }
 }
 
+public struct SpreedlyError: Error {
+     public let message: String
+}
 
-func getGateway(completion: @escaping (GatewayResponse) -> ()) {
+
+func getGateway(completion: @escaping (GatewayResponse) -> ()) throws {
     let urlString = BASE_URL + "/v1/gateways.json"
+
+    guard let url = URL(string: urlString) else {
+        throw SpreedlyError(message: "Unable to create url from \(urlString)")
+    }
 
 //    do {
 //        try getJson(url: urlString, completion: completion)
 //    } catch {
 //        print("Got an error", error)
 //    }
-    if let url = URL(string: urlString) {
+
 //    if let url = URL(string: "https://core.spreedly.com/\(urlString)") {
 //        let config = URLSessionConfiguration.default
 //        let envKey = "A54wvT9knP8Sc6ati68epUcq72l"
@@ -172,7 +180,7 @@ func getGateway(completion: @escaping (GatewayResponse) -> ()) {
 //                print("something bad happened in data")
 //            }
         }.resume()
-    }
+
 }
 
 func onGatewayComplete(response: GatewayResponse) {
@@ -180,7 +188,7 @@ func onGatewayComplete(response: GatewayResponse) {
 }
 
 print("Getting gateway")
-getGateway(completion: onGatewayComplete)
+try getGateway(completion: onGatewayComplete)
 print("Done requesting gateway")
 
 CFRunLoopRun()
