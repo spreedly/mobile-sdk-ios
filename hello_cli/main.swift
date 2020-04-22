@@ -128,59 +128,27 @@ func getGateway(completion: @escaping (GatewayResponse) -> ()) throws {
         throw SpreedlyError(message: "Unable to create url from \(urlString)")
     }
 
-//    do {
-//        try getJson(url: urlString, completion: completion)
-//    } catch {
-//        print("Got an error", error)
-//    }
+    let session = urlSession()
+    session.dataTask(with: url) { data, res, err in
+        guard err == nil else {
+            print("Error retrieving url \(urlString)", err)
+            return
+        }
 
-//    if let url = URL(string: "https://core.spreedly.com/\(urlString)") {
-//        let config = URLSessionConfiguration.default
-//        let envKey = "A54wvT9knP8Sc6ati68epUcq72l"
-//        let secret = "0f0Cpq17bb5mAAUxtx0QmY2mXyHnEk26uYTrPttn4PIMKZC4zdTJVJSk4YHbe1Ij"
-//        let userPasswordString = "\(envKey):\(secret)"
-//        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
-//        let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
-//        let authString = "Basic \(encodedCredentials)"
-//        config.httpAdditionalHeaders = ["Authorization": authString]
-//        let session = URLSession(configuration: config)
-        let session = urlSession()
-        session.dataTask(with: url) { data, res, err in
-            guard err == nil else {
-                print("Error retrieving url \(urlString)", err)
-                return
-            }
+        guard let data = data else {
+            print("Expected data but was nil from url \(urlString)" , res)
+            return
+        }
 
-            guard let data = data else {
-                print("Expected data but was nil from url \(urlString)" , res)
-                return
-            }
-
-//            if let data = data {
-
-                print("hey")
-
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                do {
-                    let gw = try decoder.decode(GatewayResponse.self, from: data)
-                    completion(gw)
-                } catch {
-                    print("error occurred \(error)")
-                }
-//                decoder.decode(GatewayResponse.self, from: data)
-
-//                if let json = try? decoder.decode(GatewayResponse.self, from: data) {
-//                    completion(json)
-//                } else {
-//                    print("something bad happened in decoding: \(error)")
-//                }
-
-//            } else {
-//                print("something bad happened in data")
-//            }
-        }.resume()
-
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let gw = try decoder.decode(GatewayResponse.self, from: data)
+            completion(gw)
+        } catch {
+            print("error occurred \(error)")
+        }
+    }.resume()
 }
 
 func onGatewayComplete(response: GatewayResponse) {
