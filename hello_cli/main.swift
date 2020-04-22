@@ -125,12 +125,15 @@ func getGateway(completion: @escaping (GatewayResponse) -> ()) throws {
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
+
+        let gw: GatewayResponse
         do {
-            let gw = try decoder.decode(GatewayResponse.self, from: data)
-            completion(gw)
+            gw = try decoder.decode(GatewayResponse.self, from: data)
         } catch {
             print("error occurred \(error)")
+            return
         }
+        completion(gw)
     }.resume()
 }
 
