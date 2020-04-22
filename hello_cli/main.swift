@@ -40,8 +40,8 @@ let BASE_URL = "https://core.spreedly.com"
 
 func urlSession() -> URLSession {
     let config = URLSessionConfiguration.default
-    let envKey = ENV_KEY // TODO: replace me with an injected value
-    let secret = ENV_SECRET
+    let envKey = ENV_KEY! // TODO: replace me with an injected value
+    let secret = ENV_SECRET!
     let userPasswordString = "\(envKey):\(secret)"
     let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
     let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
