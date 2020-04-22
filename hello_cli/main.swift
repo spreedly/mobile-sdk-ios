@@ -49,36 +49,6 @@ func urlSession() -> URLSession {
     return URLSession(configuration: config)
 }
 
-func getJson<T>(url urlString: String, completion: @escaping (T) -> ()) throws where T: Decodable {
-    guard let url = URL(string: BASE_URL + urlString) else {
-        throw NSError(domain: "URLError", code: -1)
-    }
-
-    URLSession.shared.dataTask(with: url) { data, res, err in
-        let session = urlSession()
-        session.dataTask(with: url) { data, res, err in
-            guard err == nil else {
-                print("Error retrieving url \(urlString)", err)
-                return
-            }
-            guard let data = data else {
-                print("Expected data but was nil from url \(urlString)" , res)
-                return
-            }
-
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            do {
-                let gw = try decoder.decode(T.self, from: data)
-                completion(gw)
-            } catch {
-                print("Decoding error \(error)")
-            }
-        }
-    }.resume()
-
-}
-
 public class Gateway: Decodable, CustomStringConvertible {
     public static let endpoint = "/v1/gateways.json"
 
