@@ -107,9 +107,7 @@ public class Util {
 
     func urlSession() -> URLSession {
         let config = URLSessionConfiguration.default
-        let envKey = self.envKey // TODO: replace me with an injected value
-        let secret = self.envSecret
-        let userPasswordString = "\(envKey):\(secret)"
+        let userPasswordString = "\(envKey):\(envSecret)"
         let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
         let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         config.httpAdditionalHeaders = ["Authorization": "Basic \(encodedCredentials)"]
