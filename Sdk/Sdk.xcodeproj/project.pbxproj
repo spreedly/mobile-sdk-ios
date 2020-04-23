@@ -10,7 +10,7 @@
 		3CF127F12452314A003A6A24 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF127E72452314A003A6A24 /* Sdk.framework */; };
 		3CF127F62452314A003A6A24 /* SdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF127F52452314A003A6A24 /* SdkTests.swift */; };
 		3CF127F82452314A003A6A24 /* Sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CF127EA2452314A003A6A24 /* Sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3CF1280224523174003A6A24 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1280124523174003A6A24 /* main.swift */; };
+		3CF1280224523174003A6A24 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1280124523174003A6A24 /* Main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		3CF127F02452314A003A6A24 /* SdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF127F52452314A003A6A24 /* SdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkTests.swift; sourceTree = "<group>"; };
 		3CF127F72452314A003A6A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CF1280124523174003A6A24 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3CF1280124523174003A6A24 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 		3CF127E92452314A003A6A24 /* Sdk */ = {
 			isa = PBXGroup;
 			children = (
-				3CF1280124523174003A6A24 /* main.swift */,
+				3CF1280124523174003A6A24 /* Main.swift */,
 				3CF127EA2452314A003A6A24 /* Sdk.h */,
 				3CF127EB2452314A003A6A24 /* Info.plist */,
 			);
@@ -199,7 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CF1280224523174003A6A24 /* main.swift in Sources */,
+				3CF1280224523174003A6A24 /* Main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
