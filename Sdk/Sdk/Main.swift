@@ -34,21 +34,6 @@ public struct Response : Decodable {
     }
 }
 
-print("Hello, World!")
-
-let BASE_URL = "https://core.spreedly.com"
-
-func urlSession() -> URLSession {
-    let config = URLSessionConfiguration.default
-    let envKey = ENV_KEY! // TODO: replace me with an injected value
-    let secret = ENV_SECRET!
-    let userPasswordString = "\(envKey):\(secret)"
-    let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
-    let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
-    config.httpAdditionalHeaders = ["Authorization": "Basic \(encodedCredentials)"]
-    return URLSession(configuration: config)
-}
-
 public class Gateway: Decodable, CustomStringConvertible {
     public static let endpoint = "/v1/gateways.json"
 
@@ -79,57 +64,61 @@ public struct SpreedlyError: Error, CustomStringConvertible {
      public let message: String
 }
 
-func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
-    guard let url = URL(string: urlString) else {
-        throw SpreedlyError(message: "Unable to create url from \(urlString)")
+public class Util {
+    private let envKey: String, envSecret: String
+
+    public init(envKey: String, envSecret: String) {
+        self.envKey = envKey
+        self.envSecret = envSecret
     }
 
-    let session = urlSession()
-    session.dataTask(with: url) { data, res, err in
-        guard err == nil else {
-            print("Error retrieving url \(urlString)", err)
-            completion(nil, err)
-            return
+    public func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
+        guard let url = URL(string: urlString) else {
+            throw SpreedlyError(message: "Unable to create url from \(urlString)")
         }
 
-        guard let data = data else {
-            print("Expected data but was nil from url \(urlString)" , res)
-            return
-        }
+        let session = urlSession()
+        session.dataTask(with: url) { data, res, err in
+            guard err == nil else {
+                print("Error retrieving url \(urlString)", err)
+                completion(nil, err)
+                return
+            }
 
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+            guard let data = data else {
+                print("Expected data but was nil from url \(urlString)" , res)
+                return
+            }
 
-        let gw: T
-        do {
-            gw = try decoder.decode(T.self, from: data)
-        } catch {
-            print("error occurred while decoding \(error)")
-            completion(nil, error)
-            return
-        }
-        completion(gw, nil)
-    }.resume()
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+
+            let gw: T
+            do {
+                gw = try decoder.decode(T.self, from: data)
+            } catch {
+                print("error occurred while decoding \(error)")
+                completion(nil, error)
+                return
+            }
+            completion(gw, nil)
+        }.resume()
+    }
+
+    func urlSession() -> URLSession {
+        let config = URLSessionConfiguration.default
+        let envKey = self.envKey // TODO: replace me with an injected value
+        let secret = self.envSecret
+        let userPasswordString = "\(envKey):\(secret)"
+        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
+        let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+        config.httpAdditionalHeaders = ["Authorization": "Basic \(encodedCredentials)"]
+        return URLSession(configuration: config)
+    }
 }
 
-func onGatewayComplete(response: GatewayResponse?, err: Error?) {
-    if let err = err {
-        print(err)
-    }
-    if let response = response {
-        print(response)
-    }
-}
 
-let ENV_KEY = ProcessInfo.processInfo.environment["ENV_KEY"]
-let ENV_SECRET = ProcessInfo.processInfo.environment["ENV_SECRET"]
 
-print("Getting gateway")
-let url = BASE_URL + Gateway.endpoint
-try retrieve(url, completion: onGatewayComplete)
-print("Done requesting gateway")
-
-CFRunLoopRun()
 
 //var shouldKeepRunning = true
 //

@@ -21,6 +21,13 @@
 			remoteGlobalIDString = 3CF127E62452314A003A6A24;
 			remoteInfo = Sdk;
 		};
+		3CF1281A24523497003A6A24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CF1281624523496003A6A24 /* SdkCli.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3CF1280C24523496003A6A24;
+			remoteInfo = SdkCli;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +38,7 @@
 		3CF127F52452314A003A6A24 /* SdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkTests.swift; sourceTree = "<group>"; };
 		3CF127F72452314A003A6A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CF1280124523174003A6A24 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		3CF1281624523496003A6A24 /* SdkCli.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SdkCli.xcodeproj; path = ../SdkCli/SdkCli.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 		3CF127DD2452314A003A6A24 = {
 			isa = PBXGroup;
 			children = (
+				3CF1281624523496003A6A24 /* SdkCli.xcodeproj */,
 				3CF127E92452314A003A6A24 /* Sdk */,
 				3CF127F42452314A003A6A24 /* SdkTests */,
 				3CF127E82452314A003A6A24 /* Products */,
@@ -87,6 +96,14 @@
 				3CF127F72452314A003A6A24 /* Info.plist */,
 			);
 			path = SdkTests;
+			sourceTree = "<group>";
+		};
+		3CF1281724523496003A6A24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CF1281B24523497003A6A24 /* SdkCli */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +186,12 @@
 			mainGroup = 3CF127DD2452314A003A6A24;
 			productRefGroup = 3CF127E82452314A003A6A24 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3CF1281724523496003A6A24 /* Products */;
+					ProjectRef = 3CF1281624523496003A6A24 /* SdkCli.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3CF127E62452314A003A6A24 /* Sdk */,
@@ -176,6 +199,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3CF1281B24523497003A6A24 /* SdkCli */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SdkCli;
+			remoteRef = 3CF1281A24523497003A6A24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3CF127E52452314A003A6A24 /* Resources */ = {
