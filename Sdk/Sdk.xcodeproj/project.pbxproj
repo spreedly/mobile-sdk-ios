@@ -11,6 +11,7 @@
 		3CF127F62452314A003A6A24 /* SdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF127F52452314A003A6A24 /* SdkTests.swift */; };
 		3CF127F82452314A003A6A24 /* Sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CF127EA2452314A003A6A24 /* Sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CF1280224523174003A6A24 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1280124523174003A6A24 /* Main.swift */; };
+		F076CCE52E6387A9859CF063 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE87109B60EC5B48E9CF /* CreditCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		3CF127F72452314A003A6A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CF1280124523174003A6A24 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		3CF1281624523496003A6A24 /* SdkCli.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SdkCli.xcodeproj; path = ../SdkCli/SdkCli.xcodeproj; sourceTree = "<group>"; };
+		F076CE87109B60EC5B48E9CF /* CreditCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				3CF1280124523174003A6A24 /* Main.swift */,
 				3CF127EA2452314A003A6A24 /* Sdk.h */,
 				3CF127EB2452314A003A6A24 /* Info.plist */,
+				F076CE87109B60EC5B48E9CF /* CreditCard.swift */,
 			);
 			path = Sdk;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF1280224523174003A6A24 /* Main.swift in Sources */,
+				F076CCE52E6387A9859CF063 /* CreditCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

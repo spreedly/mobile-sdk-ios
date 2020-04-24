@@ -22,7 +22,49 @@ class SdkTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssert(false)
+
+        var cc = CreditCard()
+        cc.firstName = "Dolly"
+        cc.lastName = "Dog"
+        cc.number = "4111111111111111"
+        cc.month = "12"
+        cc.year = "2022"
+        cc.verificationValue = "999"
+
+        let pm = PaymentMethod(creditCard: cc, email: "dolly@dog.com", metadata: ["key": "value"])
+        let r = Sdk.CreateCreditCardRequest(paymentMethod: pm)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = .prettyPrinted
+
+        var jsonString: String
+        do {
+            let jsonData = try encoder.encode(r)
+            jsonString = String(data: jsonData, encoding: .utf8)!
+        } catch {
+            XCTFail("\(error)")
+            return
+        }
+
+        let expected = """
+{
+  "payment_method" : {
+    "email" : "dolly@dog.com",
+    "credit_card" : {
+      "number" : "4111111111111111",
+      "last_name" : "Dog",
+      "verification_value" : "999",
+      "month" : "12",
+      "first_name" : "Dolly",
+      "year" : "2022"
+    },
+    "metadata" : {
+      "key" : "value"
+    }
+  }
+}
+"""
+        XCTAssertEqual(expected, jsonString)
     }
 
     func testPerformanceExample() throws {
