@@ -119,7 +119,6 @@ public class Util {
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
             let encodedData = try encoder.encode(creditCard)
             request.httpBody = encodedData
@@ -168,7 +167,11 @@ public class Util {
         let userPasswordString = "\(envKey):\(envSecret)"
         let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
         let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
-        config.httpAdditionalHeaders = ["Authorization": "Basic \(encodedCredentials)"]
+        config.httpAdditionalHeaders = [
+            "Authorization": "Basic \(encodedCredentials)",
+            "Content-Type": "application/json",
+        ]
+
         return URLSession(configuration: config)
     }
 }
