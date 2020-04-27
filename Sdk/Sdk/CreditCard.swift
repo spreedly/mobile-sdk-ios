@@ -145,7 +145,7 @@ public struct Transaction: Decodable {
     public let updatedAt: Date
     public let succeeded: Bool
     public let transactionType: String
-    public let retained: String
+    public let retained: Bool
     public let state: String
     public let messageKey: String
     public let message: String
