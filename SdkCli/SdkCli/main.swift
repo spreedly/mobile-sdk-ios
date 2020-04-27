@@ -43,7 +43,7 @@ func createCreditCard() {
     var pm = PaymentMethod(creditCard: cc, email: "dolly@dog.com", metadata: ["somekey": "somevalue"])
     var ccr = CreateCreditCardRequest(paymentMethod: pm)
     do {
-        try u.create(BASE_URL + "/v1/payment_methods.json", creditCard: ccr, completion: { ccr, err in
+        try u.create(BASE_URL + "/v1/payment_methods.json", entity: ccr) { (ccr: CreditCardResponse?, err: Error?) -> Void in
             guard err == nil else {
                 print("Unable to create credit card", err)
                 return
@@ -52,7 +52,7 @@ func createCreditCard() {
             if let ccr = ccr {
                 print("CreditCardResponse returned", ccr)
             }
-        })
+        }
     } catch {
         print("Unable to create credit card", error)
     }

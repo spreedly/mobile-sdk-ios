@@ -109,7 +109,7 @@ public class Util {
         }.resume()
     }
 
-    public func create(_ urlString: String, creditCard: CreateCreditCardRequest, completion: @escaping (CreditCardResponse?, Error?) -> ()) throws {
+    public func create<TRequest, TResponse>(_ urlString: String, entity: TRequest, completion: @escaping (TResponse?, Error?) -> ()) throws where TRequest: Encodable, TResponse: Decodable {
         guard let url = URL(string: urlString) else {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
         }
@@ -120,7 +120,7 @@ public class Util {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {
-            let encodedData = try encoder.encode(creditCard)
+            let encodedData = try encoder.encode(entity)
             request.httpBody = encodedData
             let jsonString = String(data: encodedData, encoding: .utf8)!
             print("Request is")
@@ -149,9 +149,9 @@ public class Util {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
 
-            let response: CreditCardResponse
+            let response: TResponse
             do {
-                response = try decoder.decode(CreditCardResponse.self, from: data)
+                response = try decoder.decode(TResponse.self, from: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)
