@@ -103,10 +103,6 @@ public class Util {
             }
             print("Got response: ", String(data: data, encoding: .utf8)!)
 
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-
             let entity: T
             do {
                 entity = try self.decode(data: data)
