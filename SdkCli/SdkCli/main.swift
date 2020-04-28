@@ -58,13 +58,32 @@ func createCreditCard() {
     }
 }
 
+func getCreditCard(token: String) {
+    do {
+        try u.retrieve(BASE_URL + "/v1/payment_methods/\(token).json") { (response: ShowCreditCardResponse?, err: Error?) in
+            guard err == nil else {
+                print("Unable to retrieve credit card", err)
+                return
+            }
+
+            if let response = response {
+                print("Response returned", response)
+            }
+        }
+    } catch {
+        print(error)
+    }
+}
 
 
-print("Getting gateway")
 
-let url = BASE_URL + Gateway.endpoint
+
+//print("Getting gateway")
+
+//let url = BASE_URL + Gateway.endpoint
 //try u.retrieve(url, completion: onGatewayComplete)
-createCreditCard()
-print("Done requesting gateway")
+//createCreditCard()
+getCreditCard(token: "SWubuQiGAD1LuD7PBkk8t3pDkaS")
+//print("Done requesting gateway")
 
 CFRunLoopRun()
