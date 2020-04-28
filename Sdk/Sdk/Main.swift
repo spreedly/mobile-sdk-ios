@@ -152,12 +152,9 @@ public class Util {
             let jsonString = String(data: data, encoding: .utf8)!
             print(jsonString)
 
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-
             let response: TResponse
             do {
-                response = try decoder.decode(TResponse.self, from: data)
+                response = try self.decode(data: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)
