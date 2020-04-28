@@ -76,6 +76,14 @@ public class Util {
         self.envSecret = envSecret
     }
 
+    public func decode<T>(data: Data) throws -> T where T: Decodable {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        return try decoder.decode(T.self, from: data)
+    }
+
     public func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
         guard let url = URL(string: urlString) else {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
@@ -93,19 +101,21 @@ public class Util {
                 print("Expected data but was nil from url \(urlString)" , res)
                 return
             }
+            print("Got response: ", String(data: data, encoding: .utf8)!)
 
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            let gw: T
+            let entity: T
             do {
-                gw = try decoder.decode(T.self, from: data)
+                entity = try self.decode(data: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)
                 return
             }
-            completion(gw, nil)
+            completion(entity, nil)
         }.resume()
     }
 
