@@ -289,7 +289,6 @@ public class CreditCardPaymentMethodResponse: PaymentMethodResponseBase {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         lastFourDigits = try container.decode(String.self, forKey: CodingKeys.lastFourDigits)
-        lastFourDigits = "9999"
         firstSixDigits = try container.decode(String.self, forKey: CodingKeys.firstSixDigits)
         cardType = try container.decode(String.self, forKey: CodingKeys.cardType)
         firstName = try container.decode(String.self, forKey: CodingKeys.firstName)
