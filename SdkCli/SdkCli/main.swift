@@ -39,11 +39,19 @@ func createCreditCard() {
     cc.state = "OR"
     cc.zip = "54321"
     cc.country = "US"
+    cc.test = true
 
-    var pm = PaymentMethod(creditCard: cc, email: "dolly@dog.com", metadata: ["somekey": "somevalue"])
-    var ccr = CreateCreditCardRequest(paymentMethod: pm)
+    var cpmr = CreatePaymentMethodRequest(
+            email: "dolly@dog.com",
+            metadata: ["breed": "aussie"],
+            creditCard: cc
+    )
+    let entity = CreatePaymentMethodRequest.CodingData(paymentMethod: cpmr)
+//    var pm = PaymentMethod(creditCard: cc, email: "dolly@dog.com", metadata: ["somekey": "somevalue"])
+//    var ccr = CreateCreditCardRequest(paymentMethod: pm)
+
     do {
-        try u.create(BASE_URL + "/v1/payment_methods.json", entity: ccr) { (ccr: CreditCardResponse?, err: Error?) -> Void in
+        try u.create(BASE_URL + "/v1/payment_methods.json", entity: entity) { (ccr: Transaction.CodingData?, err: Error?) -> Void in
             guard err == nil else {
                 print("Unable to create credit card", err)
                 return
@@ -58,13 +66,32 @@ func createCreditCard() {
     }
 }
 
+func getCreditCard(token: String) {
+    do {
+        try u.retrieve(BASE_URL + "/v1/payment_methods/\(token).json") { (response: CreditCard.CodingData?, err: Error?) in
+            guard err == nil else {
+                print("Unable to retrieve credit card", err)
+                return
+            }
+
+            if let response = response {
+                print("Response returned", response)
+            }
+        }
+    } catch {
+        print(error)
+    }
+}
 
 
-print("Getting gateway")
 
-let url = BASE_URL + Gateway.endpoint
+
+//print("Getting gateway")
+
+//let url = BASE_URL + Gateway.endpoint
 //try u.retrieve(url, completion: onGatewayComplete)
-createCreditCard()
-print("Done requesting gateway")
+//createCreditCard()
+getCreditCard(token: "SWubuQiGAD1LuD7PBkk8t3pDkaS")
+//print("Done requesting gateway")
 
 CFRunLoopRun()
