@@ -19,9 +19,7 @@ class SdkTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCanEncode() throws {
 
         var cc = CreditCard()
         cc.firstName = "Dolly"
@@ -31,40 +29,36 @@ class SdkTests: XCTestCase {
         cc.year = "2022"
         cc.verificationValue = "999"
 
-        let pm = PaymentMethod(creditCard: cc, email: "dolly@dog.com", metadata: ["key": "value"])
-        let r = Sdk.CreateCreditCardRequest(paymentMethod: pm)
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.outputFormatting = .prettyPrinted
+        let request = CreatePaymentMethodRequest(email: "dolly@dog.com", metadata: ["key": "value"], creditCard: cc)
+        let codingData = CreatePaymentMethodRequest.CodingData(paymentMethod: request)
 
-        var jsonString: String
+        let jsonData: Data
         do {
-            let jsonData = try encoder.encode(r)
-            jsonString = String(data: jsonData, encoding: .utf8)!
+            jsonData = try Util.encode(entity: codingData)
         } catch {
             XCTFail("\(error)")
             return
         }
-
+        let actualJson = String(data: jsonData, encoding: .utf8)!
         let expected = """
 {
   "payment_method" : {
-    "email" : "dolly@dog.com",
     "credit_card" : {
-      "number" : "4111111111111111",
-      "last_name" : "Dog",
-      "verification_value" : "999",
-      "month" : "12",
       "first_name" : "Dolly",
+      "last_name" : "Dog",
+      "month" : "12",
+      "number" : "4111111111111111",
+      "verification_value" : "999",
       "year" : "2022"
     },
+    "email" : "dolly@dog.com",
     "metadata" : {
       "key" : "value"
     }
   }
 }
 """
-        XCTAssertEqual(expected, jsonString)
+        XCTAssertEqual(expected, actualJson)
     }
 
     func testPerformanceExample() throws {
@@ -133,11 +127,11 @@ class UtilDecodeTests: XCTestCase {
 }
 """
         let jsonData = json.data(using: .utf8)!
-        let u = Util(envKey: "", envSecret: "")
-        let entity: ShowCreditCardResponse = try u.decode(data: jsonData)
+        let codingData: CreditCard.CodingData = try Util.decode(data: jsonData)
+        let creditCard = codingData.paymentMethod
 
-        XCTAssertEqual("1rpKvP8zOUhj4Y9EDrIoIYQzzD5", entity.paymentMethod.token, "String decodable")
-        XCTAssertNil(entity.paymentMethod.address1, "Nil decodable")
+        XCTAssertEqual("1rpKvP8zOUhj4Y9EDrIoIYQzzD5", creditCard.token, "String decodable")
+        XCTAssertNil(creditCard.address1, "Nil decodable")
 
         let expectedDate = DateComponents(
             calendar: Calendar.current,
@@ -149,6 +143,6 @@ class UtilDecodeTests: XCTestCase {
             minute: 04,
             second: 38
         ).date
-        XCTAssertEqual(expectedDate, entity.paymentMethod.createdAt, "Date decodable")
+        XCTAssertEqual(expectedDate, creditCard.createdAt, "Date decodable")
     }
 }

@@ -38,12 +38,21 @@ public class Util {
         self.envSecret = envSecret
     }
 
-    public func decode<T>(data: Data) throws -> T where T: Decodable {
+    public static func decode<T>(data: Data) throws -> T where T: Decodable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
         return try decoder.decode(T.self, from: data)
+    }
+
+    public static func encode<TEntity>(entity: TEntity) throws -> Data where TEntity: Encodable {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+
+        return try encoder.encode(entity)
     }
 
     public func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
@@ -67,7 +76,7 @@ public class Util {
 
             let entity: T
             do {
-                entity = try self.decode(data: data)
+                entity = try Util.decode(data: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)
@@ -82,14 +91,10 @@ public class Util {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
         }
 
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {
-            let encodedData = try encoder.encode(entity)
+            let encodedData = try Util.encode(entity: entity)
             request.httpBody = encodedData
             let jsonString = String(data: encodedData, encoding: .utf8)!
             print("Request is")
@@ -117,7 +122,7 @@ public class Util {
 
             let response: TResponse
             do {
-                response = try self.decode(data: data)
+                response = try Util.decode(data: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)
@@ -141,11 +146,3 @@ public class Util {
         return URLSession(configuration: config)
     }
 }
-
-
-
-
-//var shouldKeepRunning = true
-//
-//let theRL = RunLoop.current
-//while shouldKeepRunning && theRL.run(mode: RunLoop.Mode.default, before: Date.distantFuture()) { }
