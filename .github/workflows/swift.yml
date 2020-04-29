@@ -8,14 +8,27 @@ on:
 
 jobs:
   build:
-
+    name: 'XCode Build'
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
-    - name: Swift Coverage Report
-      uses: maxep/spm-lcov-action@0.3.1
+      uses: sersoft-gmbh/xcodebuild-action@v1.1
+      with:
+        action: build
+  test:
+    name: 'XCode Test'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: sersoft-gmbh/xcodebuild-action@v1.1
+      with:
+        action: test
+  lint:
+    name: 'Swift Lint'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: Iron-Ham/swift-format-linter-action@v4
