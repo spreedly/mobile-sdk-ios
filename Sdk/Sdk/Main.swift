@@ -122,6 +122,7 @@ public class Util {
 
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
