@@ -46,6 +46,15 @@ public class Util {
         return try decoder.decode(T.self, from: data)
     }
 
+    public static func encode<TEntity>(entity: TEntity) throws -> Data where TEntity: Encodable {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+
+        return try encoder.encode(entity)
+    }
+
     public func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
         guard let url = URL(string: urlString) else {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
@@ -82,14 +91,10 @@ public class Util {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
         }
 
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {
-            let encodedData = try encoder.encode(entity)
+            let encodedData = try Util.encode(entity: entity)
             request.httpBody = encodedData
             let jsonString = String(data: encodedData, encoding: .utf8)!
             print("Request is")
@@ -141,11 +146,3 @@ public class Util {
         return URLSession(configuration: config)
     }
 }
-
-
-
-
-//var shouldKeepRunning = true
-//
-//let theRL = RunLoop.current
-//while shouldKeepRunning && theRL.run(mode: RunLoop.Mode.default, before: Date.distantFuture()) { }
