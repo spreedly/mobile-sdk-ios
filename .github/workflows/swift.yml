@@ -16,6 +16,7 @@ jobs:
       uses: sersoft-gmbh/xcodebuild-action@v1.1
       with:
         action: build
+        workspace: SpreedlySdk.xcworkspace
   test:
     name: 'XCode Test'
     runs-on: macos-latest
@@ -25,6 +26,7 @@ jobs:
       uses: sersoft-gmbh/xcodebuild-action@v1.1
       with:
         action: test
+        workspace: SpreedlySdk.xcworkspace
   lint:
     name: 'Swift Lint'
     runs-on: macos-latest
