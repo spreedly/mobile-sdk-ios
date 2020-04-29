@@ -3,23 +3,28 @@ public struct CreditCard: Codable, CustomStringConvertible {
     public var token: String? = nil
     public var createdAt: Date? = nil
     public var updatedAt: Date? = nil
+    public var data: [String: String]? = nil
     public var storageState: String? = nil
     public var test: Bool? = nil
     public var metadata: [String: String]? = nil
+    public var callbackUrl: String? = nil
     public var paymentMethodType: String? = nil
     public var fingerprint: String? = nil
+    public var errors: [String]? = nil
 
     // Card-specific data
-    public var number: String = ""
-    public var verificationValue: String = ""
-    public var month: String = ""
-    public var year: String = ""
+    public var lastFourDigits: String? = nil
+    public var firstSixDigits: String? = nil
     public var cardType: String? = nil
+    public var month: String? = nil
+    public var year: String? = nil
+    public var number: String? = nil
+    public var verificationValue: String? = nil
 
     // Customer-specific data
     public var email: String? = nil
-    public var firstName: String = ""
-    public var lastName: String = ""
+    public var firstName: String? = nil
+    public var lastName: String? = nil
     public var company: String? = nil
     public var address1: String? = nil
     public var address2: String? = nil
@@ -36,25 +41,30 @@ public struct CreditCard: Codable, CustomStringConvertible {
     public var shippingCountry: String? = nil
     public var shippingPhoneNumber: String? = nil
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: CodingKey {
         case token
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case storageState = "storage_state"
+        case createdAt
+        case updatedAt
+        case data
+        case storageState
         case test
         case metadata
-        case paymentMethodType = "payment_method_type"
+        case callbackUrl
+        case paymentMethodType
         case fingerprint
+        case errors
 
+        case lastFourDigits
+        case firstSixDigits
         case number
-        case verificationValue = "verification_value"
         case month
         case year
-        case cardType = "card_type"
+        case cardType
+        case verificationValue
 
         case email
-        case firstName = "first_name"
-        case lastName = "last_name"
+        case firstName
+        case lastName
         case company
         case address1
         case address2
@@ -62,30 +72,30 @@ public struct CreditCard: Codable, CustomStringConvertible {
         case state
         case zip
         case country
-        case phoneNumber = "phone_number"
-        case shippingAddress1 = "shipping_address1"
-        case shippingAddress2 = "shipping_address2"
-        case shippingCity = "shipping_city"
-        case shippingState = "shipping_state"
-        case shippingZip = "shipping_zip"
-        case shippingCountry = "shipping_country"
-        case shippingPhoneNumber = "shipping_phone_number"
+        case phoneNumber
+        case shippingAddress1
+        case shippingAddress2
+        case shippingCity
+        case shippingState
+        case shippingZip
+        case shippingCountry
+        case shippingPhoneNumber
     }
-
-    private var bin: String {
-        "\(number.prefix(6))"
-    }
-
-    private var last4: String {
-        "\(number.suffix(4))"
-    }
-
-    private var viewableNumber: String {
-        "\(bin)...\(last4)"
-    }
+//
+//    private var bin: String {
+//        "\(number?.prefix(6))"
+//    }
+//
+//    private var last4: String {
+//        "\(number?.suffix(4))"
+//    }
+//
+//    private var viewableNumber: String {
+//        "\(bin)...\(last4)"
+//    }
 
     public var description: String {
-        "CreditCard(\(viewableNumber))"
+        "CreditCard(\(self.number ?? "????"))"
     }
 
     public init() { }
@@ -93,51 +103,97 @@ public struct CreditCard: Codable, CustomStringConvertible {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.firstName = try container.decode(String.self, forKey: .firstName)
-        self.lastName = try container.decode(String.self, forKey: .lastName)
-        self.number = try container.decode(String.self, forKey: .number)
-        self.verificationValue = try container.decode(String.self, forKey: .verificationValue)
-        self.month = try container.decode(String.self, forKey: .month)
-        self.year = try container.decode(String.self, forKey: .year)
-        self.company = try container.decode(String.self, forKey: .company)
-        self.address1 = try container.decode(String.self, forKey: .address1)
-        self.address2 = try container.decode(String.self, forKey: .address2)
-        self.city = try container.decode(String.self, forKey: .city)
-        self.state = try container.decode(String.self, forKey: .state)
-        self.zip = try container.decode(String.self, forKey: .zip)
-        self.country = try container.decode(String.self, forKey: .country)
-        self.phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
-        self.shippingAddress1 = try container.decode(String.self, forKey: .shippingAddress1)
-        self.shippingAddress2 = try container.decode(String.self, forKey: .shippingAddress2)
-        self.shippingCity = try container.decode(String.self, forKey: .shippingCity)
-        self.shippingState = try container.decode(String.self, forKey: .shippingState)
-        self.shippingZip = try container.decode(String.self, forKey: .shippingZip)
-        self.shippingCountry = try container.decode(String.self, forKey: .shippingCountry)
-        self.shippingPhoneNumber = try container.decode(String.self, forKey: .shippingPhoneNumber)
+        self.token = try container.decode(String?.self, forKey: .token)
+        self.createdAt = try container.decode(Date?.self, forKey: .createdAt)
+        self.updatedAt = try container.decode(Date?.self, forKey: .updatedAt)
+        // self.data
+        self.storageState = try container.decode(String?.self, forKey: .storageState)
+        self.test = try container.decode(Bool?.self, forKey: .test)
+        // self.metadata
+        self.callbackUrl = try container.decode(String?.self, forKey: .callbackUrl)
+        self.paymentMethodType = try container.decode(String?.self, forKey: .paymentMethodType)
+        self.fingerprint = try container.decode(String?.self, forKey: .fingerprint)
+        self.errors = try container.decode([String]?.self, forKey: .errors)
+
+
+        self.lastFourDigits = try container.decode(String?.self, forKey: .lastFourDigits)
+        self.firstSixDigits = try container.decode(String?.self, forKey: .firstSixDigits)
+        self.cardType = try container.decode(String?.self, forKey: .cardType)
+        let intMonth = try! container.decode(Int?.self, forKey: .month)
+        self.month = String(intMonth!)
+        let intYear = try! container.decode(Int?.self, forKey: .year)
+        self.year = String(intYear!)
+        self.number = try container.decode(String?.self, forKey: .number)
+        self.verificationValue = try container.decode(String?.self, forKey: .verificationValue)
+
+        self.email = try container.decode(String?.self, forKey: .email)
+        self.firstName = try container.decode(String?.self, forKey: .firstName)
+        self.lastName = try container.decode(String?.self, forKey: .lastName)
+        self.company = try container.decode(String?.self, forKey: .company)
+        self.address1 = try container.decode(String?.self, forKey: .address1)
+        self.address2 = try container.decode(String?.self, forKey: .address2)
+        self.city = try container.decode(String?.self, forKey: .city)
+        self.state = try container.decode(String?.self, forKey: .state)
+        self.zip = try container.decode(String?.self, forKey: .zip)
+        self.country = try container.decode(String?.self, forKey: .country)
+        self.phoneNumber = try container.decode(String?.self, forKey: .phoneNumber)
+        self.shippingAddress1 = try container.decode(String?.self, forKey: .shippingAddress1)
+        self.shippingAddress2 = try container.decode(String?.self, forKey: .shippingAddress2)
+        self.shippingCity = try container.decode(String?.self, forKey: .shippingCity)
+        self.shippingState = try container.decode(String?.self, forKey: .shippingState)
+        self.shippingZip = try container.decode(String?.self, forKey: .shippingZip)
+        self.shippingCountry = try container.decode(String?.self, forKey: .shippingCountry)
+        self.shippingPhoneNumber = try container.decode(String?.self, forKey: .shippingPhoneNumber)
     }
 }
 
-public struct PaymentMethod: Codable, CustomStringConvertible {
+public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
     public var description: String {
-        "PaymentMethod"
+        "CustomPaymentMethodRequest"
     }
 
-    public let creditCard: CreditCard
-    public let email: String
-    public let metadata: [String: String]
+    public var email: String? = nil
+    public var metadata: [String: String] = [:]
+    public var creditCard: CreditCard? = nil
 
-    enum CodingKeys: String, CodingKey {
-        case creditCard = "credit_card"
-        case email
-        case metadata
-    }
-
-    public init(creditCard: CreditCard, email: String, metadata: [String: String]) {
-        self.creditCard = creditCard
+    public init(email: String, metadata: [String:String], creditCard: CreditCard) {
         self.email = email
         self.metadata = metadata
+        self.creditCard = creditCard
     }
 }
+
+extension CreatePaymentMethodRequest {
+    public struct CodingData: Encodable {
+        var paymentMethod: CreatePaymentMethodRequest
+
+        public init(paymentMethod: CreatePaymentMethodRequest) {
+            self.paymentMethod = paymentMethod
+        }
+    }
+}
+
+//public struct PaymentMethod: Codable, CustomStringConvertible {
+//    public var description: String {
+//        "PaymentMethod"
+//    }
+//
+//    public let creditCard: CreditCard
+//    public let email: String
+//    public let metadata: [String: String]
+//
+//    enum CodingKeys: String, CodingKey {
+//        case creditCard = "credit_card"
+//        case email
+//        case metadata
+//    }
+//
+//    public init(creditCard: CreditCard, email: String, metadata: [String: String]) {
+//        self.creditCard = creditCard
+//        self.email = email
+//        self.metadata = metadata
+//    }
+//}
 
 public struct Transaction: Decodable {
     public let token: String
@@ -149,37 +205,37 @@ public struct Transaction: Decodable {
     public let state: String
     public let messageKey: String
     public let message: String
-    public let paymentMethod: PaymentMethod
+    public let paymentMethod: CreditCard
 
-    enum CodingKeys: String, CodingKey {
-        case token
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case succeeded
-        case transactionType = "transaction_type"
-        case retained
-        case state
-        case messageKey = "message_key"
-        case message
-        case paymentMethod = "payment_method"
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case token
+//        case createdAt = "created_at"
+//        case updatedAt = "updated_at"
+//        case succeeded
+//        case transactionType = "transaction_type"
+//        case retained
+//        case state
+//        case messageKey = "message_key"
+//        case message
+//        case paymentMethod = "payment_method"
+//    }
 }
 
 public struct CreditCardResponse: Decodable {
     public let transaction: Transaction
 }
 
-public struct CreateCreditCardRequest: Encodable {
-    public var paymentMethod: PaymentMethod
-
-    enum CodingKeys: String, CodingKey {
-        case paymentMethod = "payment_method"
-    }
-
-    public init(paymentMethod: PaymentMethod) {
-        self.paymentMethod = paymentMethod
-    }
-}
+//public struct CreateCreditCardRequest: Encodable {
+//    public var paymentMethod: PaymentMethod
+//
+//    enum CodingKeys: String, CodingKey {
+//        case paymentMethod = "payment_method"
+//    }
+//
+//    public init(paymentMethod: PaymentMethod) {
+//        self.paymentMethod = paymentMethod
+//    }
+//}
 
 enum PaymentMethodResponse {
     case creditCard(CreditCardPaymentMethodResponse)
@@ -286,6 +342,8 @@ public class CreditCardPaymentMethodResponse: PaymentMethodResponseBase {
         case verificationValue
     }
 
+
+
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         lastFourDigits = try container.decode(String.self, forKey: CodingKeys.lastFourDigits)
@@ -315,6 +373,18 @@ public class CreditCardPaymentMethodResponse: PaymentMethodResponseBase {
         try super.init(from: decoder)
     }
 }
+
+//extension CreditCardPaymentMethodResponse {
+//    struct CodingData: Codable {
+//        var paymentMethod: CreditCardPaymentMethodResponse
+//    }
+//}
+//
+//extension CreditCardPaymentMethodResponse.CodingData {
+//    var creditCard: CreditCardPaymentMethodResponse {
+//        paymentMethod
+//    }
+//}
 
 public struct ShowCreditCardResponse: Decodable {
     public var paymentMethod: CreditCardPaymentMethodResponse
