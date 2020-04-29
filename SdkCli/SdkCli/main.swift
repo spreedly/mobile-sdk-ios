@@ -51,7 +51,7 @@ func createCreditCard() {
 //    var ccr = CreateCreditCardRequest(paymentMethod: pm)
 
     do {
-        try u.create(BASE_URL + "/v1/payment_methods.json", entity: entity) { (ccr: CreditCardResponse?, err: Error?) -> Void in
+        try u.create(BASE_URL + "/v1/payment_methods.json", entity: entity) { (ccr: Transaction.CodingData?, err: Error?) -> Void in
             guard err == nil else {
                 print("Unable to create credit card", err)
                 return
