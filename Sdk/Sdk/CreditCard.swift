@@ -81,18 +81,6 @@ public struct CreditCard: Codable, CustomStringConvertible {
         case shippingCountry
         case shippingPhoneNumber
     }
-//
-//    private var bin: String {
-//        "\(number?.prefix(6))"
-//    }
-//
-//    private var last4: String {
-//        "\(number?.suffix(4))"
-//    }
-//
-//    private var viewableNumber: String {
-//        "\(bin)...\(last4)"
-//    }
 
     public var description: String {
         "CreditCard(\(self.number ?? "????"))"
@@ -173,28 +161,6 @@ extension CreatePaymentMethodRequest {
     }
 }
 
-//public struct PaymentMethod: Codable, CustomStringConvertible {
-//    public var description: String {
-//        "PaymentMethod"
-//    }
-//
-//    public let creditCard: CreditCard
-//    public let email: String
-//    public let metadata: [String: String]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case creditCard = "credit_card"
-//        case email
-//        case metadata
-//    }
-//
-//    public init(creditCard: CreditCard, email: String, metadata: [String: String]) {
-//        self.creditCard = creditCard
-//        self.email = email
-//        self.metadata = metadata
-//    }
-//}
-
 public struct Transaction: Decodable {
     public let token: String
     public let createdAt: Date
@@ -206,19 +172,6 @@ public struct Transaction: Decodable {
     public let messageKey: String
     public let message: String
     public let paymentMethod: CreditCard
-
-//    enum CodingKeys: String, CodingKey {
-//        case token
-//        case createdAt = "created_at"
-//        case updatedAt = "updated_at"
-//        case succeeded
-//        case transactionType = "transaction_type"
-//        case retained
-//        case state
-//        case messageKey = "message_key"
-//        case message
-//        case paymentMethod = "payment_method"
-//    }
 }
 
 public struct CreditCardResponse: Decodable {
@@ -341,8 +294,6 @@ public class CreditCardPaymentMethodResponse: PaymentMethodResponseBase {
         case number
         case verificationValue
     }
-
-
 
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
