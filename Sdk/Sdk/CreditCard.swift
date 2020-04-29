@@ -152,6 +152,20 @@ public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
 }
 
 extension CreatePaymentMethodRequest {
+    /*
+        When creating a payment method, the API expects an object with a single key, "payment_method".
+
+        Example:
+        {
+            "payment_method": {
+                "email": "...",
+                "metadata: {...},
+                "credit_card: {...}
+            }
+        }
+
+        The CodingData struct represents that the outermost object with the single "payment_method" key in it.
+    */
     public struct CodingData: Encodable {
         var paymentMethod: CreatePaymentMethodRequest
 
