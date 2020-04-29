@@ -1,4 +1,6 @@
 
+*.swp
+trash
 .DS_Store
 .idea
 xcuserdata/
