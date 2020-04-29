@@ -98,11 +98,10 @@ public struct CreditCard: Codable, CustomStringConvertible {
         self.storageState = try container.decode(String?.self, forKey: .storageState)
         self.test = try container.decode(Bool?.self, forKey: .test)
         // self.metadata
-        self.callbackUrl = try container.decode(String?.self, forKey: .callbackUrl)
+        self.callbackUrl = try container.decodeIfPresent(String.self, forKey: .callbackUrl)
         self.paymentMethodType = try container.decode(String?.self, forKey: .paymentMethodType)
         self.fingerprint = try container.decode(String?.self, forKey: .fingerprint)
         self.errors = try container.decode([String]?.self, forKey: .errors)
-
 
         self.lastFourDigits = try container.decode(String?.self, forKey: .lastFourDigits)
         self.firstSixDigits = try container.decode(String?.self, forKey: .firstSixDigits)
