@@ -135,6 +135,16 @@ public struct CreditCard: Codable, CustomStringConvertible {
     }
 }
 
+extension CreditCard {
+    public struct CodingData: Decodable {
+        var paymentMethod: CreditCard
+
+        public init(paymentMethod: CreditCard) {
+            self.paymentMethod = paymentMethod
+        }
+    }
+}
+
 public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
     public var description: String {
         "CustomPaymentMethodRequest"
