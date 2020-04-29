@@ -38,7 +38,7 @@ public class Util {
         self.envSecret = envSecret
     }
 
-    public func decode<T>(data: Data) throws -> T where T: Decodable {
+    public static func decode<T>(data: Data) throws -> T where T: Decodable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -76,7 +76,7 @@ public class Util {
 
             let entity: T
             do {
-                entity = try self.decode(data: data)
+                entity = try Util.decode(data: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)
@@ -122,7 +122,7 @@ public class Util {
 
             let response: TResponse
             do {
-                response = try self.decode(data: data)
+                response = try Util.decode(data: data)
             } catch {
                 print("error occurred while decoding \(error)")
                 completion(nil, error)

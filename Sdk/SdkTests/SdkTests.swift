@@ -127,8 +127,7 @@ class UtilDecodeTests: XCTestCase {
 }
 """
         let jsonData = json.data(using: .utf8)!
-        let u = Util(envKey: "", envSecret: "")
-        let codingData: CreditCard.CodingData = try u.decode(data: jsonData)
+        let codingData: CreditCard.CodingData = try Util.decode(data: jsonData)
         let creditCard = codingData.paymentMethod
 
         XCTAssertEqual("1rpKvP8zOUhj4Y9EDrIoIYQzzD5", creditCard.token, "String decodable")
