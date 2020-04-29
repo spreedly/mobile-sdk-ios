@@ -4,4 +4,10 @@
    <FileRef
       location = "group:Sdk/Sdk.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:SdkCli/SdkCli.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

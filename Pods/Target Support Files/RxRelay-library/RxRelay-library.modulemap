@@ -1,0 +1,6 @@
+module RxRelay {
+  umbrella header "RxRelay-library-umbrella.h"
+
+  export *
+  module * { export * }
+}
