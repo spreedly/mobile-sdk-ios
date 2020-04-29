@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: 'XCode Build'
+    name: 'XCode Build Sdk'
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,20 @@ jobs:
       with:
         action: build
         workspace: SpreedlySdk.xcworkspace
+        scheme: Sdk
+  build_test:
+    name: 'XCode Build SdkTest'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: sersoft-gmbh/xcodebuild-action@v1.1
+      with:
+        action: build
+        workspace: SpreedlySdk.xcworkspace
+        scheme: SdkTest
   test:
+    needs: [ build_test ]
     name: 'XCode Test'
     runs-on: macos-latest
     steps:
@@ -27,6 +40,7 @@ jobs:
       with:
         action: test
         workspace: SpreedlySdk.xcworkspace
+        scheme: SdkTest
   lint:
     name: 'Swift Lint'
     runs-on: macos-latest
@@ -34,3 +48,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       uses: Iron-Ham/swift-format-linter-action@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
