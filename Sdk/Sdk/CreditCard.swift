@@ -174,8 +174,14 @@ public struct Transaction: Decodable {
     public let paymentMethod: CreditCard
 }
 
-public struct CreditCardResponse: Decodable {
-    public let transaction: Transaction
+extension Transaction {
+    public struct CodingData: Decodable {
+        var transaction: Transaction
+
+        public init(transaction: Transaction) {
+            self.transaction = transaction
+        }
+    }
 }
 
 //public struct CreateCreditCardRequest: Encodable {
