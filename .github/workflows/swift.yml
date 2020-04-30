@@ -19,6 +19,7 @@ jobs:
         action: build
         workspace: SpreedlySdk.xcworkspace
         scheme: Sdk
+        destination: 'name=iPhone 11'
   build_test:
     name: 'XCode Build SdkTest'
     runs-on: macos-latest
@@ -30,6 +31,7 @@ jobs:
         action: build
         workspace: SpreedlySdk.xcworkspace
         scheme: 'All in SdkTests'
+        destination: 'name=iPhone 11'
   test:
     needs: [ build_test ]
     name: 'XCode Test'
