@@ -25,7 +25,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Test
       uses: sersoft-gmbh/xcodebuild-action@v1.1
       with:
         action: test
@@ -37,7 +37,5 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      uses: Iron-Ham/swift-format-linter-action@v4
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - run: cd Sdk
+    - run: ../Pods/SwiftLint/swiftlint
