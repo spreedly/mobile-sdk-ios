@@ -16,8 +16,8 @@ public struct CreditCard: Codable, CustomStringConvertible {
     public var lastFourDigits: String?
     public var firstSixDigits: String?
     public var cardType: String?
-    public var month: String?
-    public var year: String?
+    public var month: Int?
+    public var year: Int?
     public var number: String?
     public var verificationValue: String?
 
@@ -106,10 +106,8 @@ public struct CreditCard: Codable, CustomStringConvertible {
         self.lastFourDigits = try container.decode(String?.self, forKey: .lastFourDigits)
         self.firstSixDigits = try container.decode(String?.self, forKey: .firstSixDigits)
         self.cardType = try container.decode(String?.self, forKey: .cardType)
-        let intMonth = try! container.decode(Int?.self, forKey: .month)
-        self.month = String(intMonth!)
-        let intYear = try! container.decode(Int?.self, forKey: .year)
-        self.year = String(intYear!)
+        self.month = try container.decode(Int?.self, forKey: .month)
+        self.year = try container.decode(Int?.self, forKey: .month)
         self.number = try container.decode(String?.self, forKey: .number)
         self.verificationValue = try container.decode(String?.self, forKey: .verificationValue)
 

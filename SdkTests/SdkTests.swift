@@ -17,8 +17,8 @@ class SdkTests: XCTestCase {
         creditCard.firstName = "Dolly"
         creditCard.lastName = "Dog"
         creditCard.number = "4111111111111111"
-        creditCard.month = "12"
-        creditCard.year = "2022"
+        creditCard.month = 12
+        creditCard.year = 2022
         creditCard.verificationValue = "999"
 
         let request = CreatePaymentMethodRequest(
@@ -42,10 +42,10 @@ class SdkTests: XCTestCase {
     "credit_card" : {
       "first_name" : "Dolly",
       "last_name" : "Dog",
-      "month" : "12",
+      "month" : 12,
       "number" : "4111111111111111",
       "verification_value" : "999",
-      "year" : "2022"
+      "year" : 2022
     },
     "email" : "dolly@dog.com",
     "metadata" : {
