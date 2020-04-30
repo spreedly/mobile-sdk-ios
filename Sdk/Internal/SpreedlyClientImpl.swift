@@ -4,7 +4,7 @@
 
 import Foundation
 
-@objc class SpreedlyClientImpl: NSObject, SpreedlyClient {
+class SpreedlyClientImpl: NSObject, SpreedlyClient {
     let env: String
     let secret: String
 
@@ -15,10 +15,10 @@ import Foundation
     }
 
     func createSecureString() -> SpreedlySecureOpaqueString {
-        SpreedlySecureOpaqueStringImpl();
+        SpreedlySecureOpaqueStringImpl()
     }
 
     func createSecureString(from source: String) -> SpreedlySecureOpaqueString {
-        SpreedlySecureOpaqueStringImpl(from: source);
+        SpreedlySecureOpaqueStringImpl(from: source)
     }
 }

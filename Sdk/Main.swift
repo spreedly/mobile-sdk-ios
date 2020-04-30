@@ -1,27 +1,5 @@
 import Foundation
 
-public class Gateway: Decodable, CustomStringConvertible {
-    public static let endpoint = "/v1/gateways.json"
-
-    public var description: String {
-        "Gateway(name: \(name))"
-    }
-
-    public let token: String
-    public let gateway_type: String
-    public let state: String
-    public let name: String
-    public let created_at: Date
-}
-
-public class GatewayResponse: Decodable, CustomStringConvertible {
-    public let gateways: [Gateway]
-
-    public var description: String {
-        "GatewayResponse(gateways: \(gateways))"
-    }
-}
-
 public struct SpreedlyError: Error, CustomStringConvertible {
     public var description: String {
         "SpreedlyError: \(message)"
@@ -55,7 +33,7 @@ public class Util {
         return try encoder.encode(entity)
     }
 
-    public func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> ()) throws where T: Decodable{
+    public func retrieve<T>(_ urlString: String, completion: @escaping (T?, Error?) -> Void) throws where T: Decodable {
         guard let url = URL(string: urlString) else {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
         }
@@ -63,13 +41,13 @@ public class Util {
         let session = urlSession()
         session.dataTask(with: url) { data, res, err in
             guard err == nil else {
-                print("Error retrieving url \(urlString)", err)
+                print("Error retrieving url \(urlString)", err as Any)
                 completion(nil, err)
                 return
             }
 
             guard let data = data else {
-                print("Expected data but was nil from url \(urlString)" , res)
+                print("Expected data but was nil from url \(urlString)", res as Any)
                 return
             }
             print("Got response: ", String(data: data, encoding: .utf8)!)
@@ -86,7 +64,11 @@ public class Util {
         }.resume()
     }
 
-    public func create<TRequest, TResponse>(_ urlString: String, entity: TRequest, completion: @escaping (TResponse?, Error?) -> ()) throws where TRequest: Encodable, TResponse: Decodable {
+    public func create<TRequest, TResponse>(
+            _ urlString: String,
+            entity: TRequest,
+            completion: @escaping (TResponse?, Error?) -> Void
+    ) throws where TRequest: Encodable, TResponse: Decodable {
         guard let url = URL(string: urlString) else {
             throw SpreedlyError(message: "Unable to create url from \(urlString)")
         }
@@ -107,12 +89,12 @@ public class Util {
         let session = urlSession()
         session.dataTask(with: request) { data, res, err in
             guard err == nil else {
-                print("Error retrieving url \(urlString)", err)
+                print("Error retrieving url \(urlString)", err as Any)
                 completion(nil, err)
                 return
             }
             guard let data = data else {
-                print("Expected data but was nil from url \(urlString)" , res)
+                print("Expected data but was nil from url \(urlString)", res as Any)
                 return
             }
 
@@ -140,7 +122,7 @@ public class Util {
         let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         config.httpAdditionalHeaders = [
             "Authorization": "Basic \(encodedCredentials)",
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         ]
 
         return URLSession(configuration: config)

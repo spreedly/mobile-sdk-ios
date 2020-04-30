@@ -4,25 +4,25 @@
 
 import Foundation
 
-@objc class SpreedlySecureOpaqueStringImpl: NSObject, SpreedlySecureOpaqueString {
-    private var data: [Character] = [];
+class SpreedlySecureOpaqueStringImpl: NSObject, SpreedlySecureOpaqueString {
+    private var data: [Character] = []
 
     override internal init() {
-        super.init();
+        super.init()
     }
 
     convenience internal init(from source: String) {
-        self.init();
-        append(string: source);
+        self.init()
+        append(source)
     }
 
     func clear() {
         data = []
     }
 
-    func append(string s: String) {
-        for c in s {
-            data.append(c)
+    func append(_ string: String) {
+        for char in string {
+            data.append(char)
         }
     }
 

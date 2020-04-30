@@ -13,7 +13,7 @@ import Foundation
     /// can't be easily read or stored in local data stores.
     ///
     /// - Returns: an empty SpreedlySecureOpaqueString.
-    func createSecureString() -> SpreedlySecureOpaqueString;
+    func createSecureString() -> SpreedlySecureOpaqueString
 
     /// creates a secure string
     ///
@@ -21,7 +21,7 @@ import Foundation
     /// can't be easily read or stored in local data stores.
     ///
     /// - Returns: a SpreedlySecureOpaqueString with the specified contents.
-    func createSecureString(from source: String) -> SpreedlySecureOpaqueString;
+    func createSecureString(from source: String) -> SpreedlySecureOpaqueString
 
     // tokenization
     // recache
@@ -32,9 +32,9 @@ public func createSpreedlyClient(env: String, secret: String) -> SpreedlyClient 
 }
 
 @objc public protocol SpreedlySecureOpaqueString {
-    func clear();
+    func clear()
 
-    func append(string s: String);
+    func append(_ string: String)
 
-    func removeLastCharacter();
+    func removeLastCharacter()
 }
