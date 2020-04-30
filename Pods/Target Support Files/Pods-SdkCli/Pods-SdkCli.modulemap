@@ -1,6 +1,0 @@
-module Pods_SdkCli {
-  umbrella header "Pods-SdkCli-umbrella.h"
-
-  export *
-  module * { export * }
-}

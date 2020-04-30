@@ -4,18 +4,53 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ '*' ]
 
+#xcodebuild test -scheme 'All in SdkTests'  -destination 'name=iPhone 11' -workspace SpreedlySdk.xcworkspace/
 jobs:
   build:
-
+    name: 'XCode Build Sdk'
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
-    - name: Swift Coverage Report
-      uses: maxep/spm-lcov-action@0.3.1
+      uses: sersoft-gmbh/xcodebuild-action@v1.1
+      with:
+        action: build
+        workspace: SpreedlySdk.xcworkspace
+        scheme: Sdk
+        destination: 'name=iPhone 11'
+  build_test:
+    name: 'XCode Build SdkTest'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: sersoft-gmbh/xcodebuild-action@v1.1
+      with:
+        action: build
+        workspace: SpreedlySdk.xcworkspace
+        scheme: 'SdkTests'
+        destination: 'name=iPhone 11'
+  test:
+    needs: [ build_test ]
+    name: 'XCode Test'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: sersoft-gmbh/xcodebuild-action@v1.1
+      with:
+        action: test
+        workspace: SpreedlySdk.xcworkspace
+        scheme: 'SdkTests'
+        destination: 'name=iPhone 11'
+  lint:
+    name: 'Swift Lint'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: Iron-Ham/swift-format-linter-action@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
