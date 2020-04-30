@@ -6,12 +6,14 @@ platform :ios, '9.0'
 
 target 'Sdk' do
   use_frameworks!
-  pod 'RxSwift', '~> 5.1.1'
+  pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
 end
 
 target 'SdkTests' do
   use_frameworks!
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
   pod 'RxTest', '~> 5'
   pod 'RxBlocking', '~> 5'
 end

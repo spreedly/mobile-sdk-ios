@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ '*' ]
 
+#xcodebuild test -scheme 'All in SdkTests'  -destination 'name=iPhone 11' -workspace SpreedlySdk.xcworkspace/
 jobs:
   build:
     name: 'XCode Build Sdk'
@@ -28,7 +29,7 @@ jobs:
       with:
         action: build
         workspace: SpreedlySdk.xcworkspace
-        scheme: SdkTest
+        scheme: 'All in SdkTests'
   test:
     needs: [ build_test ]
     name: 'XCode Test'
@@ -40,7 +41,8 @@ jobs:
       with:
         action: test
         workspace: SpreedlySdk.xcworkspace
-        scheme: SdkTest
+        scheme: 'All in SdkTests'
+        destination: 'name=iPhone 11'
   lint:
     name: 'Swift Lint'
     runs-on: macos-latest

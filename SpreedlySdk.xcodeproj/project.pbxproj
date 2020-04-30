@@ -226,19 +226,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SdkTests/Pods-SdkTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -393,12 +393,7 @@
 		442A23FA1958CC1851A18079 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				VALID_ARCHS = (
-					armv7,
-					armv7s,
-					arm64,
-					arm64e,
-				);
+				VALID_ARCHS = "armv7 armv7s arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -548,12 +543,7 @@
 		442A2D17EDFC7C7324DEC900 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				VALID_ARCHS = (
-					armv7,
-					armv7s,
-					arm64,
-					arm64e,
-				);
+				VALID_ARCHS = "armv7 armv7s arm64 arm64e";
 			};
 			name = Debug;
 		};
