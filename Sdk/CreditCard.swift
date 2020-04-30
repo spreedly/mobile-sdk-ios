@@ -1,45 +1,45 @@
 public struct CreditCard: Codable, CustomStringConvertible {
     // Gateway-specific metadata
-    public var token: String? = nil
-    public var createdAt: Date? = nil
-    public var updatedAt: Date? = nil
-    public var data: [String: String]? = nil
-    public var storageState: String? = nil
-    public var test: Bool? = nil
-    public var metadata: [String: String]? = nil
-    public var callbackUrl: String? = nil
-    public var paymentMethodType: String? = nil
-    public var fingerprint: String? = nil
-    public var errors: [String]? = nil
+    public var token: String?
+    public var createdAt: Date?
+    public var updatedAt: Date?
+    public var data: [String: String]?
+    public var storageState: String?
+    public var test: Bool?
+    public var metadata: [String: String]?
+    public var callbackUrl: String?
+    public var paymentMethodType: String?
+    public var fingerprint: String?
+    public var errors: [String]?
 
     // Card-specific data
-    public var lastFourDigits: String? = nil
-    public var firstSixDigits: String? = nil
-    public var cardType: String? = nil
-    public var month: String? = nil
-    public var year: String? = nil
-    public var number: String? = nil
-    public var verificationValue: String? = nil
+    public var lastFourDigits: String?
+    public var firstSixDigits: String?
+    public var cardType: String?
+    public var month: String?
+    public var year: String?
+    public var number: String?
+    public var verificationValue: String?
 
     // Customer-specific data
-    public var email: String? = nil
-    public var firstName: String? = nil
-    public var lastName: String? = nil
-    public var company: String? = nil
-    public var address1: String? = nil
-    public var address2: String? = nil
-    public var city: String? = nil
-    public var state: String? = nil
-    public var zip: String? = nil
-    public var country: String? = nil
-    public var phoneNumber: String? = nil
-    public var shippingAddress1: String? = nil
-    public var shippingAddress2: String? = nil
-    public var shippingCity: String? = nil
-    public var shippingState: String? = nil
-    public var shippingZip: String? = nil
-    public var shippingCountry: String? = nil
-    public var shippingPhoneNumber: String? = nil
+    public var email: String?
+    public var firstName: String?
+    public var lastName: String?
+    public var company: String?
+    public var address1: String?
+    public var address2: String?
+    public var city: String?
+    public var state: String?
+    public var zip: String?
+    public var country: String?
+    public var phoneNumber: String?
+    public var shippingAddress1: String?
+    public var shippingAddress2: String?
+    public var shippingCity: String?
+    public var shippingState: String?
+    public var shippingZip: String?
+    public var shippingCountry: String?
+    public var shippingPhoneNumber: String?
 
     enum CodingKeys: CodingKey {
         case token
@@ -149,11 +149,11 @@ public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
         "CustomPaymentMethodRequest"
     }
 
-    public var email: String? = nil
+    public var email: String?
     public var metadata: [String: String] = [:]
-    public var creditCard: CreditCard? = nil
+    public var creditCard: CreditCard?
 
-    public init(email: String, metadata: [String:String], creditCard: CreditCard) {
+    public init(email: String, metadata: [String: String], creditCard: CreditCard) {
         self.email = email
         self.metadata = metadata
         self.creditCard = creditCard
