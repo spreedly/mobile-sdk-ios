@@ -5,7 +5,7 @@
 import Foundation
 
 /// Spreedly core client
-@objc protocol SpreedlyClient {
+@objc public protocol SpreedlyClient {
     /// creates a secure string
     ///
     /// This class is used by various calls to expose a mutable string that
@@ -23,7 +23,7 @@ import Foundation
     func createSecureString(from source: String) -> SpreedlySecureOpaqueString;
 }
 
-@objc protocol SpreedlySecureOpaqueString {
+@objc public protocol SpreedlySecureOpaqueString {
 
     func clear();
 
