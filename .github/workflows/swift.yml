@@ -37,5 +37,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - run: cd Sdk
-    - run: ../Pods/SwiftLint/swiftlint
+    - name: Lint
+      run: ../Pods/SwiftLint/swiftlint
+      working-directory: Sdk
