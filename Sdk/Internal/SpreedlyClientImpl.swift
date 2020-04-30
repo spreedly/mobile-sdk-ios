@@ -4,13 +4,12 @@
 
 import Foundation
 
-@obj class SpreedlyClientImpl: NSObject, SpreedlyClient {
+@objc class SpreedlyClientImpl: NSObject, SpreedlyClient {
     func createSecureString() -> SpreedlySecureOpaqueString {
-        return SpreedlySecureOpaqueStringImpl();
+        SpreedlySecureOpaqueStringImpl();
     }
 
     func createSecureString(from source: String) -> SpreedlySecureOpaqueString {
-        return SpreedlyClientImpl(from: source);
+        SpreedlySecureOpaqueStringImpl(from: source);
     }
-
 }

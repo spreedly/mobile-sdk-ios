@@ -15,6 +15,7 @@
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
 		442A2892B93158A138543DF2 /* SdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A204EEAD2F9769CB8F69B /* SdkTests.swift */; };
 		442A2D20673B9083E90F824E /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21309025217E12D8B7E2 /* Main.swift */; };
+		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		836F618EEB78CFB4BDD79D3E /* Pods_Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EA44E51308DB5F46DF6647 /* Pods_Sdk.framework */; };
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueStringImpl.swift; sourceTree = "<group>"; };
 		442A21309025217E12D8B7E2 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		442A213C18A35388BDA5861C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStringTest.swift; sourceTree = "<group>"; };
 		442A23A1FD67CFE29666D2C6 /* SdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2662BE68ED0552C5BE46 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				442A213C18A35388BDA5861C /* Info.plist */,
 				442A204EEAD2F9769CB8F69B /* SdkTests.swift */,
+				442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */,
 			);
 			path = SdkTests;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A2892B93158A138543DF2 /* SdkTests.swift in Sources */,
+				442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

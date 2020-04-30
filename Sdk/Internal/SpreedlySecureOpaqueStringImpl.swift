@@ -11,7 +11,7 @@ import Foundation
         super.init();
     }
 
-    convenience init(from source: String) {
+    convenience internal init(from source: String) {
         self.init();
         append(string: source);
     }
@@ -29,11 +29,15 @@ import Foundation
     func removeLastCharacter() {
         data.removeLast()
     }
+
+    internal func internalToString() -> String {
+        String(data)
+    }
 }
 
 extension SpreedlySecureOpaqueStringImpl: Encodable {
     func encode(to encoder: Encoder) throws {
         var container: SingleValueEncodingContainer = encoder.singleValueContainer()
-        try container.encode(String(data))
+        try container.encode(internalToString())
     }
 }
