@@ -30,7 +30,7 @@ jobs:
       with:
         action: build
         workspace: SpreedlySdk.xcworkspace
-        scheme: 'All in SdkTests'
+        scheme: 'SdkTests'
         destination: 'name=iPhone 11'
   test:
     needs: [ build_test ]
@@ -43,7 +43,7 @@ jobs:
       with:
         action: test
         workspace: SpreedlySdk.xcworkspace
-        scheme: 'All in SdkTests'
+        scheme: 'SdkTests'
         destination: 'name=iPhone 11'
   lint:
     name: 'Swift Lint'
