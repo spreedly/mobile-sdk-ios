@@ -9,34 +9,34 @@ import RxSwift
 
 class SecureStringTest: XCTestCase {
     func testCreateFromClient() {
-        let ss: SpreedlySecureOpaqueString = createSpreedlyClient(env: "", secret: "").createSecureString(from: "abc")
-        XCTAssertNotNil(ss)
+        let secureString = createSpreedlyClient(env: "", secret: "").createSecureString(from: "abc")
+        XCTAssertNotNil(secureString)
     }
 
     func testCreate() {
-        let ss = SpreedlySecureOpaqueStringImpl(from: "abc")
-        XCTAssertEqual(ss.internalToString(), "abc")
+        let secureString = SpreedlySecureOpaqueStringImpl(from: "abc")
+        XCTAssertEqual(secureString.internalToString(), "abc")
     }
 
     func testAppend() {
-        let ss = SpreedlySecureOpaqueStringImpl()
-        ss.append(string: "a")
-        ss.append(string: "b")
-        ss.append(string: "c")
-        XCTAssertEqual(ss.internalToString(), "abc")
+        let secureString = SpreedlySecureOpaqueStringImpl()
+        secureString.append("a")
+        secureString.append("b")
+        secureString.append("c")
+        XCTAssertEqual(secureString.internalToString(), "abc")
     }
 
     func testRemove() {
-        let ss = SpreedlySecureOpaqueStringImpl(from: "abcdef")
-        ss.removeLastCharacter()
-        ss.removeLastCharacter()
-        ss.removeLastCharacter()
-        XCTAssertEqual(ss.internalToString(), "abc")
+        let secureString = SpreedlySecureOpaqueStringImpl(from: "abcdef")
+        secureString.removeLastCharacter()
+        secureString.removeLastCharacter()
+        secureString.removeLastCharacter()
+        XCTAssertEqual(secureString.internalToString(), "abc")
     }
 
-    func testToJson() {
-        let ss = SpreedlySecureOpaqueStringImpl(from: "abc")
-        let data = try! JSONEncoder().encode(ss);
+    func testToJson() throws {
+        let secureString = SpreedlySecureOpaqueStringImpl(from: "abc")
+        let data = try JSONEncoder().encode(secureString)
         XCTAssertEqual(String(data: data, encoding: .utf8), "\"abc\"")
     }
 }
