@@ -5,6 +5,15 @@
 import Foundation
 
 @objc class SpreedlyClientImpl: NSObject, SpreedlyClient {
+    let env: String
+    let secret: String
+
+    init(env: String, secret: String) {
+        self.env = env
+        self.secret = secret
+        super.init()
+    }
+
     func createSecureString() -> SpreedlySecureOpaqueString {
         SpreedlySecureOpaqueStringImpl();
     }

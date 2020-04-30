@@ -4,9 +4,15 @@
 
 import Foundation
 import XCTest
+import RxSwift
 @testable import Sdk
 
 class SecureStringTest: XCTestCase {
+    func testCreateFromClient() {
+        let ss: SpreedlySecureOpaqueString = createSpreedlyClient(env: "", secret: "").createSecureString(from: "abc")
+        XCTAssertNotNil(ss)
+    }
+
     func testCreate() {
         let ss = SpreedlySecureOpaqueStringImpl(from: "abc")
         XCTAssertEqual(ss.internalToString(), "abc")
