@@ -9,8 +9,14 @@ import RxSwift
 class CreateCreditCardIntegrationTests: XCTestCase {
     let verificationValue = "919"
 
-    func client() throws -> SpreedlyClientImpl {
-        SpreedlyClientImpl(env: secretEnvKey, secret: secretEnvSecret)
+    /**
+     Initializes a SpreedlyClient by searching for the key and secret first in the environment variables (most useful
+     for local development) and then by the secret variables (injected via CI).
+    */
+    func client() -> SpreedlyClientImpl {
+        let key = ProcessInfo.processInfo.environment["ENV_KEY"] ?? secretEnvKey
+        let secret = ProcessInfo.processInfo.environment["ENV_SECRET"] ?? secretEnvSecret
+        return SpreedlyClientImpl(env: key, secret: secret)
     }
 
     func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCard>> {
@@ -22,7 +28,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         creditCard.month = 1
         creditCard.year = 2022
 
-        return try client().createCreditCardPaymentMethod(
+        return client().createCreditCardPaymentMethod(
                 creditCard: creditCard,
                 email: "dolly@dog.com",
                 retained: retained
@@ -39,15 +45,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         creditCard.year = 2022
 
         let expectation = self.expectation(description: "can create credit card")
-        let spreedlyClient: SpreedlyClientImpl
-        do {
-            spreedlyClient = try client()
-        } catch {
-            XCTFail("Unable to create client. \(error)")
-            return
-        }
-
-        let promise = spreedlyClient.createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
+        let promise = client().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
 
         _ = promise.subscribe(onSuccess: { transaction in
             XCTAssertNotNil(transaction)
@@ -71,14 +69,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         bankAccount.bankAccountHolderType = "personal"
 
         let expectation = self.expectation(description: "can create bank account")
-        let spreedlyClient: SpreedlyClientImpl
-        do {
-            spreedlyClient = try client()
-        } catch {
-            XCTFail("Unable to create client. \(error)")
-            return
-        }
-        let promise = spreedlyClient.createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
+        let promise = client().createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
 
         _ = promise.subscribe(onSuccess: { (transaction: Transaction<BankAccount>) in
             XCTAssertNotNil(transaction)
@@ -103,15 +94,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                 return Single.error(SpreedlyError(message: "token was not found in credit card create response"))
             }
 
-            let spreedlyClient: SpreedlyClientImpl
-            do {
-                spreedlyClient = try self.client()
-            } catch {
-                XCTFail("Unable to create client. \(error)")
-                throw error
-            }
-
-            return spreedlyClient.recache(token: token, verificationValue: self.verificationValue)
+            return self.client().recache(token: token, verificationValue: self.verificationValue)
         }.subscribe(onSuccess: { (transaction: Transaction<CreditCard>) in
             expectation.fulfill()
             XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
