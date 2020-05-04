@@ -10,17 +10,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
     let verificationValue = "919"
 
     func client() throws -> SpreedlyClientImpl {
-        print("Getting key and secret")
-        guard let envKey = ProcessInfo.processInfo.environment["ENV_KEY"] else {
-            throw SpreedlyError(message: "ENV_KEY was not in environment dictionary")
-        }
-
-        guard let envSecret = ProcessInfo.processInfo.environment["ENV_SECRET"] else {
-            throw SpreedlyError(message: "ENV_SECRET was not in the environment dictionary")
-        }
-        print("Got key and secret. Key is: ~", envKey, "~")
-
-        return SpreedlyClientImpl(env: envKey, secret: envSecret)
+        return SpreedlyClientImpl(env: ENV_KEY, secret: ENV_SECRET)
     }
 
     func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCard>> {
@@ -37,19 +27,6 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                 email: "dolly@dog.com",
                 retained: retained
         )
-    }
-
-    func testCanGetEnvKey() {
-        XCTAssertNotNil(ProcessInfo.processInfo.environment["ENV_KEY"], "ENV_KEY is not nil")
-        XCTAssertNotNil(ProcessInfo.processInfo.environment["ENV_SECRET"], "ENV_SECRET is not nil")
-    }
-
-    func testAlwaysPasses() {
-        XCTAssert(true, "I always pass")
-    }
-
-    func testAlwaysFails() {
-        XCTFail("I always fail")
     }
 
     func testCanCreateCreditCard() throws {

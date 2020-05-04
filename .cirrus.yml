@@ -17,7 +17,10 @@ test_integration_task:
   env:
     ENV_KEY: ENCRYPTED[!1287e386a4c4842e6d5c0bc59e287437269cca360e77afb04d6a1137f558eff7bf8106c199d6cdcc3dd06355a975e18b!]
     ENV_SECRET: ENCRYPTED[!be1cd58ee5a27a14be3b9d035cecde24c3081af48fe207ce42e947a9cd6bbc55d857f8855c8b83920b4aba7a53fd65cf!]
-  script: xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkIntegrationTests -destination 'name=iPhone 11'
+  script:
+    - echo 'let ENV_KEY = "$ENV_KEY";' > SdkIntegrationTests/Secrets.swift
+    - echo 'let ENV_SECRET = "$ENV_SECRET";' >> SdkIntegrationTests/Secrets.swift
+    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkIntegrationTests -destination 'name=iPhone 11'
 
 lint_task:
   name: 'Swift Lint'
