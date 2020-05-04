@@ -18,7 +18,16 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     func session() -> URLSession {
-        Util(envKey: self.env, envSecret: self.secret).urlSession()
+        let config = URLSessionConfiguration.default
+        let userPasswordString = "\(env):\(secret)"
+        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
+        let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+        config.httpAdditionalHeaders = [
+            "Authorization": "Basic \(encodedCredentials)",
+            "Content-Type": "application/json"
+        ]
+
+        return URLSession(configuration: config)
     }
 
     func createSecureString() -> SpreedlySecureOpaqueString {
