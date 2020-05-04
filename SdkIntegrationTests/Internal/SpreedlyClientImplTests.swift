@@ -10,8 +10,11 @@ class CreateCreditCardIntegrationTests: XCTestCase {
     let verificationValue = "919"
 
     func client() -> SpreedlyClientImpl {
+        print("Getting key and secret")
         let envKey = ProcessInfo.processInfo.environment["ENV_KEY"]!
         let envSecret = ProcessInfo.processInfo.environment["ENV_SECRET"]!
+        print("Got key and secret. Key is: ~", envKey, "~")
+
         return SpreedlyClientImpl(env: envKey, secret: envSecret)
     }
 
@@ -29,6 +32,14 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                 email: "dolly@dog.com",
                 retained: retained
         )
+    }
+
+    func testAlwaysPasses() {
+        XCTAssert(true, "I always pass")
+    }
+
+    func testAlwaysFails() {
+        XCTFail("I always fail")
     }
 
     func testCanCreateCreditCard() throws {
