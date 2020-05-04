@@ -21,8 +21,8 @@
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
 		F076C17732D40C3D0F9A3A9A /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
+		F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */; };
 		F076CC40AA0952D6E52623F9 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
-		F076CC65BDFF3B8238E21E03 /* SdkIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7266CACD8D2928AEED5 /* SdkIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		D8FE084C040118C3CA93C21E /* Pods-Sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sdk.release.xcconfig"; path = "Target Support Files/Pods-Sdk/Pods-Sdk.release.xcconfig"; sourceTree = "<group>"; };
 		EE3BD7D4482E90A94A2E77CF /* Pods-SdkIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		F076C7266CACD8D2928AEED5 /* SdkIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkIntegrationTests.swift; sourceTree = "<group>"; };
+		F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImplTests.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
@@ -185,9 +185,17 @@
 			isa = PBXGroup;
 			children = (
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
-				F076C7266CACD8D2928AEED5 /* SdkIntegrationTests.swift */,
+				F076C9783EA29205F1021D9A /* Internal */,
 			);
 			path = SdkIntegrationTests;
+			sourceTree = "<group>";
+		};
+		F076C9783EA29205F1021D9A /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,7 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F076CC65BDFF3B8238E21E03 /* SdkIntegrationTests.swift in Sources */,
+				F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

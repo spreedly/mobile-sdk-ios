@@ -3,9 +3,10 @@
 //
 
 import Foundation
+import RxSwift
 
 /// Spreedly core client
-@objc public protocol SpreedlyClient {
+public protocol SpreedlyClient {
 
     /// creates a secure string
     ///
@@ -23,8 +24,20 @@ import Foundation
     /// - Returns: a SpreedlySecureOpaqueString with the specified contents.
     func createSecureString(from source: String) -> SpreedlySecureOpaqueString
 
-    // tokenization
-    // recache
+    func createCreditCardPaymentMethod(
+            creditCard: CreditCard,
+            email: String?,
+            metadata: [String: String]?
+    ) -> Single<Transaction<CreditCard>>
+
+    func createBankAccountPaymentMethod(
+            bankAccount: BankAccount,
+            email: String?,
+            data: [String: String?]?,
+            metadata: [String: String?]?
+    ) -> Single<Transaction<BankAccount>>
+
+    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCard>>
 }
 
 public func createSpreedlyClient(env: String, secret: String) -> SpreedlyClient {
