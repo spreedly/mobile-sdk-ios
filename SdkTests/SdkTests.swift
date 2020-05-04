@@ -26,44 +26,29 @@ class SdkTests: XCTestCase {
                 metadata: ["key": "value"],
                 creditCard: creditCard
         )
-        let codingData = CreatePaymentMethodRequest.CodingData(paymentMethod: request)
+        let jsonData = try request.wrapToData()
 
-        let jsonData: Data
-        do {
-            jsonData = try Util.encode(entity: codingData)
-        } catch {
-            XCTFail("\(error)")
-            return
-        }
         let actualJson = String(data: jsonData, encoding: .utf8)!
         let expected = """
-{
-  "payment_method" : {
-    "credit_card" : {
-      "first_name" : "Dolly",
-      "last_name" : "Dog",
-      "month" : 12,
-      "number" : "4111111111111111",
-      "verification_value" : "999",
-      "year" : 2022
-    },
-    "email" : "dolly@dog.com",
-    "metadata" : {
-      "key" : "value"
-    }
-  }
-}
-"""
+                       {
+                         "payment_method" : {
+                           "credit_card" : {
+                             "first_name" : "Dolly",
+                             "last_name" : "Dog",
+                             "month" : 12,
+                             "number" : "4111111111111111",
+                             "verification_value" : "999",
+                             "year" : 2022
+                           },
+                           "email" : "dolly@dog.com",
+                           "metadata" : {
+                             "key" : "value"
+                           }
+                         }
+                       }
+                       """
         XCTAssertEqual(expected, actualJson)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
 
 class UtilDecodeTests: XCTestCase {
