@@ -21,6 +21,7 @@
 		836F618EEB78CFB4BDD79D3E /* Pods_Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EA44E51308DB5F46DF6647 /* Pods_Sdk.framework */; };
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
 		F076C17732D40C3D0F9A3A9A /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */; };
+		F076C83937EF48B8921DA967 /* Coders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* Coders.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
 		F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */; };
 		F076CC40AA0952D6E52623F9 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
@@ -70,6 +71,7 @@
 		F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImplTests.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F076CA116CE9AA56F15ABCDF /* Coders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coders.swift; sourceTree = "<group>"; };
 		F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 			children = (
 				442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */,
 				442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */,
+				F076CA116CE9AA56F15ABCDF /* Coders.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				442A2360C54DB319419D1232 /* SpreedlySecureOpaqueStringImpl.swift in Sources */,
 				442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */,
 				F076C17732D40C3D0F9A3A9A /* BankAccount.swift in Sources */,
+				F076C83937EF48B8921DA967 /* Coders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

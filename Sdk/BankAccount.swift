@@ -57,6 +57,6 @@ extension CreateBankAccountPaymentMethodRequest {
     }
 
     func wrapToData() throws -> Data {
-        try Util.encode(entity: CreateBankAccountPaymentMethodRequest.CodingData(paymentMethod: self))
+        try Coders.encode(entity: CreateBankAccountPaymentMethodRequest.CodingData(paymentMethod: self))
     }
 }

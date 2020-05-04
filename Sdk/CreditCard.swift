@@ -180,7 +180,7 @@ extension CreatePaymentMethodRequest {
     }
 
     func wrapToData() throws -> Data {
-        try Util.encode(entity: CreatePaymentMethodRequest.CodingData(paymentMethod: self))
+        try Coders.encode(entity: CreatePaymentMethodRequest.CodingData(paymentMethod: self))
     }
 }
 
@@ -207,7 +207,7 @@ extension Transaction {
     }
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
-        let wrapper: Transaction<TPaymentMethod>.CodingData = try Util.decode(data: data)
+        let wrapper: Transaction<TPaymentMethod>.CodingData = try Coders.decode(data: data)
         return wrapper.transaction
     }
 }
@@ -222,6 +222,6 @@ extension CreateRecacheRequest {
     }
 
     func wrapToData() throws -> Data {
-        try Util.encode(entity: CreateRecacheRequest.CodingData(paymentMethod: self))
+        try Coders.encode(entity: CreateRecacheRequest.CodingData(paymentMethod: self))
     }
 }
