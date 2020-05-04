@@ -21,6 +21,7 @@
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
 		F076C17732D40C3D0F9A3A9A /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */; };
 		F076C3615A8D4D576D1ADBD7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C058058850512428A30D /* Errors.swift */; };
+		F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */; };
 		F076C83937EF48B8921DA967 /* Coders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* Coders.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
 		F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */; };
@@ -67,6 +68,7 @@
 		D8FE084C040118C3CA93C21E /* Pods-Sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sdk.release.xcconfig"; path = "Target Support Files/Pods-Sdk/Pods-Sdk.release.xcconfig"; sourceTree = "<group>"; };
 		EE3BD7D4482E90A94A2E77CF /* Pods-SdkIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		F076C058058850512428A30D /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImplTests.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				442A204EEAD2F9769CB8F69B /* SdkTests.swift */,
 				442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */,
 				F076C7C99365328F2BCA318A /* BankAccountTests.swift */,
+				F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */,
 			);
 			path = SdkTests;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				442A2892B93158A138543DF2 /* SdkTests.swift in Sources */,
 				442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */,
 				F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */,
+				F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
