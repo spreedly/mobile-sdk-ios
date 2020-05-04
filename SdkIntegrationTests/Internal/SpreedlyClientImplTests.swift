@@ -23,9 +23,12 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         creditCard.lastName = "Dog"
         creditCard.month = 1
         creditCard.year = 2022
-        creditCard.retained = retained
 
-        return client().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
+        return client().createCreditCardPaymentMethod(
+                creditCard: creditCard,
+                email: "dolly@dog.com",
+                retained: retained
+        )
     }
 
     func testCanCreateCreditCard() throws {
@@ -80,7 +83,8 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         let creditCardPromise = createCreditCard(retained: true)
         let expectation = self.expectation(description: "can recache verification value")
 
-        _ = creditCardPromise.flatMap { transaction -> Single<Transaction<CreditCard>> in
+        _ = creditCardPromise
+        .flatMap { transaction -> Single<Transaction<CreditCard>> in
             let creditCard = transaction.paymentMethod
             guard let token = creditCard.token else {
                 return Single.error(SpreedlyError(message: "token was not found in credit card create response"))

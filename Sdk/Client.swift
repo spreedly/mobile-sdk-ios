@@ -27,7 +27,8 @@ public protocol SpreedlyClient {
     func createCreditCardPaymentMethod(
             creditCard: CreditCard,
             email: String?,
-            metadata: [String: String]?
+            metadata: [String: String]?,
+            retained: Bool?
     ) -> Single<Transaction<CreditCard>>
 
     func createBankAccountPaymentMethod(

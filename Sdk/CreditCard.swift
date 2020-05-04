@@ -11,7 +11,6 @@ public struct CreditCard: Codable, CustomStringConvertible {
     public var paymentMethodType: String?
     public var fingerprint: String?
     public var errors: [String]?
-    public var retained: Bool?
 
     // Card-specific data
     public var lastFourDigits: String?
@@ -54,7 +53,6 @@ public struct CreditCard: Codable, CustomStringConvertible {
         case paymentMethodType
         case fingerprint
         case errors
-        case retained
 
         case lastFourDigits
         case firstSixDigits
@@ -104,7 +102,6 @@ public struct CreditCard: Codable, CustomStringConvertible {
         self.paymentMethodType = try container.decode(String?.self, forKey: .paymentMethodType)
         self.fingerprint = try container.decode(String?.self, forKey: .fingerprint)
         self.errors = try container.decode([String]?.self, forKey: .errors)
-        self.retained = try container.decodeIfPresent(Bool.self, forKey: .retained)
 
         self.lastFourDigits = try container.decode(String?.self, forKey: .lastFourDigits)
         self.firstSixDigits = try container.decode(String?.self, forKey: .firstSixDigits)
@@ -153,11 +150,13 @@ public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
     public var email: String?
     public var metadata: [String: String] = [:]
     public var creditCard: CreditCard?
+    public var retained: Bool?
 
-    public init(email: String, metadata: [String: String], creditCard: CreditCard) {
+    public init(email: String, metadata: [String: String], creditCard: CreditCard, retained: Bool? = nil) {
         self.email = email
         self.metadata = metadata
         self.creditCard = creditCard
+        self.retained = retained
     }
 }
 
