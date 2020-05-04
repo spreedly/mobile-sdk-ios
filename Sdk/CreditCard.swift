@@ -150,11 +150,13 @@ public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
     public var email: String?
     public var metadata: [String: String] = [:]
     public var creditCard: CreditCard?
+    public var retained: Bool?
 
-    public init(email: String, metadata: [String: String], creditCard: CreditCard) {
+    public init(email: String, metadata: [String: String], creditCard: CreditCard, retained: Bool? = nil) {
         self.email = email
         self.metadata = metadata
         self.creditCard = creditCard
+        self.retained = retained
     }
 }
 
@@ -173,16 +175,16 @@ extension CreatePaymentMethodRequest {
 
         The CodingData struct represents that the outermost object with the single "payment_method" key in it.
     */
-    public struct CodingData: Encodable {
+    struct CodingData: Encodable {
         var paymentMethod: CreatePaymentMethodRequest
+    }
 
-        public init(paymentMethod: CreatePaymentMethodRequest) {
-            self.paymentMethod = paymentMethod
-        }
+    func wrapToData() throws -> Data {
+        try Util.encode(entity: CreatePaymentMethodRequest.CodingData(paymentMethod: self))
     }
 }
 
-public struct Transaction: Decodable {
+public struct Transaction<TPaymentMethod>: Decodable where TPaymentMethod: Decodable {
     public let token: String
     public let createdAt: Date
     public let updatedAt: Date
@@ -192,15 +194,34 @@ public struct Transaction: Decodable {
     public let state: String
     public let messageKey: String
     public let message: String
-    public let paymentMethod: CreditCard
+    public let paymentMethod: TPaymentMethod
 }
 
 extension Transaction {
-    public struct CodingData: Decodable {
+    struct CodingData: Decodable {
         var transaction: Transaction
 
-        public init(transaction: Transaction) {
+        init(transaction: Transaction) {
             self.transaction = transaction
         }
+    }
+
+    static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
+        let wrapper: Transaction<TPaymentMethod>.CodingData = try Util.decode(data: data)
+        return wrapper.transaction
+    }
+}
+
+struct CreateRecacheRequest: Encodable {
+    let creditCard: CreditCard
+}
+
+extension CreateRecacheRequest {
+    struct CodingData: Encodable {
+        let paymentMethod: CreateRecacheRequest
+    }
+
+    func wrapToData() throws -> Data {
+        try Util.encode(entity: CreateRecacheRequest.CodingData(paymentMethod: self))
     }
 }
