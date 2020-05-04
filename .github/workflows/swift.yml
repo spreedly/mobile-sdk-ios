@@ -44,9 +44,7 @@ jobs:
           workspace: SpreedlySdk.xcworkspace
           scheme: 'SdkIntegrationTests'
           destination: 'name=iPhone 11'
-          env:
-            ENV_KEY: ${{ secrets.ENV_KEY }}
-            ENV_SECRET: ${{ secrets.ENV_SECRET }}
+          build-settings: 'ENV_KEY=${{ secrets.ENV_KEY }} ENV_SECRET=${{ secrets.ENV_SECRET }}'
   lint:
     name: 'Swift Lint'
     runs-on: macos-latest
