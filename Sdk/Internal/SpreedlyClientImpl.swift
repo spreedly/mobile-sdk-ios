@@ -18,7 +18,16 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     func session() -> URLSession {
-        Util(envKey: self.env, envSecret: self.secret).urlSession()
+        let config = URLSessionConfiguration.default
+        let userPasswordString = "\(env):\(secret)"
+        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
+        let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+        config.httpAdditionalHeaders = [
+            "Authorization": "Basic \(encodedCredentials)",
+            "Content-Type": "application/json"
+        ]
+
+        return URLSession(configuration: config)
     }
 
     func createSecureString() -> SpreedlySecureOpaqueString {
@@ -131,5 +140,24 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 }).map { data -> Transaction<CreditCard> in
                     try Transaction<CreditCard>.unwrapFrom(data: data)
                 }
+    }
+}
+
+extension SpreedlyClientImpl {
+    static func decode<T>(data: Data) throws -> T where T: Decodable {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        return try decoder.decode(T.self, from: data)
+    }
+
+    static func encode<TEntity>(entity: TEntity) throws -> Data where TEntity: Encodable {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+
+        return try encoder.encode(entity)
     }
 }

@@ -109,7 +109,7 @@ class UtilDecodeTests: XCTestCase {
 
     func testCanDecodeShowCreditCardResponse() throws {
         let jsonData = showCreditCardResponse.data(using: .utf8)!
-        let codingData: CreditCard.CodingData = try Util.decode(data: jsonData)
+        let codingData: CreditCard.CodingData = try Coders.decode(data: jsonData)
         let creditCard = codingData.paymentMethod
 
         XCTAssertEqual("1rpKvP8zOUhj4Y9EDrIoIYQzzD5", creditCard.token, "String decodable")
