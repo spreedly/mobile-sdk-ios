@@ -32,6 +32,18 @@ jobs:
         workspace: SpreedlySdk.xcworkspace
         scheme: 'SdkTests'
         destination: 'name=iPhone 11'
+  test_integration:
+    name: 'XCode Integration Test'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        uses: sersoft-gmbh/xcodebuild-action@v1.1
+        with:
+          action: test
+          workspace: SpreedlySdk.xcworkspace
+          scheme: 'SdkIntegrationTests'
+          destination: 'name=iPhone 11'
   lint:
     name: 'Swift Lint'
     runs-on: macos-latest
