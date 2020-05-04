@@ -18,7 +18,6 @@
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		836F618EEB78CFB4BDD79D3E /* Pods_Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EA44E51308DB5F46DF6647 /* Pods_Sdk.framework */; };
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
-		F076C3327026472814282FF1 /* FooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C6826A58F032A0427767 /* FooTests.swift */; };
 		F076CC40AA0952D6E52623F9 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
 		F076CC65BDFF3B8238E21E03 /* SdkIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7266CACD8D2928AEED5 /* SdkIntegrationTests.swift */; };
 /* End PBXBuildFile section */
@@ -60,7 +59,6 @@
 		D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SdkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE084C040118C3CA93C21E /* Pods-Sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sdk.release.xcconfig"; path = "Target Support Files/Pods-Sdk/Pods-Sdk.release.xcconfig"; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		F076C6826A58F032A0427767 /* FooTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooTests.swift; sourceTree = "<group>"; };
 		F076C7266CACD8D2928AEED5 /* SdkIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkIntegrationTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -174,7 +172,6 @@
 			children = (
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
 				F076C7266CACD8D2928AEED5 /* SdkIntegrationTests.swift */,
-				F076C6826A58F032A0427767 /* FooTests.swift */,
 			);
 			path = SdkIntegrationTests;
 			sourceTree = "<group>";
@@ -398,7 +395,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F076CC65BDFF3B8238E21E03 /* SdkIntegrationTests.swift in Sources */,
-				F076C3327026472814282FF1 /* FooTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
