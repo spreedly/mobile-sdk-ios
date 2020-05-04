@@ -9,16 +9,21 @@ import RxSwift
 class CreateCreditCardIntegrationTests: XCTestCase {
     let verificationValue = "919"
 
-    func client() -> SpreedlyClientImpl {
+    func client() throws -> SpreedlyClientImpl {
         print("Getting key and secret")
-        let envKey = ProcessInfo.processInfo.environment["ENV_KEY"]!
-        let envSecret = ProcessInfo.processInfo.environment["ENV_SECRET"]!
+        guard let envKey = ProcessInfo.processInfo.environment["ENV_KEY"] else {
+            throw SpreedlyError(message: "ENV_KEY was not in environment dictionary")
+        }
+
+        guard let envSecret = ProcessInfo.processInfo.environment["ENV_SECRET"] else {
+            throw SpreedlyError(message: "ENV_SECRET was not in the environment dictionary")
+        }
         print("Got key and secret. Key is: ~", envKey, "~")
 
         return SpreedlyClientImpl(env: envKey, secret: envSecret)
     }
 
-    func createCreditCard(retained: Bool? = nil) -> Single<Transaction<CreditCard>> {
+    func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCard>> {
         var creditCard = CreditCard()
         creditCard.number = "4111111111111111"
         creditCard.verificationValue = verificationValue
@@ -27,11 +32,16 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         creditCard.month = 1
         creditCard.year = 2022
 
-        return client().createCreditCardPaymentMethod(
+        return try client().createCreditCardPaymentMethod(
                 creditCard: creditCard,
                 email: "dolly@dog.com",
                 retained: retained
         )
+    }
+
+    func testCanGetEnvKey() {
+        XCTAssertNotNil(ProcessInfo.processInfo.environment["ENV_KEY"], "ENV_KEY is not nil")
+        XCTAssertNotNil(ProcessInfo.processInfo.environment["ENV_SECRET"], "ENV_SECRET is not nil")
     }
 
     func testAlwaysPasses() {
@@ -52,7 +62,15 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         creditCard.year = 2022
 
         let expectation = self.expectation(description: "can create credit card")
-        let promise = client().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
+        let spreedlyClient: SpreedlyClientImpl
+        do {
+            spreedlyClient = try client()
+        } catch {
+            XCTFail("Unable to create client. \(error)")
+            return
+        }
+
+        let promise = spreedlyClient.createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
 
         _ = promise.subscribe(onSuccess: { transaction in
             XCTAssertNotNil(transaction)
@@ -76,7 +94,14 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         bankAccount.bankAccountHolderType = "personal"
 
         let expectation = self.expectation(description: "can create bank account")
-        let promise = client().createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
+        let spreedlyClient: SpreedlyClientImpl
+        do {
+            spreedlyClient = try client()
+        } catch {
+            XCTFail("Unable to create client. \(error)")
+            return
+        }
+        let promise = spreedlyClient.createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
 
         _ = promise.subscribe(onSuccess: { (transaction: Transaction<BankAccount>) in
             XCTAssertNotNil(transaction)
@@ -91,7 +116,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
     }
 
     func testCanRecache() throws {
-        let creditCardPromise = createCreditCard(retained: true)
+        let creditCardPromise = try createCreditCard(retained: true)
         let expectation = self.expectation(description: "can recache verification value")
 
         _ = creditCardPromise
@@ -100,7 +125,16 @@ class CreateCreditCardIntegrationTests: XCTestCase {
             guard let token = creditCard.token else {
                 return Single.error(SpreedlyError(message: "token was not found in credit card create response"))
             }
-            return self.client().recache(token: token, verificationValue: self.verificationValue)
+
+            let spreedlyClient: SpreedlyClientImpl
+            do {
+                spreedlyClient = try self.client()
+            } catch {
+                XCTFail("Unable to create client. \(error)")
+                throw error
+            }
+
+            return spreedlyClient.recache(token: token, verificationValue: self.verificationValue)
         }.subscribe(onSuccess: { (transaction: Transaction<CreditCard>) in
             expectation.fulfill()
             XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
