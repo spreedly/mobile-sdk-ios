@@ -19,3 +19,11 @@ target 'SdkTests' do
   pod 'RxBlocking', '~> 5'
 end
 
+target 'SdkIntegrationTests' do
+  use_frameworks!
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'RxTest', '~> 5'
+  pod 'RxBlocking', '~> 5'
+end
+
