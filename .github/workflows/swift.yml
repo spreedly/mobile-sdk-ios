@@ -39,6 +39,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test
         uses: sersoft-gmbh/xcodebuild-action@v1.1
+        env:
+          ENV_KEY: ${{ secrets.ENV_KEY }}
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
         with:
           action: test
           workspace: SpreedlySdk.xcworkspace
