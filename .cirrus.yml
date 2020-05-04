@@ -1,0 +1,23 @@
+osx_instance:
+  image: catalina-xcode
+
+task:
+  script: echo "Hello World from macOS!"
+
+build_task:
+  name: 'XCode Build Sdk'
+  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11'
+
+test_task:
+  name: 'XCode Test'
+  script: xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkTests -destination 'name=iPhone 11'
+
+test_integration_task:
+  name: 'XCode Integration Test'
+  script: xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkIntegrationTests -destination 'name=iPhone 11'
+
+lint_task:
+  name: 'Swift Lint'
+  script:
+    - cd Sdk
+    - ../Pods/SwiftLint/swiftlint
