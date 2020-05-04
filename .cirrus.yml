@@ -1,9 +1,6 @@
 osx_instance:
   image: catalina-xcode
 
-task:
-  script: echo "Hello World from macOS!"
-
 build_task:
   name: 'XCode Build Sdk'
   script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11'
