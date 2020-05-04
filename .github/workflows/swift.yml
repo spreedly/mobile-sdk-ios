@@ -1,55 +1,55 @@
-name: Swift
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ '*' ]
-
-#xcodebuild test -scheme 'All in SdkTests'  -destination 'name=iPhone 11' -workspace SpreedlySdk.xcworkspace/
-jobs:
-  build:
-    name: 'XCode Build Sdk'
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      uses: sersoft-gmbh/xcodebuild-action@v1.1
-      with:
-        action: build
-        workspace: SpreedlySdk.xcworkspace
-        scheme: Sdk
-        destination: 'name=iPhone 11'
-  test:
-    name: 'XCode Test'
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Test
-      uses: sersoft-gmbh/xcodebuild-action@v1.1
-      with:
-        action: test
-        workspace: SpreedlySdk.xcworkspace
-        scheme: 'SdkTests'
-        destination: 'name=iPhone 11'
-  test_integration:
-    name: 'XCode Integration Test'
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test
-        uses: sersoft-gmbh/xcodebuild-action@v1.1
-        with:
-          action: test
-          workspace: SpreedlySdk.xcworkspace
-          scheme: 'SdkIntegrationTests'
-          destination: 'name=iPhone 11'
-          build-settings: 'ENV_KEY=${{ secrets.ENV_KEY }} ENV_SECRET=${{ secrets.ENV_SECRET }}'
-  lint:
-    name: 'Swift Lint'
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Lint
-      run: ../Pods/SwiftLint/swiftlint
-      working-directory: Sdk
+#name: Swift
+#
+#on:
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ '*' ]
+#
+##xcodebuild test -scheme 'All in SdkTests'  -destination 'name=iPhone 11' -workspace SpreedlySdk.xcworkspace/
+#jobs:
+#  build:
+#    name: 'XCode Build Sdk'
+#    runs-on: macos-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Build
+#      uses: sersoft-gmbh/xcodebuild-action@v1.1
+#      with:
+#        action: build
+#        workspace: SpreedlySdk.xcworkspace
+#        scheme: Sdk
+#        destination: 'name=iPhone 11'
+#  test:
+#    name: 'XCode Test'
+#    runs-on: macos-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Test
+#      uses: sersoft-gmbh/xcodebuild-action@v1.1
+#      with:
+#        action: test
+#        workspace: SpreedlySdk.xcworkspace
+#        scheme: 'SdkTests'
+#        destination: 'name=iPhone 11'
+#  test_integration:
+#    name: 'XCode Integration Test'
+#    runs-on: macos-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Test
+#        uses: sersoft-gmbh/xcodebuild-action@v1.1
+#        with:
+#          action: test
+#          workspace: SpreedlySdk.xcworkspace
+#          scheme: 'SdkIntegrationTests'
+#          destination: 'name=iPhone 11'
+#          build-settings: 'ENV_KEY=${{ secrets.ENV_KEY }} ENV_SECRET=${{ secrets.ENV_SECRET }}'
+#  lint:
+#    name: 'Swift Lint'
+#    runs-on: macos-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Lint
+#      run: ../Pods/SwiftLint/swiftlint
+#      working-directory: Sdk
