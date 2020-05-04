@@ -10,7 +10,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
     let verificationValue = "919"
 
     func client() throws -> SpreedlyClientImpl {
-        return SpreedlyClientImpl(env: ENV_KEY, secret: ENV_SECRET)
+        SpreedlyClientImpl(env: secretEnvKey, secret: secretEnvSecret)
     }
 
     func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCard>> {

@@ -1,2 +1,2 @@
-let ENV_KEY = "";
-let ENV_SECRET = "";
+let secretEnvKey = ""
+let secretEnvSecret = ""
