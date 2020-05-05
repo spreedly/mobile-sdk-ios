@@ -182,10 +182,6 @@ public struct Transaction<TPaymentMethod>: Decodable where TPaymentMethod: Decod
 extension Transaction {
     struct CodingData: Decodable {
         var transaction: Transaction
-
-        init(transaction: Transaction) {
-            self.transaction = transaction
-        }
     }
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
