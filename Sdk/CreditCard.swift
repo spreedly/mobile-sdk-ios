@@ -1,4 +1,4 @@
-public struct CreditCard: Codable, CustomStringConvertible {
+public struct CreditCard: Codable {
     // Gateway-specific metadata
     public var token: String?
     public var createdAt: Date?
@@ -82,10 +82,6 @@ public struct CreditCard: Codable, CustomStringConvertible {
         case shippingPhoneNumber
     }
 
-    public var description: String {
-        "CreditCard(\(self.number ?? "????"))"
-    }
-
     public init() { }
 
     public init(from decoder: Decoder) throws {
@@ -142,11 +138,7 @@ extension CreditCard {
     }
 }
 
-public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
-    public var description: String {
-        "CustomPaymentMethodRequest"
-    }
-
+public struct CreatePaymentMethodRequest: Encodable {
     public var email: String?
     public var metadata: [String: String] = [:]
     public var creditCard: CreditCard?
