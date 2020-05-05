@@ -148,3 +148,26 @@ class CreditCardTransactionCreatedTests: XCTestCase {
         XCTAssertNil(creditCard.callbackUrl, "can decode nil")
     }
 }
+
+class CreateRecacheRequestTests: XCTestCase {
+    func testCanEncode() throws {
+        var creditCard = CreditCard()
+        creditCard.verificationValue = "919"
+
+        let request = CreateRecacheRequest(creditCard: creditCard)
+
+        let data = try request.wrapToData()
+        let json = String(data: data, encoding: .utf8)!
+
+        let expected = """
+                       {
+                         "payment_method" : {
+                           "credit_card" : {
+                             "verification_value" : "919"
+                           }
+                         }
+                       }
+                       """
+        XCTAssertEqual(expected, json)
+    }
+}
