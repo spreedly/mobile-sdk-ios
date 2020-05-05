@@ -39,6 +39,8 @@ struct BankAccountForm: View {
                 ba.routingNumber = self.routingNumber
                 ba.bankAccountType = self.type
                 self.inProgress = true
+                self.token = nil
+                self.error = nil
                 client.createBankAccountPaymentMethod(bankAccount: ba, email: nil, data: nil, metadata: nil)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {

@@ -37,6 +37,8 @@ struct CreditCardForm: View {
                 cc.number = self.cc
                 cc.verificationValue = self.ccv
                 self.inProgress = true
+                self.token = nil
+                self.error = nil
                 client.createCreditCardPaymentMethod(creditCard: cc, email: nil, metadata: nil, retained: true)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {
