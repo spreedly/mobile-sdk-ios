@@ -128,16 +128,6 @@ public struct CreditCard: Codable {
     }
 }
 
-extension CreditCard {
-    public struct CodingData: Decodable {
-        var paymentMethod: CreditCard
-
-        public init(paymentMethod: CreditCard) {
-            self.paymentMethod = paymentMethod
-        }
-    }
-}
-
 public struct CreatePaymentMethodRequest: Encodable {
     public var email: String?
     public var metadata: [String: String] = [:]

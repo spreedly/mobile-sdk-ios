@@ -14,7 +14,6 @@
 		442A2759E4BC22B35E134335 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2662BE68ED0552C5BE46 /* Client.swift */; };
 		442A27963A108ADEB2607311 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
-		442A2892B93158A138543DF2 /* SdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A204EEAD2F9769CB8F69B /* SdkTests.swift */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		836F618EEB78CFB4BDD79D3E /* Pods_Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EA44E51308DB5F46DF6647 /* Pods_Sdk.framework */; };
@@ -49,7 +48,6 @@
 		15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SdkIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4A588229F2C8EE51DB5D7B /* Pods-SdkIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		442A204EEAD2F9769CB8F69B /* SdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkTests.swift; sourceTree = "<group>"; };
 		442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueStringImpl.swift; sourceTree = "<group>"; };
 		442A21244C58460DB48ED6B3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		442A213C18A35388BDA5861C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				442A213C18A35388BDA5861C /* Info.plist */,
-				442A204EEAD2F9769CB8F69B /* SdkTests.swift */,
 				442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */,
 				F076C7C99365328F2BCA318A /* BankAccountTests.swift */,
 				F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */,
@@ -468,7 +465,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442A2892B93158A138543DF2 /* SdkTests.swift in Sources */,
 				442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */,
 				F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */,
 				F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */,
