@@ -7,19 +7,19 @@ import RxSwift
 import RxCocoa
 
 class SpreedlyClientImpl: NSObject, SpreedlyClient {
-    let env: String
-    let secret: String
+    let envKey: String
+    let envSecret: String
     let baseUrl = URL(string: "https://core.spreedly.com/v1")!
 
-    init(env: String, secret: String) {
-        self.env = env
-        self.secret = secret
+    init(envKey: String, envSecret: String) {
+        self.envKey = envKey
+        self.envSecret = envSecret
         super.init()
     }
 
     func session() -> URLSession {
         let config = URLSessionConfiguration.default
-        let userPasswordString = "\(env):\(secret)"
+        let userPasswordString = "\(envKey):\(envSecret)"
         let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
         let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         config.httpAdditionalHeaders = [

@@ -31,7 +31,7 @@ struct CreditCardForm: View {
                 Text("Error: \(error!)").foregroundColor(.red)
             }
             Button("Submit") {
-                let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
+                let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret)
                 var cc = CreditCard()
                 cc.fullName = self.name
                 cc.number = self.cc
