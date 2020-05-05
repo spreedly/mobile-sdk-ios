@@ -1,4 +1,4 @@
-public struct CreditCard: Codable, CustomStringConvertible {
+public struct CreditCard: Codable {
     // Gateway-specific metadata
     public var token: String?
     public var createdAt: Date?
@@ -82,10 +82,6 @@ public struct CreditCard: Codable, CustomStringConvertible {
         case shippingPhoneNumber
     }
 
-    public var description: String {
-        "CreditCard(\(self.number ?? "????"))"
-    }
-
     public init() { }
 
     public init(from decoder: Decoder) throws {
@@ -132,21 +128,7 @@ public struct CreditCard: Codable, CustomStringConvertible {
     }
 }
 
-extension CreditCard {
-    public struct CodingData: Decodable {
-        var paymentMethod: CreditCard
-
-        public init(paymentMethod: CreditCard) {
-            self.paymentMethod = paymentMethod
-        }
-    }
-}
-
-public struct CreatePaymentMethodRequest: Encodable, CustomStringConvertible {
-    public var description: String {
-        "CustomPaymentMethodRequest"
-    }
-
+public struct CreatePaymentMethodRequest: Encodable {
     public var email: String?
     public var metadata: [String: String] = [:]
     public var creditCard: CreditCard?
@@ -200,10 +182,6 @@ public struct Transaction<TPaymentMethod>: Decodable where TPaymentMethod: Decod
 extension Transaction {
     struct CodingData: Decodable {
         var transaction: Transaction
-
-        init(transaction: Transaction) {
-            self.transaction = transaction
-        }
     }
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
