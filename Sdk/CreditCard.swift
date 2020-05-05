@@ -23,6 +23,7 @@ public struct CreditCard: Codable {
 
     // Customer-specific data
     public var email: String?
+    public var fullName: String?
     public var firstName: String?
     public var lastName: String?
     public var company: String?
@@ -63,6 +64,7 @@ public struct CreditCard: Codable {
         case verificationValue
 
         case email
+        case fullName
         case firstName
         case lastName
         case company
@@ -108,6 +110,7 @@ public struct CreditCard: Codable {
         self.verificationValue = try container.decode(String?.self, forKey: .verificationValue)
 
         self.email = try container.decode(String?.self, forKey: .email)
+        self.fullName = try container.decode(String?.self, forKey: .fullName)
         self.firstName = try container.decode(String?.self, forKey: .firstName)
         self.lastName = try container.decode(String?.self, forKey: .lastName)
         self.company = try container.decode(String?.self, forKey: .company)
