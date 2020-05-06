@@ -15,8 +15,8 @@ struct CreditCardForm: View {
     @State private var year = ""
     @State private var month = ""
     @State private var inProgress = false
-    @State private var token: String? = nil
-    @State private var error: String? = nil
+    @State private var token: String?
+    @State private var error: String?
 
     var body: some View {
         VStack {

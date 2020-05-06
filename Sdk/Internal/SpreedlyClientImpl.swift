@@ -43,7 +43,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             email: String? = nil,
             metadata: [String: String]? = nil,
             retained: Bool? = nil
-    ) -> Single<Transaction<CreditCard>> {
+    ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         let request = CreatePaymentMethodRequest(
@@ -66,12 +66,20 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
         return session().rx
                 .data(request: urlRequest)
+                .catchError { error in
+                    switch error {
+                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
+                        return Observable.from(data)
+                    default:
+                        return Observable.error(error)
+                    }
+                }
                 .asSingle()
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
                     print("Response was\n", json)
-                }).map { data -> Transaction<CreditCard> in
-                    try Transaction<CreditCard>.unwrapFrom(data: data)
+                }).map { data -> Transaction<CreditCardResult> in
+                    try Transaction<CreditCardResult>.unwrapFrom(data: data)
                 }
     }
 
@@ -80,7 +88,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             email: String? = nil,
             data: [String: String?]? = nil,
             metadata: [String: String?]? = nil
-    ) -> Single<Transaction<BankAccount>> {
+    ) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json")
 
         let request = CreateBankAccountPaymentMethodRequest(
@@ -107,12 +115,12 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
                     print("Response was\n", json)
-                }).map { data -> Transaction<BankAccount> in
-                    try Transaction<BankAccount>.unwrapFrom(data: data)
+                }).map { data -> Transaction<BankAccountResult> in
+                    try Transaction<BankAccountResult>.unwrapFrom(data: data)
                 }
     }
 
-    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCard>> {
+    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json")
 
         var creditCard = CreditCard()
@@ -137,8 +145,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
                     print("Response was\n", json)
-                }).map { data -> Transaction<CreditCard> in
-                    try Transaction<CreditCard>.unwrapFrom(data: data)
+                }).map { data -> Transaction<CreditCardResult> in
+                    try Transaction<CreditCardResult>.unwrapFrom(data: data)
                 }
     }
 }

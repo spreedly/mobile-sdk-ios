@@ -19,7 +19,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         return SpreedlyClientImpl(env: key, secret: secret)
     }
 
-    func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCard>> {
+    func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCardResult>> {
         var creditCard = CreditCard()
         creditCard.number = "4111111111111111"
         creditCard.verificationValue = verificationValue
@@ -50,7 +50,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         _ = promise.subscribe(onSuccess: { transaction in
             XCTAssertNotNil(transaction)
             let actualCreditCard = transaction.paymentMethod
-            XCTAssertNotNil(actualCreditCard.token)
+            XCTAssertNotNil(actualCreditCard?.token)
             expectation.fulfill()
         }, onError: { error in
             XCTFail("\(error)")
@@ -71,10 +71,10 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         let expectation = self.expectation(description: "can create bank account")
         let promise = client().createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
 
-        _ = promise.subscribe(onSuccess: { (transaction: Transaction<BankAccount>) in
+        _ = promise.subscribe(onSuccess: { (transaction: Transaction<BankAccountResult>) in
             XCTAssertNotNil(transaction)
             let bankAccount = transaction.paymentMethod
-            XCTAssertNotNil(bankAccount.token)
+            XCTAssertNotNil(bankAccount?.token)
             expectation.fulfill()
         }, onError: { error in
             XCTFail("\(error)")
@@ -88,21 +88,21 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         let expectation = self.expectation(description: "can recache verification value")
 
         _ = creditCardPromise
-        .flatMap { transaction -> Single<Transaction<CreditCard>> in
-            let creditCard = transaction.paymentMethod
-            guard let token = creditCard.token else {
-                return Single.error(SpreedlyError(message: "token was not found in credit card create response"))
-            }
+                .flatMap { transaction -> Single<Transaction<CreditCardResult>> in
+                    let creditCard = transaction.paymentMethod
+                    guard let token = creditCard?.token else {
+                        return Single.error(SpreedlyError(message: "token was not found in credit card create response"))
+                    }
 
-            return self.client().recache(token: token, verificationValue: self.verificationValue)
-        }.subscribe(onSuccess: { (transaction: Transaction<CreditCard>) in
-            expectation.fulfill()
-            XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
-            XCTAssert(transaction.succeeded)
-        }, onError: { error in
-            expectation.fulfill()
-            XCTFail("\(error)")
-        })
+                    return self.client().recache(token: token, verificationValue: self.verificationValue)
+                }.subscribe(onSuccess: { (transaction: Transaction<CreditCardResult>) in
+                    expectation.fulfill()
+                    XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
+                    XCTAssert(transaction.succeeded)
+                }, onError: { error in
+                    expectation.fulfill()
+                    XCTFail("\(error)")
+                })
         self.wait(for: [expectation], timeout: 10.0)
     }
 }

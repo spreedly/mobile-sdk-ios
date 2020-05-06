@@ -1,0 +1,24 @@
+//
+// Created by Stefan Rusek on 5/6/20.
+//
+
+import Foundation
+import XCTest
+import RxSwift
+import RxTest
+import Sdk
+
+class ClientTests: XCTestCase {
+    /// The API responds with a 401 and a valid JSON response, the client should return the decoded JSON response.
+    /// If trans.message is null, then the client should populate it with the first error message from trans.errors
+    func testEmptyKeyAndSecret() throws {
+        let client = createSpreedlyClient(env: "", secret: "")
+        let resp = client.createCreditCardPaymentMethod(creditCard: CreditCard(), email: nil, metadata: nil, retained: nil)
+        let trans = try resp.assertResult(self)
+
+        XCTAssertFalse(trans.succeeded)
+        XCTAssertEqual(trans.errors?.count, 1)
+        XCTAssertEqual(trans.errors?[0].message, "Unable to authenticate using the given environment_key and access_token.  Please check your credentials.")
+        XCTAssertEqual(trans.message, "Unable to authenticate using the given environment_key and access_token.  Please check your credentials.")
+    }
+}

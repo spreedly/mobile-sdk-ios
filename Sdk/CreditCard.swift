@@ -84,7 +84,8 @@ public struct CreditCard: Codable {
         case shippingPhoneNumber
     }
 
-    public init() { }
+    public init() {
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -169,27 +170,44 @@ extension CreatePaymentMethodRequest {
     }
 }
 
-public struct Transaction<TPaymentMethod>: Decodable where TPaymentMethod: Decodable {
-    public let token: String
-    public let createdAt: Date
-    public let updatedAt: Date
+public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResultBase {
+    public let token: String?
+    public let createdAt: Date?
+    public let updatedAt: Date?
     public let succeeded: Bool
-    public let transactionType: String
+    public let transactionType: String?
     public let retained: Bool
-    public let state: String
+    public let state: String?
     public let messageKey: String
     public let message: String
-    public let paymentMethod: TPaymentMethod
+    public let paymentMethod: TPaymentMethod?
+    public let errors: [SpreedlyError2]?
+
+    init(from json: [String: Any]) {
+        let errors = json.optObjectList("errors", { json in SpreedlyError2(from: json) })
+        token = json["token"] as? String
+        createdAt = json.optDate("created_at")
+        updatedAt = json.optDate("created_at")
+        succeeded = json["succeeded"] as? Bool ?? false
+        transactionType = json["transaction_type"] as? String
+        retained = json["retained"] as? Bool ?? false
+        state = json["state"] as? String
+        messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
+        message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
+        paymentMethod = TPaymentMethod(from: json)
+        self.errors = errors
+    }
 }
 
 extension Transaction {
-    struct CodingData: Decodable {
-        var transaction: Transaction
-    }
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
-        let wrapper: Transaction<TPaymentMethod>.CodingData = try Coders.decode(data: data)
-        return wrapper.transaction
+        let json = try Coders.decodeJson(data: data)
+        if json.keys.contains("transation") {
+            return Transaction(from: json.getObject("transaction"))
+        } else {
+            return Transaction(from: json)
+        }
     }
 }
 

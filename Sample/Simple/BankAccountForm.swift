@@ -14,8 +14,8 @@ struct BankAccountForm: View {
     @State private var routingNumber = ""
     @State private var type = "checking"
     @State private var inProgress = false
-    @State private var token: String? = nil
-    @State private var error: String? = nil
+    @State private var token: String?
+    @State private var error: String?
 
     var body: some View {
         VStack {

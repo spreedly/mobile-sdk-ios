@@ -29,16 +29,16 @@ public protocol SpreedlyClient {
             email: String?,
             metadata: [String: String]?,
             retained: Bool?
-    ) -> Single<Transaction<CreditCard>>
+    ) -> Single<Transaction<CreditCardResult>>
 
     func createBankAccountPaymentMethod(
             bankAccount: BankAccount,
             email: String?,
             data: [String: String?]?,
             metadata: [String: String?]?
-    ) -> Single<Transaction<BankAccount>>
+    ) -> Single<Transaction<BankAccountResult>>
 
-    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCard>>
+    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>>
 }
 
 public func createSpreedlyClient(env: String, secret: String) -> SpreedlyClient {
