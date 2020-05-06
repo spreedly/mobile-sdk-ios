@@ -38,6 +38,10 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         SpreedlySecureOpaqueStringImpl(from: source)
     }
 
+    func createCreditCardPaymentMethod(creditCard: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
+        createCreditCardPaymentMethod(creditCard: creditCard, email: nil, metadata: nil)
+    }
+
     func createCreditCardPaymentMethod(
             creditCard info: CreditCardInfo,
             email: String? = nil,

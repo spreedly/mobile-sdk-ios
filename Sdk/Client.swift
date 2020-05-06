@@ -25,6 +25,9 @@ public protocol SpreedlyClient {
     func createSecureString(from source: String) -> SpreedlySecureOpaqueString
 
     func createCreditCardPaymentMethod(
+            creditCard: CreditCardInfo
+    ) -> Single<Transaction<CreditCardResult>>
+    func createCreditCardPaymentMethod(
             creditCard: CreditCardInfo,
             email: String?,
             metadata: [String: String]?
