@@ -239,21 +239,12 @@ public struct CreatePaymentMethodRequest {
         self.retained = retained
     }
 
-<<<<<<< HEAD
-    func toJson() -> [String: Any?] {
-        var result = [String: Any?]()
-
-        result.maybeSet("email", self.email)
-        result.maybeSet("metadata", self.metadata)
-        result.maybeSet("credit_card", self.creditCard?.toJson())
-=======
     func toJson() throws -> [String: Any] {
         var result = [String: Any]()
 
         result.maybeSet("email", self.email)
         result.maybeSet("metadata", self.metadata)
         result.maybeSet("credit_card", try self.creditCard?.toJson())
->>>>>>> lint fixes, jsonReady -> toJson, and JSON.swift
         result.maybeSet("retained", self.retained)
 
         return result
@@ -277,14 +268,9 @@ extension CreatePaymentMethodRequest {
     */
 
     func wrapToData() throws -> Data {
-<<<<<<< HEAD
-        var result = [String: Any?]()
-        result["payment_method"] = self.toJson()
-=======
         let result: [String: Any] = [
             "payment_method": try self.toJson()
         ]
->>>>>>> lint fixes, jsonReady -> toJson, and JSON.swift
         return try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys, .prettyPrinted])
     }
 }
