@@ -34,6 +34,12 @@ class SecureStringTest: XCTestCase {
         XCTAssertEqual(secureString.internalToString(), "abc")
     }
 
+    func testClear() {
+        let secureString = SpreedlySecureOpaqueStringImpl(from: "abcdef")
+        secureString.clear()
+        XCTAssertEqual(secureString.internalToString(), "")
+    }
+
     func testToJson() throws {
         let secureString = SpreedlySecureOpaqueStringImpl(from: "abc")
         let data = try JSONEncoder().encode(secureString)
