@@ -9,11 +9,13 @@ import RxCocoa
 class SpreedlyClientImpl: NSObject, SpreedlyClient {
     let envKey: String
     let envSecret: String
+    let test: Bool
     let baseUrl = URL(string: "https://core.spreedly.com/v1")!
 
-    init(envKey: String, envSecret: String) {
+    init(envKey: String, envSecret: String, test: Bool) {
         self.envKey = envKey
         self.envSecret = envSecret
+        self.test = test
         super.init()
     }
 

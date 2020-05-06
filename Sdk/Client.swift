@@ -41,8 +41,8 @@ public protocol SpreedlyClient {
     func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCard>>
 }
 
-public func createSpreedlyClient(envKey: String, envSecret: String) -> SpreedlyClient {
-    SpreedlyClientImpl(envKey: envKey, envSecret: envSecret)
+public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
+    SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
 }
 
 @objc public protocol SpreedlySecureOpaqueString {
