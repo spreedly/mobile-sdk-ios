@@ -13,39 +13,43 @@ class CreateCreditCardIntegrationTests: XCTestCase {
      Initializes a SpreedlyClient by searching for the key and secret first in the environment variables (most useful
      for local development) and then by the secret variables (injected via CI).
     */
-    func client() -> SpreedlyClientImpl {
+    func createClient() -> SpreedlyClientImpl {
         let key = ProcessInfo.processInfo.environment["ENV_KEY"] ?? secretEnvKey
         let secret = ProcessInfo.processInfo.environment["ENV_SECRET"] ?? secretEnvSecret
         return SpreedlyClientImpl(env: key, secret: secret)
     }
 
     func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCardResult>> {
-        var creditCard = CreditCard()
-        creditCard.number = "4111111111111111"
-        creditCard.verificationValue = verificationValue
-        creditCard.firstName = "Dolly"
-        creditCard.lastName = "Dog"
-        creditCard.month = 1
-        creditCard.year = 2022
+        let client = createClient()
+        let creditCard = CreditCardInfo(
+                firstName: "Dolly",
+                lastName: "Dog",
+                number: client.createSecureString(from: "4111111111111111"),
+                verificationValue: client.createSecureString(from: verificationValue),
+                year: 2029,
+                month: 1
+        )
+        creditCard.retained = retained
 
-        return client().createCreditCardPaymentMethod(
+        return client.createCreditCardPaymentMethod(
                 creditCard: creditCard,
-                email: "dolly@dog.com",
-                retained: retained
+                email: "dolly@dog.com"
         )
     }
 
     func testCanCreateCreditCard() throws {
-        var creditCard = CreditCard()
-        creditCard.number = "4111111111111111"
-        creditCard.verificationValue = "919"
-        creditCard.firstName = "Dolly"
-        creditCard.lastName = "Dog"
-        creditCard.month = 1
-        creditCard.year = 2022
+        let client = createClient()
+        let creditCard = CreditCardInfo(
+                firstName: "Dolly",
+                lastName: "Dog",
+                number: client.createSecureString(from: "4111111111111111"),
+                verificationValue: client.createSecureString(from: verificationValue),
+                year: 2029,
+                month: 1
+        )
 
         let expectation = self.expectation(description: "can create credit card")
-        let promise = client().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
+        let promise = createClient().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
 
         _ = promise.subscribe(onSuccess: { transaction in
             XCTAssertNotNil(transaction)
@@ -69,7 +73,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         bankAccount.bankAccountHolderType = "personal"
 
         let expectation = self.expectation(description: "can create bank account")
-        let promise = client().createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
+        let promise = createClient().createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
 
         _ = promise.subscribe(onSuccess: { (transaction: Transaction<BankAccountResult>) in
             XCTAssertNotNil(transaction)
@@ -91,10 +95,12 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                 .flatMap { transaction -> Single<Transaction<CreditCardResult>> in
                     let creditCard = transaction.paymentMethod
                     guard let token = creditCard?.token else {
-                        return Single.error(SpreedlyError(message: "token was not found in credit card create response"))
+                        return Single.error(SpreedlyError(
+                                message: "token was not found in credit card create response"
+                        ))
                     }
 
-                    return self.client().recache(token: token, verificationValue: self.verificationValue)
+                    return self.createClient().recache(token: token, verificationValue: self.verificationValue)
                 }.subscribe(onSuccess: { (transaction: Transaction<CreditCardResult>) in
                     expectation.fulfill()
                     XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
