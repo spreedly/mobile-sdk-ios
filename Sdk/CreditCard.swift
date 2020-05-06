@@ -326,7 +326,7 @@ extension Transaction {
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
         let json = try Coders.decodeJson(data: data)
-        if json.keys.contains("transation") {
+        if json.keys.contains("transaction") {
             return Transaction(from: try json.getObject("transaction"))
         } else {
             return Transaction(from: json)
