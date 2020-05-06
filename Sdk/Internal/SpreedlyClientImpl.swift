@@ -45,8 +45,6 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
-        let result = CreditCardResult
-
         let request = CreatePaymentMethodRequest(
                 email: email ?? "",
                 metadata: metadata ?? [:],

@@ -1,3 +1,11 @@
+extension Dictionary where Key == String, Value == Any? {
+    mutating func maybeSet(_ key: String, _ value: Any?) {
+        if value != nil {
+            self[key] = value
+        }
+    }
+}
+
 public class CreditCardInfo {
     let fullName: String?
     let firstName: String?
@@ -68,6 +76,38 @@ public class CreditCardInfo {
         self.verificationValue = verificationValue
         self.year = year
         self.month = month
+    }
+
+    internal func jsonReady() -> [String: Any?] {
+        var result = [String: Any?]()
+
+        result.maybeSet("first_name", self.firstName)
+        result.maybeSet("last_name", self.lastName)
+        result.maybeSet("full_name", self.fullName)
+        result.maybeSet("company", self.company)
+
+        result["number"] = (self.number as! SpreedlySecureOpaqueStringImpl).internalToString()
+        result["verification_value"] = (self.verificationValue as! SpreedlySecureOpaqueStringImpl).internalToString()
+        result["year"] = self.year
+        result["month"] = self.month
+
+        result.maybeSet("address1", self.primaryContact?.address1)
+        result.maybeSet("address2", self.primaryContact?.address2)
+        result.maybeSet("city", self.primaryContact?.city)
+        result.maybeSet("state", self.primaryContact?.state)
+        result.maybeSet("zip", self.primaryContact?.zip)
+        result.maybeSet("country", self.primaryContact?.country)
+        result.maybeSet("phone_number", self.primaryContact?.phoneNumber)
+
+        result.maybeSet("shipping_address1", self.shippingContact?.address1)
+        result.maybeSet("shipping_address2", self.shippingContact?.address2)
+        result.maybeSet("shipping_city", self.shippingContact?.city)
+        result.maybeSet("shipping_state", self.shippingContact?.state)
+        result.maybeSet("shipping_zip", self.shippingContact?.zip)
+        result.maybeSet("shipping_country", self.shippingContact?.country)
+        result.maybeSet("shipping_phone_number", self.shippingContact?.phoneNumber)
+
+        return result
     }
 }
 
@@ -205,17 +245,28 @@ public struct CreditCard: Codable {
     }
 }
 
-public struct CreatePaymentMethodRequest: Encodable {
+public struct CreatePaymentMethodRequest {
     public var email: String?
-    public var metadata: [String: String] = [:]
-    public var creditCard: CreditCard?
+    public var metadata: [String: String]?
+    public var creditCard: CreditCardInfo?
     public var retained: Bool?
 
-    public init(email: String, metadata: [String: String], creditCard: CreditCard, retained: Bool? = nil) {
+    public init(email: String, metadata: [String: String]?, creditCard: CreditCardInfo, retained: Bool? = nil) {
         self.email = email
         self.metadata = metadata
         self.creditCard = creditCard
         self.retained = retained
+    }
+
+    func jsonReady() -> [String: Any?] {
+        var result = [String: Any?]()
+
+        result.maybeSet("email", self.email)
+        result.maybeSet("metadata", self.metadata)
+        result.maybeSet("credit_card", self.creditCard?.jsonReady())
+        result.maybeSet("retained", self.retained)
+
+        return result
     }
 }
 
@@ -234,12 +285,11 @@ extension CreatePaymentMethodRequest {
 
         The CodingData struct represents that the outermost object with the single "payment_method" key in it.
     */
-    struct CodingData: Encodable {
-        var paymentMethod: CreatePaymentMethodRequest
-    }
 
     func wrapToData() throws -> Data {
-        try Coders.encode(entity: CreatePaymentMethodRequest.CodingData(paymentMethod: self))
+        var result = [String: Any?]()
+        result["payment_method"] = self.jsonReady()
+        return try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys, .prettyPrinted])
     }
 }
 
