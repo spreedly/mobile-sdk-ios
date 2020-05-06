@@ -80,7 +80,6 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     func createBankAccountPaymentMethod(
             bankAccount: BankAccount,
             email: String? = nil,
-            data: [String: String?]? = nil,
             metadata: [String: String?]? = nil
     ) -> Single<Transaction<BankAccount>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json")
@@ -88,7 +87,6 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         let request = CreateBankAccountPaymentMethodRequest(
                 bankAccount: bankAccount,
                 email: email,
-                data: data,
                 metadata: metadata
         )
 
