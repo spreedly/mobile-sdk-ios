@@ -12,6 +12,8 @@ struct CreditCardForm: View {
     @State private var name = ""
     @State private var cc = ""
     @State private var ccv = ""
+    @State private var year = ""
+    @State private var month = ""
     @State private var inProgress = false
     @State private var token: String? = nil
     @State private var error: String? = nil
@@ -21,8 +23,18 @@ struct CreditCardForm: View {
             Text("Please Enter Your Card Info")
             VStack {
                 TextField("Name", text: $name).disabled(inProgress)
-                TextField("CC", text: $cc).disabled(inProgress)
-                TextField("CCV", text: $ccv).disabled(inProgress)
+                TextField("CC", text: $cc)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
+                TextField("CCV", text: $ccv)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
+                TextField("Year", text: $year)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
+                TextField("Month", text: $month)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
             }.id(0)
             if token != nil {
                 Text("Token: \(token!)")
@@ -36,6 +48,12 @@ struct CreditCardForm: View {
                 cc.fullName = self.name
                 cc.number = self.cc
                 cc.verificationValue = self.ccv
+                if let year = Int(self.year) {
+                    cc.year = year
+                }
+                if let month = Int(self.month) {
+                    cc.month = month
+                }
                 self.inProgress = true
                 self.token = nil
                 self.error = nil
