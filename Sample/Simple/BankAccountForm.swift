@@ -37,15 +37,15 @@ struct BankAccountForm: View {
             }
             Button("Submit") {
                 let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
-                var ba = BankAccount()
-                ba.fullName = self.name
-                ba.bankAccountNumber = self.accountNumber
-                ba.routingNumber = self.routingNumber
-                ba.bankAccountType = self.type
+                var baInfo = BankAccount()
+                baInfo.fullName = self.name
+                baInfo.bankAccountNumber = self.accountNumber
+                baInfo.routingNumber = self.routingNumber
+                baInfo.bankAccountType = self.type
                 self.inProgress = true
                 self.token = nil
                 self.error = nil
-                client.createBankAccountPaymentMethod(bankAccount: ba, email: nil, data: nil, metadata: nil)
+                client.createBankAccountPaymentMethod(bankAccount: baInfo, email: nil, data: nil, metadata: nil)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {
                                 self.token = transaction.token

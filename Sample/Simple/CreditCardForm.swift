@@ -10,7 +10,7 @@ import Sdk
 struct CreditCardForm: View {
     var disposeBag = DisposeBag()
     @State private var name = ""
-    @State private var cc = ""
+    @State private var ccNumber = ""
     @State private var ccv = ""
     @State private var year = ""
     @State private var month = ""
@@ -23,7 +23,7 @@ struct CreditCardForm: View {
             Text("Please Enter Your Card Info")
             VStack {
                 TextField("Name", text: $name).disabled(inProgress)
-                TextField("CC", text: $cc)
+                TextField("CC", text: $ccNumber)
                         .keyboardType(.numberPad)
                         .disabled(inProgress)
                 TextField("CCV", text: $ccv)
@@ -44,20 +44,20 @@ struct CreditCardForm: View {
             }
             Button("Submit") {
                 let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
-                var cc = CreditCard()
-                cc.fullName = self.name
-                cc.number = self.cc
-                cc.verificationValue = self.ccv
+                var ccInfo = CreditCard()
+                ccInfo.fullName = self.name
+                ccInfo.number = self.ccNumber
+                ccInfo.verificationValue = self.ccv
                 if let year = Int(self.year) {
-                    cc.year = year
+                    ccInfo.year = year
                 }
                 if let month = Int(self.month) {
-                    cc.month = month
+                    ccInfo.month = month
                 }
                 self.inProgress = true
                 self.token = nil
                 self.error = nil
-                client.createCreditCardPaymentMethod(creditCard: cc, email: nil, metadata: nil, retained: true)
+                client.createCreditCardPaymentMethod(creditCard: ccInfo, email: nil, metadata: nil, retained: true)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {
                                 self.token = transaction.token
