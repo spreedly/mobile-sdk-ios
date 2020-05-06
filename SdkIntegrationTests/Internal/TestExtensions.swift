@@ -8,8 +8,18 @@ import RxSwift
 import RxTest
 import Sdk
 
-enum TestError: Error {
+enum TestError: Error, CustomStringConvertible {
     case unreachable
+    case invalidResponse(String)
+
+    var description: String {
+        switch self {
+        case .unreachable:
+            return "TestError: Unreachable"
+        case .invalidResponse(message: let message):
+            return "TestError: invalid response, \(message)"
+        }
+    }
 }
 
 extension PrimitiveSequence where Trait == SingleTrait {

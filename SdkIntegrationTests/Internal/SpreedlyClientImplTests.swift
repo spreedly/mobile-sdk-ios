@@ -95,8 +95,8 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                 .flatMap { transaction -> Single<Transaction<CreditCardResult>> in
                     let creditCard = transaction.paymentMethod
                     guard let token = creditCard?.token else {
-                        return Single.error(SpreedlyError(
-                                message: "token was not found in credit card create response"
+                        return Single.error(TestError.invalidResponse(
+                                "token was not found in credit card create response"
                         ))
                     }
 
