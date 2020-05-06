@@ -44,31 +44,31 @@ struct CreditCardForm: View {
             }
             Button("Submit") {
                 let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
-                var ccInfo = CreditCard()
-                ccInfo.fullName = self.name
-                ccInfo.number = self.ccNumber
-                ccInfo.verificationValue = self.ccv
-                if let year = Int(self.year) {
-                    ccInfo.year = year
+                if let year = Int(self.year),
+                   let month = Int(self.month) {
+                    var ccInfo = CreditCardInfo(
+                            fullName: self.name,
+                            number: client.createSecureString(from: self.ccNumber),
+                            verificationValue: client.createSecureString(from: self.ccv),
+                            year: year,
+                            month: month
+                    )
+                    self.inProgress = true
+                    self.token = nil
+                    self.error = nil
+                    client.createCreditCardPaymentMethod(creditCard: ccInfo)
+                            .subscribe(onSuccess: { transaction in
+                                if transaction.succeeded {
+                                    self.token = transaction.token
+                                } else {
+                                    self.error = transaction.message
+                                }
+                                self.inProgress = false
+                            }, onError: { error in
+                                self.error = "UNEXPECTED ERROR \(error)"
+                                self.inProgress = false
+                            }).disposed(by: self.disposeBag)
                 }
-                if let month = Int(self.month) {
-                    ccInfo.month = month
-                }
-                self.inProgress = true
-                self.token = nil
-                self.error = nil
-                client.createCreditCardPaymentMethod(creditCard: ccInfo, email: nil, metadata: nil, retained: true)
-                        .subscribe(onSuccess: { transaction in
-                            if transaction.succeeded {
-                                self.token = transaction.token
-                            } else {
-                                self.error = transaction.message
-                            }
-                            self.inProgress = false
-                        }, onError: { error in
-                            self.error = "UNEXPECTED ERROR \(error)"
-                            self.inProgress = false
-                        }).disposed(by: self.disposeBag)
             }
         }.padding(16)
     }
