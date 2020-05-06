@@ -95,3 +95,19 @@ extension Dictionary where Key == String, Value == Any {
         self[key] as? String
     }
 }
+
+extension Dictionary where Key == String, Value == Any {
+    mutating func maybeSet<T>(_ key: String, _ value: T?) {
+        if let value = value {
+            self[key] = value
+        }
+    }
+
+    mutating func setOpaqueString(_ key: String, _ value: SpreedlySecureOpaqueString) throws {
+        if let value = value as? SpreedlySecureOpaqueStringImpl {
+            self[key] = value.internalToString()
+        } else {
+            throw SpreedlySecurityError.invalidOpaqueString
+        }
+    }
+}

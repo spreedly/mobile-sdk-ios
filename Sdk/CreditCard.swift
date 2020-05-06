@@ -1,10 +1,4 @@
-extension Dictionary where Key == String, Value == Any? {
-    mutating func maybeSet(_ key: String, _ value: Any?) {
-        if value != nil {
-            self[key] = value
-        }
-    }
-}
+
 
 public class CreditCardInfo {
     let fullName: String?
@@ -78,34 +72,21 @@ public class CreditCardInfo {
         self.month = month
     }
 
-    internal func toJson() -> [String: Any?] {
-        var result = [String: Any?]()
+    internal func toJson() throws -> [String: Any] {
+        var result = [String: Any]()
 
         result.maybeSet("first_name", self.firstName)
         result.maybeSet("last_name", self.lastName)
         result.maybeSet("full_name", self.fullName)
         result.maybeSet("company", self.company)
 
-        result["number"] = (self.number as! SpreedlySecureOpaqueStringImpl).internalToString()
-        result["verification_value"] = (self.verificationValue as! SpreedlySecureOpaqueStringImpl).internalToString()
+        try result.setOpaqueString("number", self.number)
+        try result.setOpaqueString("verification_value", self.verificationValue)
         result["year"] = self.year
         result["month"] = self.month
 
-        result.maybeSet("address1", self.address?.address1)
-        result.maybeSet("address2", self.address?.address2)
-        result.maybeSet("city", self.address?.city)
-        result.maybeSet("state", self.address?.state)
-        result.maybeSet("zip", self.address?.zip)
-        result.maybeSet("country", self.address?.country)
-        result.maybeSet("phone_number", self.address?.phoneNumber)
-
-        result.maybeSet("shipping_address1", self.shippingAddress?.address1)
-        result.maybeSet("shipping_address2", self.shippingAddress?.address2)
-        result.maybeSet("shipping_city", self.shippingAddress?.city)
-        result.maybeSet("shipping_state", self.shippingAddress?.state)
-        result.maybeSet("shipping_zip", self.shippingAddress?.zip)
-        result.maybeSet("shipping_country", self.shippingAddress?.country)
-        result.maybeSet("shipping_phone_number", self.shippingAddress?.phoneNumber)
+        self.address?.toJson(&result, .billing)
+        self.shippingAddress?.toJson(&result, .shipping)
 
         return result
     }
@@ -258,12 +239,12 @@ public struct CreatePaymentMethodRequest {
         self.retained = retained
     }
 
-    func toJson() -> [String: Any?] {
-        var result = [String: Any?]()
+    func toJson() throws -> [String: Any] {
+        var result = [String: Any]()
 
         result.maybeSet("email", self.email)
         result.maybeSet("metadata", self.metadata)
-        result.maybeSet("credit_card", self.creditCard?.toJson())
+        result.maybeSet("credit_card", try self.creditCard?.toJson())
         result.maybeSet("retained", self.retained)
 
         return result
@@ -287,8 +268,9 @@ extension CreatePaymentMethodRequest {
     */
 
     func wrapToData() throws -> Data {
-        var result = [String: Any?]()
-        result["payment_method"] = self.toJson()
+        let result: [String: Any] = [
+            "payment_method": try self.toJson()
+        ]
         return try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys, .prettyPrinted])
     }
 }
