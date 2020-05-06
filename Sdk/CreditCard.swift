@@ -78,7 +78,7 @@ public class CreditCardInfo {
         self.month = month
     }
 
-    internal func jsonReady() -> [String: Any?] {
+    internal func toJson() -> [String: Any?] {
         var result = [String: Any?]()
 
         result.maybeSet("first_name", self.firstName)
@@ -258,12 +258,12 @@ public struct CreatePaymentMethodRequest {
         self.retained = retained
     }
 
-    func jsonReady() -> [String: Any?] {
+    func toJson() -> [String: Any?] {
         var result = [String: Any?]()
 
         result.maybeSet("email", self.email)
         result.maybeSet("metadata", self.metadata)
-        result.maybeSet("credit_card", self.creditCard?.jsonReady())
+        result.maybeSet("credit_card", self.creditCard?.toJson())
         result.maybeSet("retained", self.retained)
 
         return result
@@ -288,7 +288,7 @@ extension CreatePaymentMethodRequest {
 
     func wrapToData() throws -> Data {
         var result = [String: Any?]()
-        result["payment_method"] = self.jsonReady()
+        result["payment_method"] = self.toJson()
         return try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys, .prettyPrinted])
     }
 }

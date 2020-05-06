@@ -18,7 +18,7 @@ class CreditCardInfoTests: XCTestCase {
         )
 
         let data = try JSONSerialization.data(
-                withJSONObject: creditCard.jsonReady(),
+                withJSONObject: creditCard.toJson(),
                 options: [.sortedKeys, .prettyPrinted]
         )
         let json = String(data: data, encoding: .utf8)!
