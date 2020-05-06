@@ -39,18 +39,19 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     func createCreditCardPaymentMethod(
-            creditCard: CreditCard,
+            creditCard info: CreditCardInfo,
             email: String? = nil,
-            metadata: [String: String]? = nil,
-            retained: Bool? = nil
+            metadata: [String: String]? = nil
     ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+
+        let result = CreditCardResult
 
         let request = CreatePaymentMethodRequest(
                 email: email ?? "",
                 metadata: metadata ?? [:],
-                creditCard: creditCard,
-                retained: retained
+                creditCard: info,
+                retained: info.retained
         )
 
         let jsonRequest: Data

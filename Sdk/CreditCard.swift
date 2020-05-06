@@ -1,3 +1,76 @@
+public class CreditCardInfo {
+    let fullName: String?
+    let firstName: String?
+    let lastName: String?
+    var company: String?
+
+    let number: SpreedlySecureOpaqueString
+    let verificationValue: SpreedlySecureOpaqueString
+    let year: Int
+    let month: Int
+
+    var primaryContact: Address?
+    var shippingContact: Address?
+
+    var retained: Bool?
+
+    public convenience init(
+            fullName: String,
+            number: SpreedlySecureOpaqueString,
+            verificationValue: SpreedlySecureOpaqueString,
+            year: Int,
+            month: Int
+    ) {
+        self.init(
+                firstName: nil,
+                lastName: nil,
+                fullName: fullName,
+                number: number,
+                verificationValue: verificationValue,
+                year: year,
+                month: month
+        )
+    }
+
+    public convenience init(
+            firstName: String,
+            lastName: String,
+            number: SpreedlySecureOpaqueString,
+            verificationValue: SpreedlySecureOpaqueString,
+            year: Int,
+            month: Int
+    ) {
+        self.init(
+                firstName: firstName,
+                lastName: lastName,
+                fullName: nil,
+                number: number,
+                verificationValue: verificationValue,
+                year: year,
+                month: month
+        )
+    }
+
+    private init(
+            firstName: String?,
+            lastName: String?,
+            fullName: String?,
+            number: SpreedlySecureOpaqueString,
+            verificationValue: SpreedlySecureOpaqueString,
+            year: Int,
+            month: Int
+    ) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.fullName = fullName
+
+        self.number = number
+        self.verificationValue = verificationValue
+        self.year = year
+        self.month = month
+    }
+}
+
 public struct CreditCard: Codable {
     // Gateway-specific metadata
     public var token: String?
