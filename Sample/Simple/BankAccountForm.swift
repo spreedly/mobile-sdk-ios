@@ -22,8 +22,12 @@ struct BankAccountForm: View {
             Text("Please Enter Your Bank Info")
             VStack {
                 TextField("Name", text: $name).disabled(inProgress)
-                TextField("Account Number", text: $accountNumber).disabled(inProgress)
-                TextField("Routing Number", text: $routingNumber).disabled(inProgress)
+                TextField("Account Number", text: $accountNumber)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
+                TextField("Routing Number", text: $routingNumber)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
             }.id(1)
             if token != nil {
                 Text("Token: \(token!)")
