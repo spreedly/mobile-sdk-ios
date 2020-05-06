@@ -299,7 +299,7 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
         state = json["state"] as? String
         messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
         message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
-        paymentMethod = TPaymentMethod(from: json)
+        paymentMethod = TPaymentMethod(from: json["payment_method"] as? [String: Any] ?? [:])
         self.errors = errors
     }
 }
