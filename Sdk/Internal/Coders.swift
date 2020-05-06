@@ -9,7 +9,11 @@ import Foundation
 */
 struct Coders {
     static func decodeJson(data: Data) throws -> [String: Any] {
-        try JSONSerialization.jsonObject(with: data) as! [String: Any]
+        if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+            return json
+        } else {
+            throw JSONError.expectedObject
+        }
     }
 
     static func decode<T>(data: Data) throws -> T where T: Decodable {
@@ -30,33 +34,64 @@ struct Coders {
     }
 }
 
+enum JSONError: Error {
+    case keyNotFound(key: String)
+    case expectedObject
+}
+
 extension Dictionary where Key == String, Value == Any {
 
-    func getObject(_ key: String) -> [String: Any] {
-        self[key] as! [String: Any]
+    func getObject(_ key: String) throws -> [String: Any] {
+        if let result = optObject(key) {
+            return result
+        } else {
+            throw JSONError.keyNotFound(key: key)
+        }
     }
 
     func optObject(_ key: String) -> [String: Any]? {
         self[key] as? [String: Any]
     }
 
-    func getObjectList<R>(_ key: String, _ closuer: (_ json: [String: Any]) -> R) -> [R] {
-        (self[key] as! [Any]).map {
-            closuer($0 as! [String: Any])
+    func getObjectList<R>(_ key: String, _ closure: (_ json: [String: Any]) throws -> R) throws -> [R] {
+        if let result: [R] = optObjectList(key, closure) {
+            return result
+        } else {
+            throw JSONError.keyNotFound(key: key)
         }
     }
 
-    func optObjectList<R>(_ key: String, _ closuer: (_ json: [String: Any]) -> R) -> [R]? {
-        (self[key] as? [Any])?.map {
-            closuer($0 as! [String: Any])
+    func optObjectList<R>(_ key: String, _ closure: (_ json: [String: Any]) throws -> R) -> [R]? {
+        try? (self[key] as? [Any])?.map {
+            if let child = $0 as? [String: Any] {
+                return try closure(child)
+            } else {
+                throw JSONError.expectedObject
+            }
         }
     }
 
-    func getDate(_ key: String) -> Date {
-        Date()
+    func getDate(_ key: String) throws -> Date {
+        if let result = optDate(key) {
+            return result
+        } else {
+            throw JSONError.keyNotFound(key: key)
+        }
     }
 
     func optDate(_ key: String) -> Date? {
         nil
+    }
+
+    func getString(_ key: String) throws -> String {
+        if let result = optString(key) {
+            return result
+        } else {
+            throw JSONError.keyNotFound(key: key)
+        }
+    }
+
+    func optString(_ key: String) -> String? {
+        self[key] as? String
     }
 }

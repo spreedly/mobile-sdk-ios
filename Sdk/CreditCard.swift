@@ -184,7 +184,7 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
     public let errors: [SpreedlyError2]?
 
     init(from json: [String: Any]) {
-        let errors = json.optObjectList("errors", { json in SpreedlyError2(from: json) })
+        let errors = json.optObjectList("errors", { json in try SpreedlyError2(from: json) })
         token = json["token"] as? String
         createdAt = json.optDate("created_at")
         updatedAt = json.optDate("created_at")
@@ -204,7 +204,7 @@ extension Transaction {
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
         let json = try Coders.decodeJson(data: data)
         if json.keys.contains("transation") {
-            return Transaction(from: json.getObject("transaction"))
+            return Transaction(from: try json.getObject("transaction"))
         } else {
             return Transaction(from: json)
         }

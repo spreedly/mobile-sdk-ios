@@ -23,10 +23,10 @@ public struct SpreedlyError2: Decodable {
     public let message: String
     public let attribute: String?
 
-    init(from json: [String: Any]) {
-        key = json["key"] as! String
-        message = json["message"] as! String
-        attribute = json["attribute"] as? String
+    init(from json: [String: Any]) throws {
+        key = try json.getString("key")
+        message = try json.getString("message")
+        attribute = json.optString("attribute")
     }
 }
 
@@ -39,25 +39,25 @@ public class PaymentMethodResultBase {
     public let shippingAddress: Address?
     public let errors: [SpreedlyError2]
 
-    required public init(from json: [String: Any]) {
+    required init(from json: [String: Any]) {
         token = json["token"] as? String
         storageState = json["storage_state"] as? StorageState
         test = json["test"] as? Bool ?? false
         paymentMethodType = json["payment_method_type"] as? PaymentMethodType
         address = Address(from: json, as: .billing)
         shippingAddress = Address(from: json, as: .shipping)
-        errors = json.optObjectList("errors", { json in SpreedlyError2(from: json) }) ?? []
+        errors = json.optObjectList("errors", { json in try SpreedlyError2(from: json) }) ?? []
     }
 }
 
 public class CreditCardResult: PaymentMethodResultBase {
-    public required init(from json: [String: Any]) {
+    required init(from json: [String: Any]) {
         super.init(from: json)
     }
 }
 
 public class BankAccountResult: PaymentMethodResultBase {
-    public required init(from json: [String: Any]) {
+    required init(from json: [String: Any]) {
         super.init(from: json)
     }
 }
