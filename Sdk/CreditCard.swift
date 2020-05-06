@@ -17,8 +17,8 @@ public class CreditCardInfo {
     let year: Int
     let month: Int
 
-    var primaryContact: Address?
-    var shippingContact: Address?
+    var address: Address?
+    var shippingAddress: Address?
 
     var retained: Bool?
 
@@ -91,21 +91,21 @@ public class CreditCardInfo {
         result["year"] = self.year
         result["month"] = self.month
 
-        result.maybeSet("address1", self.primaryContact?.address1)
-        result.maybeSet("address2", self.primaryContact?.address2)
-        result.maybeSet("city", self.primaryContact?.city)
-        result.maybeSet("state", self.primaryContact?.state)
-        result.maybeSet("zip", self.primaryContact?.zip)
-        result.maybeSet("country", self.primaryContact?.country)
-        result.maybeSet("phone_number", self.primaryContact?.phoneNumber)
+        result.maybeSet("address1", self.address?.address1)
+        result.maybeSet("address2", self.address?.address2)
+        result.maybeSet("city", self.address?.city)
+        result.maybeSet("state", self.address?.state)
+        result.maybeSet("zip", self.address?.zip)
+        result.maybeSet("country", self.address?.country)
+        result.maybeSet("phone_number", self.address?.phoneNumber)
 
-        result.maybeSet("shipping_address1", self.shippingContact?.address1)
-        result.maybeSet("shipping_address2", self.shippingContact?.address2)
-        result.maybeSet("shipping_city", self.shippingContact?.city)
-        result.maybeSet("shipping_state", self.shippingContact?.state)
-        result.maybeSet("shipping_zip", self.shippingContact?.zip)
-        result.maybeSet("shipping_country", self.shippingContact?.country)
-        result.maybeSet("shipping_phone_number", self.shippingContact?.phoneNumber)
+        result.maybeSet("shipping_address1", self.shippingAddress?.address1)
+        result.maybeSet("shipping_address2", self.shippingAddress?.address2)
+        result.maybeSet("shipping_city", self.shippingAddress?.city)
+        result.maybeSet("shipping_state", self.shippingAddress?.state)
+        result.maybeSet("shipping_zip", self.shippingAddress?.zip)
+        result.maybeSet("shipping_country", self.shippingAddress?.country)
+        result.maybeSet("shipping_phone_number", self.shippingAddress?.phoneNumber)
 
         return result
     }
