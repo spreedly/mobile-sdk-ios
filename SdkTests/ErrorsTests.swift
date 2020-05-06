@@ -6,9 +6,13 @@ import XCTest
 @testable import Sdk
 
 class SpreedlyErrorTests: XCTestCase {
-    func testMessageAppearsInStringDescription() {
-        let message = "I'm afraid I can't do that."
-        let err = SpreedlyError(message: message)
-        XCTAssert("\(err)".contains(message))
+    func testMessageAppearsInStringDescription() throws {
+        let errorJson = "{ \"errors\":[{\"key\":\"key\", \"message\":\"crazy error\"}] }"
+        if let data = errorJson.data(using: .utf8) {
+            let trans = try Transaction.unwrapFrom(data: data)
+            XCTAssertEqual(trans.message, "crazy error")
+        } else {
+            XCTFail("unexpected json error")
+        }
     }
 }

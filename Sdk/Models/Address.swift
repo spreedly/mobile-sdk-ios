@@ -43,4 +43,23 @@ public struct Address {
             return nil
         }
     }
+
+    func toJson(_ result: inout [String: Any], _ type: AddressType) {
+        let prefix = {
+            switch type {
+            case .billing:
+                ""
+            case .shipping:
+                "shipping_"
+            }
+        }()
+
+        result.maybeSet("\(prefix)address1", address1)
+        result.maybeSet("\(prefix)address2", address2)
+        result.maybeSet("\(prefix)city", city)
+        result.maybeSet("\(prefix)state", state)
+        result.maybeSet("\(prefix)zip", zip)
+        result.maybeSet("\(prefix)country", country)
+        result.maybeSet("\(prefix)phone_number", phoneNumber)
+    }
 }

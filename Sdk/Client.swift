@@ -40,6 +40,10 @@ public protocol SpreedlyClient {
     func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>>
 }
 
+public enum SpreedlySecurityError: Error {
+    case invalidOpaqueString
+}
+
 public func createSpreedlyClient(env: String, secret: String) -> SpreedlyClient {
     SpreedlyClientImpl(env: env, secret: secret)
 }
