@@ -3,7 +3,6 @@ public struct CreditCard: Codable {
     public var token: String?
     public var createdAt: Date?
     public var updatedAt: Date?
-    public var data: [String: String]?
     public var storageState: String?
     public var test: Bool?
     public var metadata: [String: String]?
@@ -46,7 +45,6 @@ public struct CreditCard: Codable {
         case token
         case createdAt
         case updatedAt
-        case data
         case storageState
         case test
         case metadata
@@ -92,7 +90,6 @@ public struct CreditCard: Codable {
         self.token = try container.decode(String?.self, forKey: .token)
         self.createdAt = try container.decode(Date?.self, forKey: .createdAt)
         self.updatedAt = try container.decode(Date?.self, forKey: .updatedAt)
-        // self.data
         self.storageState = try container.decode(String?.self, forKey: .storageState)
         self.test = try container.decode(Bool?.self, forKey: .test)
         // self.metadata

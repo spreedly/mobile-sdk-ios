@@ -8,7 +8,6 @@ public class BankAccount: NSObject, Codable {
     public var token: String?
     public var createdAt: Date?
     public var updatedAt: Date?
-    public var data: [String: String]?
     public var storageState: String?
     public var test: Bool?
     public var metadata: [String: String]?
@@ -47,7 +46,6 @@ public class BankAccount: NSObject, Codable {
 struct CreateBankAccountPaymentMethodRequest: Encodable {
     let bankAccount: BankAccount
     let email: String?
-    let data: [String: String?]?
     let metadata: [String: String?]?
 }
 

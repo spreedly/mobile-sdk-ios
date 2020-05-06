@@ -34,15 +34,14 @@ public protocol SpreedlyClient {
     func createBankAccountPaymentMethod(
             bankAccount: BankAccount,
             email: String?,
-            data: [String: String?]?,
             metadata: [String: String?]?
     ) -> Single<Transaction<BankAccount>>
 
     func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCard>>
 }
 
-public func createSpreedlyClient(env: String, secret: String) -> SpreedlyClient {
-    SpreedlyClientImpl(env: env, secret: secret)
+public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
+    SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
 }
 
 @objc public protocol SpreedlySecureOpaqueString {

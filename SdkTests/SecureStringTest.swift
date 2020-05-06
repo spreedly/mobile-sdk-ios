@@ -9,7 +9,7 @@ import RxSwift
 
 class SecureStringTest: XCTestCase {
     func testCreateFromClient() {
-        let secureString = createSpreedlyClient(env: "", secret: "").createSecureString(from: "abc")
+        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString(from: "abc")
         XCTAssertNotNil(secureString)
     }
 
