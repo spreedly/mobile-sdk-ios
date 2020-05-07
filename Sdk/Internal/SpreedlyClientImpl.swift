@@ -40,106 +40,106 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         SpreedlySecureOpaqueStringImpl(from: source)
     }
 
+    func createCreditCardPaymentMethod(creditCard: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
+        createCreditCardPaymentMethod(creditCard: creditCard, email: nil, metadata: nil)
+    }
+
     func createCreditCardPaymentMethod(
-            creditCard: CreditCard,
+            creditCard info: CreditCardInfo,
             email: String? = nil,
-            metadata: [String: String]? = nil,
-            retained: Bool? = nil
-    ) -> Single<Transaction<CreditCard>> {
+            metadata: [String: String]? = nil
+    ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
-        let request = CreatePaymentMethodRequest(
-                email: email ?? "",
-                metadata: metadata ?? [:],
-                creditCard: creditCard,
-                retained: retained
-        )
+        return Single.deferred {
+            let request: [String: Any] = [
+                "payment_method": [
+                    "email": email ?? "",
+                    "metadata": metadata ?? [:],
+                    "credit_card": try info.toJson(),
+                    "retained": info.retained ?? false
+                ]
+            ]
 
-        let jsonRequest: Data
-        do {
-            jsonRequest = try request.wrapToData()
-        } catch {
-            return Single.error(error)
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+                try Transaction<CreditCardResult>.unwrapFrom(data: data)
+            }
         }
+    }
 
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonRequest
-
-        return session().rx
-                .data(request: urlRequest)
-                .asSingle()
-                .do(onSuccess: { data in
-                    let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
-                    print("Response was\n", json)
-                }).map { data -> Transaction<CreditCard> in
-                    try Transaction<CreditCard>.unwrapFrom(data: data)
-                }
+    func createBankAccountPaymentMethod(bankAccount: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
+        createBankAccountPaymentMethod(bankAccount: bankAccount, email: nil, metadata: nil)
     }
 
     func createBankAccountPaymentMethod(
-            bankAccount: BankAccount,
+            bankAccount info: BankAccountInfo,
             email: String? = nil,
             metadata: [String: String?]? = nil
-    ) -> Single<Transaction<BankAccount>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods.json")
+    ) -> Single<Transaction<BankAccountResult>> {
+        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
-        let request = CreateBankAccountPaymentMethodRequest(
-                bankAccount: bankAccount,
-                email: email,
-                metadata: metadata
-        )
+        return Single.deferred {
+            let request: [String: Any] = [
+                "payment_method": [
+                    "email": email ?? "",
+                    "metadata": metadata ?? [:],
+                    "bank_account": try info.toJson(),
+                    "retained": info.retained ?? false
+                ]
+            ]
 
-        let jsonRequest: Data
-        do {
-            jsonRequest = try request.wrapToData()
-        } catch {
-            return Single.error(error)
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return self.process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
+                try Transaction<BankAccountResult>.unwrapFrom(data: data)
+            }
         }
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonRequest
-
-        return session().rx
-                .data(request: urlRequest)
-                .asSingle()
-                .do(onSuccess: { data in
-                    let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
-                    print("Response was\n", json)
-                }).map { data -> Transaction<BankAccount> in
-                    try Transaction<BankAccount>.unwrapFrom(data: data)
-                }
     }
 
-    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCard>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json")
+    func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>> {
+        let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
 
-        var creditCard = CreditCard()
-        creditCard.verificationValue = verificationValue
+        return Single.deferred {
+            var creditCardJson: [String: Any] = [:]
+            try creditCardJson.setOpaqueString("verification_value", verificationValue)
+            let request: [String: Any] = [
+                "payment_method": [
+                    "credit_card": creditCardJson
+                ]
+            ]
 
-        let request = CreateRecacheRequest(creditCard: creditCard)
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
 
-        let jsonRequest: Data
-        do {
-            jsonRequest = try request.wrapToData()
-        } catch {
-            return Single.error(error)
+            return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+                try Transaction<CreditCardResult>.unwrapFrom(data: data)
+            }
         }
+    }
 
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonRequest
-
-        return session().rx
-                .data(request: urlRequest)
+    func process(request: URLRequest) -> Single<Data> {
+        session().rx
+                .data(request: request)
+                .catchError { error in
+                    switch error {
+                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
+                        return Observable.from(optional: data)
+                    default:
+                        return Observable.error(error)
+                    }
+                }
                 .asSingle()
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
                     print("Response was\n", json)
-                }).map { data -> Transaction<CreditCard> in
-                    try Transaction<CreditCard>.unwrapFrom(data: data)
-                }
+                })
     }
 }
 

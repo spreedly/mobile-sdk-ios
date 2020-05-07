@@ -12,18 +12,23 @@ struct BankAccountForm: View {
     @State private var name = ""
     @State private var accountNumber = ""
     @State private var routingNumber = ""
-    @State private var type = "checking"
+    @State private var type = BankAccountType.checking
+    @State private var bankAccountHolderType = BankAccountHolderType.personal
     @State private var inProgress = false
-    @State private var token: String? = nil
-    @State private var error: String? = nil
+    @State private var token: String?
+    @State private var error: String?
 
     var body: some View {
         VStack {
             Text("Please Enter Your Bank Info")
             VStack {
                 TextField("Name", text: $name).disabled(inProgress)
-                TextField("Account Number", text: $accountNumber).disabled(inProgress)
-                TextField("Routing Number", text: $routingNumber).disabled(inProgress)
+                TextField("Account Number", text: $accountNumber)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
+                TextField("Routing Number", text: $routingNumber)
+                        .keyboardType(.numberPad)
+                        .disabled(inProgress)
             }.id(1)
             if token != nil {
                 Text("Token: \(token!)")
@@ -32,16 +37,17 @@ struct BankAccountForm: View {
                 Text("Error: \(error!)").foregroundColor(.red)
             }
             Button("Submit") {
-                let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret)
-                var ba = BankAccount()
-                ba.fullName = self.name
-                ba.bankAccountNumber = self.accountNumber
-                ba.routingNumber = self.routingNumber
-                ba.bankAccountType = self.type
+                let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
+                let baInfo = BankAccountInfo(
+                        fullName: self.name,
+                        bankRoutingNumber: self.routingNumber,
+                        bankAccountNumber: client.createSecureString(from: self.accountNumber),
+                        bankAccountType: self.type,
+                        bankAccountHolderType: self.bankAccountHolderType)
                 self.inProgress = true
                 self.token = nil
                 self.error = nil
-                client.createBankAccountPaymentMethod(bankAccount: ba, email: nil, metadata: nil)
+                client.createBankAccountPaymentMethod(bankAccount: baInfo)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {
                                 self.token = transaction.token

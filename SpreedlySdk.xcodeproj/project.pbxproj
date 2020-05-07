@@ -9,22 +9,29 @@
 /* Begin PBXBuildFile section */
 		070E460E5904098B4D463994 /* Pods_SdkIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
-		442A21B3416D90D6F2BCE040 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2B02C70FEE8BB5F7C758 /* CreditCard.swift */; };
 		442A22259EF45B9069F2A5FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A2234158E94B4A53CF124 /* LaunchScreen.storyboard */; };
 		442A223DF312ED234B929ECF /* Sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2CBF8AF46C83956B7796 /* Sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		442A22C1757101EA61236CBF /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2EA4177990821F65EA06 /* Address.swift */; };
 		442A2360C54DB319419D1232 /* SpreedlySecureOpaqueStringImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */; };
 		442A2381D8C566CCE1B0B302 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A292A3C1BABE2F1AC2C1B /* ContentView.swift */; };
 		442A24A1A12F3A68A8A3951E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A287D9D7DE563C7222877 /* SceneDelegate.swift */; };
+		442A24BD208E1F48D39262F3 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A276DA1794F23A3DFCC13 /* Results.swift */; };
+		442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2022B280AC093C1962B8 /* BankAccountTests.swift */; };
+		442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CB4AB12299CD8D31516 /* TestExtensions.swift */; };
 		442A2594177026F6D7305F9C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CF09D429D26BF4EF654 /* Secrets.swift */; };
+		442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A63301FADA969609EC0 /* ClientTests.swift */; };
+		442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2D420CB95244D5FBD864 /* Transaction.swift */; };
 		442A2759E4BC22B35E134335 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2662BE68ED0552C5BE46 /* Client.swift */; };
 		442A27963A108ADEB2607311 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
+		442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */; };
 		442A27BE10BD443FF1B0FC5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A26B6502E6FB413A25563 /* AppDelegate.swift */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
-		442A2892B93158A138543DF2 /* SdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A204EEAD2F9769CB8F69B /* SdkTests.swift */; };
 		442A2B9C3483FAC223410438 /* BankAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2617B06FA880F620D5BA /* BankAccountForm.swift */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2D1D3EE870281C35ED73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442A284845764D5E1AF3FE86 /* Assets.xcassets */; };
+		442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
+		442A2E7FE53A19BC8DDDBFE5 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* Requests.swift */; };
 		442A2F2773E766AE05246C1D /* SimpleForms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2EDC4EC4128982D3D93E /* SimpleForms.swift */; };
 		591BFE532F83E37554206B8A /* Pods_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122C5B24DD663A4EDE043002 /* Pods_Sample.framework */; };
 		836F618EEB78CFB4BDD79D3E /* Pods_Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EA44E51308DB5F46DF6647 /* Pods_Sdk.framework */; };
@@ -32,10 +39,8 @@
 		A607E0B32461C16A00A3BF17 /* Sdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
 		F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */; };
-		F076C17732D40C3D0F9A3A9A /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */; };
-		F076C3615A8D4D576D1ADBD7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C058058850512428A30D /* Errors.swift */; };
 		F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */; };
-		F076C83937EF48B8921DA967 /* Coders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* Coders.swift */; };
+		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
 		F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */; };
 		F076CC40AA0952D6E52623F9 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
@@ -85,6 +90,8 @@
 		15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SdkIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4A588229F2C8EE51DB5D7B /* Pods-SdkIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
+		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueStringImpl.swift; sourceTree = "<group>"; };
 		442A21244C58460DB48ED6B3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		442A213C18A35388BDA5861C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -97,13 +104,19 @@
 		442A2662BE68ED0552C5BE46 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		442A26B6502E6FB413A25563 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		442A26C899FF9ED811B92FE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		442A276DA1794F23A3DFCC13 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		442A284845764D5E1AF3FE86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		442A287D9D7DE563C7222877 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		442A292A3C1BABE2F1AC2C1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		442A2B02C70FEE8BB5F7C758 /* CreditCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
+		442A2A63301FADA969609EC0 /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
+		442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
+		442A2CB4AB12299CD8D31516 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		442A2CBF8AF46C83956B7796 /* Sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sdk.h; sourceTree = "<group>"; };
 		442A2CF09D429D26BF4EF654 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		442A2D420CB95244D5FBD864 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		442A2E383CD75A0FC593AE72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecacheTests.swift; sourceTree = "<group>"; };
+		442A2EA4177990821F65EA06 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		442A2EDC4EC4128982D3D93E /* SimpleForms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleForms.swift; sourceTree = "<group>"; };
 		442A2F5164108E939DB472AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImpl.swift; sourceTree = "<group>"; };
@@ -114,14 +127,12 @@
 		D8FE084C040118C3CA93C21E /* Pods-Sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sdk.release.xcconfig"; path = "Target Support Files/Pods-Sdk/Pods-Sdk.release.xcconfig"; sourceTree = "<group>"; };
 		E95F36D0E701A410AF69F972 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 		EE3BD7D4482E90A94A2E77CF /* Pods-SdkIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
-		F076C058058850512428A30D /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImplTests.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F076CA116CE9AA56F15ABCDF /* Coders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coders.swift; sourceTree = "<group>"; };
-		F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,11 +228,9 @@
 			children = (
 				442A2E383CD75A0FC593AE72 /* Info.plist */,
 				442A2CBF8AF46C83956B7796 /* Sdk.h */,
-				442A2B02C70FEE8BB5F7C758 /* CreditCard.swift */,
 				442A2662BE68ED0552C5BE46 /* Client.swift */,
 				442A2676F741069CFE144943 /* Internal */,
-				F076CA5A2C430FA2A3E7DD58 /* BankAccount.swift */,
-				F076C058058850512428A30D /* Errors.swift */,
+				442A28F5BF2E3FC3A953C5B2 /* Models */,
 			);
 			path = Sdk;
 			sourceTree = "<group>";
@@ -231,9 +240,20 @@
 			children = (
 				442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */,
 				442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */,
-				F076CA116CE9AA56F15ABCDF /* Coders.swift */,
+				F076CA116CE9AA56F15ABCDF /* JSON.swift */,
 			);
 			path = Internal;
+			sourceTree = "<group>";
+		};
+		442A28F5BF2E3FC3A953C5B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				442A276DA1794F23A3DFCC13 /* Results.swift */,
+				442A2EA4177990821F65EA06 /* Address.swift */,
+				442A2D420CB95244D5FBD864 /* Transaction.swift */,
+				442A206A9CCC17119C549F35 /* Requests.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		442A2C9E2579470C94B1F3F0 = {
@@ -289,6 +309,11 @@
 			isa = PBXGroup;
 			children = (
 				F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */,
+				442A2A63301FADA969609EC0 /* ClientTests.swift */,
+				442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */,
+				442A2022B280AC093C1962B8 /* BankAccountTests.swift */,
+				442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */,
+				442A2CB4AB12299CD8D31516 /* TestExtensions.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -395,6 +420,9 @@
 			attributes = {
 				TargetAttributes = {
 					442A22399B2C4D76BF66EBAF = {
+						DevelopmentTeam = M4RA6A4VX9;
+					};
+					F076CF9042A128DEBCC6BDA2 = {
 						DevelopmentTeam = M4RA6A4VX9;
 					};
 				};
@@ -624,13 +652,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442A21B3416D90D6F2BCE040 /* CreditCard.swift in Sources */,
 				442A2759E4BC22B35E134335 /* Client.swift in Sources */,
 				442A2360C54DB319419D1232 /* SpreedlySecureOpaqueStringImpl.swift in Sources */,
 				442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */,
-				F076C17732D40C3D0F9A3A9A /* BankAccount.swift in Sources */,
-				F076C83937EF48B8921DA967 /* Coders.swift in Sources */,
-				F076C3615A8D4D576D1ADBD7 /* Errors.swift in Sources */,
+				F076C83937EF48B8921DA967 /* JSON.swift in Sources */,
+				442A24BD208E1F48D39262F3 /* Results.swift in Sources */,
+				442A22C1757101EA61236CBF /* Address.swift in Sources */,
+				442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */,
+				442A2E7FE53A19BC8DDDBFE5 /* Requests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +694,11 @@
 			files = (
 				F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */,
 				442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */,
+				442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */,
+				442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */,
+				442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */,
+				442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */,
+				442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,8 +1188,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = M4RA6A4VX9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1173,7 +1209,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SdkIntegrationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1221,8 +1257,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = M4RA6A4VX9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1234,7 +1272,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SdkIntegrationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
