@@ -12,8 +12,8 @@ struct BankAccountForm: View {
     @State private var name = ""
     @State private var accountNumber = ""
     @State private var routingNumber = ""
-    @State private var type = "checking"
-    @State private var bankAccountHolderType = "personal"
+    @State private var type = BankAccountType.checking
+    @State private var bankAccountHolderType = BankAccountHolderType.personal
     @State private var inProgress = false
     @State private var token: String?
     @State private var error: String?
@@ -38,12 +38,12 @@ struct BankAccountForm: View {
             }
             Button("Submit") {
                 let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
-                let baInfo = BankAccount()
-                baInfo.fullName = self.name
-                baInfo.bankAccountNumber = self.accountNumber
-                baInfo.bankRoutingNumber = self.routingNumber
-                baInfo.bankAccountType = self.type
-                baInfo.bankAccountHolderType = self.bankAccountHolderType
+                let baInfo = BankAccountInfo(
+                        fullName: self.name,
+                        bankRoutingNumber: self.routingNumber,
+                        bankAccountNumber: client.createSecureString(from: self.accountNumber),
+                        bankAccountType: self.type,
+                        bankAccountHolderType: self.bankAccountHolderType)
                 self.inProgress = true
                 self.token = nil
                 self.error = nil

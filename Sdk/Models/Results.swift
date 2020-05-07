@@ -18,7 +18,7 @@ public enum PaymentMethodType: String, Codable {
     case thirdPartyToken = "third_party_token"
 }
 
-public struct SpreedlyError2: Decodable {
+public struct SpreedlyError: Decodable {
     public let key: String
     public let message: String
     public let attribute: String?
@@ -37,7 +37,7 @@ public class PaymentMethodResultBase {
     public let paymentMethodType: PaymentMethodType?
     public let address: Address?
     public let shippingAddress: Address?
-    public let errors: [SpreedlyError2]
+    public let errors: [SpreedlyError]
 
     required init(from json: [String: Any]) {
         token = json["token"] as? String
@@ -46,7 +46,7 @@ public class PaymentMethodResultBase {
         paymentMethodType = json["payment_method_type"] as? PaymentMethodType
         address = Address(from: json, as: .billing)
         shippingAddress = Address(from: json, as: .shipping)
-        errors = json.optObjectList("errors", { json in try SpreedlyError2(from: json) }) ?? []
+        errors = json.optObjectList("errors", { json in try SpreedlyError(from: json) }) ?? []
     }
 }
 

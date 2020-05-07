@@ -8,14 +8,8 @@ import Foundation
  Decode and encode functions with common settings.
 */
 struct Coders {
-    static func decodeJson(data: Data) throws -> [String: Any] {
-        if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
-            return json
-        } else {
-            throw JSONError.expectedObject
-        }
-    }
 
+    @available(*, deprecated, message: "use Data.decodeJson()")
     static func decode<T>(data: Data) throws -> T where T: Decodable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -24,6 +18,7 @@ struct Coders {
         return try decoder.decode(T.self, from: data)
     }
 
+    @available(*, deprecated, message: "use [String:Any].encodeJson()")
     static func encode<TEntity>(entity: TEntity) throws -> Data where TEntity: Encodable {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -39,7 +34,22 @@ enum JSONError: Error {
     case expectedObject
 }
 
+extension Data {
+    func decodeJson() throws -> [String: Any] {
+        if let json = try JSONSerialization.jsonObject(with: self) as? [String: Any] {
+            return json
+        } else {
+            throw JSONError.expectedObject
+        }
+    }
+}
+
 extension Dictionary where Key == String, Value == Any {
+
+    func encodeJson() throws -> Data {
+        print(self)
+        return try JSONSerialization.data(withJSONObject: self)
+    }
 
     func getObject(_ key: String) throws -> [String: Any] {
         if let result = optObject(key) {
@@ -97,6 +107,12 @@ extension Dictionary where Key == String, Value == Any {
 }
 
 extension Dictionary where Key == String, Value == Any {
+    mutating func maybeSetEnum<T: RawRepresentable>(_ key: String, _ value: T?) where T.RawValue == String {
+        if let value = value {
+            self[key] = value.rawValue
+        }
+    }
+
     mutating func maybeSet<T>(_ key: String, _ value: T?) {
         if let value = value {
             self[key] = value

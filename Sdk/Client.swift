@@ -35,11 +35,11 @@ public protocol SpreedlyClient {
     ) -> Single<Transaction<CreditCardResult>>
 
     func createBankAccountPaymentMethod(
-            bankAccount: BankAccount
+            bankAccount: BankAccountInfo
     ) -> Single<Transaction<BankAccountResult>>
 
     func createBankAccountPaymentMethod(
-            bankAccount: BankAccount,
+            bankAccount: BankAccountInfo,
             email: String?,
             metadata: [String: String?]?
     ) -> Single<Transaction<BankAccountResult>>

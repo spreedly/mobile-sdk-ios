@@ -50,84 +50,81 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             metadata: [String: String]? = nil
     ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
-
-        let request = CreatePaymentMethodRequest(
-                email: email ?? "",
-                metadata: metadata ?? [:],
-                creditCard: info,
-                retained: info.retained
-        )
-
-        let jsonRequest: Data
         do {
-            jsonRequest = try request.wrapToData()
+            let request: [String: Any] = [
+                "payment_method": [
+                    "email": email ?? "",
+                    "metadata": metadata ?? [:],
+                    "credit_card": try info.toJson(),
+                    "retained": info.retained ?? false
+                ]
+            ]
+
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+                try Transaction<CreditCardResult>.unwrapFrom(data: data)
+            }
         } catch {
             return Single.error(error)
         }
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonRequest
-
-        return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
-            try Transaction<CreditCardResult>.unwrapFrom(data: data)
-        }
     }
 
-    func createBankAccountPaymentMethod(bankAccount: BankAccount) -> Single<Transaction<BankAccountResult>> {
+    func createBankAccountPaymentMethod(bankAccount: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
         createBankAccountPaymentMethod(bankAccount: bankAccount, email: nil, metadata: nil)
     }
 
     func createBankAccountPaymentMethod(
-            bankAccount: BankAccount,
+            bankAccount info: BankAccountInfo,
             email: String? = nil,
             metadata: [String: String?]? = nil
     ) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
-        let request = CreateBankAccountPaymentMethodRequest(
-                bankAccount: bankAccount,
-                email: email,
-                metadata: metadata
-        )
-
-        let jsonRequest: Data
         do {
-            jsonRequest = try request.wrapToData()
+            let request: [String: Any] = [
+                "payment_method": [
+                    "email": email ?? "",
+                    "metadata": metadata ?? [:],
+                    "bank_account": try info.toJson(),
+                    "retained": info.retained ?? false
+                ]
+            ]
+
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
+                try Transaction<BankAccountResult>.unwrapFrom(data: data)
+            }
         } catch {
             return Single.error(error)
-        }
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonRequest
-
-        return process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
-            try Transaction<BankAccountResult>.unwrapFrom(data: data)
         }
     }
 
     func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
+        let request: [String: Any] = [
+            "payment_method": [
+                "credit_card": [
+                    "verification_value": verificationValue
+                ]
+            ]
+        ]
 
-        var creditCard = CreditCard()
-        creditCard.verificationValue = verificationValue
-
-        let request = CreateRecacheRequest(creditCard: creditCard)
-
-        let jsonRequest: Data
         do {
-            jsonRequest = try request.wrapToData()
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+                try Transaction<CreditCardResult>.unwrapFrom(data: data)
+            }
         } catch {
             return Single.error(error)
-        }
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonRequest
-
-        return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
-            try Transaction<CreditCardResult>.unwrapFrom(data: data)
         }
     }
 
