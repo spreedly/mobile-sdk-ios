@@ -16,7 +16,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
     func createClient() -> SpreedlyClientImpl {
         let key = ProcessInfo.processInfo.environment["ENV_KEY"] ?? secretEnvKey
         let secret = ProcessInfo.processInfo.environment["ENV_SECRET"] ?? secretEnvSecret
-        return SpreedlyClientImpl(env: key, secret: secret)
+        return SpreedlyClientImpl(envKey: key, envSecret: secret, test: true)
     }
 
     func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCardResult>> {

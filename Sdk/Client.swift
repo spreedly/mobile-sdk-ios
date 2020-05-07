@@ -27,6 +27,7 @@ public protocol SpreedlyClient {
     func createCreditCardPaymentMethod(
             creditCard: CreditCardInfo
     ) -> Single<Transaction<CreditCardResult>>
+
     func createCreditCardPaymentMethod(
             creditCard: CreditCardInfo,
             email: String?,
@@ -34,9 +35,12 @@ public protocol SpreedlyClient {
     ) -> Single<Transaction<CreditCardResult>>
 
     func createBankAccountPaymentMethod(
+            bankAccount: BankAccount
+    ) -> Single<Transaction<BankAccountResult>>
+
+    func createBankAccountPaymentMethod(
             bankAccount: BankAccount,
             email: String?,
-            data: [String: String?]?,
             metadata: [String: String?]?
     ) -> Single<Transaction<BankAccountResult>>
 
@@ -47,8 +51,8 @@ public enum SpreedlySecurityError: Error {
     case invalidOpaqueString
 }
 
-public func createSpreedlyClient(env: String, secret: String) -> SpreedlyClient {
-    SpreedlyClientImpl(env: env, secret: secret)
+public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
+    SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
 }
 
 @objc public protocol SpreedlySecureOpaqueString {

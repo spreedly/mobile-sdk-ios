@@ -17,9 +17,6 @@ class BankAccountTests: XCTestCase {
                                           "first_name" : "Dolly",
                                           "last_name" : "Dog"
                                         },
-                                        "data" : {
-                                          "data-key" : "data-value"
-                                        },
                                         "email" : "dolly@dog.com",
                                         "metadata" : {
                                           "key" : "value"
@@ -40,7 +37,6 @@ class BankAccountTests: XCTestCase {
         let request = CreateBankAccountPaymentMethodRequest(
                 bankAccount: account,
                 email: "dolly@dog.com",
-                data: ["data-key": "data-value"],
                 metadata: ["key": "value"]
         )
 

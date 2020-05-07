@@ -7,19 +7,21 @@ import RxSwift
 import RxCocoa
 
 class SpreedlyClientImpl: NSObject, SpreedlyClient {
-    let env: String
-    let secret: String
+    let envKey: String
+    let envSecret: String
+    let test: Bool
     let baseUrl = URL(string: "https://core.spreedly.com/v1")!
 
-    init(env: String, secret: String) {
-        self.env = env
-        self.secret = secret
+    init(envKey: String, envSecret: String, test: Bool) {
+        self.envKey = envKey
+        self.envSecret = envSecret
+        self.test = test
         super.init()
     }
 
     func session() -> URLSession {
         let config = URLSessionConfiguration.default
-        let userPasswordString = "\(env):\(secret)"
+        let userPasswordString = "\(envKey):\(envSecret)"
         let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
         let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         config.httpAdditionalHeaders = [
@@ -72,10 +74,13 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
+    func createBankAccountPaymentMethod(bankAccount: BankAccount) -> Single<Transaction<BankAccountResult>> {
+        createBankAccountPaymentMethod(bankAccount: bankAccount, email: nil, metadata: nil)
+    }
+
     func createBankAccountPaymentMethod(
             bankAccount: BankAccount,
             email: String? = nil,
-            data: [String: String?]? = nil,
             metadata: [String: String?]? = nil
     ) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
@@ -83,7 +88,6 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         let request = CreateBankAccountPaymentMethodRequest(
                 bankAccount: bankAccount,
                 email: email,
-                data: data,
                 metadata: metadata
         )
 

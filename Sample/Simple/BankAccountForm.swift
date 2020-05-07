@@ -37,7 +37,7 @@ struct BankAccountForm: View {
                 Text("Error: \(error!)").foregroundColor(.red)
             }
             Button("Submit") {
-                let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
+                let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
                 let baInfo = BankAccount()
                 baInfo.fullName = self.name
                 baInfo.bankAccountNumber = self.accountNumber
@@ -47,7 +47,7 @@ struct BankAccountForm: View {
                 self.inProgress = true
                 self.token = nil
                 self.error = nil
-                client.createBankAccountPaymentMethod(bankAccount: baInfo, email: nil, data: nil, metadata: nil)
+                client.createBankAccountPaymentMethod(bankAccount: baInfo)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {
                                 self.token = transaction.token

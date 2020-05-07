@@ -9,7 +9,7 @@ import RxSwift
 
 class SecureStringTest: XCTestCase {
     func testCreateFromClient() {
-        let secureString = createSpreedlyClient(env: "", secret: "").createSecureString(from: "abc")
+        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString(from: "abc")
         XCTAssertNotNil(secureString)
     }
 
@@ -32,6 +32,12 @@ class SecureStringTest: XCTestCase {
         secureString.removeLastCharacter()
         secureString.removeLastCharacter()
         XCTAssertEqual(secureString.internalToString(), "abc")
+    }
+
+    func testClear() {
+        let secureString = SpreedlySecureOpaqueStringImpl(from: "abcdef")
+        secureString.clear()
+        XCTAssertEqual(secureString.internalToString(), "")
     }
 
     func testToJson() throws {

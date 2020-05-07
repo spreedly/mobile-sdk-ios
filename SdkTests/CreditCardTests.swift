@@ -98,7 +98,6 @@ class CreditCardTransactionCreatedTests: XCTestCase {
                                          "created_at": "2020-02-11T20:49:32Z",
                                          "updated_at": "2020-02-11T20:49:32Z",
                                          "email": "joey@example.com",
-                                         "data": null,
                                          "storage_state": "cached",
                                          "test": true,
                                          "metadata": {

@@ -43,7 +43,7 @@ struct CreditCardForm: View {
                 Text("Error: \(error!)").foregroundColor(.red)
             }
             Button("Submit") {
-                let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
+                let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
                 if let year = Int(self.year),
                    let month = Int(self.month) {
                     let ccInfo = CreditCardInfo(
@@ -68,6 +68,8 @@ struct CreditCardForm: View {
                                 self.error = "UNEXPECTED ERROR \(error)"
                                 self.inProgress = false
                             }).disposed(by: self.disposeBag)
+                } else {
+                    self.error = "Month/Year required"
                 }
             }
         }.padding(16)
