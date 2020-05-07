@@ -67,23 +67,9 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = jsonRequest
 
-        return session().rx
-                .data(request: urlRequest)
-                .catchError { error in
-                    switch error {
-                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
-                        return Observable.from(optional: data)
-                    default:
-                        return Observable.error(error)
-                    }
-                }
-                .asSingle()
-                .do(onSuccess: { data in
-                    let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
-                    print("Response was\n", json)
-                }).map { data -> Transaction<CreditCardResult> in
-                    try Transaction<CreditCardResult>.unwrapFrom(data: data)
-                }
+        return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+            try Transaction<CreditCardResult>.unwrapFrom(data: data)
+        }
     }
 
     func createBankAccountPaymentMethod(
@@ -92,7 +78,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             data: [String: String?]? = nil,
             metadata: [String: String?]? = nil
     ) -> Single<Transaction<BankAccountResult>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods.json")
+        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         let request = CreateBankAccountPaymentMethodRequest(
                 bankAccount: bankAccount,
@@ -112,27 +98,13 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = jsonRequest
 
-        return session().rx
-                .data(request: urlRequest)
-                .catchError { error in
-                    switch error {
-                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
-                        return Observable.from(optional: data)
-                    default:
-                        return Observable.error(error)
-                    }
-                }
-                .asSingle()
-                .do(onSuccess: { data in
-                    let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
-                    print("Response was\n", json)
-                }).map { data -> Transaction<BankAccountResult> in
-                    try Transaction<BankAccountResult>.unwrapFrom(data: data)
-                }
+        return process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
+            try Transaction<BankAccountResult>.unwrapFrom(data: data)
+        }
     }
 
     func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json")
+        let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
 
         var creditCard = CreditCard()
         creditCard.verificationValue = verificationValue
@@ -150,8 +122,14 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = jsonRequest
 
-        return session().rx
-                .data(request: urlRequest)
+        return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+            try Transaction<CreditCardResult>.unwrapFrom(data: data)
+        }
+    }
+
+    func process(request: URLRequest) -> Single<Data> {
+        session().rx
+                .data(request: request)
                 .catchError { error in
                     switch error {
                     case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
@@ -164,9 +142,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
                     print("Response was\n", json)
-                }).map { data -> Transaction<CreditCardResult> in
-                    try Transaction<CreditCardResult>.unwrapFrom(data: data)
-                }
+                })
     }
 }
 
