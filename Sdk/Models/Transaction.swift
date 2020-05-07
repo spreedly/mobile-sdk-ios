@@ -25,7 +25,7 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
 
         token = json["token"] as? String
         createdAt = json.optDate("created_at")
-        updatedAt = json.optDate("created_at")
+        updatedAt = json.optDate("updated_at")
         succeeded = json["succeeded"] as? Bool ?? false
         transactionType = json["transaction_type"] as? String
         retained = json["retained"] as? Bool ?? false
