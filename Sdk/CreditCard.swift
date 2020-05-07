@@ -290,6 +290,10 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
 
     init(from json: [String: Any]) {
         let errors = json.optObjectList("errors", { json in try SpreedlyError2(from: json) })
+        self.errors = errors
+        messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
+        message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
+
         token = json["token"] as? String
         createdAt = json.optDate("created_at")
         updatedAt = json.optDate("created_at")
@@ -297,10 +301,12 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
         transactionType = json["transaction_type"] as? String
         retained = json["retained"] as? Bool ?? false
         state = json["state"] as? String
-        messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
-        message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
-        paymentMethod = TPaymentMethod(from: json["payment_method"] as? [String: Any] ?? [:])
-        self.errors = errors
+
+        if let paymentMethodJson = json["payment_method"] as? [String: Any] {
+            paymentMethod = TPaymentMethod(from: paymentMethodJson)
+        } else {
+            paymentMethod = nil
+        }
     }
 }
 
