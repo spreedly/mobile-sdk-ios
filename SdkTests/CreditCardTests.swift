@@ -142,17 +142,18 @@ class CreditCardTransactionCreatedTests: XCTestCase {
                                      }
                                    }
                                    """
-//    func testCanDecode() throws {
-//        let data = createCreditCardResponse.data(using: .utf8)!
-//        let transaction = try Transaction<CreditCard>.unwrapFrom(data: data)
-//
-//        XCTAssertEqual("L46gdNQunedFoor9ySRJfgz7RAk", transaction.token, "can decode transaction token")
-//        XCTAssert(transaction.succeeded, "can decode boolean")
-//
-//        let creditCard = transaction.paymentMethod
-//        XCTAssertEqual("VBVmxAmSDxmc7AjUGi7ViUf9avm", creditCard.token, "can decode credit card token")
-//        XCTAssertNil(creditCard.callbackUrl, "can decode nil")
-//    }
+
+    func testCanDecode() throws {
+        let data = createCreditCardResponse.data(using: .utf8)!
+        let transaction = try Transaction<CreditCardResult>.unwrapFrom(data: data)
+
+        XCTAssertEqual("L46gdNQunedFoor9ySRJfgz7RAk", transaction.token, "can decode transaction token")
+        XCTAssert(transaction.succeeded, "can decode boolean")
+
+        let creditCard = transaction.paymentMethod!
+        XCTAssertEqual("VBVmxAmSDxmc7AjUGi7ViUf9avm", creditCard.token, "can decode credit card token")
+        XCTAssertNil(creditCard.callbackUrl, "can decode nil")
+    }
 }
 
 class CreateRecacheRequestTests: XCTestCase {
