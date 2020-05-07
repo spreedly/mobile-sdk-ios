@@ -50,7 +50,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             metadata: [String: String]? = nil
     ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
-        do {
+
+        return Single.deferred {
             let request: [String: Any] = [
                 "payment_method": [
                     "email": email ?? "",
@@ -64,11 +65,9 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+            return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
                 try Transaction<CreditCardResult>.unwrapFrom(data: data)
             }
-        } catch {
-            return Single.error(error)
         }
     }
 
@@ -83,7 +82,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     ) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
-        do {
+        return Single.deferred {
             let request: [String: Any] = [
                 "payment_method": [
                     "email": email ?? "",
@@ -97,34 +96,31 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
+            return self.process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
                 try Transaction<BankAccountResult>.unwrapFrom(data: data)
             }
-        } catch {
-            return Single.error(error)
         }
     }
 
     func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
-        let request: [String: Any] = [
-            "payment_method": [
-                "credit_card": [
-                    "verification_value": verificationValue
+
+        return Single.deferred {
+            let request: [String: Any] = [
+                "payment_method": [
+                    "credit_card": [
+                        "verification_value": verificationValue
+                    ]
                 ]
             ]
-        ]
 
-        do {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
+            return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
                 try Transaction<CreditCardResult>.unwrapFrom(data: data)
             }
-        } catch {
-            return Single.error(error)
         }
     }
 
