@@ -154,6 +154,27 @@ class CreditCardTransactionCreatedTests: XCTestCase {
         XCTAssertEqual("VBVmxAmSDxmc7AjUGi7ViUf9avm", creditCard.token, "can decode credit card token")
         XCTAssertNil(creditCard.callbackUrl, "can decode nil")
     }
+
+    let errorResponse = """
+                        {
+                            "errors": [{
+                                "key": "errors.account_inactive",
+                                "message": "Your environment (A###############l) has not been activated for real transactions with real payment methods. If you're using a Test Gateway you can *ONLY* use Test payment methods - ( https://docs.spreedly.com/test-data). All other credit card numbers are considered real credit cards; real credit cards are not allowed when using a Test Gateway."
+                            }]
+                        }
+                        """
+
+    func testCanDecodeErrorResponses() throws {
+        let data = errorResponse.data(using: .utf8)!
+        let transaction = try Transaction<CreditCardResult>.unwrapFrom(data: data)
+
+        XCTAssertNil(transaction.paymentMethod)
+        XCTAssertEqual(transaction.errors?.count, 1)
+        let err = transaction.errors![0]
+        XCTAssertEqual("errors.account_inactive", err.key)
+        XCTAssertEqual(346, err.message.count)
+        XCTAssertNil(err.attribute)
+    }
 }
 
 class CreateRecacheRequestTests: XCTestCase {
