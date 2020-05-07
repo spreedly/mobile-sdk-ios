@@ -50,27 +50,27 @@ extension Dictionary where Key == String, Value == Any {
         try JSONSerialization.data(withJSONObject: self)
     }
 
-    func getObject(_ key: String) throws -> [String: Any] {
-        if let result = optObject(key) {
+    func object(for key: String) throws -> [String: Any] {
+        if let result = object(optional: key) {
             return result
         } else {
             throw JSONError.keyNotFound(key: key)
         }
     }
 
-    func optObject(_ key: String) -> [String: Any]? {
+    func object(optional key: String) -> [String: Any]? {
         self[key] as? [String: Any]
     }
 
-    func getObjectList<R>(_ key: String, _ closure: (_ json: [String: Any]) throws -> R) throws -> [R] {
-        if let result: [R] = optObjectList(key, closure) {
+    func objectList<R>(for key: String, _ closure: (_ json: [String: Any]) throws -> R) throws -> [R] {
+        if let result: [R] = objectList(optional: key, closure) {
             return result
         } else {
             throw JSONError.keyNotFound(key: key)
         }
     }
 
-    func optObjectList<R>(_ key: String, _ closure: (_ json: [String: Any]) throws -> R) -> [R]? {
+    func objectList<R>(optional key: String, _ closure: (_ json: [String: Any]) throws -> R) -> [R]? {
         try? (self[key] as? [Any])?.map {
             if let child = $0 as? [String: Any] {
                 return try closure(child)
@@ -80,28 +80,76 @@ extension Dictionary where Key == String, Value == Any {
         }
     }
 
-    func getDate(_ key: String) throws -> Date {
-        if let result = optDate(key) {
+    func date(for key: String) throws -> Date {
+        if let result = date(optional: key) {
             return result
         } else {
             throw JSONError.keyNotFound(key: key)
         }
     }
 
-    func optDate(_ key: String) -> Date? {
-        nil
+    func date(optional key: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+        if let value = string(optional: key),
+           let date = dateFormatter.date(from: value) {
+            return date
+        } else {
+            return nil
+        }
     }
 
-    func getString(_ key: String) throws -> String {
-        if let result = optString(key) {
+    func string(for key: String) throws -> String {
+        if let result = string(optional: key) {
             return result
         } else {
             throw JSONError.keyNotFound(key: key)
         }
     }
 
-    func optString(_ key: String) -> String? {
+    func string(optional key: String) -> String? {
         self[key] as? String
+    }
+
+    func bool(for key: String) throws -> Bool {
+        if let result = bool(optional: key) {
+            return result
+        } else {
+            throw JSONError.keyNotFound(key: key)
+        }
+    }
+
+    func bool(optional key: String) -> Bool? {
+        if let result = self[key] as? Bool {
+            return result
+        } else if let result = self[key] as? String {
+            if result == "true" {
+                return true
+            } else if result == "false" {
+                return false
+            }
+        }
+        return nil
+    }
+
+    func int(for key: String) throws -> Int {
+        if let result = int(optional: key) {
+            return result
+        } else {
+            throw JSONError.keyNotFound(key: key)
+        }
+    }
+
+    func int(optional key: String) -> Int? {
+        if let result = self[key] as? Int {
+            return result
+        } else if let result = self[key] as? String,
+                  let number = Int(result) {
+            return number
+        }
+        return nil
     }
 }
 

@@ -24,9 +24,9 @@ public struct SpreedlyError: Decodable {
     public let attribute: String?
 
     init(from json: [String: Any]) throws {
-        key = try json.getString("key")
-        message = try json.getString("message")
-        attribute = json.optString("attribute")
+        key = try json.string(for: "key")
+        message = try json.string(for: "message")
+        attribute = json.string(optional: "attribute")
     }
 }
 
@@ -40,13 +40,13 @@ public class PaymentMethodResultBase {
     public let errors: [SpreedlyError]
 
     required init(from json: [String: Any]) {
-        token = json["token"] as? String
+        token = json.string(optional: "token")
         storageState = json["storage_state"] as? StorageState
-        test = json["test"] as? Bool ?? false
+        test = json.bool(optional: "test") ?? false
         paymentMethodType = json["payment_method_type"] as? PaymentMethodType
         address = Address(from: json, as: .billing)
         shippingAddress = Address(from: json, as: .shipping)
-        errors = json.optObjectList("errors", { json in try SpreedlyError(from: json) }) ?? []
+        errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) }) ?? []
     }
 }
 
@@ -64,17 +64,17 @@ public class CreditCardResult: PaymentMethodResultBase {
     var fingerprint: String?
 
     required init(from json: [String: Any]) {
-        cardType = json["card_type"] as? String
-        year = json["year"] as? Int
-        month = json["month"] as? Int
+        cardType = json.string(optional: "card_type")
+        year = json.int(optional: "year")
+        month = json.int(optional: "month")
 
-        lastFourDigits = json["last_four_digits"] as? String
-        firstSixDigits = json["first_six_digits"] as? String
-        number = json["number"] as? String
+        lastFourDigits = json.string(optional: "last_four_digits")
+        firstSixDigits = json.string(optional: "first_six_digits")
+        number = json.string(optional: "number")
 
-        eligibleForCardUpdater = json["eligible_for_card_updater"] as? Bool
-        callbackUrl = json["callback_url"] as? String
-        fingerprint = json["fingerprint"] as? String
+        eligibleForCardUpdater = json.bool(optional: "eligible_for_card_updater")
+        callbackUrl = json.string(optional: "callback_url")
+        fingerprint = json.string(optional: "fingerprint")
 
         super.init(from: json)
     }
