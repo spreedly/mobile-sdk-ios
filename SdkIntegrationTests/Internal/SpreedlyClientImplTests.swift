@@ -102,7 +102,8 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                         ))
                     }
 
-                    return self.createClient().recache(token: token, verificationValue: self.verificationValue)
+                    let verify = self.createClient().createSecureString(from: self.verificationValue)
+                    return self.createClient().recache(token: token, verificationValue: verify)
                 }.subscribe(onSuccess: { (transaction: Transaction<CreditCardResult>) in
                     expectation.fulfill()
                     XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)

@@ -102,15 +102,15 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>> {
+    func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
 
         return Single.deferred {
+            var creditCardJson: [String: Any] = [:]
+            try creditCardJson.setOpaqueString("verification_value", verificationValue)
             let request: [String: Any] = [
                 "payment_method": [
-                    "credit_card": [
-                        "verification_value": verificationValue
-                    ]
+                    "credit_card": creditCardJson
                 ]
             ]
 

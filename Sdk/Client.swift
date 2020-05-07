@@ -44,7 +44,7 @@ public protocol SpreedlyClient {
             metadata: [String: String?]?
     ) -> Single<Transaction<BankAccountResult>>
 
-    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>>
+    func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>>
 }
 
 public enum SpreedlySecurityError: Error {
