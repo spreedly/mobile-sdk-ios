@@ -1,5 +1,3 @@
-
-
 public class CreditCardInfo {
     let fullName: String?
     let firstName: String?
