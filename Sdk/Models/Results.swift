@@ -51,7 +51,31 @@ public class PaymentMethodResultBase {
 }
 
 public class CreditCardResult: PaymentMethodResultBase {
+    var cardType: String?
+    var year: Int?
+    var month: Int?
+
+    var lastFourDigits: String?
+    var firstSixDigits: String?
+    var number: String?
+
+    var eligibleForCardUpdater: Bool?
+    var callbackUrl: String?
+    var fingerprint: String?
+
     required init(from json: [String: Any]) {
+        cardType = json["card_type"] as? String
+        year = json["year"] as? Int
+        month = json["month"] as? Int
+
+        lastFourDigits = json["last_four_digits"] as? String
+        firstSixDigits = json["first_six_digits"] as? String
+        number = json["number"] as? String
+
+        eligibleForCardUpdater = json["eligible_for_card_updater"] as? Bool
+        callbackUrl = json["callback_url"] as? String
+        fingerprint = json["fingerprint"] as? String
+
         super.init(from: json)
     }
 }
