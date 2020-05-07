@@ -47,8 +47,7 @@ extension Data {
 extension Dictionary where Key == String, Value == Any {
 
     func encodeJson() throws -> Data {
-        print(self)
-        return try JSONSerialization.data(withJSONObject: self)
+        try JSONSerialization.data(withJSONObject: self)
     }
 
     func getObject(_ key: String) throws -> [String: Any] {
