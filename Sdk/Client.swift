@@ -35,16 +35,16 @@ public protocol SpreedlyClient {
     ) -> Single<Transaction<CreditCardResult>>
 
     func createBankAccountPaymentMethod(
-            bankAccount: BankAccount
+            bankAccount: BankAccountInfo
     ) -> Single<Transaction<BankAccountResult>>
 
     func createBankAccountPaymentMethod(
-            bankAccount: BankAccount,
+            bankAccount: BankAccountInfo,
             email: String?,
             metadata: [String: String?]?
     ) -> Single<Transaction<BankAccountResult>>
 
-    func recache(token: String, verificationValue: String) -> Single<Transaction<CreditCardResult>>
+    func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>>
 }
 
 public enum SpreedlySecurityError: Error {

@@ -4,45 +4,31 @@
 import XCTest
 @testable import Sdk
 
-class BankAccountTests: XCTestCase {
-
-    let createBankAccountResponse = """
-                                    {
-                                      "payment_method" : {
-                                        "bank_account" : {
-                                          "bank_account_holder_type" : "personal",
-                                          "bank_account_number" : "9876543210",
-                                          "bank_account_type" : "checking",
-                                          "bank_routing_number" : "021000021",
-                                          "first_name" : "Dolly",
-                                          "last_name" : "Dog"
-                                        },
-                                        "email" : "dolly@dog.com",
-                                        "metadata" : {
-                                          "key" : "value"
-                                        }
-                                      }
-                                    }
-                                    """
-
+class BankAccountInfoTests: XCTestCase {
     func testCanEncode() throws {
-        let account = BankAccount()
-        account.firstName = "Dolly"
-        account.lastName = "Dog"
-        account.bankRoutingNumber = "021000021"
-        account.bankAccountNumber = "9876543210"
-        account.bankAccountType = "checking"
-        account.bankAccountHolderType = "personal"
-
-        let request = CreateBankAccountPaymentMethodRequest(
-                bankAccount: account,
-                email: "dolly@dog.com",
-                metadata: ["key": "value"]
+        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let creditCard = BankAccountInfo(
+                firstName: "Dolly",
+                lastName: "Dog",
+                bankRoutingNumber: "123456",
+                bankAccountNumber: client.createSecureString(from: "4111111111111111"),
+                bankAccountType: .checking,
+                bankAccountHolderType: .personal
         )
 
-        let jsonData = try request.wrapToData()
-        let actualJson = String(data: jsonData, encoding: .utf8)!
+        let json = try creditCard.toJson()
 
-        XCTAssertEqual(createBankAccountResponse, actualJson)
+        let expected = try """
+                           {
+                             "first_name" : "Dolly",
+                             "last_name" : "Dog",
+                             "bank_routing_number" : "123456",
+                             "bank_account_number" : "4111111111111111",
+                             "bank_account_type" : "checking",
+                             "bank_account_holder_type" : "personal"
+                           }
+                           """.data(using: .utf8)!.decodeJson()
+
+        XCTAssertEqual(expected as NSObject, json as NSObject)
     }
 }

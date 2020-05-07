@@ -1,6 +1,7 @@
 //
 // Created by Eli Thompson on 4/30/20.
 //
+
 import Foundation
 import XCTest
 import RxSwift
@@ -64,13 +65,14 @@ class CreateCreditCardIntegrationTests: XCTestCase {
     }
 
     func testCanCreateBankAccount() throws {
-        let bankAccount = BankAccount()
-        bankAccount.firstName = "Asha"
-        bankAccount.lastName = "Dog"
-        bankAccount.bankRoutingNumber = "021000021"
-        bankAccount.bankAccountNumber = "9876543210"
-        bankAccount.bankAccountType = "checking"
-        bankAccount.bankAccountHolderType = "personal"
+        let bankAccount = BankAccountInfo(
+                firstName: "Asha",
+                lastName: "Dog",
+                bankRoutingNumber: "021000021",
+                bankAccountNumber: createClient().createSecureString(from: "9876543210"),
+                bankAccountType: .checking,
+                bankAccountHolderType: .personal
+        )
 
         let expectation = self.expectation(description: "can create bank account")
         let promise = createClient().createBankAccountPaymentMethod(bankAccount: bankAccount, email: "asha@dog.com")
@@ -100,7 +102,8 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                         ))
                     }
 
-                    return self.createClient().recache(token: token, verificationValue: self.verificationValue)
+                    let verify = self.createClient().createSecureString(from: self.verificationValue)
+                    return self.createClient().recache(token: token, verificationValue: verify)
                 }.subscribe(onSuccess: { (transaction: Transaction<CreditCardResult>) in
                     expectation.fulfill()
                     XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
