@@ -46,7 +46,7 @@ struct CreditCardForm: View {
                 let client = createSpreedlyClient(env: secretEnvKey, secret: secretEnvSecret)
                 if let year = Int(self.year),
                    let month = Int(self.month) {
-                    var ccInfo = CreditCardInfo(
+                    let ccInfo = CreditCardInfo(
                             fullName: self.name,
                             number: client.createSecureString(from: self.ccNumber),
                             verificationValue: client.createSecureString(from: self.ccv),
