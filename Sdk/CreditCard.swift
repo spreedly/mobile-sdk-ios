@@ -1,3 +1,95 @@
+public class CreditCardInfo {
+    let fullName: String?
+    let firstName: String?
+    let lastName: String?
+    var company: String?
+
+    let number: SpreedlySecureOpaqueString
+    let verificationValue: SpreedlySecureOpaqueString
+    let year: Int
+    let month: Int
+
+    var address: Address?
+    var shippingAddress: Address?
+
+    var retained: Bool?
+
+    public convenience init(
+            fullName: String,
+            number: SpreedlySecureOpaqueString,
+            verificationValue: SpreedlySecureOpaqueString,
+            year: Int,
+            month: Int
+    ) {
+        self.init(
+                firstName: nil,
+                lastName: nil,
+                fullName: fullName,
+                number: number,
+                verificationValue: verificationValue,
+                year: year,
+                month: month
+        )
+    }
+
+    public convenience init(
+            firstName: String,
+            lastName: String,
+            number: SpreedlySecureOpaqueString,
+            verificationValue: SpreedlySecureOpaqueString,
+            year: Int,
+            month: Int
+    ) {
+        self.init(
+                firstName: firstName,
+                lastName: lastName,
+                fullName: nil,
+                number: number,
+                verificationValue: verificationValue,
+                year: year,
+                month: month
+        )
+    }
+
+    private init(
+            firstName: String?,
+            lastName: String?,
+            fullName: String?,
+            number: SpreedlySecureOpaqueString,
+            verificationValue: SpreedlySecureOpaqueString,
+            year: Int,
+            month: Int
+    ) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.fullName = fullName
+
+        self.number = number
+        self.verificationValue = verificationValue
+        self.year = year
+        self.month = month
+    }
+
+    internal func toJson() throws -> [String: Any] {
+        var result = [String: Any]()
+
+        result.maybeSet("first_name", self.firstName)
+        result.maybeSet("last_name", self.lastName)
+        result.maybeSet("full_name", self.fullName)
+        result.maybeSet("company", self.company)
+
+        try result.setOpaqueString("number", self.number)
+        try result.setOpaqueString("verification_value", self.verificationValue)
+        result["year"] = self.year
+        result["month"] = self.month
+
+        self.address?.toJson(&result, .billing)
+        self.shippingAddress?.toJson(&result, .shipping)
+
+        return result
+    }
+}
+
 public struct CreditCard: Codable {
     // Gateway-specific metadata
     public var token: String?
@@ -132,17 +224,28 @@ public struct CreditCard: Codable {
     }
 }
 
-public struct CreatePaymentMethodRequest: Encodable {
+public struct CreatePaymentMethodRequest {
     public var email: String?
-    public var metadata: [String: String] = [:]
-    public var creditCard: CreditCard?
+    public var metadata: [String: String]?
+    public var creditCard: CreditCardInfo?
     public var retained: Bool?
 
-    public init(email: String, metadata: [String: String], creditCard: CreditCard, retained: Bool? = nil) {
+    public init(email: String, metadata: [String: String]?, creditCard: CreditCardInfo, retained: Bool? = nil) {
         self.email = email
         self.metadata = metadata
         self.creditCard = creditCard
         self.retained = retained
+    }
+
+    func toJson() throws -> [String: Any] {
+        var result = [String: Any]()
+
+        result.maybeSet("email", self.email)
+        result.maybeSet("metadata", self.metadata)
+        result.maybeSet("credit_card", try self.creditCard?.toJson())
+        result.maybeSet("retained", self.retained)
+
+        return result
     }
 }
 
@@ -161,12 +264,12 @@ extension CreatePaymentMethodRequest {
 
         The CodingData struct represents that the outermost object with the single "payment_method" key in it.
     */
-    struct CodingData: Encodable {
-        var paymentMethod: CreatePaymentMethodRequest
-    }
 
     func wrapToData() throws -> Data {
-        try Coders.encode(entity: CreatePaymentMethodRequest.CodingData(paymentMethod: self))
+        let result: [String: Any] = [
+            "payment_method": try self.toJson()
+        ]
+        return try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys, .prettyPrinted])
     }
 }
 
@@ -185,6 +288,10 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
 
     init(from json: [String: Any]) {
         let errors = json.optObjectList("errors", { json in try SpreedlyError2(from: json) })
+        self.errors = errors
+        messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
+        message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
+
         token = json["token"] as? String
         createdAt = json.optDate("created_at")
         updatedAt = json.optDate("created_at")
@@ -192,10 +299,12 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
         transactionType = json["transaction_type"] as? String
         retained = json["retained"] as? Bool ?? false
         state = json["state"] as? String
-        messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
-        message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
-        paymentMethod = TPaymentMethod(from: json)
-        self.errors = errors
+
+        if let paymentMethodJson = json["payment_method"] as? [String: Any] {
+            paymentMethod = TPaymentMethod(from: paymentMethodJson)
+        } else {
+            paymentMethod = nil
+        }
     }
 }
 
@@ -203,7 +312,7 @@ extension Transaction {
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
         let json = try Coders.decodeJson(data: data)
-        if json.keys.contains("transation") {
+        if json.keys.contains("transaction") {
             return Transaction(from: try json.getObject("transaction"))
         } else {
             return Transaction(from: json)

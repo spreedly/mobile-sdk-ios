@@ -13,7 +13,15 @@ class ClientTests: XCTestCase {
     /// If trans.message is null, then the client should populate it with the first error message from trans.errors
     func testEmptyKeyAndSecret() throws {
         let client = createSpreedlyClient(env: "", secret: "")
-        let resp = client.createCreditCardPaymentMethod(creditCard: CreditCard(), email: nil, metadata: nil, retained: nil)
+        let info = CreditCardInfo(
+                firstName: "Dolly",
+                lastName: "Dog",
+                number: client.createSecureString(from: "4111111111111111"),
+                verificationValue: client.createSecureString(from: "919"),
+                year: 2029,
+                month: 1
+        )
+        let resp = client.createCreditCardPaymentMethod(creditCard: info, email: nil, metadata: nil)
         let trans = try resp.assertResult(self)
 
         XCTAssertFalse(trans.succeeded)
