@@ -72,7 +72,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 .catchError { error in
                     switch error {
                     case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
-                        return Observable.from(data)
+                        return Observable.from(optional: data)
                     default:
                         return Observable.error(error)
                     }
@@ -114,6 +114,14 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
         return session().rx
                 .data(request: urlRequest)
+                .catchError { error in
+                    switch error {
+                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
+                        return Observable.from(optional: data)
+                    default:
+                        return Observable.error(error)
+                    }
+                }
                 .asSingle()
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
@@ -144,6 +152,14 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
         return session().rx
                 .data(request: urlRequest)
+                .catchError { error in
+                    switch error {
+                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
+                        return Observable.from(optional: data)
+                    default:
+                        return Observable.error(error)
+                    }
+                }
                 .asSingle()
                 .do(onSuccess: { data in
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
