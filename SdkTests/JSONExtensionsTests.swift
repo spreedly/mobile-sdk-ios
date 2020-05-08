@@ -178,7 +178,8 @@ class BoolTests: XCTestCase {
     func testWhenStringValuedShouldReturnValue() {
         XCTAssertEqual(true, json.bool(optional: "stringBoolTrue"), "true string")
         XCTAssertEqual(false, json.bool(optional: "stringBoolFalse"), "false string")
-        XCTAssertNil(json.bool(optional: "object"), "non-bool string")
+        XCTAssertNil(json.bool(optional: "object"), "non-bool non-string")
+        XCTAssertNil(json.bool(optional: "string"), "non-bool string")
     }
 }
 
