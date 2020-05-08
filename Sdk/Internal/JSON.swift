@@ -29,7 +29,7 @@ struct Coders {
     }
 }
 
-enum JSONError: Error {
+enum JSONError: Error, Equatable {
     case keyNotFound(key: String)
     case expectedObject
 }
