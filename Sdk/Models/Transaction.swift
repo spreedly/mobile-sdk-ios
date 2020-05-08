@@ -18,20 +18,20 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
     public let errors: [SpreedlyError]?
 
     init(from json: [String: Any]) {
-        let errors = json.optObjectList("errors", { json in try SpreedlyError(from: json) })
+        let errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) })
         self.errors = errors
-        messageKey = json["messageKey"] as? String ?? errors?[0].key ?? "unknown"
-        message = json["message"] as? String ?? errors?[0].message ?? "Unknown Error"
+        messageKey = json.string(optional: "messageKey") ?? errors?[0].key ?? "unknown"
+        message = json.string(optional: "message") ?? errors?[0].message ?? "Unknown Error"
 
-        token = json["token"] as? String
-        createdAt = json.optDate("created_at")
-        updatedAt = json.optDate("updated_at")
-        succeeded = json["succeeded"] as? Bool ?? false
-        transactionType = json["transaction_type"] as? String
-        retained = json["retained"] as? Bool ?? false
-        state = json["state"] as? String
+        token = json.string(optional: "token")
+        createdAt = json.date(optional: "created_at")
+        updatedAt = json.date(optional: "updated_at")
+        succeeded = json.bool(optional: "succeeded") ?? false
+        transactionType = json.string(optional: "transaction_type")
+        retained = json.bool(optional: "retained") ?? false
+        state = json.string(optional: "state")
 
-        if let paymentMethodJson = json["payment_method"] as? [String: Any] {
+        if let paymentMethodJson = json.object(optional: "payment_method") {
             paymentMethod = TPaymentMethod(from: paymentMethodJson)
         } else {
             paymentMethod = nil
@@ -44,7 +44,7 @@ extension Transaction {
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
         let json = try data.decodeJson()
         if json.keys.contains("transaction") {
-            return Transaction(from: try json.getObject("transaction"))
+            return Transaction(from: try json.object(for: "transaction"))
         } else {
             return Transaction(from: json)
         }
