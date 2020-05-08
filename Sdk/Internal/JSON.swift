@@ -36,11 +36,10 @@ enum JSONError: Error {
 
 extension Data {
     func decodeJson() throws -> [String: Any] {
-        if let json = try JSONSerialization.jsonObject(with: self) as? [String: Any] {
-            return json
-        } else {
+        guard let json = try? JSONSerialization.jsonObject(with: self) as? [String: Any] else {
             throw JSONError.expectedObject
         }
+        return json
     }
 }
 
@@ -51,11 +50,10 @@ extension Dictionary where Key == String, Value == Any {
     }
 
     func object(for key: String) throws -> [String: Any] {
-        if let result = object(optional: key) {
-            return result
-        } else {
+        guard let result = object(optional: key)  else {
             throw JSONError.keyNotFound(key: key)
         }
+        return result
     }
 
     func object(optional key: String) -> [String: Any]? {
@@ -63,29 +61,26 @@ extension Dictionary where Key == String, Value == Any {
     }
 
     func objectList<R>(for key: String, _ closure: (_ json: [String: Any]) throws -> R) throws -> [R] {
-        if let result: [R] = objectList(optional: key, closure) {
-            return result
-        } else {
+        guard let result: [R] = objectList(optional: key, closure) else {
             throw JSONError.keyNotFound(key: key)
         }
+        return result
     }
 
     func objectList<R>(optional key: String, _ closure: (_ json: [String: Any]) throws -> R) -> [R]? {
         try? (self[key] as? [Any])?.map {
-            if let child = $0 as? [String: Any] {
-                return try closure(child)
-            } else {
+            guard let child = $0 as? [String: Any] else {
                 throw JSONError.expectedObject
             }
+            return try closure(child)
         }
     }
 
     func date(for key: String) throws -> Date {
-        if let result = date(optional: key) {
-            return result
-        } else {
+        guard let result = date(optional: key) else {
             throw JSONError.keyNotFound(key: key)
         }
+        return result
     }
 
     func date(optional key: String) -> Date? {
@@ -93,20 +88,18 @@ extension Dictionary where Key == String, Value == Any {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
-        if let value = string(optional: key),
-           let date = dateFormatter.date(from: value) {
-            return date
-        } else {
+        guard let value = string(optional: key),
+              let date = dateFormatter.date(from: value) else {
             return nil
         }
+        return date
     }
 
     func string(for key: String) throws -> String {
-        if let result = string(optional: key) {
-            return result
-        } else {
+        guard let result = string(optional: key) else {
             throw JSONError.keyNotFound(key: key)
         }
+        return result
     }
 
     func string(optional key: String) -> String? {
@@ -114,11 +107,11 @@ extension Dictionary where Key == String, Value == Any {
     }
 
     func bool(for key: String) throws -> Bool {
-        if let result = bool(optional: key) {
-            return result
-        } else {
+        guard let result = bool(optional: key) else {
             throw JSONError.keyNotFound(key: key)
         }
+        return result
+
     }
 
     func bool(optional key: String) -> Bool? {
@@ -135,11 +128,10 @@ extension Dictionary where Key == String, Value == Any {
     }
 
     func int(for key: String) throws -> Int {
-        if let result = int(optional: key) {
-            return result
-        } else {
+        guard let result = int(optional: key) else {
             throw JSONError.keyNotFound(key: key)
         }
+        return result
     }
 
     func int(optional key: String) -> Int? {
@@ -167,10 +159,9 @@ extension Dictionary where Key == String, Value == Any {
     }
 
     mutating func setOpaqueString(_ key: String, _ value: SpreedlySecureOpaqueString) throws {
-        if let value = value as? SpreedlySecureOpaqueStringImpl {
-            self[key] = value.internalToString()
-        } else {
+        guard let value = value as? SpreedlySecureOpaqueStringImpl else {
             throw SpreedlySecurityError.invalidOpaqueString
         }
+        self[key] = value.internalToString()
     }
 }
