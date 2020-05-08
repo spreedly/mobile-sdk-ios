@@ -4,31 +4,6 @@
 
 import Foundation
 
-/**
- Decode and encode functions with common settings.
-*/
-struct Coders {
-
-    @available(*, deprecated, message: "use Data.decodeJson()")
-    static func decode<T>(data: Data) throws -> T where T: Decodable {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-        return try decoder.decode(T.self, from: data)
-    }
-
-    @available(*, deprecated, message: "use [String:Any].encodeJson()")
-    static func encode<TEntity>(entity: TEntity) throws -> Data where TEntity: Encodable {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
-
-        return try encoder.encode(entity)
-    }
-}
-
 enum JSONError: Error, Equatable {
     case keyNotFound(key: String)
     case expectedObject
