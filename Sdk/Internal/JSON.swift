@@ -25,7 +25,7 @@ extension Dictionary where Key == String, Value == Any {
     }
 
     func object(for key: String) throws -> [String: Any] {
-        guard let result = object(optional: key)  else {
+        guard let result = object(optional: key) else {
             throw JSONError.keyNotFound(key: key)
         }
         return result
