@@ -82,12 +82,12 @@ class CreateCreditCardIntegrationTests: XCTestCase {
             let bankAccount = transaction.paymentMethod!
             XCTAssertNotNil(bankAccount.token)
             XCTAssertNil(bankAccount.bankName)
-            XCTAssertEqual(BankAccountType.checking, bankAccount.accountType)
-            XCTAssertEqual(BankAccountHolderType.personal, bankAccount.accountHolderType)
-            XCTAssertEqual("021", bankAccount.routingNumberDisplayDigits)
-            XCTAssertEqual("3210", bankAccount.accountNumberDisplayDigits)
-            XCTAssertEqual("021*", bankAccount.routingNumber)
-            XCTAssertEqual("*3210", bankAccount.accountNumber)
+            XCTAssertEqual(bankAccount.accountType, BankAccountType.checking)
+            XCTAssertEqual(bankAccount.accountHolderType, BankAccountHolderType.personal)
+            XCTAssertEqual(bankAccount.routingNumberDisplayDigits, "021")
+            XCTAssertEqual(bankAccount.accountNumberDisplayDigits, "3210")
+            XCTAssertEqual(bankAccount.routingNumber, "021*")
+            XCTAssertEqual(bankAccount.accountNumber, "*3210")
             expectation.fulfill()
         }, onError: { error in
             XCTFail("\(error)")
