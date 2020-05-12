@@ -16,29 +16,38 @@ public struct Address {
     public enum AddressType {
         case billing
         case shipping
+
+        var prefix: String {
+            switch self {
+            case .billing:
+                return ""
+            case .shipping:
+                return "shipping_"
+            }
+        }
     }
 
     public init() {
     }
 
     init?(from json: [String: Any], as type: AddressType) {
-        let prefix = self.prefix(for: type)
+        let prefix = type.prefix
 
-        if let address1 = json["\(prefix)address1"] as? String {
-            self.address1 = address1
-            address2 = json["\(prefix)address2"] as? String
-            city = json["\(prefix)city"] as? String
-            state = json["\(prefix)state"] as? String
-            zip = json["\(prefix)zip"] as? String
-            country = json["\(prefix)country"] as? String
-            phoneNumber = json["\(prefix)phone_number"] as? String
-        } else {
+        guard let address1 = json.string(optional: "\(prefix)address1") else {
             return nil
         }
+
+        self.address1 = address1
+        address2 = json.string(optional: "\(prefix)address2")
+        city = json.string(optional: "\(prefix)city")
+        state = json.string(optional: "\(prefix)state")
+        zip = json.string(optional: "\(prefix)zip")
+        country = json.string(optional: "\(prefix)country")
+        phoneNumber = json.string(optional: "\(prefix)phone_number")
     }
 
     func toJson(_ result: inout [String: Any], _ type: AddressType) {
-        let prefix = self.prefix(for: type)
+        let prefix = type.prefix
 
         result.maybeSet("\(prefix)address1", address1)
         result.maybeSet("\(prefix)address2", address2)
@@ -47,14 +56,5 @@ public struct Address {
         result.maybeSet("\(prefix)zip", zip)
         result.maybeSet("\(prefix)country", country)
         result.maybeSet("\(prefix)phone_number", phoneNumber)
-    }
-
-    private func prefix(for type: AddressType) -> String {
-        switch type {
-        case .billing:
-            return ""
-        case .shipping:
-            return "shipping_"
-        }
     }
 }
