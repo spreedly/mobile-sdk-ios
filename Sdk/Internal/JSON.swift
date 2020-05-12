@@ -118,6 +118,13 @@ extension Dictionary where Key == String, Value == Any {
         }
         return nil
     }
+
+    func enumValue<T: RawRepresentable>(optional key: String) -> T? where T.RawValue == String {
+        guard let value = self[key] as? String else {
+            return nil
+        }
+        return T(rawValue: value)
+    }
 }
 
 extension Dictionary where Key == String, Value == Any {

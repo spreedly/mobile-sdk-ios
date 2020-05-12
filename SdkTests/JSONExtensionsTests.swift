@@ -209,3 +209,18 @@ class IntTests: XCTestCase {
         XCTAssertNil(json.int(optional: "string"), "non-int")
     }
 }
+
+class EnumValueTests: XCTestCase {
+    enum StubEnum: String {
+        case stringValue
+    }
+
+    func testOptionalWhenMissingShouldReturnNil() {
+        XCTAssertNil(json.enumValue(optional: "missing") as StubEnum?)
+    }
+
+    func testOptionalWhenFoundShouldReturn() {
+        let found: StubEnum? = json.enumValue(optional: "string")
+        XCTAssertEqual(found, StubEnum.stringValue)
+    }
+}
