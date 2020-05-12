@@ -46,3 +46,31 @@ class SecureStringTest: XCTestCase {
         XCTAssertEqual(String(data: data, encoding: .utf8), "\"abc\"")
     }
 }
+
+class DictionaryExtensionsTests: XCTestCase {
+    class AlternateImpl: SpreedlySecureOpaqueString {
+        func clear() {
+            // empty
+        }
+
+        func append(_ string: String) {
+            // empty
+        }
+
+        func removeLastCharacter() {
+            // empty
+        }
+    }
+    func testSetOpaqueStringWhenNotMainImplShouldThrow() throws {
+        var json: [String: Any] = [:]
+        XCTAssertThrowsError(try json.setOpaqueString("key", AlternateImpl())) { error in 
+            XCTAssertEqual(SpreedlySecurityError.invalidOpaqueString, error as? SpreedlySecurityError)
+        }
+    }
+
+    func testWhenIsMainImplShouldSet() throws {
+        var json: [String: Any] = [:]
+        try json.setOpaqueString("secure", SpreedlySecureOpaqueStringImpl.init(from: "string"))
+        XCTAssertEqual("string", json["secure"] as? String)
+    }
+}
