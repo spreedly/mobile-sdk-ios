@@ -79,8 +79,15 @@ class CreateCreditCardIntegrationTests: XCTestCase {
 
         _ = promise.subscribe(onSuccess: { (transaction: Transaction<BankAccountResult>) in
             XCTAssertNotNil(transaction)
-            let bankAccount = transaction.paymentMethod
-            XCTAssertNotNil(bankAccount?.token)
+            let bankAccount = transaction.paymentMethod!
+            XCTAssertNotNil(bankAccount.token)
+            XCTAssertNil(bankAccount.bankName)
+            XCTAssertEqual(BankAccountType.checking, bankAccount.accountType)
+            XCTAssertEqual(BankAccountHolderType.personal, bankAccount.accountHolderType)
+            XCTAssertEqual("021", bankAccount.routingNumberDisplayDigits)
+            XCTAssertEqual("3210", bankAccount.accountNumberDisplayDigits)
+            XCTAssertEqual("021*", bankAccount.routingNumber)
+            XCTAssertEqual("*3210", bankAccount.accountNumber)
             expectation.fulfill()
         }, onError: { error in
             XCTFail("\(error)")

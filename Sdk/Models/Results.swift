@@ -81,7 +81,23 @@ public class CreditCardResult: PaymentMethodResultBase {
 }
 
 public class BankAccountResult: PaymentMethodResultBase {
+    var bankName: String?
+    var accountType: BankAccountType?
+    var accountHolderType: BankAccountHolderType?
+    var routingNumberDisplayDigits: String?
+    var accountNumberDisplayDigits: String?
+    var routingNumber: String?
+    var accountNumber: String?
+
     required init(from json: [String: Any]) {
+        bankName = json.string(optional: "bank_name")
+        accountType = json.enumValue(optional: "account_type")
+        accountHolderType = json.enumValue(optional: "account_holder_type")
+        routingNumberDisplayDigits = json.string(optional: "routing_number_display_digits")
+        accountNumberDisplayDigits = json.string(optional: "account_number_display_digits")
+        routingNumber = json.string(optional: "routing_number")
+        accountNumber = json.string(optional: "account_number")
+
         super.init(from: json)
     }
 }
