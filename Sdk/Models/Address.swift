@@ -22,14 +22,7 @@ public struct Address {
     }
 
     init?(from json: [String: Any], as type: AddressType) {
-        let prefix = {
-            switch type {
-            case .billing:
-                ""
-            case .shipping:
-                "shipping_"
-            }
-        }()
+        let prefix = self.prefix(for: type)
 
         if let address1 = json["\(prefix)address1"] as? String {
             self.address1 = address1
@@ -38,21 +31,14 @@ public struct Address {
             state = json["\(prefix)state"] as? String
             zip = json["\(prefix)zip"] as? String
             country = json["\(prefix)country"] as? String
-            phoneNumber = json["\(prefix)phoneNumber"] as? String
+            phoneNumber = json["\(prefix)phone_number"] as? String
         } else {
             return nil
         }
     }
 
     func toJson(_ result: inout [String: Any], _ type: AddressType) {
-        let prefix = {
-            switch type {
-            case .billing:
-                ""
-            case .shipping:
-                "shipping_"
-            }
-        }()
+        let prefix = self.prefix(for: type)
 
         result.maybeSet("\(prefix)address1", address1)
         result.maybeSet("\(prefix)address2", address2)
@@ -61,5 +47,14 @@ public struct Address {
         result.maybeSet("\(prefix)zip", zip)
         result.maybeSet("\(prefix)country", country)
         result.maybeSet("\(prefix)phone_number", phoneNumber)
+    }
+
+    private func prefix(for type: AddressType) -> String {
+        switch type {
+        case .billing:
+            return ""
+        case .shipping:
+            return "shipping_"
+        }
     }
 }

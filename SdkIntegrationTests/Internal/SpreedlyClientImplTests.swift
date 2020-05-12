@@ -40,22 +40,79 @@ class CreateCreditCardIntegrationTests: XCTestCase {
 
     func testCanCreateCreditCard() throws {
         let client = createClient()
+        let firstName = "Dolly", lastName = "Dog", year = 2029, month = 1
         let creditCard = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
+                firstName: firstName,
+                lastName: lastName,
                 number: client.createSecureString(from: "4111111111111111"),
                 verificationValue: client.createSecureString(from: verificationValue),
-                year: 2029,
-                month: 1
+                year: year,
+                month: month
         )
 
+        var billing = Address()
+        billing.address1 = "123 Fake St"
+        billing.address2 = "Suite #200"
+        billing.city = "Springfield"
+        billing.state = "OR"
+        billing.zip = "97475"
+        billing.country = "US"
+        billing.phoneNumber = "541-555-2222"
+        creditCard.address = billing
+
+        var shipping = Address()
+        shipping.address1 = "321 Wall St"
+        shipping.address2 = "Suite #4100"
+        shipping.city = "Seattle"
+        shipping.state = "WA"
+        shipping.zip = "98121"
+        shipping.country = "US"
+        shipping.phoneNumber = "206-555-2222"
+        creditCard.shippingAddress = shipping
+
         let expectation = self.expectation(description: "can create credit card")
-        let promise = createClient().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
+        let email = "dolly@dog.com"
+        let promise = createClient().createCreditCardPaymentMethod(creditCard: creditCard, email: email)
 
         _ = promise.subscribe(onSuccess: { transaction in
             XCTAssertNotNil(transaction)
-            let actualCreditCard = transaction.paymentMethod
-            XCTAssertNotNil(actualCreditCard?.token)
+            let card = transaction.paymentMethod!
+            XCTAssertNotNil(card.token)
+            XCTAssertEqual(card.storageState, StorageState.cached)
+            XCTAssertEqual(card.test, true)
+            XCTAssertEqual(card.paymentMethodType, PaymentMethodType.creditCard)
+            XCTAssertNil(card.callbackUrl)
+
+            XCTAssertEqual(card.email, email)
+            XCTAssertEqual(card.firstName, firstName)
+            XCTAssertEqual(card.lastName, lastName)
+            XCTAssertEqual(card.fullName, "\(firstName) \(lastName)")
+
+            XCTAssertEqual(card.cardType, "visa")
+            XCTAssertEqual(card.year, year)
+            XCTAssertEqual(card.month, month)
+
+            XCTAssertEqual(card.lastFourDigits, "1111")
+            XCTAssertEqual(card.firstSixDigits, "411111")
+            XCTAssertEqual(card.number, "XXXX-XXXX-XXXX-1111")
+            XCTAssertNotNil(card.fingerprint)
+
+            XCTAssertEqual(card.address?.address1, billing.address1)
+            XCTAssertEqual(card.address?.address2, billing.address2)
+            XCTAssertEqual(card.address?.city, billing.city)
+            XCTAssertEqual(card.address?.state, billing.state)
+            XCTAssertEqual(card.address?.zip, billing.zip)
+            XCTAssertEqual(card.address?.country, billing.country)
+            XCTAssertEqual(card.address?.phoneNumber, billing.phoneNumber)
+
+            XCTAssertEqual(card.shippingAddress?.address1, shipping.address1)
+            XCTAssertEqual(card.shippingAddress?.address2, shipping.address2)
+            XCTAssertEqual(card.shippingAddress?.city, shipping.city)
+            XCTAssertEqual(card.shippingAddress?.state, shipping.state)
+            XCTAssertEqual(card.shippingAddress?.zip, shipping.zip)
+            XCTAssertEqual(card.shippingAddress?.country, shipping.country)
+            XCTAssertEqual(card.shippingAddress?.phoneNumber, shipping.phoneNumber)
+
             expectation.fulfill()
         }, onError: { error in
             XCTFail("\(error)")
