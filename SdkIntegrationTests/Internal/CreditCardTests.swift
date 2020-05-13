@@ -38,25 +38,14 @@ class CreditCardTests: XCTestCase {
                 year: 2029,
                 month: 1
         )
-
-        let expectation = self.expectation(description: "can create credit card")
         let email = ""
+
         let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email)
+        let transaction = try promise.assertResult(self)
+        let result = transaction.paymentMethod!
 
-        _ = promise.subscribe(onSuccess: { transaction in
-            XCTAssertNotNil(transaction)
-            let result = transaction.paymentMethod!
-
-            self.assertMinimalCardFieldsPopulate(result: result, info: info)
-
-            XCTAssertEqual(result.email, email)
-
-            expectation.fulfill()
-        }, onError: { error in
-            XCTFail("\(error)")
-            expectation.fulfill()
-        })
-        self.wait(for: [expectation], timeout: 10.0)
+        self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        XCTAssertEqual(result.email, email)
     }
 
     func testCanCreateFullCreditCard() throws {
@@ -90,39 +79,29 @@ class CreditCardTests: XCTestCase {
         shipping.phoneNumber = "206-555-2222"
         info.shippingAddress = shipping
 
-        let expectation = self.expectation(description: "can create credit card")
         let email = "dolly@dog.com"
+
         let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email)
+        let transaction = try promise.assertResult(self)
+        let result = transaction.paymentMethod!
 
-        _ = promise.subscribe(onSuccess: { transaction in
-            XCTAssertNotNil(transaction)
-            let result = transaction.paymentMethod!
+        self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        XCTAssertEqual(result.email, email)
 
-            self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        XCTAssertEqual(result.address?.address1, billing.address1)
+        XCTAssertEqual(result.address?.address2, billing.address2)
+        XCTAssertEqual(result.address?.city, billing.city)
+        XCTAssertEqual(result.address?.state, billing.state)
+        XCTAssertEqual(result.address?.zip, billing.zip)
+        XCTAssertEqual(result.address?.country, billing.country)
+        XCTAssertEqual(result.address?.phoneNumber, billing.phoneNumber)
 
-            XCTAssertEqual(result.email, email)
-
-            XCTAssertEqual(result.address?.address1, billing.address1)
-            XCTAssertEqual(result.address?.address2, billing.address2)
-            XCTAssertEqual(result.address?.city, billing.city)
-            XCTAssertEqual(result.address?.state, billing.state)
-            XCTAssertEqual(result.address?.zip, billing.zip)
-            XCTAssertEqual(result.address?.country, billing.country)
-            XCTAssertEqual(result.address?.phoneNumber, billing.phoneNumber)
-
-            XCTAssertEqual(result.shippingAddress?.address1, shipping.address1)
-            XCTAssertEqual(result.shippingAddress?.address2, shipping.address2)
-            XCTAssertEqual(result.shippingAddress?.city, shipping.city)
-            XCTAssertEqual(result.shippingAddress?.state, shipping.state)
-            XCTAssertEqual(result.shippingAddress?.zip, shipping.zip)
-            XCTAssertEqual(result.shippingAddress?.country, shipping.country)
-            XCTAssertEqual(result.shippingAddress?.phoneNumber, shipping.phoneNumber)
-
-            expectation.fulfill()
-        }, onError: { error in
-            XCTFail("\(error)")
-            expectation.fulfill()
-        })
-        self.wait(for: [expectation], timeout: 10.0)
+        XCTAssertEqual(result.shippingAddress?.address1, shipping.address1)
+        XCTAssertEqual(result.shippingAddress?.address2, shipping.address2)
+        XCTAssertEqual(result.shippingAddress?.city, shipping.city)
+        XCTAssertEqual(result.shippingAddress?.state, shipping.state)
+        XCTAssertEqual(result.shippingAddress?.zip, shipping.zip)
+        XCTAssertEqual(result.shippingAddress?.country, shipping.country)
+        XCTAssertEqual(result.shippingAddress?.phoneNumber, shipping.phoneNumber)
     }
 }
