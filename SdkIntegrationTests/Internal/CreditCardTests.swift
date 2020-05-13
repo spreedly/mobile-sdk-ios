@@ -3,7 +3,6 @@
 //
 
 import XCTest
-import RxSwift
 @testable import Sdk
 
 class CreditCardTests: XCTestCase {
