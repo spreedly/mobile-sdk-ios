@@ -12,7 +12,6 @@ osx_instance:
 
 test_task:
   name: 'XCode Test'
-  install_slather_script: gem install slather
   script:
     - gem install slather
     - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkTests -destination 'name=iPhone 11' -enableCodeCoverage YES
