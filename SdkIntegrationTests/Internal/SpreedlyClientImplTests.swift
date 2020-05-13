@@ -37,30 +37,4 @@ class CreateCreditCardIntegrationTests: XCTestCase {
                 email: "dolly@dog.com"
         )
     }
-
-    func testCanCreateCreditCard() throws {
-        let client = createClient()
-        let creditCard = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                number: client.createSecureString(from: "4111111111111111"),
-                verificationValue: client.createSecureString(from: verificationValue),
-                year: 2029,
-                month: 1
-        )
-
-        let expectation = self.expectation(description: "can create credit card")
-        let promise = createClient().createCreditCardPaymentMethod(creditCard: creditCard, email: "dolly@dog.com")
-
-        _ = promise.subscribe(onSuccess: { transaction in
-            XCTAssertNotNil(transaction)
-            let actualCreditCard = transaction.paymentMethod
-            XCTAssertNotNil(actualCreditCard?.token)
-            expectation.fulfill()
-        }, onError: { error in
-            XCTFail("\(error)")
-            expectation.fulfill()
-        })
-        self.wait(for: [expectation], timeout: 10.0)
-    }
 }
