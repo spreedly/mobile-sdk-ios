@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import Sdk
+@testable import Sdk
 
 class ClientTests: XCTestCase {
     /// The API responds with a 401 and a valid JSON response, the client should return the decoded JSON response.
