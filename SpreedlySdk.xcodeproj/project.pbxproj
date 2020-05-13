@@ -44,7 +44,6 @@
 		F076C5168326BA6146E7048D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB8C9D4B8CE905B35F73 /* Helpers.swift */; };
 		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
-		F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */; };
 		F076CC40AA0952D6E52623F9 /* Sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Sdk.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,7 +130,6 @@
 		EE3BD7D4482E90A94A2E77CF /* Pods-SdkIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImplTests.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 		F076C9783EA29205F1021D9A /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				F076C2D409A50DF149533F81 /* SpreedlyClientImplTests.swift */,
 				442A2A63301FADA969609EC0 /* ClientTests.swift */,
 				442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */,
 				442A2022B280AC093C1962B8 /* BankAccountTests.swift */,
@@ -699,7 +696,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F076C8EDC5CF1C726DAF0AD4 /* SpreedlyClientImplTests.swift in Sources */,
 				442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */,
 				442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */,
 				442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */,
