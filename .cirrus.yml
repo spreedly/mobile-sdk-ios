@@ -12,12 +12,23 @@ osx_instance:
 
 test_task:
   name: 'XCode Test'
-  script:
+  env:
+    GITHUB_USER: ENCRYPTED[!e72bc98e2310dd38a096085d559390b95c38fa694e31dfa0f324967cdc03a505681b159e819c5a3d1ae837ec63ff0a26!]
+    GITHUB_PASSWORD: ENCRYPTED[!90eb3b7b230903c3c3a89e75517fb8927136ca5b4d98e13990d2e85b540a8ef14ed49c806ed17c2f27380adfaf665749!]
+  test_script: xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11' -enableCodeCoverage YES
+  coverage_script:
     - bundle install --path vendor/bundle
-    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11' -enableCodeCoverage YES
     - bundle exec slather coverage --html --scheme Sdk --workspace SpreedlySdk.xcworkspace SpreedlySdk.xcodeproj
-
-
+  publish_coverage_script:
+    - git config --global user.name "Cirrus CI"
+    - git config --global user.email "ci@ergonlabs.com"
+    - git clone https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/ergonlabs/spreedly-docs.git docs
+    - mkdir -p docs/coverage/swift/spreedly-sdk
+    - cp -fR html/* docs/coverage/swift/spreedly-sdk
+    - cd docs
+    - git add .
+    - git commit -m "reports for swift"
+    - git push
 
 #
 #test_integration_task:
