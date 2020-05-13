@@ -38,16 +38,67 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         )
     }
 
-    func testCanCreateCreditCard() throws {
+    func assertMinimalCardFields(result: CreditCardResult, info: CreditCardInfo) {
+        XCTAssertNotNil(result.token)
+        XCTAssertEqual(result.storageState, StorageState.cached)
+        XCTAssertEqual(result.test, true)
+        XCTAssertEqual(result.paymentMethodType, PaymentMethodType.creditCard)
+        XCTAssertNil(result.callbackUrl)
+
+        XCTAssertEqual(result.firstName, info.firstName)
+        XCTAssertEqual(result.lastName, info.lastName)
+        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+
+        XCTAssertEqual(result.cardType, "visa")
+        XCTAssertEqual(result.year, info.year)
+        XCTAssertEqual(result.month, info.month)
+
+        XCTAssertEqual(result.lastFourDigits, "1111")
+        XCTAssertEqual(result.firstSixDigits, "411111")
+        XCTAssertEqual(result.number, "XXXX-XXXX-XXXX-1111")
+        XCTAssertNotNil(result.fingerprint)
+    }
+
+    func testCanCreateMinimalCreditCard() throws {
         let client = createClient()
-        let firstName = "Dolly", lastName = "Dog", year = 2029, month = 1
-        let creditCard = CreditCardInfo(
-                firstName: firstName,
-                lastName: lastName,
+        let info = CreditCardInfo(
+                firstName: "Dolly",
+                lastName: "Dog",
                 number: client.createSecureString(from: "4111111111111111"),
                 verificationValue: client.createSecureString(from: verificationValue),
-                year: year,
-                month: month
+                year: 2029,
+                month: 1
+        )
+
+        let expectation = self.expectation(description: "can create credit card")
+        let email = ""
+        let promise = createClient().createCreditCardPaymentMethod(creditCard: info, email: email)
+
+        _ = promise.subscribe(onSuccess: { transaction in
+            XCTAssertNotNil(transaction)
+            let result = transaction.paymentMethod!
+
+            self.assertMinimalCardFields(result: result, info: info)
+
+            XCTAssertEqual(result.email, email)
+
+            expectation.fulfill()
+        }, onError: { error in
+            XCTFail("\(error)")
+            expectation.fulfill()
+        })
+        self.wait(for: [expectation], timeout: 10.0)
+    }
+
+    func testCanCreateFullCreditCard() throws {
+        let client = createClient()
+        let info = CreditCardInfo(
+                firstName: "Dolly",
+                lastName: "Dog",
+                number: client.createSecureString(from: "4111111111111111"),
+                verificationValue: client.createSecureString(from: verificationValue),
+                year: 2029,
+                month: 1
         )
 
         var billing = Address()
@@ -58,7 +109,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         billing.zip = "97475"
         billing.country = "US"
         billing.phoneNumber = "541-555-2222"
-        creditCard.address = billing
+        info.address = billing
 
         var shipping = Address()
         shipping.address1 = "321 Wall St"
@@ -68,50 +119,35 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         shipping.zip = "98121"
         shipping.country = "US"
         shipping.phoneNumber = "206-555-2222"
-        creditCard.shippingAddress = shipping
+        info.shippingAddress = shipping
 
         let expectation = self.expectation(description: "can create credit card")
         let email = "dolly@dog.com"
-        let promise = createClient().createCreditCardPaymentMethod(creditCard: creditCard, email: email)
+        let promise = createClient().createCreditCardPaymentMethod(creditCard: info, email: email)
 
         _ = promise.subscribe(onSuccess: { transaction in
             XCTAssertNotNil(transaction)
-            let card = transaction.paymentMethod!
-            XCTAssertNotNil(card.token)
-            XCTAssertEqual(card.storageState, StorageState.cached)
-            XCTAssertEqual(card.test, true)
-            XCTAssertEqual(card.paymentMethodType, PaymentMethodType.creditCard)
-            XCTAssertNil(card.callbackUrl)
+            let result = transaction.paymentMethod!
 
-            XCTAssertEqual(card.email, email)
-            XCTAssertEqual(card.firstName, firstName)
-            XCTAssertEqual(card.lastName, lastName)
-            XCTAssertEqual(card.fullName, "\(firstName) \(lastName)")
+            self.assertMinimalCardFields(result: result, info: info)
 
-            XCTAssertEqual(card.cardType, "visa")
-            XCTAssertEqual(card.year, year)
-            XCTAssertEqual(card.month, month)
+            XCTAssertEqual(result.email, email)
 
-            XCTAssertEqual(card.lastFourDigits, "1111")
-            XCTAssertEqual(card.firstSixDigits, "411111")
-            XCTAssertEqual(card.number, "XXXX-XXXX-XXXX-1111")
-            XCTAssertNotNil(card.fingerprint)
+            XCTAssertEqual(result.address?.address1, billing.address1)
+            XCTAssertEqual(result.address?.address2, billing.address2)
+            XCTAssertEqual(result.address?.city, billing.city)
+            XCTAssertEqual(result.address?.state, billing.state)
+            XCTAssertEqual(result.address?.zip, billing.zip)
+            XCTAssertEqual(result.address?.country, billing.country)
+            XCTAssertEqual(result.address?.phoneNumber, billing.phoneNumber)
 
-            XCTAssertEqual(card.address?.address1, billing.address1)
-            XCTAssertEqual(card.address?.address2, billing.address2)
-            XCTAssertEqual(card.address?.city, billing.city)
-            XCTAssertEqual(card.address?.state, billing.state)
-            XCTAssertEqual(card.address?.zip, billing.zip)
-            XCTAssertEqual(card.address?.country, billing.country)
-            XCTAssertEqual(card.address?.phoneNumber, billing.phoneNumber)
-
-            XCTAssertEqual(card.shippingAddress?.address1, shipping.address1)
-            XCTAssertEqual(card.shippingAddress?.address2, shipping.address2)
-            XCTAssertEqual(card.shippingAddress?.city, shipping.city)
-            XCTAssertEqual(card.shippingAddress?.state, shipping.state)
-            XCTAssertEqual(card.shippingAddress?.zip, shipping.zip)
-            XCTAssertEqual(card.shippingAddress?.country, shipping.country)
-            XCTAssertEqual(card.shippingAddress?.phoneNumber, shipping.phoneNumber)
+            XCTAssertEqual(result.shippingAddress?.address1, shipping.address1)
+            XCTAssertEqual(result.shippingAddress?.address2, shipping.address2)
+            XCTAssertEqual(result.shippingAddress?.city, shipping.city)
+            XCTAssertEqual(result.shippingAddress?.state, shipping.state)
+            XCTAssertEqual(result.shippingAddress?.zip, shipping.zip)
+            XCTAssertEqual(result.shippingAddress?.country, shipping.country)
+            XCTAssertEqual(result.shippingAddress?.phoneNumber, shipping.phoneNumber)
 
             expectation.fulfill()
         }, onError: { error in
