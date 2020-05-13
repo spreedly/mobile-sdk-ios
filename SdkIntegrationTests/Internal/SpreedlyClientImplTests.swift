@@ -95,30 +95,4 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         })
         self.wait(for: [expectation], timeout: 10.0)
     }
-
-    func testCanRecache() throws {
-        let creditCardPromise = try createCreditCard(retained: true)
-        let expectation = self.expectation(description: "can recache verification value")
-
-        _ = creditCardPromise
-                .flatMap { transaction -> Single<Transaction<CreditCardResult>> in
-                    let creditCard = transaction.paymentMethod
-                    guard let token = creditCard?.token else {
-                        return Single.error(TestError.invalidResponse(
-                                "token was not found in credit card create response"
-                        ))
-                    }
-
-                    let verify = self.createClient().createSecureString(from: self.verificationValue)
-                    return self.createClient().recache(token: token, verificationValue: verify)
-                }.subscribe(onSuccess: { (transaction: Transaction<CreditCardResult>) in
-                    expectation.fulfill()
-                    XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
-                    XCTAssert(transaction.succeeded)
-                }, onError: { error in
-                    expectation.fulfill()
-                    XCTFail("\(error)")
-                })
-        self.wait(for: [expectation], timeout: 10.0)
-    }
 }
