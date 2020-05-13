@@ -37,14 +37,12 @@ class CreditCardTests: XCTestCase {
                 year: 2029,
                 month: 1
         )
-        let email = ""
 
-        let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email)
+        let promise = client.createCreditCardPaymentMethod(creditCard: info)
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
         self.assertMinimalCardFieldsPopulate(result: result, info: info)
-        XCTAssertEqual(result.email, email)
     }
 
     func testCanCreateFullCreditCard() throws {
