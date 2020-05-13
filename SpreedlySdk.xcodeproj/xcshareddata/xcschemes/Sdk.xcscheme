@@ -48,6 +48,16 @@
                ReferencedContainer = "container:SpreedlySdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F076CF9042A128DEBCC6BDA2"
+               BuildableName = "SdkIntegrationTests.xctest"
+               BlueprintName = "SdkIntegrationTests"
+               ReferencedContainer = "container:SpreedlySdk.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
