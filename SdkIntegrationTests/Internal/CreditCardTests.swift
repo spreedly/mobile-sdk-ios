@@ -78,7 +78,7 @@ class CreditCardTests: XCTestCase {
 
         let email = "dolly@dog.com"
 
-        let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email)
+        let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email, metadata: nil)
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
