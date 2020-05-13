@@ -14,7 +14,7 @@ test_task:
   name: 'XCode Test'
   script:
     - bundle install --path vendor/bundle
-    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkTests -destination 'name=iPhone 11' -enableCodeCoverage YES
+    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11' -enableCodeCoverage YES
     - bundle exec slather coverage --html --scheme Sdk --workspace SpreedlySdk.xcworkspace SpreedlySdk.xcodeproj
 
 
