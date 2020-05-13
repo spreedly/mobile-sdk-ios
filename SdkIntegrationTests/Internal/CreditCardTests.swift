@@ -9,14 +9,12 @@ import RxTest
 import Sdk
 
 class CreditCardTests: XCTestCase {
-    let valid = "4111111111111111"
-
     func testCanCreateCreditCard() throws {
         let client = Helpers.createClient()
         let creditCard = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
-                number: client.createSecureString(from: "4111111111111111"),
+                number: client.createSecureString(from: Helpers.testCardNumber),
                 verificationValue: client.createSecureString(from: Helpers.verificationValue),
                 year: 2029,
                 month: 1

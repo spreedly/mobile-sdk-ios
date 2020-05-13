@@ -6,6 +6,7 @@ import RxSwift
 @testable import Sdk
 
 class Helpers {
+    static let testCardNumber = "4111111111111111"
     static let verificationValue = "919"
 
     static func createClient() -> SpreedlyClientImpl {
@@ -19,7 +20,7 @@ class Helpers {
         let creditCard = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
-                number: client.createSecureString(from: "4111111111111111"),
+                number: client.createSecureString(from: testCardNumber),
                 verificationValue: client.createSecureString(from: verificationValue),
                 year: 2029,
                 month: 1
