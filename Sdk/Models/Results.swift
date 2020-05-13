@@ -35,15 +35,27 @@ public class PaymentMethodResultBase {
     public let storageState: StorageState?
     public let test: Bool
     public let paymentMethodType: PaymentMethodType?
+
+    public let email: String?
+    public let firstName: String?
+    public let lastName: String?
+    public let fullName: String?
+
     public let address: Address?
     public let shippingAddress: Address?
     public let errors: [SpreedlyError]
 
     required init(from json: [String: Any]) {
         token = json.string(optional: "token")
-        storageState = json["storage_state"] as? StorageState
+        storageState = json.enumValue(optional: "storage_state")
         test = json.bool(optional: "test") ?? false
-        paymentMethodType = json["payment_method_type"] as? PaymentMethodType
+        paymentMethodType = json.enumValue(optional: "payment_method_type")
+
+        email = json.string(optional: "email")
+        firstName = json.string(optional: "first_name")
+        lastName = json.string(optional: "last_name")
+        fullName = json.string(optional: "full_name")
+
         address = Address(from: json, as: .billing)
         shippingAddress = Address(from: json, as: .shipping)
         errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) }) ?? []
