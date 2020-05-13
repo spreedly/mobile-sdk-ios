@@ -38,7 +38,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
         )
     }
 
-    func assertMinimalCardFields(result: CreditCardResult, info: CreditCardInfo) {
+    func assertMinimalCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
         XCTAssertNotNil(result.token)
         XCTAssertEqual(result.storageState, StorageState.cached)
         XCTAssertEqual(result.test, true)
@@ -78,7 +78,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
             XCTAssertNotNil(transaction)
             let result = transaction.paymentMethod!
 
-            self.assertMinimalCardFields(result: result, info: info)
+            self.assertMinimalCardFieldsPopulate(result: result, info: info)
 
             XCTAssertEqual(result.email, email)
 
@@ -129,7 +129,7 @@ class CreateCreditCardIntegrationTests: XCTestCase {
             XCTAssertNotNil(transaction)
             let result = transaction.paymentMethod!
 
-            self.assertMinimalCardFields(result: result, info: info)
+            self.assertMinimalCardFieldsPopulate(result: result, info: info)
 
             XCTAssertEqual(result.email, email)
 
