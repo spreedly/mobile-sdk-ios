@@ -43,7 +43,7 @@ test_integration_task:
   script:
     - echo "let secretEnvKey = \"$ENV_KEY\"" > SdkIntegrationTests/Secrets.swift
     - echo "let secretEnvSecret = \"$ENV_SECRET\"" >> SdkIntegrationTests/Secrets.swift
-    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkIntegrationTests -destination 'name=iPhone 11' -enableCodeCoverage YES
+    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkIntegrationTests -destination 'name=iPhone 11'
 
 lint_task:
   name: 'Swift Lint'
