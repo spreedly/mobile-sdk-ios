@@ -2,11 +2,8 @@
 // Created by Stefan Rusek on 5/6/20.
 //
 
-import Foundation
 import XCTest
 import RxSwift
-import RxTest
-import Sdk
 
 enum TestError: Error, CustomStringConvertible {
     case unreachable
@@ -25,7 +22,7 @@ enum TestError: Error, CustomStringConvertible {
 extension PrimitiveSequence where Trait == SingleTrait {
     func assertResult(_ test: XCTestCase) throws -> Element {
         var out: Element?
-        let expectation = XCTestExpectation(description: "call returns a result")
+        let expectation = test.expectation(description: "call returns a result")
         _ = self.subscribe(onSuccess: { result in
             XCTAssertNotNil(result)
             out = result

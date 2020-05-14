@@ -31,4 +31,29 @@ class BankAccountInfoTests: XCTestCase {
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
+
+    func testCanEncodeWithFullName() throws {
+        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let creditCard = BankAccountInfo(
+                fullName: "Dolly Dog",
+                bankRoutingNumber: "123456",
+                bankAccountNumber: client.createSecureString(from: "4111111111111111"),
+                bankAccountType: .checking,
+                bankAccountHolderType: .personal
+        )
+
+        let json = try creditCard.toJson()
+
+        let expected = try """
+                           {
+                             "full_name" : "Dolly Dog",
+                             "bank_routing_number" : "123456",
+                             "bank_account_number" : "4111111111111111",
+                             "bank_account_type" : "checking",
+                             "bank_account_holder_type" : "personal"
+                           }
+                           """.data(using: .utf8)!.decodeJson()
+
+        XCTAssertEqual(expected as NSObject, json as NSObject)
+    }
 }

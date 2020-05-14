@@ -45,8 +45,8 @@ extension Transaction {
         let json = try data.decodeJson()
         if json.keys.contains("transaction") {
             return Transaction(from: try json.object(for: "transaction"))
-        } else {
-            return Transaction(from: json)
         }
+
+        return Transaction(from: json)
     }
 }

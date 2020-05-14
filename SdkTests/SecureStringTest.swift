@@ -8,7 +8,13 @@ import RxSwift
 @testable import Sdk
 
 class SecureStringTest: XCTestCase {
-    func testCreateFromClient() {
+
+    func testCreateFromClientWithoutContent() {
+        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString()
+        XCTAssertNotNil(secureString)
+    }
+
+    func testCreateFromClientWithContent() {
         let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString(from: "abc")
         XCTAssertNotNil(secureString)
     }

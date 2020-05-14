@@ -1,13 +1,13 @@
 public class PaymentMethodRequestBase {
-    let fullName: String?
-    let firstName: String?
-    let lastName: String?
-    var company: String?
+    public let fullName: String?
+    public let firstName: String?
+    public let lastName: String?
+    public var company: String?
 
-    var address: Address?
-    var shippingAddress: Address?
+    public var address: Address?
+    public var shippingAddress: Address?
 
-    var retained: Bool?
+    public var retained: Bool?
 
     init(fullName: String?, firstName: String?, lastName: String?) {
         self.fullName = fullName
@@ -30,10 +30,10 @@ public class PaymentMethodRequestBase {
 }
 
 public class CreditCardInfo: PaymentMethodRequestBase {
-    let number: SpreedlySecureOpaqueString
-    let verificationValue: SpreedlySecureOpaqueString
-    let year: Int
-    let month: Int
+    public let number: SpreedlySecureOpaqueString
+    public let verificationValue: SpreedlySecureOpaqueString
+    public let year: Int
+    public let month: Int
 
     public init(
             fullName: String,
