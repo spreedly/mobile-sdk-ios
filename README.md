@@ -16,3 +16,16 @@ This repository is setup to run github actions that will build Sdk, run SdkTests
 ## Lint
 
 Run `./lint.sh` to do a lint check locally.
+
+# Coverage
+
+A coverage report is regularly posted:
+
+* [master](https://ergonlabs.github.io/spreedly-docs/coverage/master/core-sdk/ios/index.html).
+* [latest branch](https://ergonlabs.github.io/spreedly-docs/coverage/pr/core-sdk/ios/index.html).
+
+To see this locally run:
+
+    make coverage
+
+Then open [build/api-wrapper/reports/jacoco/test/html/index.html](build/api-wrapper/reports/jacoco/test/html/index.html)
