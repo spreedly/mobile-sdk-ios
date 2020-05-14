@@ -2,30 +2,55 @@ osx_instance:
   image: catalina-xcode
 
 build_task:
-  name: 'XCode Build Sdk'
+  name: 'Build Libraries'
   script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11'
 
-
 build_sample_task:
-  name: 'XCode Build Sdk Sample'
+  name: 'Build Sdk Sample'
   script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Sample -destination 'name=iPhone 11'
 
-test_task:
-  name: 'XCode Test'
-  script: xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkTests -destination 'name=iPhone 11'
-
-test_integration_task:
-  name: 'XCode Integration Test'
+test_task_template: &TEST
   env:
+    GITHUB_USER: ENCRYPTED[!e72bc98e2310dd38a096085d559390b95c38fa694e31dfa0f324967cdc03a505681b159e819c5a3d1ae837ec63ff0a26!]
+    GITHUB_PASSWORD: ENCRYPTED[!90eb3b7b230903c3c3a89e75517fb8927136ca5b4d98e13990d2e85b540a8ef14ed49c806ed17c2f27380adfaf665749!]
     ENV_KEY: ENCRYPTED[!1287e386a4c4842e6d5c0bc59e287437269cca360e77afb04d6a1137f558eff7bf8106c199d6cdcc3dd06355a975e18b!]
     ENV_SECRET: ENCRYPTED[!be1cd58ee5a27a14be3b9d035cecde24c3081af48fe207ce42e947a9cd6bbc55d857f8855c8b83920b4aba7a53fd65cf!]
-  script:
+  test_script:
     - echo "let secretEnvKey = \"$ENV_KEY\"" > SdkIntegrationTests/Secrets.swift
     - echo "let secretEnvSecret = \"$ENV_SECRET\"" >> SdkIntegrationTests/Secrets.swift
-    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme SdkIntegrationTests -destination 'name=iPhone 11'
+    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11' -enableCodeCoverage YES
+  bundle_cache:
+    folder: vendor
+    fingerprint_script: cat Gemfile.lock
+    populate_script: bundle install
+  coverage_script:
+    - bundle exec slather coverage --html --scheme Sdk --workspace SpreedlySdk.xcworkspace SpreedlySdk.xcodeproj
+  publish_coverage_script:
+    - git config --global user.name "Cirrus CI"
+    - git config --global user.email "ci@ergonlabs.com"
+    - git clone https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/ergonlabs/spreedly-docs.git docs
+    - mkdir -p docs/coverage/$TARGET/core-sdk/ios
+    - cp -fR html/* docs/coverage/$TARGET/core-sdk/ios
+    - cd docs
+    - git add .
+    - git commit -m "reports for swift" && git push || echo "No code coverage changes"
+
+test_task:
+  name: 'Run Tests'
+  only_if: $CIRRUS_BRANCH != 'master'
+  env:
+    TARGET: 'pr'
+  <<: *TEST
+
+test_master_task:
+  name: 'Run Tests'
+  only_if: $CIRRUS_BRANCH == 'master'
+  env:
+    TARGET: 'master'
+  <<: *TEST
 
 lint_task:
-  name: 'Swift Lint'
+  name: 'Lint check sources'
   script:
     - cd Sdk
     - ../Pods/SwiftLint/swiftlint
