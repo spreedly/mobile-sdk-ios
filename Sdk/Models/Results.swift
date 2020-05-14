@@ -63,17 +63,17 @@ public class PaymentMethodResultBase {
 }
 
 public class CreditCardResult: PaymentMethodResultBase {
-    var cardType: String?
-    var year: Int?
-    var month: Int?
+    public var cardType: String?
+    public var year: Int?
+    public var month: Int?
 
-    var lastFourDigits: String?
-    var firstSixDigits: String?
-    var number: String?
+    public var lastFourDigits: String?
+    public var firstSixDigits: String?
+    public var number: String?
 
-    var eligibleForCardUpdater: Bool?
-    var callbackUrl: String?
-    var fingerprint: String?
+    public var eligibleForCardUpdater: Bool?
+    public var callbackUrl: String?
+    public var fingerprint: String?
 
     required init(from json: [String: Any]) {
         cardType = json.string(optional: "card_type")
@@ -93,13 +93,13 @@ public class CreditCardResult: PaymentMethodResultBase {
 }
 
 public class BankAccountResult: PaymentMethodResultBase {
-    var bankName: String?
-    var accountType: BankAccountType?
-    var accountHolderType: BankAccountHolderType?
-    var routingNumberDisplayDigits: String?
-    var accountNumberDisplayDigits: String?
-    var routingNumber: String?
-    var accountNumber: String?
+    public var bankName: String?
+    public var accountType: BankAccountType?
+    public var accountHolderType: BankAccountHolderType?
+    public var routingNumberDisplayDigits: String?
+    public var accountNumberDisplayDigits: String?
+    public var routingNumber: String?
+    public var accountNumber: String?
 
     required init(from json: [String: Any]) {
         bankName = json.string(optional: "bank_name")
