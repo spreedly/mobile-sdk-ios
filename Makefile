@@ -1,4 +1,3 @@
-SHELL=/bin/zsh
 .PHONY: test coverage bundle
 
 test:
