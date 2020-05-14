@@ -1,4 +1,7 @@
-![Swift](https://github.com/ergonlabs/spreedly-ios/workflows/Swift/badge.svg?branch=master)
+![Lint](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Lint%20check%20sources)
+![Test](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Run%20Tests)
+![Build](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Build%20Libraries)
+![Sample](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Build%20Sdk%20Sample)
 
 # spreedly-ios
 
