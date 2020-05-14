@@ -5,3 +5,5 @@ trash
 .DS_Store
 .idea
 xcuserdata/
+vendor/
+slather-html/
