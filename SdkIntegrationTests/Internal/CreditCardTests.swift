@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import Sdk
+import Sdk
 
 class CreditCardTests: XCTestCase {
     func assertMinimalCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {

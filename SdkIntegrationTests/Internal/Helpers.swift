@@ -3,7 +3,7 @@
 //
 
 import RxSwift
-@testable import Sdk
+import Sdk
 
 class Helpers {
     static let testCardNumber = "4111111111111111"
@@ -12,7 +12,7 @@ class Helpers {
     static func createClient() -> SpreedlyClient {
         let key = ProcessInfo.processInfo.environment["ENV_KEY"] ?? secretEnvKey
         let secret = ProcessInfo.processInfo.environment["ENV_SECRET"] ?? secretEnvSecret
-        return SpreedlyClientImpl(envKey: key, envSecret: secret, test: true)
+        return createSpreedlyClient(envKey: key, envSecret: secret, test: true)
     }
 
     static func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCardResult>> {
