@@ -31,7 +31,7 @@ test_task_template: &TEST
     - cd docs
     - git add .
     - git commit -m "reports for swift"
-    - git push
+    - git push || echo "No changes to push"
 
 test_task:
   name: 'Run Tests'
