@@ -19,8 +19,11 @@ test_task_template: &TEST
     - echo "let secretEnvKey = \"$ENV_KEY\"" > SdkIntegrationTests/Secrets.swift
     - echo "let secretEnvSecret = \"$ENV_SECRET\"" >> SdkIntegrationTests/Secrets.swift
     - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11' -enableCodeCoverage YES
+  bundle_cache:
+    folder: vendor
+    fingerprint_script: cat Gemfile.lock
+    populate_script: bundle install
   coverage_script:
-    - bundle install --path vendor/bundle
     - bundle exec slather coverage --html --scheme Sdk --workspace SpreedlySdk.xcworkspace SpreedlySdk.xcodeproj
   publish_coverage_script:
     - git config --global user.name "Cirrus CI"
