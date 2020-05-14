@@ -30,8 +30,7 @@ test_task_template: &TEST
     - cp -fR html/* docs/coverage/$TARGET/core-sdk/ios
     - cd docs
     - git add .
-    - git commit -m "reports for swift"
-    - git push || echo "No changes to push"
+    - git commit -m "reports for swift" && git push || echo "No code coverage changes"
 
 test_task:
   name: 'Run Tests'
