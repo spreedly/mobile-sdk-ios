@@ -72,7 +72,9 @@ class ApplePayTests: XCTestCase {
         Helpers.assertAddressFieldsEqual(actual: result.address!, expected: billing)
         Helpers.assertAddressFieldsEqual(actual: result.shippingAddress!, expected: shipping)
     }
+}
 
+extension ApplePayTests {
     func assertCardFieldsPopulate(result: ApplePayResult, info: ApplePayInfo) {
         XCTAssertEqual(result.cardType, "visa")
         XCTAssertEqual(result.year, 2022)
