@@ -41,7 +41,7 @@ public protocol SpreedlyClient {
     func createBankAccountPaymentMethod(
             bankAccount: BankAccountInfo,
             email: String?,
-            metadata: [String: String?]?
+            metadata: [String: String]?
     ) -> Single<Transaction<BankAccountResult>>
 
     func recache(

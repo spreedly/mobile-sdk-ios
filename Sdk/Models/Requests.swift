@@ -133,6 +133,17 @@ public class BankAccountInfo: PaymentMethodRequestBase {
 
         return result
     }
+
+    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+        [
+            "payment_method": [
+                "email": email ?? "",
+                "metadata": metadata ?? [:],
+                "bank_account": try self.toJson(),
+                "retained": self.retained ?? false
+            ]
+        ]
+    }
 }
 
 public class ApplePayInfo: PaymentMethodRequestBase {
