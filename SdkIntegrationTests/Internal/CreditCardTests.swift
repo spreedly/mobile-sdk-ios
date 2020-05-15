@@ -6,28 +6,6 @@ import XCTest
 import Sdk
 
 class CreditCardTests: XCTestCase {
-    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodRequestBase, type paymentMethodType: PaymentMethodType) {
-        XCTAssertNotNil(result.token)
-        XCTAssertEqual(result.storageState, StorageState.cached)
-        XCTAssertEqual(result.test, true)
-        XCTAssertEqual(result.paymentMethodType, paymentMethodType)
-
-        XCTAssertEqual(result.firstName, info.firstName)
-        XCTAssertEqual(result.lastName, info.lastName)
-        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
-    }
-
-    static func assertCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
-        XCTAssertEqual(result.cardType, "visa")
-        XCTAssertEqual(result.year, info.year)
-        XCTAssertEqual(result.month, info.month)
-
-        XCTAssertEqual(result.lastFourDigits, "1111")
-        XCTAssertEqual(result.firstSixDigits, "411111")
-        XCTAssertEqual(result.number, "XXXX-XXXX-XXXX-1111")
-        XCTAssertNotNil(result.fingerprint)
-    }
-
     func testCanCreateMinimalCreditCard() throws {
         let client = Helpers.createClient()
         let info = CreditCardInfo(
@@ -104,5 +82,31 @@ class CreditCardTests: XCTestCase {
         XCTAssertEqual(result.shippingAddress?.zip, shipping.zip)
         XCTAssertEqual(result.shippingAddress?.country, shipping.country)
         XCTAssertEqual(result.shippingAddress?.phoneNumber, shipping.phoneNumber)
+    }
+}
+
+extension CreditCardTests {
+    // MARK: - Credit card specific asserts
+
+    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodRequestBase, type paymentMethodType: PaymentMethodType) {
+        XCTAssertNotNil(result.token)
+        XCTAssertEqual(result.storageState, StorageState.cached)
+        XCTAssertEqual(result.test, true)
+        XCTAssertEqual(result.paymentMethodType, paymentMethodType)
+
+        XCTAssertEqual(result.firstName, info.firstName)
+        XCTAssertEqual(result.lastName, info.lastName)
+        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+    }
+
+    static func assertCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
+        XCTAssertEqual(result.cardType, "visa")
+        XCTAssertEqual(result.year, info.year)
+        XCTAssertEqual(result.month, info.month)
+
+        XCTAssertEqual(result.lastFourDigits, "1111")
+        XCTAssertEqual(result.firstSixDigits, "411111")
+        XCTAssertEqual(result.number, "XXXX-XXXX-XXXX-1111")
+        XCTAssertNotNil(result.fingerprint)
     }
 }
