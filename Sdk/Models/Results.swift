@@ -113,3 +113,29 @@ public class BankAccountResult: PaymentMethodResultBase {
         super.init(from: json)
     }
 }
+
+public class ApplePayResult: PaymentMethodResultBase {
+    public var cardType: String?
+    public var year: Int?
+    public var month: Int?
+
+    public var lastFourDigits: String?
+    public var firstSixDigits: String?
+    public var number: String?
+
+    public var eligibleForCardUpdater: Bool?
+
+    required init(from json: [String: Any]) {
+        cardType = json.string(optional: "card_type")
+        year = json.int(optional: "year")
+        month = json.int(optional: "month")
+
+        lastFourDigits = json.string(optional: "last_four_digits")
+        firstSixDigits = json.string(optional: "first_six_digits")
+        number = json.string(optional: "number")
+
+        eligibleForCardUpdater = json.bool(optional: "eligible_for_card_updater")
+
+        super.init(from: json)
+    }
+}

@@ -45,6 +45,12 @@ public protocol SpreedlyClient {
     ) -> Single<Transaction<BankAccountResult>>
 
     func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>>
+
+    func createApplePayPaymentMethod(
+            applePay: ApplePayInfo,
+            email: String?,
+            metadata: [String: String]?
+    ) -> Single<Transaction<ApplePayResult>>
 }
 
 public enum SpreedlySecurityError: Error {

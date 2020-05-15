@@ -1,3 +1,5 @@
+import PassKit
+
 public class PaymentMethodRequestBase {
     public let fullName: String?
     public let firstName: String?
@@ -129,6 +131,28 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         result.maybeSetEnum("bank_account_type", bankAccountType)
         result.maybeSetEnum("bank_account_holder_type", bankAccountHolderType)
 
+        return result
+    }
+}
+
+public class ApplePayInfo: PaymentMethodRequestBase {
+    let paymentToken: Data
+    public var testCardNumber: String?
+
+    public init(firstName: String, lastName: String, paymentTokenData: Data) {
+        self.paymentToken = paymentTokenData
+        super.init(fullName: nil, firstName: firstName, lastName: lastName)
+    }
+    public convenience init(firstName: String, lastName: String, payment: PKPayment) {
+        self.init(firstName: firstName, lastName: lastName, paymentTokenData: payment.token.paymentData)
+    }
+
+    internal override func toJson() throws -> [String: Any] {
+        var result = [String: Any]()
+
+        let paymentDataObject = try paymentToken.decodeJson()
+        result.maybeSet("payment_data", paymentDataObject)
+        result.maybeSet("test_card_number", testCardNumber)
         return result
     }
 }
