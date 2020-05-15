@@ -4,6 +4,7 @@
 
 import RxSwift
 import Sdk
+import XCTest
 
 class Helpers {
     static let testCardNumber = "4111111111111111"
@@ -32,5 +33,15 @@ class Helpers {
                 email: "dolly@dog.com",
                 metadata: nil
         )
+    }
+
+    static func assertAddressFieldsEqual(actual: Address, expected: Address) {
+        XCTAssertEqual(actual.address1, expected.address1)
+        XCTAssertEqual(actual.address2, expected.address2)
+        XCTAssertEqual(actual.city, expected.city)
+        XCTAssertEqual(actual.state, expected.state)
+        XCTAssertEqual(actual.zip, expected.zip)
+        XCTAssertEqual(actual.country, expected.country)
+        XCTAssertEqual(actual.phoneNumber, expected.phoneNumber)
     }
 }
