@@ -52,7 +52,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
-            let request = info.toRequestJson(email: email, metadata: metadata)
+            let request = try info.toRequestJson(email: email, metadata: metadata)
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
