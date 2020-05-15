@@ -6,17 +6,18 @@ import XCTest
 import Sdk
 
 class CreditCardTests: XCTestCase {
-    func assertMinimalCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
+    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodRequestBase, type paymentMethodType: PaymentMethodType) {
         XCTAssertNotNil(result.token)
         XCTAssertEqual(result.storageState, StorageState.cached)
         XCTAssertEqual(result.test, true)
-        XCTAssertEqual(result.paymentMethodType, PaymentMethodType.creditCard)
-        XCTAssertNil(result.callbackUrl)
+        XCTAssertEqual(result.paymentMethodType, paymentMethodType)
 
         XCTAssertEqual(result.firstName, info.firstName)
         XCTAssertEqual(result.lastName, info.lastName)
         XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+    }
 
+    static func assertCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
         XCTAssertEqual(result.cardType, "visa")
         XCTAssertEqual(result.year, info.year)
         XCTAssertEqual(result.month, info.month)
@@ -42,7 +43,8 @@ class CreditCardTests: XCTestCase {
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
-        self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
+        CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
     }
 
     func testCanCreateFullCreditCard() throws {
@@ -82,7 +84,9 @@ class CreditCardTests: XCTestCase {
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
-        self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
+        CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
+        XCTAssertNil(result.callbackUrl)
         XCTAssertEqual(result.email, email)
 
         XCTAssertEqual(result.address?.address1, billing.address1)

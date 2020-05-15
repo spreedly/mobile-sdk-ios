@@ -7,7 +7,6 @@ import XCTest
 import Sdk
 
 class ApplePayTests: XCTestCase {
-
     let paymentTokenData = #"""
                            {
                                "version": "EC_v1",
@@ -21,29 +20,63 @@ class ApplePayTests: XCTestCase {
                            }
                            """#.data(using: .utf8)!
 
-    func testCanCreateApplePay() throws {
-
+    func testCanCreateMinimalApplePay() throws {
         let client = Helpers.createClient()
         let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: paymentTokenData)
         info.testCardNumber = Helpers.testCardNumber
 
-        let promise = client.createApplePayPaymentMethod(applePay: info, email: "dolly@dog.com", metadata: nil)
+        let promise = client.createApplePayPaymentMethod(applePay: info)
 
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
-        XCTAssertNotNil(result.token)
-        XCTAssertEqual(result.storageState, StorageState.cached)
-        XCTAssertEqual(result.test, true)
-        XCTAssertEqual(result.paymentMethodType, PaymentMethodType.applePay)
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .applePay)
+        self.assertCardFieldsPopulate(result: result, info: info)
+    }
 
-        XCTAssertEqual(result.firstName, info.firstName)
-        XCTAssertEqual(result.lastName, info.lastName)
-        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+    func testCanCreateFullApplePay() throws {
+        let client = Helpers.createClient()
+        let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: paymentTokenData)
+        info.testCardNumber = Helpers.testCardNumber
 
+        var billing = Address()
+        billing.address1 = "123 Fake St"
+        billing.address2 = "Suite #200"
+        billing.city = "Springfield"
+        billing.state = "OR"
+        billing.zip = "97475"
+        billing.country = "US"
+        billing.phoneNumber = "541-555-2222"
+        info.address = billing
+
+        var shipping = Address()
+        shipping.address1 = "321 Wall St"
+        shipping.address2 = "Suite #4100"
+        shipping.city = "Seattle"
+        shipping.state = "WA"
+        shipping.zip = "98121"
+        shipping.country = "US"
+        shipping.phoneNumber = "206-555-2222"
+        info.shippingAddress = shipping
+
+        let email = "dolly@dog.com"
+
+        let promise = client.createApplePayPaymentMethod(applePay: info, email: email, metadata: nil)
+
+        let transaction = try promise.assertResult(self)
+        let result = transaction.paymentMethod!
+
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .applePay)
+        self.assertCardFieldsPopulate(result: result, info: info)
+
+        Helpers.assertAddressFieldsEqual(actual: result.address!, expected: billing)
+        Helpers.assertAddressFieldsEqual(actual: result.shippingAddress!, expected: shipping)
+    }
+
+    func assertCardFieldsPopulate(result: ApplePayResult, info: ApplePayInfo) {
         XCTAssertEqual(result.cardType, "visa")
-        XCTAssertNotNil(result.year)
-        XCTAssertNotNil(result.month)
+        XCTAssertEqual(result.year, 2022)
+        XCTAssertEqual(result.month, 3)
 
         XCTAssertEqual(result.lastFourDigits, "1111")
         XCTAssertEqual(result.firstSixDigits, "411111")

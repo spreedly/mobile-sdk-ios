@@ -124,6 +124,10 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
+    func createApplePayPaymentMethod(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
+        createApplePayPaymentMethod(applePay: info, email: nil, metadata: nil)
+    }
+
     func createApplePayPaymentMethod(
             applePay info: ApplePayInfo,
             email: String?,
@@ -140,8 +144,14 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             paymentMethod.maybeSet("first_name", info.firstName)
             paymentMethod.maybeSet("last_name", info.lastName)
             paymentMethod.maybeSet("full_name", info.fullName)
+            if let address = info.address {
+                address.toJson(&paymentMethod, .billing)
+            }
+            if let shipping = info.shippingAddress {
+                shipping.toJson(&paymentMethod, .shipping)
+            }
 
-            var request: [String: Any] = [
+            let request: [String: Any] = [
                 "payment_method": paymentMethod
             ]
 
