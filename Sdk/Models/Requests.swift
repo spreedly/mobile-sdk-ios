@@ -172,8 +172,7 @@ public class ApplePayInfo: PaymentMethodRequestBase {
     internal override func toJson() throws -> [String: Any] {
         var result = [String: Any]()
 
-        let paymentDataObject = try paymentToken.decodeJson()
-        result.maybeSet("payment_data", paymentDataObject)
+        result["payment_data"] = try paymentToken.decodeJson()
         result.maybeSet("test_card_number", testCardNumber)
         return result
     }
