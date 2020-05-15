@@ -141,6 +141,10 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 "apple_pay": try info.toJson(),
                 "retained": info.retained ?? false
             ]
+
+            // The Apple Pay endpoint expects the person specific and address
+            // information up at the payment_method level unlike the other
+            // types of payment methods.
             paymentMethod.maybeSet("first_name", info.firstName)
             paymentMethod.maybeSet("last_name", info.lastName)
             paymentMethod.maybeSet("full_name", info.fullName)
@@ -163,7 +167,6 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 try Transaction<ApplePayResult>.unwrapFrom(data: data)
             }
         }
-
     }
 
     func process(request: URLRequest) -> Single<Data> {
