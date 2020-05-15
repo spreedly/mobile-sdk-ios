@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct Address {
+public struct Address: Equatable {
     public var address1: String?
     public var address2: String?
     public var city: String?

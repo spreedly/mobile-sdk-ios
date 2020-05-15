@@ -67,21 +67,8 @@ class CreditCardTests: XCTestCase {
         XCTAssertNil(result.callbackUrl)
         XCTAssertEqual(result.email, email)
 
-        XCTAssertEqual(result.address?.address1, billing.address1)
-        XCTAssertEqual(result.address?.address2, billing.address2)
-        XCTAssertEqual(result.address?.city, billing.city)
-        XCTAssertEqual(result.address?.state, billing.state)
-        XCTAssertEqual(result.address?.zip, billing.zip)
-        XCTAssertEqual(result.address?.country, billing.country)
-        XCTAssertEqual(result.address?.phoneNumber, billing.phoneNumber)
-
-        XCTAssertEqual(result.shippingAddress?.address1, shipping.address1)
-        XCTAssertEqual(result.shippingAddress?.address2, shipping.address2)
-        XCTAssertEqual(result.shippingAddress?.city, shipping.city)
-        XCTAssertEqual(result.shippingAddress?.state, shipping.state)
-        XCTAssertEqual(result.shippingAddress?.zip, shipping.zip)
-        XCTAssertEqual(result.shippingAddress?.country, shipping.country)
-        XCTAssertEqual(result.shippingAddress?.phoneNumber, shipping.phoneNumber)
+        XCTAssertEqual(result.address, billing)
+        XCTAssertEqual(result.shippingAddress, shipping)
     }
 }
 

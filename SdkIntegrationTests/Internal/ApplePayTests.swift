@@ -68,9 +68,8 @@ class ApplePayTests: XCTestCase {
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .applePay)
         self.assertCardFieldsPopulate(result: result, info: info)
-
-        Helpers.assertAddressFieldsEqual(actual: result.address!, expected: billing)
-        Helpers.assertAddressFieldsEqual(actual: result.shippingAddress!, expected: shipping)
+        XCTAssertEqual(result.address, billing)
+        XCTAssertEqual(result.shippingAddress, shipping)
     }
 }
 

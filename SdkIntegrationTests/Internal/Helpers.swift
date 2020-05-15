@@ -34,14 +34,4 @@ class Helpers {
                 metadata: nil
         )
     }
-
-    static func assertAddressFieldsEqual(actual: Address, expected: Address) {
-        XCTAssertEqual(actual.address1, expected.address1)
-        XCTAssertEqual(actual.address2, expected.address2)
-        XCTAssertEqual(actual.city, expected.city)
-        XCTAssertEqual(actual.state, expected.state)
-        XCTAssertEqual(actual.zip, expected.zip)
-        XCTAssertEqual(actual.country, expected.country)
-        XCTAssertEqual(actual.phoneNumber, expected.phoneNumber)
-    }
 }
