@@ -4,7 +4,6 @@
 
 import RxSwift
 import Sdk
-import XCTest
 
 class Helpers {
     static let testCardNumber = "4111111111111111"
