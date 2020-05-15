@@ -135,30 +135,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     ) -> Single<Transaction<ApplePayResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
         return Single.deferred {
-            var paymentMethod: [String: Any] = [
-                "email": email ?? "",
-                "metadata": metadata ?? [:],
-                "apple_pay": try info.toJson(),
-                "retained": info.retained ?? false
-            ]
-
-            // The Apple Pay endpoint expects the person specific and address
-            // information up at the payment_method level unlike the other
-            // types of payment methods.
-            paymentMethod.maybeSet("first_name", info.firstName)
-            paymentMethod.maybeSet("last_name", info.lastName)
-            paymentMethod.maybeSet("full_name", info.fullName)
-            if let address = info.address {
-                address.toJson(&paymentMethod, .billing)
-            }
-            if let shipping = info.shippingAddress {
-                shipping.toJson(&paymentMethod, .shipping)
-            }
-
-            let request: [String: Any] = [
-                "payment_method": paymentMethod
-            ]
-
+            let request = try info.toRequestJson(email: email, metadata: metadata)
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()

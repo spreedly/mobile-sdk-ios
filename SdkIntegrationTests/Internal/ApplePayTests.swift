@@ -38,6 +38,7 @@ class ApplePayTests: XCTestCase {
         let client = Helpers.createClient()
         let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: paymentTokenData)
         info.testCardNumber = Helpers.testCardNumber
+        info.company = "LSGD Partners"
 
         var billing = Address()
         billing.address1 = "123 Fake St"

@@ -84,6 +84,7 @@ extension CreditCardTests {
         XCTAssertEqual(result.firstName, info.firstName)
         XCTAssertEqual(result.lastName, info.lastName)
         XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+        XCTAssertEqual(result.company, info.company)
     }
 
     static func assertCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {

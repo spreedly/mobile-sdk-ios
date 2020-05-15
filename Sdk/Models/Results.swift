@@ -40,6 +40,7 @@ public class PaymentMethodResultBase {
     public let firstName: String?
     public let lastName: String?
     public let fullName: String?
+    public let company: String?
 
     public let address: Address?
     public let shippingAddress: Address?
@@ -55,6 +56,7 @@ public class PaymentMethodResultBase {
         firstName = json.string(optional: "first_name")
         lastName = json.string(optional: "last_name")
         fullName = json.string(optional: "full_name")
+        company = json.string(optional: "company")
 
         address = Address(from: json, as: .billing)
         shippingAddress = Address(from: json, as: .shipping)

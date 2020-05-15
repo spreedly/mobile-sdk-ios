@@ -155,4 +155,32 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         result.maybeSet("test_card_number", testCardNumber)
         return result
     }
+
+    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+        var paymentMethod: [String: Any] = [
+            "email": email ?? "",
+            "metadata": metadata ?? [:],
+            "apple_pay": try self.toJson(),
+            "retained": self.retained ?? false
+        ]
+
+        // The Apple Pay endpoint expects the person-specific and address
+        // information up at the payment_method level unlike the other
+        // types of payment methods.
+        paymentMethod.maybeSet("first_name", self.firstName)
+        paymentMethod.maybeSet("last_name", self.lastName)
+        paymentMethod.maybeSet("full_name", self.fullName)
+        paymentMethod.maybeSet("company", self.company)
+
+        if let address = self.address {
+            address.toJson(&paymentMethod, .billing)
+        }
+        if let shipping = self.shippingAddress {
+            shipping.toJson(&paymentMethod, .shipping)
+        }
+
+        return [
+            "payment_method": paymentMethod
+        ]
+    }
 }
