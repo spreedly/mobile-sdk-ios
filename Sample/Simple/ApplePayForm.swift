@@ -6,7 +6,7 @@ import Foundation
 import SwiftUI
 import PassKit
 import RxSwift
-import Sdk
+import CoreSdk
 
 struct ApplePayForm: View {
     var disposeBag = DisposeBag()
