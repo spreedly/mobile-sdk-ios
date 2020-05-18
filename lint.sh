@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pushd Sdk
+pushd CoreSdk
 ../Pods/SwiftLint/swiftlint
 popd
 pushd SdkTests

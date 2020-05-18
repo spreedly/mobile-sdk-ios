@@ -14,8 +14,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "442A2CD52CC6A2C10B2623E8"
-               BuildableName = "Sdk.framework"
-               BlueprintName = "Sdk"
+               BuildableName = "CoreSdk.framework"
+               BlueprintName = "CoreSdk"
                ReferencedContainer = "container:SpreedlySdk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,8 +32,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "442A2CD52CC6A2C10B2623E8"
-            BuildableName = "Sdk.framework"
-            BlueprintName = "Sdk"
+            BuildableName = "CoreSdk.framework"
+            BlueprintName = "CoreSdk"
             ReferencedContainer = "container:SpreedlySdk.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -81,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "442A2CD52CC6A2C10B2623E8"
-            BuildableName = "Sdk.framework"
-            BlueprintName = "Sdk"
+            BuildableName = "CoreSdk.framework"
+            BlueprintName = "CoreSdk"
             ReferencedContainer = "container:SpreedlySdk.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

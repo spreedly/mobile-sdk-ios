@@ -5,7 +5,7 @@ platform :ios, '9.0'
 
 pod 'SwiftLint'
 
-target 'Sdk' do
+target 'CoreSdk' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
