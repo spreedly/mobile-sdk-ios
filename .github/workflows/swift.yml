@@ -9,7 +9,7 @@
 ##xcodebuild test -scheme 'All in SdkTests'  -destination 'name=iPhone 11' -workspace SpreedlySdk.xcworkspace/
 #jobs:
 #  build:
-#    name: 'XCode Build Sdk'
+#    name: 'XCode Build CoreSdk'
 #    runs-on: macos-latest
 #    steps:
 #    - uses: actions/checkout@v2
@@ -18,7 +18,7 @@
 #      with:
 #        action: build
 #        workspace: SpreedlySdk.xcworkspace
-#        scheme: Sdk
+#        scheme: CoreSdk
 #        destination: 'name=iPhone 11'
 #  test:
 #    name: 'XCode Test'
@@ -52,4 +52,4 @@
 #    - uses: actions/checkout@v2
 #    - name: Lint
 #      run: ../Pods/SwiftLint/swiftlint
-#      working-directory: Sdk
+#      working-directory: CoreSdk
