@@ -4,7 +4,7 @@
 
 import Foundation
 import XCTest
-@testable import Sdk
+@testable import CoreSdk
 
 class DecodeJsonTests: XCTestCase {
     func testDecodeJsonWhenNotJsonShouldThrow() {

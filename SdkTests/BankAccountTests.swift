@@ -2,7 +2,7 @@
 // Created by Eli Thompson on 5/1/20.
 //
 import XCTest
-@testable import Sdk
+@testable import CoreSdk
 
 class BankAccountInfoTests: XCTestCase {
     func testCanEncode() throws {

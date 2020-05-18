@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Sdk
+import CoreSdk
 
 struct ContentView: View {
     @State private var selection = 0

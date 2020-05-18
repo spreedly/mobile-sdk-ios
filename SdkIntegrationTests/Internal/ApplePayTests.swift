@@ -4,7 +4,7 @@
 
 import Foundation
 import XCTest
-import Sdk
+import CoreSdk
 
 class ApplePayTests: XCTestCase {
     let paymentTokenData = #"""

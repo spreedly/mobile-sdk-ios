@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import Sdk
+import CoreSdk
 
 class BankAccountTests: XCTestCase {
     func testCanCreateBankAccount() throws {

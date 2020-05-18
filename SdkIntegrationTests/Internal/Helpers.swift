@@ -3,7 +3,7 @@
 //
 
 import RxSwift
-import Sdk
+import CoreSdk
 
 class Helpers {
     static let testCardNumber = "4111111111111111"

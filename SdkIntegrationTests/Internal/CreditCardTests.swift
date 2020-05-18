@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import Sdk
+import CoreSdk
 
 class CreditCardTests: XCTestCase {
     func testCanCreateMinimalCreditCard() throws {

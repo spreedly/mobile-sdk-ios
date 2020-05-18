@@ -5,7 +5,7 @@
 import Foundation
 import SwiftUI
 import RxSwift
-import Sdk
+import CoreSdk
 
 struct CreditCardForm: View {
     var disposeBag = DisposeBag()

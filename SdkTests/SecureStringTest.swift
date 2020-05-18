@@ -5,7 +5,7 @@
 import Foundation
 import XCTest
 import RxSwift
-@testable import Sdk
+@testable import CoreSdk
 
 class SecureStringTest: XCTestCase {
 
