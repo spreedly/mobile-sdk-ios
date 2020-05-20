@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		070E460E5904098B4D463994 /* Pods_SdkIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */; };
-		3CCCFF9A2475A2AF003899B4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCFF992475A2AF003899B4 /* Secrets.swift */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -28,6 +27,7 @@
 		442A2594177026F6D7305F9C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CF09D429D26BF4EF654 /* Secrets.swift */; };
 		442A25C735D1FD60A87FDD36 /* CocoaSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2F11C1E2D8471A4F0D8A /* CocoaSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A63301FADA969609EC0 /* ClientTests.swift */; };
+		442A26114E3DD843A2220A8E /* CreditCardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A96557532017197368D /* CreditCardFormViewController.swift */; };
 		442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2D420CB95244D5FBD864 /* Transaction.swift */; };
 		442A2759E4BC22B35E134335 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2662BE68ED0552C5BE46 /* Client.swift */; };
 		442A277CCCDFEA291756EBA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E2977597945A0D9CA78 /* SceneDelegate.swift */; };
@@ -35,6 +35,7 @@
 		442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */; };
 		442A27BE10BD443FF1B0FC5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A26B6502E6FB413A25563 /* AppDelegate.swift */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
+		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
 		442A2B9C3483FAC223410438 /* BankAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2617B06FA880F620D5BA /* BankAccountForm.swift */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2D1D3EE870281C35ED73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442A284845764D5E1AF3FE86 /* Assets.xcassets */; };
@@ -145,13 +146,13 @@
 		2B768D18AC34FBC5B2056860 /* Pods-CocoaSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSdk.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSdk/Pods-CocoaSdk.debug.xcconfig"; sourceTree = "<group>"; };
 		38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C934897246F084D003C84C7 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
-		3CCCFF992475A2AF003899B4 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueStringImpl.swift; sourceTree = "<group>"; };
 		442A21244C58460DB48ED6B3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		442A213C18A35388BDA5861C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		442A21723181F2D5F72F5B71 /* Spreedly-env.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "Spreedly-env.plist"; sourceTree = "<group>"; };
 		442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStringTest.swift; sourceTree = "<group>"; };
 		442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A21C9FEFB33DBF150C0BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 		442A292A3C1BABE2F1AC2C1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		442A2A63301FADA969609EC0 /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
+		442A2A96557532017197368D /* CreditCardFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardFormViewController.swift; sourceTree = "<group>"; };
 		442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSecureForm.swift; sourceTree = "<group>"; };
 		442A2C1ADA08DBE29D72B986 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		442A2CB4AB12299CD8D31516 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
@@ -294,7 +296,8 @@
 				442A2E2977597945A0D9CA78 /* SceneDelegate.swift */,
 				442A2C1ADA08DBE29D72B986 /* ViewController.swift */,
 				442A28C146C848A440AEF7A1 /* Main.storyboard */,
-				3CCCFF992475A2AF003899B4 /* Secrets.swift */,
+				442A21723181F2D5F72F5B71 /* Spreedly-env.plist */,
+				442A2A96557532017197368D /* CreditCardFormViewController.swift */,
 			);
 			path = CocoaSample;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				442A2478A1C1936F7001E3A9 /* Assets.xcassets in Resources */,
 				442A2220D9FAB271C19F4113 /* LaunchScreen.storyboard in Resources */,
 				442A22D6A2723C5D328CA8A6 /* Main.storyboard in Resources */,
+				442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,9 +962,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */,
-				3CCCFF9A2475A2AF003899B4 /* Secrets.swift in Sources */,
 				442A277CCCDFEA291756EBA7 /* SceneDelegate.swift in Sources */,
 				442A23C356600951EC1503B4 /* ViewController.swift in Sources */,
+				442A26114E3DD843A2220A8E /* CreditCardFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

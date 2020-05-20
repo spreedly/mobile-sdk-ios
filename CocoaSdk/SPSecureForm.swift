@@ -11,11 +11,35 @@ public protocol SPSecureFormDelegate {
     func spreedly(secureForm form: SPSecureForm, creditCardSuccess result: Transaction<CreditCardResult>);
 }
 
+public enum SPSecureClientError: Error {
+    case noSpreedlyClient
+}
+
 public class SPSecureForm: UIView {
 
     public var delegate: SPSecureFormDelegate?
 
-    public var client: SpreedlyClient
+    private var _client: SpreedlyClient?
+    public var client: SpreedlyClient {
+        get {
+            if let client = _client {
+                return client
+            } else {
+                if let path = Bundle.main.path(forResource: "Spreedly-env", ofType: "plist"),
+                   let config = NSDictionary(contentsOfFile: path) as? [String: Any],
+                   let envKey = config["ENV_KEY"] as? String,
+                   let envSecret = config["ENV_SECRET"] as? String
+                {
+                    _client = createSpreedlyClient(envKey: envKey, envSecret: envSecret, test: config["TEST"] as? Bool ?? false)
+                    return _client!
+                }
+            }
+            fatalError("SPSecureForm needs a SpreedlyClient, you can either create one and set the client property or you can use a Spreedly-env.plist file.")
+        }
+        set {
+            _client = newValue
+        }
+    }
 
     public var creditCardDefaults: CreditCardInfo?
     public var bankAccountDefaults: BankAccountInfo?
@@ -27,12 +51,10 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var expirationYear: UITextField?
 
     public override init(frame: CGRect) {
-        client = createSpreedlyClient(envKey: "secretEnvKey", envSecret: "secretEnvSecret")
         super.init(frame: frame)
     }
 
     public required init?(coder: NSCoder) {
-        client = createSpreedlyClient(envKey: "secretEnvKey", envSecret: "secretEnvSecret")
         super.init(coder: coder)
     }
 
@@ -45,7 +67,7 @@ public class SPSecureForm: UIView {
                       \(expirationMonth?.text() ?? "mm")/\(expirationYear?.text() ?? "yy")
                       """
         let alert = UIAlertController(
-                title: "Submit", 
+                title: "Submit",
                 message: message,
                 preferredStyle: .alert
         )
@@ -79,7 +101,7 @@ public class SPSecureTextField: UITextField {
 }
 
 
-extension UITextField  {
+extension UITextField {
 
     func text() -> String? {
         self.text
