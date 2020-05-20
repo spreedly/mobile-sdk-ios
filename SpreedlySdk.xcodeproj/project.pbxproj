@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070E460E5904098B4D463994 /* Pods_SdkIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */; };
+		3CCCFF9A2475A2AF003899B4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCFF992475A2AF003899B4 /* Secrets.swift */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -144,6 +145,7 @@
 		2B768D18AC34FBC5B2056860 /* Pods-CocoaSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSdk.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSdk/Pods-CocoaSdk.debug.xcconfig"; sourceTree = "<group>"; };
 		38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C934897246F084D003C84C7 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
+		3CCCFF992475A2AF003899B4 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				442A2E2977597945A0D9CA78 /* SceneDelegate.swift */,
 				442A2C1ADA08DBE29D72B986 /* ViewController.swift */,
 				442A28C146C848A440AEF7A1 /* Main.storyboard */,
+				3CCCFF992475A2AF003899B4 /* Secrets.swift */,
 			);
 			path = CocoaSample;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */,
+				3CCCFF9A2475A2AF003899B4 /* Secrets.swift in Sources */,
 				442A277CCCDFEA291756EBA7 /* SceneDelegate.swift in Sources */,
 				442A23C356600951EC1503B4 /* ViewController.swift in Sources */,
 			);

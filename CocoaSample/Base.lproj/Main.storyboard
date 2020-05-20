@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YUx-rV-FgK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YUx-rV-FgK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,20 +61,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-pS-FNr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="102"/>
+                                <rect key="frame" x="10" y="88" width="404" height="300"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Credit Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="piH-B3-ODf" customClass="SPSecureTextField" customModule="CocoaSdk">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cardholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdT-Vh-uqU">
+                                        <rect key="frame" x="0.0" y="0.0" width="404" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="06g-Dm-y2y">
+                                        <rect key="frame" x="0.0" y="30" width="404" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-yJ-Q5x">
+                                        <rect key="frame" x="0.0" y="60" width="404" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Credit Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="piH-B3-ODf" customClass="SPSecureTextField" customModule="CocoaSdk">
+                                        <rect key="frame" x="0.0" y="90" width="404" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="cc-number"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaL-9z-8DD">
+                                        <rect key="frame" x="0.0" y="120" width="404" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Expiration Month" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-JH-3CX">
+                                        <rect key="frame" x="0.0" y="150" width="404" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Expiration Month"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-GT-cYd">
-                                        <rect key="frame" x="0.0" y="34" width="414" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Expiration Year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-yu-ATf">
+                                        <rect key="frame" x="0.0" y="180" width="404" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Expiration Year"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CVV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-kf-van">
+                                        <rect key="frame" x="0.0" y="210" width="404" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-GT-cYd">
+                                        <rect key="frame" x="0.0" y="240" width="404" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jH8-AF-mFH">
-                                        <rect key="frame" x="0.0" y="68" width="414" height="34"/>
+                                        <rect key="frame" x="0.0" y="270" width="404" height="30"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="createCreditCardPaymentMethodWithSender:" destination="Dpo-s2-wSB" eventType="primaryActionTriggered" id="RRq-qW-hUI"/>
@@ -87,13 +128,16 @@
                         <constraints>
                             <constraint firstItem="9Vp-Pn-Miu" firstAttribute="trailing" secondItem="bbI-pS-FNr" secondAttribute="trailing" id="4Ej-fz-hZJ"/>
                             <constraint firstItem="bbI-pS-FNr" firstAttribute="top" secondItem="9Vp-Pn-Miu" secondAttribute="top" id="CSp-MG-NRO"/>
+                            <constraint firstItem="bbI-pS-FNr" firstAttribute="leading" secondItem="9Vp-Pn-Miu" secondAttribute="leading" constant="10" id="EHc-4w-RvJ"/>
                             <constraint firstItem="9Vp-Pn-Miu" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bbI-pS-FNr" secondAttribute="bottom" id="VnH-Ht-Z2N"/>
-                            <constraint firstItem="bbI-pS-FNr" firstAttribute="leading" secondItem="9Vp-Pn-Miu" secondAttribute="leading" id="aPb-Ht-IMf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Vp-Pn-Miu"/>
                         <connections>
                             <outlet property="creditCardNumber" destination="piH-B3-ODf" id="sal-d6-Trt"/>
                             <outlet property="creditCardVerificationNumber" destination="TrW-GT-cYd" id="yAx-BZ-ZAz"/>
+                            <outlet property="expirationMonth" destination="YvM-JH-3CX" id="tfw-mB-Lo1"/>
+                            <outlet property="expirationYear" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
+                            <outlet property="fullName" destination="06g-Dm-y2y" id="uRX-sf-QQx"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Credit Card Transaction" id="64D-cS-tgt"/>
@@ -120,6 +164,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ywR-99-5VO"/>
+        <segue reference="jEY-vF-AXz"/>
     </inferredMetricsTieBreakers>
 </document>
