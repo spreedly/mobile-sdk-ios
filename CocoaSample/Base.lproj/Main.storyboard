@@ -141,6 +141,9 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Credit Card Transaction" id="64D-cS-tgt"/>
+                    <connections>
+                        <outlet property="form" destination="Dpo-s2-wSB" id="xgl-a7-OLt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qrh-Wv-yj0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
