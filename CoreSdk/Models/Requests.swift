@@ -1,3 +1,5 @@
+import PassKit
+
 public class PaymentMethodRequestBase {
     public let fullName: String?
     public let firstName: String?
@@ -74,6 +76,17 @@ public class CreditCardInfo: PaymentMethodRequestBase {
 
         return result
     }
+
+    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+        [
+            "payment_method": [
+                "email": email ?? "",
+                "metadata": metadata ?? [:],
+                "credit_card": try self.toJson(),
+                "retained": self.retained ?? false
+            ]
+        ]
+    }
 }
 
 public enum BankAccountType: String {
@@ -130,5 +143,75 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         result.maybeSetEnum("bank_account_holder_type", bankAccountHolderType)
 
         return result
+    }
+
+    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+        [
+            "payment_method": [
+                "email": email ?? "",
+                "metadata": metadata ?? [:],
+                "bank_account": try self.toJson(),
+                "retained": self.retained ?? false
+            ]
+        ]
+    }
+}
+
+public class ApplePayInfo: PaymentMethodRequestBase {
+    let paymentToken: Data
+    public var testCardNumber: String?
+
+    public convenience init(firstName: String, lastName: String, paymentTokenData: Data) {
+        self.init(fullName: nil, firstName: firstName, lastName: lastName, paymentTokenData: paymentTokenData)
+    }
+    public convenience init(firstName: String, lastName: String, payment: PKPayment) {
+        self.init(firstName: firstName, lastName: lastName, paymentTokenData: payment.token.paymentData)
+    }
+    public convenience init(fullName: String, paymentTokenData: Data) {
+        self.init(fullName: fullName, firstName: nil, lastName: nil, paymentTokenData: paymentTokenData)
+    }
+    public convenience init(fullName: String, payment: PKPayment) {
+        self.init(fullName: fullName, paymentTokenData: payment.token.paymentData)
+    }
+
+    private init(fullName: String?, firstName: String?, lastName: String?, paymentTokenData: Data) {
+        self.paymentToken = paymentTokenData
+        super.init(fullName: fullName, firstName: firstName, lastName: lastName)
+    }
+
+    internal override func toJson() throws -> [String: Any] {
+        var result = [String: Any]()
+
+        result["payment_data"] = try paymentToken.decodeJson()
+        result.maybeSet("test_card_number", testCardNumber)
+        return result
+    }
+
+    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+        var paymentMethod: [String: Any] = [
+            "email": email ?? "",
+            "metadata": metadata ?? [:],
+            "apple_pay": try self.toJson(),
+            "retained": self.retained ?? false
+        ]
+
+        // The Apple Pay endpoint expects the person-specific and address
+        // information up at the payment_method level unlike the other
+        // types of payment methods.
+        paymentMethod.maybeSet("first_name", self.firstName)
+        paymentMethod.maybeSet("last_name", self.lastName)
+        paymentMethod.maybeSet("full_name", self.fullName)
+        paymentMethod.maybeSet("company", self.company)
+
+        if let address = self.address {
+            address.toJson(&paymentMethod, .billing)
+        }
+        if let shipping = self.shippingAddress {
+            shipping.toJson(&paymentMethod, .shipping)
+        }
+
+        return [
+            "payment_method": paymentMethod
+        ]
     }
 }

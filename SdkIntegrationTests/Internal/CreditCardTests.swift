@@ -3,30 +3,9 @@
 //
 
 import XCTest
-import Sdk
+import CoreSdk
 
 class CreditCardTests: XCTestCase {
-    func assertMinimalCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
-        XCTAssertNotNil(result.token)
-        XCTAssertEqual(result.storageState, StorageState.cached)
-        XCTAssertEqual(result.test, true)
-        XCTAssertEqual(result.paymentMethodType, PaymentMethodType.creditCard)
-        XCTAssertNil(result.callbackUrl)
-
-        XCTAssertEqual(result.firstName, info.firstName)
-        XCTAssertEqual(result.lastName, info.lastName)
-        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
-
-        XCTAssertEqual(result.cardType, "visa")
-        XCTAssertEqual(result.year, info.year)
-        XCTAssertEqual(result.month, info.month)
-
-        XCTAssertEqual(result.lastFourDigits, "1111")
-        XCTAssertEqual(result.firstSixDigits, "411111")
-        XCTAssertEqual(result.number, "XXXX-XXXX-XXXX-1111")
-        XCTAssertNotNil(result.fingerprint)
-    }
-
     func testCanCreateMinimalCreditCard() throws {
         let client = Helpers.createClient()
         let info = CreditCardInfo(
@@ -42,7 +21,8 @@ class CreditCardTests: XCTestCase {
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
-        self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
+        CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
     }
 
     func testCanCreateFullCreditCard() throws {
@@ -82,23 +62,39 @@ class CreditCardTests: XCTestCase {
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
-        self.assertMinimalCardFieldsPopulate(result: result, info: info)
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
+        CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
+        XCTAssertNil(result.callbackUrl)
         XCTAssertEqual(result.email, email)
 
-        XCTAssertEqual(result.address?.address1, billing.address1)
-        XCTAssertEqual(result.address?.address2, billing.address2)
-        XCTAssertEqual(result.address?.city, billing.city)
-        XCTAssertEqual(result.address?.state, billing.state)
-        XCTAssertEqual(result.address?.zip, billing.zip)
-        XCTAssertEqual(result.address?.country, billing.country)
-        XCTAssertEqual(result.address?.phoneNumber, billing.phoneNumber)
+        XCTAssertEqual(result.address, billing)
+        XCTAssertEqual(result.shippingAddress, shipping)
+    }
+}
 
-        XCTAssertEqual(result.shippingAddress?.address1, shipping.address1)
-        XCTAssertEqual(result.shippingAddress?.address2, shipping.address2)
-        XCTAssertEqual(result.shippingAddress?.city, shipping.city)
-        XCTAssertEqual(result.shippingAddress?.state, shipping.state)
-        XCTAssertEqual(result.shippingAddress?.zip, shipping.zip)
-        XCTAssertEqual(result.shippingAddress?.country, shipping.country)
-        XCTAssertEqual(result.shippingAddress?.phoneNumber, shipping.phoneNumber)
+extension CreditCardTests {
+    // MARK: - Credit card specific asserts
+
+    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodRequestBase, type paymentMethodType: PaymentMethodType) {
+        XCTAssertNotNil(result.token)
+        XCTAssertEqual(result.storageState, StorageState.cached)
+        XCTAssertEqual(result.test, true)
+        XCTAssertEqual(result.paymentMethodType, paymentMethodType)
+
+        XCTAssertEqual(result.firstName, info.firstName)
+        XCTAssertEqual(result.lastName, info.lastName)
+        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+        XCTAssertEqual(result.company, info.company)
+    }
+
+    static func assertCardFieldsPopulate(result: CreditCardResult, info: CreditCardInfo) {
+        XCTAssertEqual(result.cardType, "visa")
+        XCTAssertEqual(result.year, info.year)
+        XCTAssertEqual(result.month, info.month)
+
+        XCTAssertEqual(result.lastFourDigits, "1111")
+        XCTAssertEqual(result.firstSixDigits, "411111")
+        XCTAssertEqual(result.number, "XXXX-XXXX-XXXX-1111")
+        XCTAssertNotNil(result.fingerprint)
     }
 }

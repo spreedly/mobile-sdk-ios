@@ -19,6 +19,11 @@ struct SimpleForms: View {
                         Text("Bank Account")
                     }
                     .tag(1)
+            ApplePayForm()
+                    .tabItem {
+                        Text("Apple Pay")
+                    }
+                    .tag(2)
         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
     }
 }

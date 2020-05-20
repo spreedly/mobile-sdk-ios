@@ -52,15 +52,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
-            let request: [String: Any] = [
-                "payment_method": [
-                    "email": email ?? "",
-                    "metadata": metadata ?? [:],
-                    "credit_card": try info.toJson(),
-                    "retained": info.retained ?? false
-                ]
-            ]
-
+            let request = try info.toRequestJson(email: email, metadata: metadata)
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
@@ -78,20 +70,12 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     func createBankAccountPaymentMethod(
             bankAccount info: BankAccountInfo,
             email: String? = nil,
-            metadata: [String: String?]? = nil
+            metadata: [String: String]? = nil
     ) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
-            let request: [String: Any] = [
-                "payment_method": [
-                    "email": email ?? "",
-                    "metadata": metadata ?? [:],
-                    "bank_account": try info.toJson(),
-                    "retained": info.retained ?? false
-                ]
-            ]
-
+            let request = try info.toRequestJson(email: email, metadata: metadata)
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
@@ -120,6 +104,29 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
             return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
                 try Transaction<CreditCardResult>.unwrapFrom(data: data)
+            }
+        }
+    }
+
+    func createApplePayPaymentMethod(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
+        createApplePayPaymentMethod(applePay: info, email: nil, metadata: nil)
+    }
+
+    func createApplePayPaymentMethod(
+            applePay info: ApplePayInfo,
+            email: String?,
+            metadata: [String: String]?
+    ) -> Single<Transaction<ApplePayResult>> {
+        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+
+        return Single.deferred {
+            let request = try info.toRequestJson(email: email, metadata: metadata)
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return self.process(request: urlRequest).map { data -> Transaction<ApplePayResult> in
+                try Transaction<ApplePayResult>.unwrapFrom(data: data)
             }
         }
     }

@@ -4,7 +4,7 @@
 
 import XCTest
 import RxSwift
-import Sdk
+import CoreSdk
 
 class RecacheTests: XCTestCase {
     func testCanRecache() throws {

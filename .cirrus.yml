@@ -3,7 +3,7 @@ osx_instance:
 
 build_task:
   name: 'Build Libraries'
-  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11'
+  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme CoreSdk -destination 'name=iPhone 11'
 
 build_sample_task:
   name: 'Build Sdk Sample'
@@ -18,13 +18,13 @@ test_task_template: &TEST
   test_script:
     - echo "let secretEnvKey = \"$ENV_KEY\"" > SdkIntegrationTests/Secrets.swift
     - echo "let secretEnvSecret = \"$ENV_SECRET\"" >> SdkIntegrationTests/Secrets.swift
-    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Sdk -destination 'name=iPhone 11' -enableCodeCoverage YES
+    - xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme CoreSdk -destination 'name=iPhone 11' -enableCodeCoverage YES
   bundle_cache:
     folder: vendor
     fingerprint_script: cat Gemfile.lock
     populate_script: bundle install
   coverage_script:
-    - bundle exec slather coverage --html --scheme Sdk --workspace SpreedlySdk.xcworkspace SpreedlySdk.xcodeproj
+    - bundle exec slather coverage --html --scheme CoreSdk --workspace SpreedlySdk.xcworkspace SpreedlySdk.xcodeproj
   publish_coverage_script:
     - git config --global user.name "Cirrus CI"
     - git config --global user.email "ci@ergonlabs.com"
@@ -52,5 +52,5 @@ test_master_task:
 lint_task:
   name: 'Lint check sources'
   script:
-    - cd Sdk
+    - cd CoreSdk
     - ../Pods/SwiftLint/swiftlint

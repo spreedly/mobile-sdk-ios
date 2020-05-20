@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import Sdk
+@testable import CoreSdk
 
 class CreditCardInfoTests: XCTestCase {
     func testCanEncode() throws {
