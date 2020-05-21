@@ -180,10 +180,6 @@ extension UITextField {
 
     func text() -> String? {
         self.text
-//        if let tf = self as? UITextField {
-//            return tf.text
-//        }
-//        return nil
     }
 
     func secureText() -> SpreedlySecureOpaqueString? {
