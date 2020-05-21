@@ -6,6 +6,7 @@ import Foundation
 import UIKit
 import CocoaSdk
 import CoreSdk
+import RxSwift
 
 class CreditCardFormViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class CreditCardFormViewController: UIViewController {
         super.viewDidLoad()
 
         setDefaults()
+        configureHandlers()
     }
 
     /// Set defaults here for values like name
@@ -33,5 +35,17 @@ class CreditCardFormViewController: UIViewController {
         defaults.address = billing
 
         form?.creditCardDefaults = defaults
+    }
+
+    func configureHandlers() {
+        self.form?.delegate = self
+    }
+}
+
+extension CreditCardFormViewController: SPSecureFormDelegate {
+    func spreedly<TResult>(secureForm form: SPSecureForm, result: Single<Transaction<TResult>>) where TResult: PaymentMethodResultBase {
+        _ = result.subscribe(onSuccess: { (transaction: Transaction<TResult>) -> Void in
+            print("My payment token is \(transaction.paymentMethod?.token ?? "empty")")
+        })
     }
 }

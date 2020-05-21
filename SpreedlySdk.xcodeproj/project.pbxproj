@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		070E460E5904098B4D463994 /* Pods_SdkIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */; };
+		3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
+		3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -66,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3C31533E24770C9C00C86272 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 442A2FFF3C8CF6261881A39B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442A2CD52CC6A2C10B2623E8;
+			remoteInfo = CoreSdk;
+		};
 		442A25DEE2FE4712EA1D3FAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 442A2FFF3C8CF6261881A39B /* Project object */;
@@ -109,6 +118,7 @@
 			buildActionMask = 0;
 			dstSubfolderSpec = 10;
 			files = (
+				3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */,
 				442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -221,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */,
 				442A2FAC57F6FBC681333736 /* CocoaSdk.framework in Frameworks */,
 				D334CCD1A8F85A19435EDBE8 /* Pods_CocoaSample.framework in Frameworks */,
 			);
@@ -536,6 +547,7 @@
 			);
 			dependencies = (
 				442A24A88DD17E0AFA320CF5 /* PBXTargetDependency */,
+				3C31533F24770C9C00C86272 /* PBXTargetDependency */,
 			);
 			name = CocoaSample;
 			productName = CocoaSample;
@@ -1010,6 +1022,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3C31533F24770C9C00C86272 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
+			targetProxy = 3C31533E24770C9C00C86272 /* PBXContainerItemProxy */;
+		};
 		442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;

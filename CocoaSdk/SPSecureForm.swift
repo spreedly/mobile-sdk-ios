@@ -8,12 +8,13 @@ import CoreSdk
 import RxSwift
 
 public protocol SPSecureFormDelegate {
-    func spreedly(secureForm form: SPSecureForm, creditCardSuccess result: Transaction<CreditCardResult>);
+    func spreedly<TResult>(secureForm form: SPSecureForm, result: Single<Transaction<TResult>>) where TResult: PaymentMethodResultBase
 }
 
 public enum SPSecureClientError: Error {
     case noSpreedlyClient
     case noSpreedlyCredentials
+    case spreedlyReturnedErrors
 }
 
 public class SPSecureForm: UIView {
@@ -37,6 +38,7 @@ public class SPSecureForm: UIView {
     }
 
     private var _client: SpreedlyClient?
+
     private func getOrCreateClient() throws -> SpreedlyClient {
         if let client = _client {
             return client
@@ -93,26 +95,19 @@ public class SPSecureForm: UIView {
     }
 
 
-
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
+        self.errors?.text = nil
+
         let client: SpreedlyClient
         do {
             client = try getOrCreateClient()
-        } catch SPSecureClientError.noSpreedlyCredentials  {
+        } catch SPSecureClientError.noSpreedlyCredentials {
             displayAlert(message: "No credentials were specified.", title: "Error")
             return
         } catch {
             displayAlert(message: "Error: \(error)", title: "Error")
             return
         }
-
-        let message = """
-                      \(fullName?.text() ?? "No name")
-                      \(creditCardNumber?.text() ?? "")
-                      \(creditCardVerificationNumber?.text() ?? "")
-                      \(expirationMonth?.text() ?? "mm")/\(expirationYear?.text() ?? "yy")
-                      """
-        displayAlert(message: message, title: "Submit")
 
         let info = CreditCardInfo(from: creditCardDefaults)
 
@@ -122,16 +117,23 @@ public class SPSecureForm: UIView {
         info.month = Int(expirationMonth?.text() ?? "")
         info.year = Int(expirationYear?.text() ?? "")
 
-        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
-            if let errors = transaction.errors, errors.count > 0 {
-                DispatchQueue.main.async {
-                    self.errors?.text = errors[0].message    // Update UI
+        let single = client.createCreditCardPaymentMethod(creditCard: info)
+                .flatMap { transaction -> Single<Transaction<CreditCardResult>> in
+                    if let errors = transaction.errors, errors.count > 0 {
+                        self.notifyFieldsOnError(errors: errors)
+                        return Single.error(SPSecureClientError.spreedlyReturnedErrors)
+                    }
+                    return Single.just(transaction)
                 }
-                return
-            }
 
-            self.delegate?.spreedly(secureForm: self, creditCardSuccess: transaction)
-        })
+        self.delegate?.spreedly(secureForm: self, result: single)
+    }
+
+    private func notifyFieldsOnError(errors: [SpreedlyError]) {
+        for err in errors {
+            let view = keyToView(err.attribute)
+            view?.setError(message: err.message)
+        }
     }
 
     func displayAlert(message: String, title: String) {
@@ -145,19 +147,31 @@ public class SPSecureForm: UIView {
         window?.rootViewController?.present(alert, animated: true)
     }
 
-    func keyToView(_ key: String) -> UIView? {
+    func keyToView(_ key: String?) -> UIView? {
         switch (key) {
-        case "credit_card_number":
+        case "number":
             return creditCardNumber
+        case "verification_value":
+            return creditCardVerificationNumber
+        case "year":
+            return expirationYear
+        case "month":
+            return expirationMonth
+        case "first_name", "last_name", "full_name":
+            return fullName
         default:
             return nil
         }
     }
+}
 
+extension UIView {
+    open func setError(message: String) {
+        print("My error is: \(message)")
+    }
 }
 
 public class SPSecureTextField: UITextField {
-
 
 }
 
