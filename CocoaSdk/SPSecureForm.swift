@@ -8,13 +8,12 @@ import CoreSdk
 import RxSwift
 
 public protocol SPSecureFormDelegate {
-    func spreedly<TResult>(secureForm form: SPSecureForm, result: Single<Transaction<TResult>>) where TResult: PaymentMethodResultBase
+    // TODO: make these methods optionally implementable
+    func spreedly<TResult>(secureForm form: SPSecureForm, success: Transaction<TResult>) where TResult: PaymentMethodResultBase
 }
 
 public enum SPSecureClientError: Error {
-    case noSpreedlyClient
     case noSpreedlyCredentials
-    case spreedlyReturnedErrors
 }
 
 public class SPSecureForm: UIView {
@@ -39,7 +38,7 @@ public class SPSecureForm: UIView {
 
     private var _client: SpreedlyClient?
 
-    private func getOrCreateClient() throws -> SpreedlyClient {
+    public func getClient() throws -> SpreedlyClient {
         if let client = _client {
             return client
         }
@@ -54,53 +53,25 @@ public class SPSecureForm: UIView {
         return client
     }
 
-//    public var client: SpreedlyClient {
-//        get {
-//            if let client = _client {
-//                return client
-//            } else {
-//                if let path = Bundle.main.path(forResource: "Spreedly-env", ofType: "plist"),
-//                   let config = NSDictionary(contentsOfFile: path) as? [String: Any],
-//                   let envKey = config["ENV_KEY"] as? String,
-//                   let envSecret = config["ENV_SECRET"] as? String
-//                {
-//                    _client = createSpreedlyClient(envKey: envKey, envSecret: envSecret, test: config["TEST"] as? Bool ?? false)
-//                    return _client!
-//                }
-//            }
-//            fatalError("SPSecureForm needs a SpreedlyClient, you can either create one and set the client property or you can use a Spreedly-env.plist file.")
-//        }
-//        set {
-//            _client = newValue
-//        }
-//    }
-
     public var creditCardDefaults: CreditCardInfo?
     public var bankAccountDefaults: BankAccountInfo?
 
-    @IBOutlet public weak var fullName: UITextField?
+    @IBOutlet public weak var fullName: SPSecureTextField?
     @IBOutlet public weak var creditCardNumber: SPSecureTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
-    @IBOutlet public weak var expirationMonth: UITextField?
-    @IBOutlet public weak var expirationYear: UITextField?
+    @IBOutlet public weak var expirationMonth: SPSecureTextField?
+    @IBOutlet public weak var expirationYear: SPSecureTextField?
 
-    @IBOutlet public weak var errors: UILabel?
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    var creditCardFields: [UIView?] {
+        [fullName, creditCardNumber, creditCardVerificationNumber, expirationMonth, expirationYear]
     }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
 
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
-        self.errors?.text = nil
+        unsetErrorFor(creditCardFields)
 
         let client: SpreedlyClient
         do {
-            client = try getOrCreateClient()
+            client = try getClient()
         } catch SPSecureClientError.noSpreedlyCredentials {
             displayAlert(message: "No credentials were specified.", title: "Error")
             return
@@ -117,22 +88,27 @@ public class SPSecureForm: UIView {
         info.month = Int(expirationMonth?.text() ?? "")
         info.year = Int(expirationYear?.text() ?? "")
 
-        let single = client.createCreditCardPaymentMethod(creditCard: info)
-                .flatMap { transaction -> Single<Transaction<CreditCardResult>> in
-                    if let errors = transaction.errors, errors.count > 0 {
-                        self.notifyFieldsOnError(errors: errors)
-                        return Single.error(SPSecureClientError.spreedlyReturnedErrors)
-                    }
-                    return Single.just(transaction)
+        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
+            DispatchQueue.main.async {
+                if let errors = transaction.errors, errors.count > 0 {
+                    self.notifyFieldsOf(errors: errors)
+                } else {
+                    self.delegate?.spreedly(secureForm: self, success: transaction)
                 }
-
-        self.delegate?.spreedly(secureForm: self, result: single)
+            }
+        })
     }
 
-    private func notifyFieldsOnError(errors: [SpreedlyError]) {
+    private func notifyFieldsOf(errors: [SpreedlyError]) {
         for err in errors {
             let view = keyToView(err.attribute)
             view?.setError(message: err.message)
+        }
+    }
+
+    private func unsetErrorFor(_ fields: [UIView?]) {
+        for field in fields {
+            field?.unsetError()
         }
     }
 
@@ -166,27 +142,65 @@ public class SPSecureForm: UIView {
 }
 
 extension UIView {
+    @objc
     open func setError(message: String) {
         print("My error is: \(message)")
+    }
+
+    @objc
+    open func unsetError() {
+
     }
 }
 
 public class SPSecureTextField: UITextField {
+    var previousColor: CGColor?
+    var previousWidth: CGFloat?
 
+    open override func setError(message: String) {
+        super.setError(message: message)
+        previousColor = layer.borderColor
+        previousWidth = layer.borderWidth
+
+        layer.borderColor = UIColor.red.cgColor
+        layer.borderWidth = 1
+    }
+
+    open override func unsetError() {
+        guard
+                let color = previousColor,
+                let width = previousWidth else {
+            return
+        }
+        layer.borderColor = color
+        layer.borderWidth = width
+    }
 }
 
 
 extension UITextField {
-
     func text() -> String? {
         self.text
     }
 
     func secureText() -> SpreedlySecureOpaqueString? {
-        let client = createSpreedlyClient(envKey: "secretEnvKey", envSecret: "secretEnvSecret")
         guard let text = self.text else {
             return nil
         }
-        return client.createSecureString(from: text)
+        let client = getClient()
+        return client?.createSecureString(from: text)
+    }
+
+    func getClient() -> SpreedlyClient? {
+        var view = self.superview
+
+        while view != nil {
+            if let form = view as? SPSecureForm {
+                return try? form.getClient()
+            }
+            view = view?.superview
+        }
+
+        return nil
     }
 }

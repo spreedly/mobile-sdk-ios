@@ -43,9 +43,10 @@ class CreditCardFormViewController: UIViewController {
 }
 
 extension CreditCardFormViewController: SPSecureFormDelegate {
-    func spreedly<TResult>(secureForm form: SPSecureForm, result: Single<Transaction<TResult>>) where TResult: PaymentMethodResultBase {
-        _ = result.subscribe(onSuccess: { (transaction: Transaction<TResult>) -> Void in
-            print("My payment token is \(transaction.paymentMethod?.token ?? "empty")")
-        })
+    func spreedly<TResult>(secureForm form: SPSecureForm, success transaction: Transaction<TResult>) where TResult: PaymentMethodResultBase {
+        print("My payment token is \(transaction.paymentMethod?.token ?? "empty")")
+
+        self.navigationController?.popViewController(animated: true)
+
     }
 }
