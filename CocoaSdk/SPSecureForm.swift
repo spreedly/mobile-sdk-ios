@@ -53,17 +53,26 @@ public class SPSecureForm: UIView {
         return client
     }
 
-    public var creditCardDefaults: CreditCardInfo?
-    public var bankAccountDefaults: BankAccountInfo?
 
+    // Credit Card fields
+    public var creditCardDefaults: CreditCardInfo?
     @IBOutlet public weak var fullName: SPSecureTextField?
     @IBOutlet public weak var creditCardNumber: SPSecureTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationMonth: SPSecureTextField?
     @IBOutlet public weak var expirationYear: SPSecureTextField?
-
     var creditCardFields: [UIView?] {
         [fullName, creditCardNumber, creditCardVerificationNumber, expirationMonth, expirationYear]
+    }
+
+    // Bank Account fields
+    public var bankAccountDefaults: BankAccountInfo?
+    @IBOutlet public weak var bankAccountNumber: SPSecureTextField?
+    @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
+    @IBOutlet public weak var bankAccountType: UITextField?
+    @IBOutlet public weak var bankAccountHolderType: UITextField?
+    var bankAccountFields: [UIView?] {
+        [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
     }
 
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
@@ -138,6 +147,44 @@ public class SPSecureForm: UIView {
         default:
             return nil
         }
+    }
+}
+
+extension SPSecureForm {
+    @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
+        unsetErrorFor(bankAccountFields)
+
+        let client: SpreedlyClient
+        do {
+            client = try getClient()
+        } catch SPSecureClientError.noSpreedlyCredentials {
+            displayAlert(message: "No credentials were specified.", title: "Error")
+            return
+        } catch {
+            displayAlert(message: "Error: \(error)", title: "Error")
+            return
+        }
+
+        let info = BankAccountInfo(from: bankAccountDefaults)
+
+        info.fullName = fullName?.text()
+        info.bankAccountNumber = bankAccountNumber?.secureText()
+        info.bankRoutingNumber = bankAccountRoutingNumber?.text()
+        if let accountType = bankAccountType?.text(),
+           let holderType = bankAccountHolderType?.text() {
+            info.bankAccountType = BankAccountType(rawValue: accountType)
+            info.bankAccountHolderType = BankAccountHolderType(rawValue: holderType)
+        }
+
+        _ = client.createBankAccountPaymentMethod(bankAccount: info).subscribe(onSuccess: { transaction in
+            DispatchQueue.main.async {
+                if let errors = transaction.errors, errors.count > 0 {
+                    self.notifyFieldsOf(errors: errors)
+                } else {
+                    self.delegate?.spreedly(secureForm: self, success: transaction)
+                }
+            }
+        })
     }
 }
 

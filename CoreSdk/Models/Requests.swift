@@ -106,21 +106,25 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     }
 }
 
-public enum BankAccountType: String {
+public enum BankAccountType: String, CaseIterable {
     case checking
     case savings
 }
 
-public enum BankAccountHolderType: String {
+public enum BankAccountHolderType: String, CaseIterable {
     case business
     case personal
 }
 
 public class BankAccountInfo: PaymentMethodRequestBase {
-    public let bankRoutingNumber: String
-    public let bankAccountNumber: SpreedlySecureOpaqueString
-    public let bankAccountType: BankAccountType
-    public let bankAccountHolderType: BankAccountHolderType
+    public var bankRoutingNumber: String?
+    public var bankAccountNumber: SpreedlySecureOpaqueString?
+    public var bankAccountType: BankAccountType?
+    public var bankAccountHolderType: BankAccountHolderType?
+
+    public init() {
+        super.init(fullName: nil, firstName: nil, lastName: nil)
+    }
 
     public init(
             fullName: String,
@@ -149,6 +153,22 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         self.bankAccountType = bankAccountType
         self.bankAccountHolderType = bankAccountHolderType
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
+    }
+
+    /// Copies values from another BankAccountInfo instance
+    /// including fullName, firstName, lastName, address,
+    /// shippingAddress, company, bankAccountType, and
+    /// bankAccountHolderType.
+    ///
+    /// Account data is not copied.
+    /// - Parameter info: The source of the values.
+    public init(from info: BankAccountInfo?) {
+        super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
+        address = info?.address
+        shippingAddress = info?.shippingAddress
+        company = info?.company
+        bankAccountType = info?.bankAccountType
+        bankAccountHolderType = info?.bankAccountHolderType
     }
 
     internal override func toJson() throws -> [String: Any] {

@@ -65,6 +65,7 @@
 		F076C859688D80D9509E0B75 /* ApplePayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0576B08565E3FD0DCC6 /* ApplePayForm.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
 		F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
+		F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +218,7 @@
 		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		F076C2EB71479F8B5C3F5C7D /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
+		F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountFormViewController.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				442A28C146C848A440AEF7A1 /* Main.storyboard */,
 				442A21723181F2D5F72F5B71 /* Spreedly-env.plist */,
 				442A2A96557532017197368D /* CreditCardFormViewController.swift */,
+				F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */,
 			);
 			path = CocoaSample;
 			sourceTree = "<group>";
@@ -981,6 +984,7 @@
 				442A277CCCDFEA291756EBA7 /* SceneDelegate.swift in Sources */,
 				442A23C356600951EC1503B4 /* ViewController.swift in Sources */,
 				442A26114E3DD843A2220A8E /* CreditCardFormViewController.swift in Sources */,
+				F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
