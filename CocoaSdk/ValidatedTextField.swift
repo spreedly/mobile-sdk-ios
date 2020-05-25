@@ -25,13 +25,6 @@ public class ValidatedTextField: UITextField {
         super.init(frame: frame)
     }
 
-    private func setDefaults() {
-        self.defaultColor = UIColor.label
-        self.errorColor = UIColor.red
-        self.defaultBorderColor = UIColor.clear
-        self.errorBorderColor = UIColor.red
-    }
-
     @IBInspectable
     public var defaultColor: UIColor {
         didSet {
