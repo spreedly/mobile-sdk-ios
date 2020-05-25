@@ -64,6 +64,7 @@
 		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
 		F076C859688D80D9509E0B75 /* ApplePayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0576B08565E3FD0DCC6 /* ApplePayForm.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
+		F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */; };
 		F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
 		F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */; };
 /* End PBXBuildFile section */
@@ -221,6 +222,7 @@
 		F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountFormViewController.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionsTests.swift; sourceTree = "<group>"; };
 		F076CB8C9D4B8CE905B35F73 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				442A2832CB4FF8C0D4094949 /* Info.plist */,
 				442A2F11C1E2D8471A4F0D8A /* CocoaSdk.h */,
 				442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */,
+				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
 			);
 			path = CocoaSdk;
 			sourceTree = "<group>";
@@ -1005,6 +1008,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A2E09E5707DA5C0EC5A6D /* SPSecureForm.swift in Sources */,
+				F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

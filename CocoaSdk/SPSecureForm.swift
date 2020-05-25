@@ -56,11 +56,11 @@ public class SPSecureForm: UIView {
 
     // Credit Card fields
     public var creditCardDefaults: CreditCardInfo?
-    @IBOutlet public weak var fullName: SPSecureTextField?
+    @IBOutlet public weak var fullName: ValidatedTextField?
     @IBOutlet public weak var creditCardNumber: SPSecureTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
-    @IBOutlet public weak var expirationMonth: SPSecureTextField?
-    @IBOutlet public weak var expirationYear: SPSecureTextField?
+    @IBOutlet public weak var expirationMonth: ValidatedTextField?
+    @IBOutlet public weak var expirationYear: ValidatedTextField?
     var creditCardFields: [UIView?] {
         [fullName, creditCardNumber, creditCardVerificationNumber, expirationMonth, expirationYear]
     }
@@ -200,27 +200,13 @@ extension UIView {
     }
 }
 
-public class SPSecureTextField: UITextField {
-    var previousColor: CGColor?
-    var previousWidth: CGFloat?
-
+public class SPSecureTextField: ValidatedTextField {
     open override func setError(message: String) {
-        super.setError(message: message)
-        previousColor = layer.borderColor
-        previousWidth = layer.borderWidth
-
-        layer.borderColor = UIColor.red.cgColor
-        layer.borderWidth = 1
+        invalidate(because: message)
     }
 
     open override func unsetError() {
-        guard
-                let color = previousColor,
-                let width = previousWidth else {
-            return
-        }
-        layer.borderColor = color
-        layer.borderWidth = width
+        validate()
     }
 }
 
