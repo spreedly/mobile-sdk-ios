@@ -200,7 +200,7 @@ extension UIView {
     }
 }
 
-public class SPSecureTextField: ValidatedTextField {
+extension ValidatedTextField {
     open override func setError(message: String) {
         invalidate(because: message)
     }
@@ -208,6 +208,10 @@ public class SPSecureTextField: ValidatedTextField {
     open override func unsetError() {
         validate()
     }
+}
+
+public class SPSecureTextField: ValidatedTextField {
+
 }
 
 
