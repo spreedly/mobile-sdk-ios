@@ -55,7 +55,8 @@ public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate
         guard let text = self.text else {
             return nil
         }
+        let onlyNumbers = text.replacingOccurrences(of: " ", with: "")
         let client = getClient()
-        return client?.createSecureString(from: text.replacingOccurrences(of: " ", with: ""))
+        return client?.createSecureString(from: onlyNumbers)
     }
 }
