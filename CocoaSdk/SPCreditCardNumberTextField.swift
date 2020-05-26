@@ -25,22 +25,29 @@ public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.count == 0 {
+        unsetError()
+
+        guard string.count > 0 else {
+            // allow backspace/delete
             return true
         }
 
         let current = textField.text ?? ""
 
-        print("Current: \(textField.text ?? "")")
-        print("Replacement string: \(string)")
-
-        if current.count + string.count > "1234 5678 1234 5678".count {
+        let cleaned = string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard cleaned.count > 0 else {
+            // none of the replacementString was useful
             return false
         }
 
-        let requested = "\(textField.text ?? "")\(string)"
-        textField.text = formatter?.formatString(requested, reverse: false)
+        let requested = "\(current)\(string)"
 
+        guard requested.count <= "1234 5678 1234 5678".count else {
+            // too many characters are coming in
+            return false
+        }
+
+        textField.text = formatter?.formatString(requested, reverse: false)
         return false
     }
 
