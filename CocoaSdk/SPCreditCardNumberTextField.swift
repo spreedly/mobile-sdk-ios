@@ -5,6 +5,7 @@
 import Foundation
 import UIKit
 import FormTextField
+import CoreSdk
 
 public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate {
     public override init(frame: CGRect) {
@@ -41,5 +42,13 @@ public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate
         textField.text = formatter?.formatString(requested, reverse: false)
 
         return false
+    }
+
+    public override func secureText() -> SpreedlySecureOpaqueString? {
+        guard let text = self.text else {
+            return nil
+        }
+        let client = getClient()
+        return client?.createSecureString(from: text.replacingOccurrences(of: " ", with: ""))
     }
 }
