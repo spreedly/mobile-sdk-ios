@@ -68,8 +68,11 @@ public class SPSecureForm: UIView {
     public var bankAccountDefaults: BankAccountInfo?
     @IBOutlet public weak var bankAccountNumber: SPSecureTextField?
     @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
-    @IBOutlet public weak var bankAccountType: UITextField?
-    @IBOutlet public weak var bankAccountHolderType: UITextField?
+    @IBOutlet public weak var bankAccountType: UISegmentedControl?
+    @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
+
+    var selectedBankAccountType: String?
+
     var bankAccountFields: [UIView?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
     }
@@ -146,6 +149,10 @@ public class SPSecureForm: UIView {
             return nil
         }
     }
+
+    public func viewDidLoad() {
+
+    }
 }
 
 extension SPSecureForm {
@@ -168,10 +175,19 @@ extension SPSecureForm {
         info.fullName = fullName?.text()
         info.bankAccountNumber = bankAccountNumber?.secureText()
         info.bankRoutingNumber = bankAccountRoutingNumber?.text()
-        if let accountType = bankAccountType?.text(),
-           let holderType = bankAccountHolderType?.text() {
-            info.bankAccountType = BankAccountType(rawValue: accountType)
-            info.bankAccountHolderType = BankAccountHolderType(rawValue: holderType)
+
+        switch bankAccountHolderType?.selectedSegmentIndex {
+        case 0:
+            info.bankAccountHolderType = .personal
+        default:
+            info.bankAccountHolderType = .business
+        }
+
+        switch bankAccountType?.selectedSegmentIndex {
+        case 0:
+            info.bankAccountType = .checking
+        default:
+            info.bankAccountType = .savings
         }
 
         _ = client.createBankAccountPaymentMethod(bankAccount: info).subscribe(onSuccess: { transaction in

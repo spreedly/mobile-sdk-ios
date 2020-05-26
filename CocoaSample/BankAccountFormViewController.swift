@@ -15,16 +15,15 @@ class BankAccountFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setDefaults()
         configureHandlers()
+        form?.viewDidLoad()
+        setDefaults()
     }
 
     /// Set defaults here for values like name
     /// or address information.
     func setDefaults() {
         form?.fullName?.text = "Dolly Dog"
-        form?.bankAccountType?.text = "checking"
-        form?.bankAccountHolderType?.text = "personal"
 
         let defaults = BankAccountInfo()
         var billing = Address()
@@ -41,6 +40,7 @@ class BankAccountFormViewController: UIViewController {
 
     func configureHandlers() {
         self.form?.delegate = self
+
     }
 }
 
