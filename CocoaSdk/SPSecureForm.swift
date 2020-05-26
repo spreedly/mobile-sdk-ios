@@ -59,10 +59,9 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var fullName: ValidatedTextField?
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
-    @IBOutlet public weak var expirationMonth: ValidatedTextField?
-    @IBOutlet public weak var expirationYear: ValidatedTextField?
+    @IBOutlet public weak var expirationDate: SPExpirationTextField?
     var creditCardFields: [UIView?] {
-        [fullName, creditCardNumber, creditCardVerificationNumber, expirationMonth, expirationYear]
+        [fullName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
 
     // Bank Account fields
@@ -94,8 +93,9 @@ public class SPSecureForm: UIView {
         info.fullName = fullName?.text()
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
-        info.month = Int(expirationMonth?.text() ?? "")
-        info.year = Int(expirationYear?.text() ?? "")
+        let dateParts = expirationDate?.dateParts()
+        info.month = dateParts?.month
+        info.year = dateParts?.year
 
         _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
@@ -138,10 +138,8 @@ public class SPSecureForm: UIView {
             return creditCardNumber
         case "verification_value":
             return creditCardVerificationNumber
-        case "year":
-            return expirationYear
-        case "month":
-            return expirationMonth
+        case "year", "month":
+            return expirationDate
         case "first_name", "last_name", "full_name":
             return fullName
         default:
@@ -220,7 +218,8 @@ extension UITextField {
         self.text
     }
 
-    func secureText() -> SpreedlySecureOpaqueString? {
+    @objc
+    public func secureText() -> SpreedlySecureOpaqueString? {
         guard let text = self.text else {
             return nil
         }

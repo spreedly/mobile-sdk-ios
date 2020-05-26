@@ -61,7 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-pS-FNr">
-                                <rect key="frame" x="10" y="44" width="394" height="340"/>
+                                <rect key="frame" x="10" y="44" width="394" height="306"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cardholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdT-Vh-uqU">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
@@ -91,31 +91,25 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiration Month" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-JH-3CX" customClass="ValidatedTextField" customModule="CocoaSdk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-yu-ATf" customClass="SPExpirationTextField" customModule="CocoaSdk">
                                         <rect key="frame" x="0.0" y="170" width="394" height="34"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Expiration Month"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiration Year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-yu-ATf" customClass="ValidatedTextField" customModule="CocoaSdk">
-                                        <rect key="frame" x="0.0" y="204" width="394" height="34"/>
                                         <accessibility key="accessibilityConfiguration" hint="Expiration Year"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CVV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-kf-van">
-                                        <rect key="frame" x="0.0" y="238" width="394" height="34"/>
+                                        <rect key="frame" x="0.0" y="204" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-GT-cYd" customClass="SPSecureTextField" customModule="CocoaSdk">
-                                        <rect key="frame" x="0.0" y="272" width="394" height="34"/>
+                                        <rect key="frame" x="0.0" y="238" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jH8-AF-mFH">
-                                        <rect key="frame" x="0.0" y="306" width="394" height="34"/>
+                                        <rect key="frame" x="0.0" y="272" width="394" height="34"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="createCreditCardPaymentMethodWithSender:" destination="Dpo-s2-wSB" eventType="primaryActionTriggered" id="RRq-qW-hUI"/>
@@ -135,8 +129,7 @@
                         <connections>
                             <outlet property="creditCardNumber" destination="piH-B3-ODf" id="sal-d6-Trt"/>
                             <outlet property="creditCardVerificationNumber" destination="TrW-GT-cYd" id="yAx-BZ-ZAz"/>
-                            <outlet property="expirationMonth" destination="YvM-JH-3CX" id="tfw-mB-Lo1"/>
-                            <outlet property="expirationYear" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
+                            <outlet property="expirationDate" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
                             <outlet property="fullName" destination="06g-Dm-y2y" id="uRX-sf-QQx"/>
                         </connections>
                     </view>
