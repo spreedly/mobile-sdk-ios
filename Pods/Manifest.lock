@@ -1,4 +1,5 @@
 PODS:
+  - FormTextField (3.0.0)
   - RxBlocking (5.1.1):
     - RxSwift (~> 5)
   - RxCocoa (5.1.1):
@@ -12,6 +13,7 @@ PODS:
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
+  - FormTextField (~> 3)
   - RxBlocking (~> 5)
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
@@ -20,6 +22,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FormTextField
     - RxBlocking
     - RxCocoa
     - RxRelay
@@ -28,6 +31,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
+  FormTextField: fd5dc441ad40ba12d08ef66aeb0453ee9bf55e6d
   RxBlocking: 5f700a78cad61ce253ebd37c9a39b5ccc76477b4
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -35,6 +39,6 @@ SPEC CHECKSUMS:
   RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: d2f21db3c14ba9a74b6caca9fbbfba75676bfeeb
+PODFILE CHECKSUM: 6a04c2a9aa461b7277e13021f16f5089f11de6b2
 
 COCOAPODS: 1.9.1
