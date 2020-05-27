@@ -6,7 +6,6 @@ import Foundation
 import UIKit
 import CoreSdk
 import RxSwift
-import FormTextField
 
 public protocol SPSecureFormDelegate {
     // TODO: make these methods optionally implementable

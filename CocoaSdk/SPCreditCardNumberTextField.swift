@@ -4,14 +4,13 @@
 
 import Foundation
 import UIKit
-import FormTextField
 import CoreSdk
 
 public protocol CardBrandDeterminationDelegate {
     func cardBrandDetermination(brand: CardBrand)
 }
 
-public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate {
+public class SPCreditCardNumberTextField: SPSecureTextField {
     public var cardTypeDeterminationDelegate: CardBrandDeterminationDelegate?
 
     public override init(frame: CGRect) {
@@ -26,10 +25,31 @@ public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate
         self.delegate = self
     }
 
-    public override var formatter: Formattable? {
-        CardNumberFormatter()
+    public override func secureText() -> SpreedlySecureOpaqueString? {
+        guard let text = self.text else {
+            return nil
+        }
+        let onlyNumbers = text.replacingOccurrences(of: " ", with: "")
+        let client = getClient()
+        return client?.createSecureString(from: onlyNumbers)
     }
 
+    public func formatCardNumber(_ string: String) -> String {
+        var formattedString = String()
+        let normalizedString = string.replacingOccurrences(of: " ", with: "")
+        for (index, character) in normalizedString.enumerated() {
+            if index != 0 && index % 4 == 0 {
+                formattedString.append(" ")
+            }
+
+            formattedString.append(character)
+        }
+
+        return formattedString
+    }
+}
+
+extension SPCreditCardNumberTextField: UITextFieldDelegate {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         let cardBrand = CardBrand.from(textField.text)
         cardTypeDeterminationDelegate?.cardBrandDetermination(brand: cardBrand)
@@ -58,16 +78,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate
             return false
         }
 
-        textField.text = formatter?.formatString(requested, reverse: false)
+        textField.text = formatCardNumber(requested)
         return false
-    }
-
-    public override func secureText() -> SpreedlySecureOpaqueString? {
-        guard let text = self.text else {
-            return nil
-        }
-        let onlyNumbers = text.replacingOccurrences(of: " ", with: "")
-        let client = getClient()
-        return client?.createSecureString(from: onlyNumbers)
     }
 }

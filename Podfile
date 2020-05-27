@@ -21,14 +21,12 @@ target 'CocoaSdk' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
-  pod 'FormTextField', '~>3'
 end
 
 target 'CocoaSample' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
-  pod 'FormTextField', '~>3'
 end
 
 target 'SdkTests' do

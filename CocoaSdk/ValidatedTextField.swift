@@ -4,15 +4,9 @@
 
 import Foundation
 import UIKit
-import FormTextField
 
 @IBDesignable
 public class ValidatedTextField: UITextField {
-    var inputValidator: InputValidatable?
-    public var formatter : Formattable? {
-        nil
-    }
-
     public required init?(coder: NSCoder) {
         self.defaultColor = UIColor.label
         self.errorColor = UIColor.red

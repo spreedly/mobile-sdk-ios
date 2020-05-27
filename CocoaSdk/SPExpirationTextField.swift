@@ -4,7 +4,6 @@
 
 import Foundation
 import UIKit
-import FormTextField
 
 public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
     public override init(frame: CGRect) {
@@ -17,10 +16,6 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
         super.init(coder: coder)
 
         self.delegate = self
-    }
-
-    public override var formatter: Formattable? {
-        CardExpirationDateFormatter()
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -36,7 +31,7 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
         if string == "/" &&  current.count == 1 {
             // user gave us a backslash with a single digit month
             current = "0\(current)"
-            textField.text = formatter?.formatString(current, reverse: false)
+            textField.text = formatExpiration(current)
             return false
         }
 
@@ -52,7 +47,7 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
             return false
         }
 
-        textField.text = formatter?.formatString(requested, reverse: false)
+        textField.text = formatExpiration(requested)
         return false
     }
 
@@ -63,5 +58,19 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
 
         let parts = text.split(separator: "/").map { Int($0) }
         return (month: parts[0], year: 2000 + (parts[1] ?? 0))
+    }
+
+    public func formatExpiration(_ string: String) -> String {
+        var formattedString = String()
+        let normalizedString = string.replacingOccurrences(of: "/", with: "")
+
+        for (index, character) in normalizedString.enumerated() {
+            formattedString.append(character)
+            if index == 1 {
+                formattedString.append("/")
+            }
+        }
+
+        return formattedString
     }
 }
