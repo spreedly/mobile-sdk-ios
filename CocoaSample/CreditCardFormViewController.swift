@@ -17,6 +17,7 @@ class CreditCardFormViewController: UIViewController {
 
         setDefaults()
         configureHandlers()
+        form?.viewDidLoad()
     }
 
     /// Set defaults here for values like name

@@ -18,7 +18,6 @@ public enum SPSecureClientError: Error {
 }
 
 public class SPSecureForm: UIView {
-
     public var delegate: SPSecureFormDelegate?
 
     private func getCredentials() throws -> (envKey: String, envSecret: String, test: Bool) {
@@ -58,6 +57,7 @@ public class SPSecureForm: UIView {
     public var creditCardDefaults: CreditCardInfo?
     @IBOutlet public weak var fullName: ValidatedTextField?
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
+    @IBOutlet public weak var cardBrand: UIButton?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
     var creditCardFields: [UIView?] {
@@ -151,7 +151,7 @@ public class SPSecureForm: UIView {
     }
 
     public func viewDidLoad() {
-
+        creditCardNumber?.cardTypeDeterminationDelegate = self
     }
 }
 
@@ -199,6 +199,13 @@ extension SPSecureForm {
                 }
             }
         })
+    }
+}
+
+extension SPSecureForm: CardBrandDeterminationDelegate {
+    public func cardBrandDetermination(brand: CardBrand) {
+        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: "spr_card_unknown")
+        self.cardBrand?.setImage(image, for: .normal)
     }
 }
 

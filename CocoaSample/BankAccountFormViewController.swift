@@ -8,7 +8,7 @@ import CocoaSdk
 import CoreSdk
 import RxSwift
 
-class BankAccountFormViewController: UIViewController {
+class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var form: SPSecureForm?
 
@@ -40,7 +40,19 @@ class BankAccountFormViewController: UIViewController {
 
     func configureHandlers() {
         self.form?.delegate = self
+        self.form?.fullName?.delegate = self
+        self.form?.bankAccountRoutingNumber?.delegate = self
+        self.form?.bankAccountNumber?.delegate = self
+    }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder? {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
 }
 

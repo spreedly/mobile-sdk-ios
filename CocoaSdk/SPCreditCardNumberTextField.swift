@@ -7,7 +7,13 @@ import UIKit
 import FormTextField
 import CoreSdk
 
+public protocol CardBrandDeterminationDelegate {
+    func cardBrandDetermination(brand: CardBrand)
+}
+
 public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate {
+    public var cardTypeDeterminationDelegate: CardBrandDeterminationDelegate?
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -22,6 +28,11 @@ public class SPCreditCardNumberTextField: SPSecureTextField, UITextFieldDelegate
 
     public override var formatter: Formattable? {
         CardNumberFormatter()
+    }
+
+    public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
+        let cardBrand = CardBrand.from(textField.text)
+        cardTypeDeterminationDelegate?.cardBrandDetermination(brand: cardBrand)
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
