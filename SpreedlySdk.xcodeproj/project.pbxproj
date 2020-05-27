@@ -10,6 +10,8 @@
 		070E460E5904098B4D463994 /* Pods_SdkIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ACCA9BE72D63C472DF0804 /* Pods_SdkIntegrationTests.framework */; };
 		3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
 		3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C6C5F62247EF30900ADFFE7 /* Pods_CocoaSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */; };
+		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -53,9 +55,7 @@
 		A607E0B32461C16A00A3BF17 /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A6FEA50F247557FF004B1D9D /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
 		A6FEA510247557FF004B1D9D /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D334CCD1A8F85A19435EDBE8 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		E27A4B5AA7504CDBD640ECA2 /* Pods_SdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60CB34FA44B6CCABD329CF0 /* Pods_SdkTests.framework */; };
-		EB7CBAD81A8F8E392D2910AC /* Pods_CocoaSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */; };
 		F076C1694FD1264F4FBC16E5 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8101E3C373825B4F415 /* CardBrand.swift */; };
 		F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */; };
 		F076C1D252D80581E030E1A3 /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C2EB71479F8B5C3F5C7D /* ApplePayTests.swift */; };
@@ -241,9 +241,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */,
 				3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */,
 				442A2FAC57F6FBC681333736 /* CocoaSdk.framework in Frameworks */,
-				D334CCD1A8F85A19435EDBE8 /* Pods_CocoaSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FEA50F247557FF004B1D9D /* CoreSdk.framework in Frameworks */,
-				EB7CBAD81A8F8E392D2910AC /* Pods_CocoaSdk.framework in Frameworks */,
+				3C6C5F62247EF30900ADFFE7 /* Pods_CocoaSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
