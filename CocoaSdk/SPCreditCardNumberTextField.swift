@@ -11,7 +11,11 @@ public protocol CardBrandDeterminationDelegate {
 }
 
 public class SPCreditCardNumberTextField: SPSecureTextField {
+    @IBInspectable public var maskCharacter: String = "*"
+
     public var cardTypeDeterminationDelegate: CardBrandDeterminationDelegate?
+    private var unmaskedText: String?
+    private var masked: Bool = false
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +30,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     }
 
     public override func secureText() -> SpreedlySecureOpaqueString? {
-        guard let text = self.text else {
+        guard let text = self.unmaskedText else {
             return nil
         }
         let onlyNumbers = text.replacingOccurrences(of: " ", with: "")
@@ -47,12 +51,63 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 
         return formattedString
     }
+
+    private func normalizeNumber(_ number: String?) -> String {
+        guard let number = number else {
+            return ""
+        }
+        return String(number.filter { $0.isNumber })
+    }
 }
 
 extension SPCreditCardNumberTextField: UITextFieldDelegate {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         let cardBrand = CardBrand.from(textField.text)
         cardTypeDeterminationDelegate?.cardBrandDetermination(brand: cardBrand)
+        applyMask()
+    }
+
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        removeMask()
+        return true
+    }
+
+    private var lastFour: String {
+        guard let cardNumber = text else {
+            return ""
+        }
+
+        let cleanedNumber = normalizeNumber(cardNumber)
+
+        if let foo = cleanedNumber.index(cleanedNumber.endIndex, offsetBy: -4, limitedBy: cleanedNumber.startIndex) {
+            return String(cleanedNumber[foo...])
+        } else {
+            return cleanedNumber
+        }
+    }
+
+    private func applyMask() {
+        guard !masked,
+              let rawNumber = text else {
+            return
+        }
+
+        unmaskedText = rawNumber
+        let cleanedNumber = normalizeNumber(rawNumber)
+        let maskCharacterCount = max(cleanedNumber.count - 4, 0)
+
+        let mask = String(repeating: maskCharacter, count: maskCharacterCount)
+        text = formatCardNumber(mask + lastFour)
+        masked = true
+    }
+
+    private func removeMask() {
+        guard masked else {
+            return
+        }
+
+        text = unmaskedText ?? ""
+        masked = false
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
