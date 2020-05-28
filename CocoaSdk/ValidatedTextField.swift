@@ -5,7 +5,6 @@
 import Foundation
 import UIKit
 
-@IBDesignable
 public class ValidatedTextField: UITextField {
     public required init?(coder: NSCoder) {
         self.defaultColor = UIColor.label
