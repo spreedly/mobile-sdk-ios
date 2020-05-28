@@ -69,43 +69,8 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
-
     var bankAccountFields: [UIView?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
-    }
-
-    @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
-        unsetErrorFor(creditCardFields)
-
-        let client: SpreedlyClient
-        do {
-            client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
-            displayAlert(message: "No credentials were specified.", title: "Error")
-            return
-        } catch {
-            displayAlert(message: "Error: \(error)", title: "Error")
-            return
-        }
-
-        let info = CreditCardInfo(from: creditCardDefaults)
-
-        info.fullName = fullName?.text()
-        info.number = creditCardNumber?.secureText()
-        info.verificationValue = creditCardVerificationNumber?.secureText()
-        let dateParts = expirationDate?.dateParts()
-        info.month = dateParts?.month
-        info.year = dateParts?.year
-
-        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
-            DispatchQueue.main.async {
-                if let errors = transaction.errors, errors.count > 0 {
-                    self.notifyFieldsOf(errors: errors)
-                } else {
-                    self.delegate?.spreedly(secureForm: self, success: transaction)
-                }
-            }
-        })
     }
 
     private func notifyFieldsOf(errors: [SpreedlyError]) {
@@ -149,6 +114,42 @@ public class SPSecureForm: UIView {
 
     public func viewDidLoad() {
         creditCardNumber?.cardTypeDeterminationDelegate = self
+    }
+}
+
+extension SPSecureForm {
+    @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
+        unsetErrorFor(creditCardFields)
+
+        let client: SpreedlyClient
+        do {
+            client = try getClient()
+        } catch SPSecureClientError.noSpreedlyCredentials {
+            displayAlert(message: "No credentials were specified.", title: "Error")
+            return
+        } catch {
+            displayAlert(message: "Error: \(error)", title: "Error")
+            return
+        }
+
+        let info = CreditCardInfo(from: creditCardDefaults)
+
+        info.fullName = fullName?.text()
+        info.number = creditCardNumber?.secureText()
+        info.verificationValue = creditCardVerificationNumber?.secureText()
+        let dateParts = expirationDate?.dateParts()
+        info.month = dateParts?.month
+        info.year = dateParts?.year
+
+        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
+            DispatchQueue.main.async {
+                if let errors = transaction.errors, errors.count > 0 {
+                    self.notifyFieldsOf(errors: errors)
+                } else {
+                    self.delegate?.spreedly(secureForm: self, success: transaction)
+                }
+            }
+        })
     }
 }
 
