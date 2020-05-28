@@ -13,6 +13,7 @@ struct ApplePayForm: View {
 
     @State private var inProgress = false
     @State private var error: String?
+    @State private var token: String?
 
     let paymentHandler = PaymentHandler()
 
@@ -24,6 +25,7 @@ struct ApplePayForm: View {
                 self.paymentHandler.startPayment { (success) in
                     if success {
                         print("Success")
+                        self.token = self.paymentHandler.token
                     } else {
                         self.error = "Failed"
                     }
@@ -36,8 +38,8 @@ struct ApplePayForm: View {
                         .foregroundColor(.black)
             })
 
-            if paymentHandler.token != nil {
-                Text("Token: \(paymentHandler.token!)")
+            if token != nil {
+                Text("Token: \(token!)")
             }
             if error != nil {
                 Text("Error: \(error!)").foregroundColor(.red)
