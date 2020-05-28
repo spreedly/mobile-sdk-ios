@@ -17,6 +17,7 @@ class CreditCardFormViewController: UIViewController {
 
         setDefaults()
         configureHandlers()
+        form?.viewDidLoad()
     }
 
     /// Set defaults here for values like name
@@ -44,9 +45,21 @@ class CreditCardFormViewController: UIViewController {
 
 extension CreditCardFormViewController: SPSecureFormDelegate {
     func spreedly<TResult>(secureForm form: SPSecureForm, success transaction: Transaction<TResult>) where TResult: PaymentMethodResultBase {
-        print("My payment token is \(transaction.paymentMethod?.token ?? "empty")")
+        let token = transaction.paymentMethod?.token ?? "empty"
+        print("My payment token is \(token)")
 
-        self.navigationController?.popViewController(animated: true)
+        displayAlert(message: "Token: \(token)", title: "Success")
 
+    }
+
+    func displayAlert(message: String, title: String) {
+        let alert = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
     }
 }

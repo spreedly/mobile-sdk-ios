@@ -17,7 +17,6 @@ public enum SPSecureClientError: Error {
 }
 
 public class SPSecureForm: UIView {
-
     public var delegate: SPSecureFormDelegate?
 
     private func getCredentials() throws -> (envKey: String, envSecret: String, test: Bool) {
@@ -53,24 +52,26 @@ public class SPSecureForm: UIView {
         return client
     }
 
-
     // Credit Card fields
     public var creditCardDefaults: CreditCardInfo?
-    @IBOutlet public weak var fullName: SPSecureTextField?
-    @IBOutlet public weak var creditCardNumber: SPSecureTextField?
+    @IBOutlet public weak var fullName: ValidatedTextField?
+    @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
+    @IBOutlet public weak var cardBrand: UIButton?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
-    @IBOutlet public weak var expirationMonth: SPSecureTextField?
-    @IBOutlet public weak var expirationYear: SPSecureTextField?
+    @IBOutlet public weak var expirationDate: SPExpirationTextField?
     var creditCardFields: [UIView?] {
-        [fullName, creditCardNumber, creditCardVerificationNumber, expirationMonth, expirationYear]
+        [fullName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
 
     // Bank Account fields
     public var bankAccountDefaults: BankAccountInfo?
     @IBOutlet public weak var bankAccountNumber: SPSecureTextField?
     @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
-    @IBOutlet public weak var bankAccountType: UITextField?
-    @IBOutlet public weak var bankAccountHolderType: UITextField?
+    @IBOutlet public weak var bankAccountType: UISegmentedControl?
+    @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
+
+    var selectedBankAccountType: String?
+
     var bankAccountFields: [UIView?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
     }
@@ -94,8 +95,9 @@ public class SPSecureForm: UIView {
         info.fullName = fullName?.text()
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
-        info.month = Int(expirationMonth?.text() ?? "")
-        info.year = Int(expirationYear?.text() ?? "")
+        let dateParts = expirationDate?.dateParts()
+        info.month = dateParts?.month
+        info.year = dateParts?.year
 
         _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
@@ -138,15 +140,17 @@ public class SPSecureForm: UIView {
             return creditCardNumber
         case "verification_value":
             return creditCardVerificationNumber
-        case "year":
-            return expirationYear
-        case "month":
-            return expirationMonth
+        case "year", "month":
+            return expirationDate
         case "first_name", "last_name", "full_name":
             return fullName
         default:
             return nil
         }
+    }
+
+    public func viewDidLoad() {
+        creditCardNumber?.cardTypeDeterminationDelegate = self
     }
 }
 
@@ -170,10 +174,19 @@ extension SPSecureForm {
         info.fullName = fullName?.text()
         info.bankAccountNumber = bankAccountNumber?.secureText()
         info.bankRoutingNumber = bankAccountRoutingNumber?.text()
-        if let accountType = bankAccountType?.text(),
-           let holderType = bankAccountHolderType?.text() {
-            info.bankAccountType = BankAccountType(rawValue: accountType)
-            info.bankAccountHolderType = BankAccountHolderType(rawValue: holderType)
+
+        switch bankAccountHolderType?.selectedSegmentIndex {
+        case 0:
+            info.bankAccountHolderType = .personal
+        default:
+            info.bankAccountHolderType = .business
+        }
+
+        switch bankAccountType?.selectedSegmentIndex {
+        case 0:
+            info.bankAccountType = .checking
+        default:
+            info.bankAccountType = .savings
         }
 
         _ = client.createBankAccountPaymentMethod(bankAccount: info).subscribe(onSuccess: { transaction in
@@ -185,6 +198,13 @@ extension SPSecureForm {
                 }
             }
         })
+    }
+}
+
+extension SPSecureForm: CardBrandDeterminationDelegate {
+    public func cardBrandDetermination(brand: CardBrand) {
+        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: "spr_card_unknown")
+        self.cardBrand?.setImage(image, for: .normal)
     }
 }
 
@@ -200,28 +220,18 @@ extension UIView {
     }
 }
 
-public class SPSecureTextField: UITextField {
-    var previousColor: CGColor?
-    var previousWidth: CGFloat?
-
+extension ValidatedTextField {
     open override func setError(message: String) {
-        super.setError(message: message)
-        previousColor = layer.borderColor
-        previousWidth = layer.borderWidth
-
-        layer.borderColor = UIColor.red.cgColor
-        layer.borderWidth = 1
+        invalidate(because: message)
     }
 
     open override func unsetError() {
-        guard
-                let color = previousColor,
-                let width = previousWidth else {
-            return
-        }
-        layer.borderColor = color
-        layer.borderWidth = width
+        validate()
     }
+}
+
+public class SPSecureTextField: ValidatedTextField {
+
 }
 
 
@@ -230,7 +240,8 @@ extension UITextField {
         self.text
     }
 
-    func secureText() -> SpreedlySecureOpaqueString? {
+    @objc
+    public func secureText() -> SpreedlySecureOpaqueString? {
         guard let text = self.text else {
             return nil
         }
@@ -251,3 +262,5 @@ extension UITextField {
         return nil
     }
 }
+
+
