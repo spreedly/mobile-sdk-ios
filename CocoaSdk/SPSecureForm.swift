@@ -70,8 +70,6 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
 
-    var selectedBankAccountType: String?
-
     var bankAccountFields: [UIView?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
     }
