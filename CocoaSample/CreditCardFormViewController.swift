@@ -52,7 +52,6 @@ extension CreditCardFormViewController: SPSecureFormDelegate {
 
     }
 
-
     func displayAlert(message: String, title: String) {
         let alert = UIAlertController(
                 title: title,
