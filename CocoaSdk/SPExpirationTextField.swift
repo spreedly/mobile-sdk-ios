@@ -28,14 +28,14 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
 
         var current = textField.text ?? ""
 
-        if string == "/" &&  current.count == 1 {
+        if string == "/" && current.count == 1 {
             // user gave us a backslash with a single digit month
             current = "0\(current)"
             textField.text = formatExpiration(current)
             return false
         }
 
-        let cleaned = string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let cleaned = string.onlyNumbers()
         guard cleaned.count > 0 else {
             // none of the replacementString was useful
             return false
@@ -62,7 +62,7 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
 
     public func formatExpiration(_ string: String) -> String {
         var formattedString = String()
-        let normalizedString = string.replacingOccurrences(of: "/", with: "")
+        let normalizedString = string.onlyNumbers()
 
         for (index, character) in normalizedString.enumerated() {
             formattedString.append(character)
