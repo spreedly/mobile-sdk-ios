@@ -140,8 +140,11 @@ extension Dictionary where Key == String, Value == Any {
         }
     }
 
-    mutating func setOpaqueString(_ key: String, _ value: SpreedlySecureOpaqueString) throws {
-        guard let value = value as? SpreedlySecureOpaqueStringImpl else {
+    mutating func setOpaqueString(_ key: String, _ value: SpreedlySecureOpaqueString?) throws {
+        guard let unwrappedValue = value else {
+            return
+        }
+        guard let value = unwrappedValue as? SpreedlySecureOpaqueStringImpl else {
             throw SpreedlySecurityError.invalidOpaqueString
         }
         self[key] = value.internalToString()

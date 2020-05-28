@@ -17,6 +17,18 @@ target 'Sample' do
   pod 'RxCocoa', '~> 5'
 end
 
+target 'CocoaSdk' do
+  use_frameworks!
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+end
+
+target 'CocoaSample' do
+  use_frameworks!
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+end
+
 target 'SdkTests' do
   use_frameworks!
   pod 'RxSwift', '~> 5'

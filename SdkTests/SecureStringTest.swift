@@ -69,7 +69,7 @@ class DictionaryExtensionsTests: XCTestCase {
     }
     func testSetOpaqueStringWhenNotMainImplShouldThrow() throws {
         var json: [String: Any] = [:]
-        XCTAssertThrowsError(try json.setOpaqueString("key", AlternateImpl())) { error in 
+        XCTAssertThrowsError(try json.setOpaqueString("key", AlternateImpl())) { error in
             XCTAssertEqual(SpreedlySecurityError.invalidOpaqueString, error as? SpreedlySecurityError)
         }
     }
@@ -78,5 +78,11 @@ class DictionaryExtensionsTests: XCTestCase {
         var json: [String: Any] = [:]
         try json.setOpaqueString("secure", SpreedlySecureOpaqueStringImpl.init(from: "string"))
         XCTAssertEqual("string", json["secure"] as? String)
+    }
+
+    func testSetOpaqueStringWhenPassedNilValueShouldDoNothing() throws {
+        var json: [String: Any] = [:]
+        try json.setOpaqueString("is-nil", nil)
+        XCTAssert(json.isEmpty)
     }
 }

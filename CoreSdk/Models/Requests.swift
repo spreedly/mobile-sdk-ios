@@ -1,9 +1,9 @@
 import PassKit
 
 public class PaymentMethodRequestBase {
-    public let fullName: String?
-    public let firstName: String?
-    public let lastName: String?
+    public var fullName: String?
+    public var firstName: String?
+    public var lastName: String?
     public var company: String?
 
     public var address: Address?
@@ -32,10 +32,14 @@ public class PaymentMethodRequestBase {
 }
 
 public class CreditCardInfo: PaymentMethodRequestBase {
-    public let number: SpreedlySecureOpaqueString
-    public let verificationValue: SpreedlySecureOpaqueString
-    public let year: Int
-    public let month: Int
+    public var number: SpreedlySecureOpaqueString?
+    public var verificationValue: SpreedlySecureOpaqueString?
+    public var year: Int?
+    public var month: Int?
+
+    public init() {
+        super.init(fullName: nil, firstName: nil, lastName: nil)
+    }
 
     public init(
             fullName: String,
@@ -66,13 +70,26 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
     }
 
+    /// Copies values from another CreditCardInfo instance
+    /// including fullName, firstName, lastName, address,
+    /// shippingAddress, and company.
+    ///
+    /// Card data is not copied.
+    /// - Parameter info: The source of the values.
+    public init(from info: CreditCardInfo?) {
+        super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
+        address = info?.address
+        shippingAddress = info?.shippingAddress
+        company = info?.company
+    }
+
     internal override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
-        try result.setOpaqueString("number", self.number)
-        try result.setOpaqueString("verification_value", self.verificationValue)
-        result["year"] = self.year
-        result["month"] = self.month
+        try result.setOpaqueString("number", number)
+        try result.setOpaqueString("verification_value", verificationValue)
+        result["year"] = year
+        result["month"] = month
 
         return result
     }
@@ -89,21 +106,25 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     }
 }
 
-public enum BankAccountType: String {
+public enum BankAccountType: String, CaseIterable {
     case checking
     case savings
 }
 
-public enum BankAccountHolderType: String {
+public enum BankAccountHolderType: String, CaseIterable {
     case business
     case personal
 }
 
 public class BankAccountInfo: PaymentMethodRequestBase {
-    public let bankRoutingNumber: String
-    public let bankAccountNumber: SpreedlySecureOpaqueString
-    public let bankAccountType: BankAccountType
-    public let bankAccountHolderType: BankAccountHolderType
+    public var bankRoutingNumber: String?
+    public var bankAccountNumber: SpreedlySecureOpaqueString?
+    public var bankAccountType: BankAccountType?
+    public var bankAccountHolderType: BankAccountHolderType?
+
+    public init() {
+        super.init(fullName: nil, firstName: nil, lastName: nil)
+    }
 
     public init(
             fullName: String,
@@ -132,6 +153,22 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         self.bankAccountType = bankAccountType
         self.bankAccountHolderType = bankAccountHolderType
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
+    }
+
+    /// Copies values from another BankAccountInfo instance
+    /// including fullName, firstName, lastName, address,
+    /// shippingAddress, company, bankAccountType, and
+    /// bankAccountHolderType.
+    ///
+    /// Account data is not copied.
+    /// - Parameter info: The source of the values.
+    public init(from info: BankAccountInfo?) {
+        super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
+        address = info?.address
+        shippingAddress = info?.shippingAddress
+        company = info?.company
+        bankAccountType = info?.bankAccountType
+        bankAccountHolderType = info?.bankAccountHolderType
     }
 
     internal override func toJson() throws -> [String: Any] {

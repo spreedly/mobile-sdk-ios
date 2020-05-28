@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YUx-rV-FgK">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Spreedly Cocoa Sample-->
+        <scene sceneID="xEZ-ha-T7d">
+            <objects>
+                <viewController title="Spreedly Cocoa Sample" id="mlm-g5-HBD" customClass="ViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kLk-OI-wjM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-eQ-eJ2">
+                                <rect key="frame" x="0.0" y="338" width="414" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-nV-iJb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                        <state key="normal" title="Credit Card"/>
+                                        <connections>
+                                            <segue destination="lf6-cm-I24" kind="show" id="ywR-99-5VO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeq-bI-QfN">
+                                        <rect key="frame" x="0.0" y="30" width="414" height="30"/>
+                                        <state key="normal" title="Bank Account"/>
+                                        <connections>
+                                            <segue destination="PPs-B4-3q4" kind="show" id="5os-L0-sow"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7An-By-zHj"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vrB-eQ-eJ2" firstAttribute="leading" secondItem="uOT-fU-EQg" secondAttribute="leading" id="K3l-C0-UQr"/>
+                            <constraint firstItem="uOT-fU-EQg" firstAttribute="trailing" secondItem="vrB-eQ-eJ2" secondAttribute="trailing" id="o5o-P5-MBl"/>
+                            <constraint firstItem="vrB-eQ-eJ2" firstAttribute="centerY" secondItem="kLk-OI-wjM" secondAttribute="centerY" id="pwC-KG-K52"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uOT-fU-EQg"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Spreedly Cocoa Sample" id="IsR-GL-mdw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fc2-VA-9Pf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="599" y="133"/>
+        </scene>
+        <!--Credit Card Transaction-->
+        <scene sceneID="Cbq-53-p9g">
+            <objects>
+                <viewController id="lf6-cm-I24" customClass="CreditCardFormViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dpo-s2-wSB" userLabel="Secure Form" customClass="SPSecureForm" customModule="CocoaSdk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-pS-FNr">
+                                <rect key="frame" x="10" y="44" width="394" height="306"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cardholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdT-Vh-uqU">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cardholder Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="06g-Dm-y2y" customClass="ValidatedTextField" customModule="CocoaSdk">
+                                        <rect key="frame" x="0.0" y="34" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-yJ-Q5x">
+                                        <rect key="frame" x="0.0" y="68" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="kFD-Eh-7v0">
+                                        <rect key="frame" x="0.0" y="102" width="394" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Number" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="piH-B3-ODf" customClass="SPCreditCardNumberTextField" customModule="CocoaSdk">
+                                                <rect key="frame" x="0.0" y="0.0" width="308" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2o-ud-dCK">
+                                                <rect key="frame" x="308" y="0.0" width="86" height="34"/>
+                                                <state key="normal" image="spr_card_unknown"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaL-9z-8DD">
+                                        <rect key="frame" x="0.0" y="136" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-yu-ATf" customClass="SPExpirationTextField" customModule="CocoaSdk">
+                                        <rect key="frame" x="0.0" y="170" width="394" height="34"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Expiration Year"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CVV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-kf-van">
+                                        <rect key="frame" x="0.0" y="204" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-GT-cYd" customClass="SPSecureTextField" customModule="CocoaSdk">
+                                        <rect key="frame" x="0.0" y="238" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jH8-AF-mFH">
+                                        <rect key="frame" x="0.0" y="272" width="394" height="34"/>
+                                        <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="createCreditCardPaymentMethodWithSender:" destination="Dpo-s2-wSB" eventType="primaryActionTriggered" id="RRq-qW-hUI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9Vp-Pn-Miu" firstAttribute="trailing" secondItem="bbI-pS-FNr" secondAttribute="trailing" constant="10" id="4Ej-fz-hZJ"/>
+                            <constraint firstItem="bbI-pS-FNr" firstAttribute="top" secondItem="9Vp-Pn-Miu" secondAttribute="top" id="CSp-MG-NRO"/>
+                            <constraint firstItem="bbI-pS-FNr" firstAttribute="leading" secondItem="9Vp-Pn-Miu" secondAttribute="leading" constant="10" id="EHc-4w-RvJ"/>
+                            <constraint firstItem="9Vp-Pn-Miu" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bbI-pS-FNr" secondAttribute="bottom" id="VnH-Ht-Z2N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Vp-Pn-Miu"/>
+                        <connections>
+                            <outlet property="cardBrand" destination="m2o-ud-dCK" id="REM-eZ-M4O"/>
+                            <outlet property="creditCardNumber" destination="piH-B3-ODf" id="sal-d6-Trt"/>
+                            <outlet property="creditCardVerificationNumber" destination="TrW-GT-cYd" id="yAx-BZ-ZAz"/>
+                            <outlet property="expirationDate" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
+                            <outlet property="fullName" destination="06g-Dm-y2y" id="uRX-sf-QQx"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Credit Card Transaction" id="64D-cS-tgt"/>
+                    <connections>
+                        <outlet property="form" destination="Dpo-s2-wSB" id="xgl-a7-OLt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qrh-Wv-yj0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1501" y="133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iDl-KR-2KN">
+            <objects>
+                <navigationController id="YUx-rV-FgK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aZ8-5j-Lc7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mlm-g5-HBD" kind="relationship" relationship="rootViewController" id="Psl-xO-JjJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Px7-FS-M4h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-299" y="133"/>
+        </scene>
+        <!--Bank Account Transaction-->
+        <scene sceneID="RgU-9V-UB2">
+            <objects>
+                <viewController id="PPs-B4-3q4" customClass="BankAccountFormViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5c7-Hk-Iwi" customClass="SPSecureForm" customModule="CocoaSdk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hiu-Sg-jvd">
+                                <rect key="frame" x="10" y="54" width="394" height="295.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accountholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXe-i8-Wdc">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u81-z0-r9G">
+                                        <rect key="frame" x="0.0" y="20.333333333333329" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmx-WR-zX0">
+                                        <rect key="frame" x="0.0" y="54.333333333333336" width="394" height="20.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhG-B3-xr6" customClass="SPSecureTextField" customModule="CocoaSdk">
+                                        <rect key="frame" x="0.0" y="74.666666666666657" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routing Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScQ-z0-QyF">
+                                        <rect key="frame" x="0.0" y="108.66666666666666" width="394" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Routing Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SEC-Fl-4Vn" customClass="SPSecureTextField" customModule="CocoaSdk">
+                                        <rect key="frame" x="0.0" y="129" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHp-0e-ciy">
+                                        <rect key="frame" x="0.0" y="163" width="394" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="w7n-dX-Pii">
+                                        <rect key="frame" x="0.0" y="183.33333333333334" width="394" height="32"/>
+                                        <segments>
+                                            <segment title="Checking"/>
+                                            <segment title="Savings"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZ1-OU-Hxj">
+                                        <rect key="frame" x="0.0" y="214.33333333333331" width="394" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IsE-yW-0mT">
+                                        <rect key="frame" x="0.0" y="234.66666666666669" width="394" height="32"/>
+                                        <segments>
+                                            <segment title="Personal"/>
+                                            <segment title="Business"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IV1-CJ-WZy">
+                                        <rect key="frame" x="0.0" y="265.66666666666669" width="394" height="30"/>
+                                        <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="createBankAccountPaymentMethodWithSender:" destination="5c7-Hk-Iwi" eventType="primaryActionTriggered" id="hFT-Ke-aXD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="E1q-XL-7IY" firstAttribute="trailing" secondItem="hiu-Sg-jvd" secondAttribute="trailing" constant="10" id="k7F-Ps-OlA"/>
+                            <constraint firstItem="hiu-Sg-jvd" firstAttribute="leading" secondItem="E1q-XL-7IY" secondAttribute="leading" constant="10" id="npV-Ym-eiQ"/>
+                            <constraint firstItem="hiu-Sg-jvd" firstAttribute="top" secondItem="E1q-XL-7IY" secondAttribute="top" constant="10" id="wgi-Cb-dAB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E1q-XL-7IY"/>
+                        <connections>
+                            <outlet property="bankAccountHolderType" destination="IsE-yW-0mT" id="AFh-cg-T50"/>
+                            <outlet property="bankAccountNumber" destination="vhG-B3-xr6" id="Pku-X5-Nsa"/>
+                            <outlet property="bankAccountRoutingNumber" destination="SEC-Fl-4Vn" id="58q-6P-rt2"/>
+                            <outlet property="bankAccountType" destination="w7n-dX-Pii" id="ns1-Fq-h3C"/>
+                            <outlet property="fullName" destination="u81-z0-r9G" id="BLG-cl-ryg"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bank Account Transaction" id="dLs-e8-Tef"/>
+                    <connections>
+                        <outlet property="form" destination="5c7-Hk-Iwi" id="may-cB-9RA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1OY-8s-lT1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="599" y="858"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="spr_card_unknown" width="32" height="21"/>
+    </resources>
+</document>
