@@ -11,7 +11,10 @@ import RxSwift
 class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var form: SPSecureForm?
-
+    @IBOutlet weak var fullName: ValidatedTextField!
+    @IBOutlet weak var accountNumber: SPSecureTextField!
+    @IBOutlet weak var routingNumber: ValidatedTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +25,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     /// Set defaults here for values like name
     /// or address information.
     func setDefaults() {
-        form?.fullName?.text = "Dolly Dog"
+        fullName.text = "Dolly Dog"
 
         let defaults = BankAccountInfo()
         var billing = Address()
@@ -38,10 +41,11 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     }
 
     func configureDelegates() {
-        self.form?.delegate = self
-        self.form?.fullName?.delegate = self
-        self.form?.bankAccountRoutingNumber?.delegate = self
-        self.form?.bankAccountNumber?.delegate = self
+        form?.delegate = self
+        
+        fullName.delegate = self
+        accountNumber.delegate = self
+        routingNumber.delegate = self
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

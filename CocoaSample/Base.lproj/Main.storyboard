@@ -266,7 +266,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bank Account Transaction" id="dLs-e8-Tef"/>
                     <connections>
+                        <outlet property="accountNumber" destination="vhG-B3-xr6" id="M5c-FY-yEp"/>
                         <outlet property="form" destination="5c7-Hk-Iwi" id="may-cB-9RA"/>
+                        <outlet property="fullName" destination="u81-z0-r9G" id="sh7-fG-dYL"/>
+                        <outlet property="routingNumber" destination="SEC-Fl-4Vn" id="Pkf-yY-DCH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OY-8s-lT1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
