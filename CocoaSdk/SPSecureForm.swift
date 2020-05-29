@@ -59,7 +59,7 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var cardBrand: UIButton?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
-    var creditCardFields: [UIView?] {
+    private var creditCardFields: [UIView?] {
         [fullName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
 
@@ -69,7 +69,7 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
-    var bankAccountFields: [UIView?] {
+    private var bankAccountFields: [UIView?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
     }
 
@@ -233,35 +233,8 @@ extension ValidatedTextField {
     }
 }
 
-public class SPSecureTextField: ValidatedTextField {
-
-}
-
-
 extension UITextField {
     func text() -> String? {
         self.text
-    }
-
-    @objc
-    public func secureText() -> SpreedlySecureOpaqueString? {
-        guard let text = self.text else {
-            return nil
-        }
-        let client = getClient()
-        return client?.createSecureString(from: text)
-    }
-
-    func getClient() -> SpreedlyClient? {
-        var view = self.superview
-
-        while view != nil {
-            if let form = view as? SPSecureForm {
-                return try? form.getClient()
-            }
-            view = view?.superview
-        }
-
-        return nil
     }
 }
