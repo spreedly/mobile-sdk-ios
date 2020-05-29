@@ -153,6 +153,24 @@ extension SPSecureForm {
 }
 
 extension SPSecureForm {
+    private var selectedHolderType: BankAccountHolderType {
+        switch bankAccountHolderType?.selectedSegmentIndex {
+        case 0:
+            return .personal
+        default:
+            return .business
+        }
+    }
+
+    private var selectedAccountType: BankAccountType {
+        switch bankAccountType?.selectedSegmentIndex {
+        case 0:
+            return .checking
+        default:
+            return .savings
+        }
+    }
+
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         unsetErrorFor(bankAccountFields)
 
@@ -168,24 +186,11 @@ extension SPSecureForm {
         }
 
         let info = BankAccountInfo(from: bankAccountDefaults)
-
         info.fullName = fullName?.text()
         info.bankAccountNumber = bankAccountNumber?.secureText()
         info.bankRoutingNumber = bankAccountRoutingNumber?.text()
-
-        switch bankAccountHolderType?.selectedSegmentIndex {
-        case 0:
-            info.bankAccountHolderType = .personal
-        default:
-            info.bankAccountHolderType = .business
-        }
-
-        switch bankAccountType?.selectedSegmentIndex {
-        case 0:
-            info.bankAccountType = .checking
-        default:
-            info.bankAccountType = .savings
-        }
+        info.bankAccountHolderType = selectedHolderType
+        info.bankAccountType = selectedAccountType
 
         _ = client.createBankAccountPaymentMethod(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
