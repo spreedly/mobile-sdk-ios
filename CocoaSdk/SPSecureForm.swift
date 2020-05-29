@@ -52,6 +52,18 @@ public class SPSecureForm: UIView {
         return client
     }
 
+    func getClientOrDieTrying() -> SpreedlyClient {
+        let client: SpreedlyClient
+        do {
+            client = try getClient()
+        } catch SPSecureClientError.noSpreedlyCredentials {
+            fatalError("No credentials were specified.")
+        } catch {
+            fatalError("Error: \(error)")
+        }
+        return client
+    }
+
     // Credit Card fields
     public var creditCardDefaults: CreditCardInfo?
     @IBOutlet public weak var fullName: ValidatedTextField?
@@ -120,19 +132,9 @@ extension SPSecureForm {
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
         unsetErrorFor(creditCardFields)
 
-        let client: SpreedlyClient
-        do {
-            client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
-            displayAlert(message: "No credentials were specified.", title: "Error")
-            return
-        } catch {
-            displayAlert(message: "Error: \(error)", title: "Error")
-            return
-        }
+        let client = getClientOrDieTrying()
 
         let info = CreditCardInfo(from: creditCardDefaults)
-
         info.fullName = fullName?.text()
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
@@ -174,16 +176,7 @@ extension SPSecureForm {
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         unsetErrorFor(bankAccountFields)
 
-        let client: SpreedlyClient
-        do {
-            client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
-            displayAlert(message: "No credentials were specified.", title: "Error")
-            return
-        } catch {
-            displayAlert(message: "Error: \(error)", title: "Error")
-            return
-        }
+        let client = getClientOrDieTrying()
 
         let info = BankAccountInfo(from: bankAccountDefaults)
         info.fullName = fullName?.text()
