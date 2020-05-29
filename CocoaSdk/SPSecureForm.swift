@@ -97,17 +97,6 @@ public class SPSecureForm: UIView {
         }
     }
 
-    func displayAlert(message: String, title: String) {
-        let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        window?.rootViewController?.present(alert, animated: true)
-    }
-
     func keyToView(_ key: String?) -> UIView? {
         switch (key) {
         case "number":
