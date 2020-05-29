@@ -5,21 +5,11 @@
 import Foundation
 import UIKit
 
-public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.delegate = self
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        self.delegate = self
-    }
-
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        unsetError()
+public class SPExpirationTextField: ValidatedTextField {
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+            return false
+        }
 
         guard string.count > 0 else {
             // allow backspace/delete

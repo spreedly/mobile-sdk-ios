@@ -8,4 +8,8 @@ extension String {
     func onlyNumbers() -> String {
         String(self.filter{ $0.isNumber })
     }
+
+    func withoutSpaces() -> String {
+        self.replacingOccurrences(of: " ", with: "")
+    }
 }

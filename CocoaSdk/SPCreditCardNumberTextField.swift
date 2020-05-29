@@ -17,20 +17,12 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     private var unmaskedText: String?
     private var masked: Bool = false
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.delegate = self
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        self.delegate = self
+    private var rawText: String? {
+        masked ? unmaskedText : text
     }
 
     public override func secureText() -> SpreedlySecureOpaqueString? {
-        guard let text = self.unmaskedText else {
+        guard let text = rawText else {
             return nil
         }
         let cardNumber = text.onlyNumbers()
@@ -40,7 +32,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 
     public func formatCardNumber(_ string: String) -> String {
         var formattedString = String()
-        let cardNumber = string.onlyNumbers()
+        let cardNumber = string.withoutSpaces()
         for (index, character) in cardNumber.enumerated() {
             if index != 0 && index % 4 == 0 {
                 formattedString.append(" ")
@@ -53,7 +45,8 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     }
 }
 
-extension SPCreditCardNumberTextField: UITextFieldDelegate {
+// MARK: - UITextFieldDelegate methods
+extension SPCreditCardNumberTextField {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         let cardBrand = CardBrand.from(textField.text)
         cardTypeDeterminationDelegate?.cardBrandDetermination(brand: cardBrand)
@@ -101,8 +94,10 @@ extension SPCreditCardNumberTextField: UITextFieldDelegate {
         masked = false
     }
 
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        unsetError()
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+            return false
+        }
 
         guard string.count > 0 else {
             // allow backspace/delete

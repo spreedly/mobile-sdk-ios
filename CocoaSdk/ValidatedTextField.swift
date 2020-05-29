@@ -6,6 +6,8 @@ import Foundation
 import UIKit
 
 public class ValidatedTextField: UITextField {
+    private weak var userDelegate: UITextFieldDelegate?
+
     public required init?(coder: NSCoder) {
         self.defaultColor = UIColor.label
         self.errorColor = UIColor.red
@@ -13,6 +15,8 @@ public class ValidatedTextField: UITextField {
         self.errorBorderColor = UIColor.red
 
         super.init(coder: coder)
+
+        super.delegate = self
     }
 
     public override init(frame: CGRect) {
@@ -22,6 +26,8 @@ public class ValidatedTextField: UITextField {
         self.errorBorderColor = UIColor.red
 
         super.init(frame: frame)
+
+        super.delegate = self
     }
 
     @IBInspectable
@@ -78,5 +84,18 @@ public class ValidatedTextField: UITextField {
                         errorBorderColor.cgColor
         )
         layer.borderWidth = validState ? 0.0 : 1.0
+    }
+}
+
+extension ValidatedTextField: UITextFieldDelegate {
+    public override var delegate: UITextFieldDelegate? {
+        get { userDelegate }
+        set { userDelegate = newValue }
+    }
+
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        validate()
+
+        return self.delegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
 }
