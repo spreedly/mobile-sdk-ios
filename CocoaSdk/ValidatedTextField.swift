@@ -61,16 +61,16 @@ public class ValidatedTextField: UITextField {
 
     public private(set) var validState: Bool = true
 
-    public var invalidationReason: String?
+    public var reason: String?
 
-    public func invalidate(because reason: String) {
-        invalidationReason = reason
+    public func setError(because reason: String) {
+        self.reason = reason
         validState = false
         updateColor()
     }
 
-    public func validate() {
-        invalidationReason = nil
+    public func unsetError() {
+        reason = nil
         validState = true
         updateColor()
     }
@@ -94,7 +94,7 @@ extension ValidatedTextField: UITextFieldDelegate {
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        validate()
+        unsetError()
 
         return self.delegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
