@@ -66,7 +66,7 @@ public class SPSecureForm: UIView {
     // Bank Account fields
     public var bankAccountDefaults: BankAccountInfo?
     @IBOutlet public weak var bankAccountNumber: SPSecureTextField?
-    @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
+    @IBOutlet public weak var bankAccountRoutingNumber: ValidatedTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
     private var bankAccountFields: [UIView?] {
