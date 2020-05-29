@@ -65,10 +65,12 @@
 		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
 		F076C859688D80D9509E0B75 /* ApplePayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0576B08565E3FD0DCC6 /* ApplePayForm.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
+		F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA9E54CC1E288449091E /* String+Additions.swift */; };
 		F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */; };
 		F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */; };
 		F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */; };
 		F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
+		F076CC51543D226BF5DFB723 /* SPSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */; };
 		F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -223,12 +225,14 @@
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		F076C2EB71479F8B5C3F5C7D /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountFormViewController.swift; sourceTree = "<group>"; };
+		F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSecureTextField.swift; sourceTree = "<group>"; };
 		F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPExpirationTextField.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076C8101E3C373825B4F415 /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 		F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		F076CA9E54CC1E288449091E /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionsTests.swift; sourceTree = "<group>"; };
 		F076CB8C9D4B8CE905B35F73 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextField.swift; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
 				F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */,
 				F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */,
+				F076CA9E54CC1E288449091E /* String+Additions.swift */,
+				F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */,
 			);
 			path = CocoaSdk;
 			sourceTree = "<group>";
@@ -1021,6 +1027,8 @@
 				F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */,
 				F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */,
 				F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */,
+				F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */,
+				F076CC51543D226BF5DFB723 /* SPSecureTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

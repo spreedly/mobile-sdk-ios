@@ -59,55 +59,18 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var cardBrand: UIButton?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
-    var creditCardFields: [UIView?] {
+    private var creditCardFields: [UIView?] {
         [fullName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
 
     // Bank Account fields
     public var bankAccountDefaults: BankAccountInfo?
     @IBOutlet public weak var bankAccountNumber: SPSecureTextField?
-    @IBOutlet public weak var bankAccountRoutingNumber: SPSecureTextField?
+    @IBOutlet public weak var bankAccountRoutingNumber: ValidatedTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
-
-    var selectedBankAccountType: String?
-
-    var bankAccountFields: [UIView?] {
+    private var bankAccountFields: [UIView?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
-    }
-
-    @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
-        unsetErrorFor(creditCardFields)
-
-        let client: SpreedlyClient
-        do {
-            client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
-            displayAlert(message: "No credentials were specified.", title: "Error")
-            return
-        } catch {
-            displayAlert(message: "Error: \(error)", title: "Error")
-            return
-        }
-
-        let info = CreditCardInfo(from: creditCardDefaults)
-
-        info.fullName = fullName?.text()
-        info.number = creditCardNumber?.secureText()
-        info.verificationValue = creditCardVerificationNumber?.secureText()
-        let dateParts = expirationDate?.dateParts()
-        info.month = dateParts?.month
-        info.year = dateParts?.year
-
-        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
-            DispatchQueue.main.async {
-                if let errors = transaction.errors, errors.count > 0 {
-                    self.notifyFieldsOf(errors: errors)
-                } else {
-                    self.delegate?.spreedly(secureForm: self, success: transaction)
-                }
-            }
-        })
     }
 
     private func notifyFieldsOf(errors: [SpreedlyError]) {
@@ -144,6 +107,10 @@ public class SPSecureForm: UIView {
             return expirationDate
         case "first_name", "last_name", "full_name":
             return fullName
+        case "account_number":
+            return bankAccountNumber
+        case "routing_number":
+            return bankAccountRoutingNumber
         default:
             return nil
         }
@@ -151,6 +118,42 @@ public class SPSecureForm: UIView {
 
     public func viewDidLoad() {
         creditCardNumber?.cardTypeDeterminationDelegate = self
+    }
+}
+
+extension SPSecureForm {
+    @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
+        unsetErrorFor(creditCardFields)
+
+        let client: SpreedlyClient
+        do {
+            client = try getClient()
+        } catch SPSecureClientError.noSpreedlyCredentials {
+            displayAlert(message: "No credentials were specified.", title: "Error")
+            return
+        } catch {
+            displayAlert(message: "Error: \(error)", title: "Error")
+            return
+        }
+
+        let info = CreditCardInfo(from: creditCardDefaults)
+
+        info.fullName = fullName?.text()
+        info.number = creditCardNumber?.secureText()
+        info.verificationValue = creditCardVerificationNumber?.secureText()
+        let dateParts = expirationDate?.dateParts()
+        info.month = dateParts?.month
+        info.year = dateParts?.year
+
+        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
+            DispatchQueue.main.async {
+                if let errors = transaction.errors, errors.count > 0 {
+                    self.notifyFieldsOf(errors: errors)
+                } else {
+                    self.delegate?.spreedly(secureForm: self, success: transaction)
+                }
+            }
+        })
     }
 }
 
@@ -230,37 +233,8 @@ extension ValidatedTextField {
     }
 }
 
-public class SPSecureTextField: ValidatedTextField {
-
-}
-
-
 extension UITextField {
     func text() -> String? {
         self.text
     }
-
-    @objc
-    public func secureText() -> SpreedlySecureOpaqueString? {
-        guard let text = self.text else {
-            return nil
-        }
-        let client = getClient()
-        return client?.createSecureString(from: text)
-    }
-
-    func getClient() -> SpreedlyClient? {
-        var view = self.superview
-
-        while view != nil {
-            if let form = view as? SPSecureForm {
-                return try? form.getClient()
-            }
-            view = view?.superview
-        }
-
-        return nil
-    }
 }
-
-

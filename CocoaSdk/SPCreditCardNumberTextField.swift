@@ -17,31 +17,23 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     private var unmaskedText: String?
     private var masked: Bool = false
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.delegate = self
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        self.delegate = self
+    private var rawText: String? {
+        masked ? unmaskedText : text
     }
 
     public override func secureText() -> SpreedlySecureOpaqueString? {
-        guard let text = self.unmaskedText else {
+        guard let text = rawText else {
             return nil
         }
-        let onlyNumbers = text.replacingOccurrences(of: " ", with: "")
+        let cardNumber = text.onlyNumbers()
         let client = getClient()
-        return client?.createSecureString(from: onlyNumbers)
+        return client?.createSecureString(from: cardNumber)
     }
 
     public func formatCardNumber(_ string: String) -> String {
         var formattedString = String()
-        let normalizedString = string.replacingOccurrences(of: " ", with: "")
-        for (index, character) in normalizedString.enumerated() {
+        let cardNumber = string.withoutSpaces()
+        for (index, character) in cardNumber.enumerated() {
             if index != 0 && index % 4 == 0 {
                 formattedString.append(" ")
             }
@@ -51,16 +43,10 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 
         return formattedString
     }
-
-    private func normalizeNumber(_ number: String?) -> String {
-        guard let number = number else {
-            return ""
-        }
-        return String(number.filter { $0.isNumber })
-    }
 }
 
-extension SPCreditCardNumberTextField: UITextFieldDelegate {
+// MARK: - UITextFieldDelegate methods
+extension SPCreditCardNumberTextField {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         let cardBrand = CardBrand.from(textField.text)
         cardTypeDeterminationDelegate?.cardBrandDetermination(brand: cardBrand)
@@ -73,16 +59,19 @@ extension SPCreditCardNumberTextField: UITextFieldDelegate {
     }
 
     private var lastFour: String {
-        guard let cardNumber = text else {
+        guard let cardNumber = text?.onlyNumbers() else {
             return ""
         }
 
-        let cleanedNumber = normalizeNumber(cardNumber)
-
-        if let foo = cleanedNumber.index(cleanedNumber.endIndex, offsetBy: -4, limitedBy: cleanedNumber.startIndex) {
-            return String(cleanedNumber[foo...])
+        if let lastFourStartIndex = cardNumber.index(
+                cardNumber.endIndex,
+                offsetBy: -4,
+                limitedBy: cardNumber.startIndex
+        ) {
+            return String(cardNumber[lastFourStartIndex...])
         } else {
-            return cleanedNumber
+            // there must be less than 4 digits so return what there is
+            return cardNumber
         }
     }
 
@@ -93,8 +82,8 @@ extension SPCreditCardNumberTextField: UITextFieldDelegate {
         }
 
         unmaskedText = rawNumber
-        let cleanedNumber = normalizeNumber(rawNumber)
-        let maskCharacterCount = max(cleanedNumber.count - 4, 0)
+        let cardNumber = rawNumber.onlyNumbers()
+        let maskCharacterCount = max(cardNumber.count - 4, 0)
 
         let mask = String(repeating: maskCharacter, count: maskCharacterCount)
         text = formatCardNumber(mask + lastFour)
@@ -110,8 +99,10 @@ extension SPCreditCardNumberTextField: UITextFieldDelegate {
         masked = false
     }
 
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        unsetError()
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+            return false
+        }
 
         guard string.count > 0 else {
             // allow backspace/delete
@@ -120,13 +111,13 @@ extension SPCreditCardNumberTextField: UITextFieldDelegate {
 
         let current = textField.text ?? ""
 
-        let cleaned = string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let cleaned = string.onlyNumbers()
         guard cleaned.count > 0 else {
             // none of the replacementString was useful
             return false
         }
 
-        let requested = "\(current)\(string)"
+        let requested = "\(current)\(cleaned)"
 
         guard requested.count <= "1234 5678 1234 5678".count else {
             // too many characters are coming in

@@ -5,21 +5,11 @@
 import Foundation
 import UIKit
 
-public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.delegate = self
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        self.delegate = self
-    }
-
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        unsetError()
+public class SPExpirationTextField: ValidatedTextField {
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+            return false
+        }
 
         guard string.count > 0 else {
             // allow backspace/delete
@@ -28,14 +18,14 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
 
         var current = textField.text ?? ""
 
-        if string == "/" &&  current.count == 1 {
+        if string == "/" && current.count == 1 {
             // user gave us a backslash with a single digit month
             current = "0\(current)"
             textField.text = formatExpiration(current)
             return false
         }
 
-        let cleaned = string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let cleaned = string.onlyNumbers()
         guard cleaned.count > 0 else {
             // none of the replacementString was useful
             return false
@@ -62,9 +52,9 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
 
     public func formatExpiration(_ string: String) -> String {
         var formattedString = String()
-        let normalizedString = string.replacingOccurrences(of: "/", with: "")
+        let dateDigits = string.onlyNumbers()
 
-        for (index, character) in normalizedString.enumerated() {
+        for (index, character) in dateDigits.enumerated() {
             formattedString.append(character)
             if index == 1 {
                 formattedString.append("/")
