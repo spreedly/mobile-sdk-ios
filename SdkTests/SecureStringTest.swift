@@ -86,3 +86,16 @@ class DictionaryExtensionsTests: XCTestCase {
         XCTAssert(json.isEmpty)
     }
 }
+
+class SpreedlySecureOpaqueStringBuilderTests: XCTestCase {
+    func testBuildWhenNilStringShouldReturnEmptySSOS() {
+        let actual = SpreedlySecureOpaqueStringBuilder.build(from: nil) as? SpreedlySecureOpaqueStringImpl
+        XCTAssertEqual(actual?.internalToString(), "")
+    }
+
+    func testBuildWhenGivenStringShouldReturnObjectWithString() {
+        let expected = "uuddlrlrba"
+        let actual = SpreedlySecureOpaqueStringBuilder.build(from: expected) as? SpreedlySecureOpaqueStringImpl
+        XCTAssertEqual(actual?.internalToString(), expected)
+    }
+}

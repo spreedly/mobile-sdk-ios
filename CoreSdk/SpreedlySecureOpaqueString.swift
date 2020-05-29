@@ -49,3 +49,13 @@ extension SpreedlySecureOpaqueStringImpl: Encodable {
         try container.encode(internalToString())
     }
 }
+
+public class SpreedlySecureOpaqueStringBuilder {
+    public static func build(from string: String?) -> SpreedlySecureOpaqueString {
+        guard let string = string else {
+            return SpreedlySecureOpaqueStringImpl()
+        }
+
+        return SpreedlySecureOpaqueStringImpl(from: string)
+    }
+}
