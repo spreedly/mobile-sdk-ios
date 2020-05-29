@@ -8,17 +8,6 @@ import RxSwift
 @testable import CoreSdk
 
 class SecureStringTest: XCTestCase {
-
-    func testCreateFromClientWithoutContent() {
-        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString()
-        XCTAssertNotNil(secureString)
-    }
-
-    func testCreateFromClientWithContent() {
-        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString(from: "abc")
-        XCTAssertNotNil(secureString)
-    }
-
     func testCreate() {
         let secureString = SpreedlySecureOpaqueStringImpl(from: "abc")
         XCTAssertEqual(secureString.internalToString(), "abc")
@@ -84,5 +73,18 @@ class DictionaryExtensionsTests: XCTestCase {
         var json: [String: Any] = [:]
         try json.setOpaqueString("is-nil", nil)
         XCTAssert(json.isEmpty)
+    }
+}
+
+class SpreedlySecureOpaqueStringBuilderTests: XCTestCase {
+    func testBuildWhenNilStringShouldReturnEmptySSOS() {
+        let actual = SpreedlySecureOpaqueStringBuilder.build(from: nil) as? SpreedlySecureOpaqueStringImpl
+        XCTAssertEqual(actual?.internalToString(), "")
+    }
+
+    func testBuildWhenGivenStringShouldReturnObjectWithString() {
+        let expected = "uuddlrlrba"
+        let actual = SpreedlySecureOpaqueStringBuilder.build(from: expected) as? SpreedlySecureOpaqueStringImpl
+        XCTAssertEqual(actual?.internalToString(), expected)
     }
 }

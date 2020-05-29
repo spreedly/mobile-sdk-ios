@@ -4,6 +4,14 @@
 
 import Foundation
 
+@objc public protocol SpreedlySecureOpaqueString {
+    func clear()
+
+    func append(_ string: String)
+
+    func removeLastCharacter()
+}
+
 class SpreedlySecureOpaqueStringImpl: NSObject, SpreedlySecureOpaqueString {
     private var data: [Character] = []
 
@@ -39,5 +47,15 @@ extension SpreedlySecureOpaqueStringImpl: Encodable {
     func encode(to encoder: Encoder) throws {
         var container: SingleValueEncodingContainer = encoder.singleValueContainer()
         try container.encode(internalToString())
+    }
+}
+
+public class SpreedlySecureOpaqueStringBuilder {
+    public static func build(from string: String?) -> SpreedlySecureOpaqueString {
+        guard let string = string else {
+            return SpreedlySecureOpaqueStringImpl()
+        }
+
+        return SpreedlySecureOpaqueStringImpl(from: string)
     }
 }

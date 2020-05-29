@@ -18,7 +18,7 @@ class RecacheTests: XCTestCase {
                 ))
             }
 
-            let verify = Helpers.createClient().createSecureString(from: Helpers.verificationValue)
+            let verify = SpreedlySecureOpaqueStringBuilder.build(from: Helpers.verificationValue)
             return Helpers.createClient().recache(token: token, verificationValue: verify)
         }.assertResult(self)
 

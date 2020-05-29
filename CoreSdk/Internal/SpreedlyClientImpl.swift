@@ -32,14 +32,6 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         return URLSession(configuration: config)
     }
 
-    func createSecureString() -> SpreedlySecureOpaqueString {
-        SpreedlySecureOpaqueStringImpl()
-    }
-
-    func createSecureString(from source: String) -> SpreedlySecureOpaqueString {
-        SpreedlySecureOpaqueStringImpl(from: source)
-    }
-
     func createCreditCardPaymentMethod(creditCard: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
         createCreditCardPaymentMethod(creditCard: creditCard, email: nil, metadata: nil)
     }

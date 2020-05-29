@@ -11,8 +11,8 @@ class CreditCardTests: XCTestCase {
         let info = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
-                number: client.createSecureString(from: Helpers.testCardNumber),
-                verificationValue: client.createSecureString(from: Helpers.verificationValue),
+                number: SpreedlySecureOpaqueStringBuilder.build(from: Helpers.testCardNumber),
+                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: Helpers.verificationValue),
                 year: 2029,
                 month: 1
         )
@@ -30,8 +30,8 @@ class CreditCardTests: XCTestCase {
         let info = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
-                number: client.createSecureString(from: "4111111111111111"),
-                verificationValue: client.createSecureString(from: Helpers.verificationValue),
+                number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
+                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: Helpers.verificationValue),
                 year: 2029,
                 month: 1
         )

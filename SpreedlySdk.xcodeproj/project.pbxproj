@@ -20,7 +20,6 @@
 		442A223DF312ED234B929ECF /* Sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2CBF8AF46C83956B7796 /* Sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		442A22C1757101EA61236CBF /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2EA4177990821F65EA06 /* Address.swift */; };
 		442A22D6A2723C5D328CA8A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A28C146C848A440AEF7A1 /* Main.storyboard */; };
-		442A2360C54DB319419D1232 /* SpreedlySecureOpaqueStringImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */; };
 		442A2381D8C566CCE1B0B302 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A292A3C1BABE2F1AC2C1B /* ContentView.swift */; };
 		442A23C356600951EC1503B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2C1ADA08DBE29D72B986 /* ViewController.swift */; };
 		442A2478A1C1936F7001E3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442A2DE45EA6692771D3B109 /* Assets.xcassets */; };
@@ -64,6 +63,7 @@
 		F076C5168326BA6146E7048D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB8C9D4B8CE905B35F73 /* Helpers.swift */; };
 		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
 		F076C859688D80D9509E0B75 /* ApplePayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0576B08565E3FD0DCC6 /* ApplePayForm.swift */; };
+		F076C88F18FA0731A2A2F4F3 /* SpreedlySecureOpaqueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */; };
 		F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7C99365328F2BCA318A /* BankAccountTests.swift */; };
 		F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA9E54CC1E288449091E /* String+Additions.swift */; };
 		F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */; };
@@ -166,7 +166,6 @@
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
-		442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueStringImpl.swift; sourceTree = "<group>"; };
 		442A21244C58460DB48ED6B3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		442A213C18A35388BDA5861C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A21723181F2D5F72F5B71 /* Spreedly-env.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "Spreedly-env.plist"; sourceTree = "<group>"; };
@@ -235,6 +234,7 @@
 		F076CA9E54CC1E288449091E /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionsTests.swift; sourceTree = "<group>"; };
 		F076CB8C9D4B8CE905B35F73 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueString.swift; sourceTree = "<group>"; };
 		F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextField.swift; sourceTree = "<group>"; };
 		F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorsTests.swift; sourceTree = "<group>"; };
 		F0E51F7017C6B8322253CD08 /* Pods-CocoaSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSample.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSample/Pods-CocoaSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -376,6 +376,7 @@
 				442A2662BE68ED0552C5BE46 /* Client.swift */,
 				442A2676F741069CFE144943 /* Internal */,
 				442A28F5BF2E3FC3A953C5B2 /* Models */,
+				F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */,
 			);
 			path = CoreSdk;
 			sourceTree = "<group>";
@@ -398,7 +399,6 @@
 		442A2676F741069CFE144943 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				442A208D65DE786ACC816F9E /* SpreedlySecureOpaqueStringImpl.swift */,
 				442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */,
 				F076CA116CE9AA56F15ABCDF /* JSON.swift */,
 			);
@@ -969,7 +969,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A2759E4BC22B35E134335 /* Client.swift in Sources */,
-				442A2360C54DB319419D1232 /* SpreedlySecureOpaqueStringImpl.swift in Sources */,
 				442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */,
 				F076C83937EF48B8921DA967 /* JSON.swift in Sources */,
 				442A24BD208E1F48D39262F3 /* Results.swift in Sources */,
@@ -977,6 +976,7 @@
 				442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */,
 				442A2E7FE53A19BC8DDDBFE5 /* Requests.swift in Sources */,
 				F076C1694FD1264F4FBC16E5 /* CardBrand.swift in Sources */,
+				F076C88F18FA0731A2A2F4F3 /* SpreedlySecureOpaqueString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

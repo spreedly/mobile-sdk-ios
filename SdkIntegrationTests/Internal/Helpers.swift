@@ -20,8 +20,8 @@ class Helpers {
         let creditCard = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
-                number: client.createSecureString(from: testCardNumber),
-                verificationValue: client.createSecureString(from: verificationValue),
+                number: SpreedlySecureOpaqueStringBuilder.build(from: testCardNumber),
+                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: verificationValue),
                 year: 2029,
                 month: 1
         )

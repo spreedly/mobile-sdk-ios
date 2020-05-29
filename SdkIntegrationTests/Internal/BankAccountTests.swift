@@ -12,7 +12,7 @@ class BankAccountTests: XCTestCase {
                 firstName: "Asha",
                 lastName: "Dog",
                 bankRoutingNumber: "021000021",
-                bankAccountNumber: client.createSecureString(from: "9876543210"),
+                bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: "9876543210"),
                 bankAccountType: .checking,
                 bankAccountHolderType: .personal
         )
