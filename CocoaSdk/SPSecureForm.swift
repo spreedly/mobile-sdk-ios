@@ -124,7 +124,7 @@ extension SPSecureForm {
         let client = getClientOrDieTrying()
 
         let info = CreditCardInfo(from: creditCardDefaults)
-        info.fullName = fullName?.text()
+        info.fullName = fullName?.text
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
         let dateParts = expirationDate?.dateParts()
@@ -168,9 +168,9 @@ extension SPSecureForm {
         let client = getClientOrDieTrying()
 
         let info = BankAccountInfo(from: bankAccountDefaults)
-        info.fullName = fullName?.text()
+        info.fullName = fullName?.text
         info.bankAccountNumber = bankAccountNumber?.secureText()
-        info.bankRoutingNumber = bankAccountRoutingNumber?.text()
+        info.bankRoutingNumber = bankAccountRoutingNumber?.text
         info.bankAccountHolderType = selectedHolderType
         info.bankAccountType = selectedAccountType
 
@@ -205,11 +205,5 @@ extension ValidatedTextField {
 
     open override func unsetError() {
         validate()
-    }
-}
-
-extension UITextField {
-    func text() -> String? {
-        self.text
     }
 }
