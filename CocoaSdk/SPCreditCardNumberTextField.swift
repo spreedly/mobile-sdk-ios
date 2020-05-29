@@ -26,8 +26,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
             return nil
         }
         let cardNumber = text.onlyNumbers()
-        let client = getClient()
-        return client?.createSecureString(from: cardNumber)
+        return SpreedlySecureOpaqueStringBuilder.build(from: cardNumber)
     }
 
     public func formatCardNumber(_ string: String) -> String {

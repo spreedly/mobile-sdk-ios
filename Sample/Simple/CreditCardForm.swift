@@ -48,8 +48,8 @@ struct CreditCardForm: View {
                    let month = Int(self.month) {
                     let ccInfo = CreditCardInfo(
                             fullName: self.name,
-                            number: client.createSecureString(from: self.ccNumber),
-                            verificationValue: client.createSecureString(from: self.ccv),
+                            number: SpreedlySecureOpaqueStringBuilder.build(from: self.ccNumber),
+                            verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: self.ccv),
                             year: year,
                             month: month
                     )

@@ -8,17 +8,6 @@ import RxSwift
 @testable import CoreSdk
 
 class SecureStringTest: XCTestCase {
-
-    func testCreateFromClientWithoutContent() {
-        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString()
-        XCTAssertNotNil(secureString)
-    }
-
-    func testCreateFromClientWithContent() {
-        let secureString = createSpreedlyClient(envKey: "", envSecret: "").createSecureString(from: "abc")
-        XCTAssertNotNil(secureString)
-    }
-
     func testCreate() {
         let secureString = SpreedlySecureOpaqueStringImpl(from: "abc")
         XCTAssertEqual(secureString.internalToString(), "abc")

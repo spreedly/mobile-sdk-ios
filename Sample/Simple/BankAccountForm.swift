@@ -41,7 +41,7 @@ struct BankAccountForm: View {
                 let baInfo = BankAccountInfo(
                         fullName: self.name,
                         bankRoutingNumber: self.routingNumber,
-                        bankAccountNumber: client.createSecureString(from: self.accountNumber),
+                        bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: self.accountNumber),
                         bankAccountType: self.type,
                         bankAccountHolderType: self.bankAccountHolderType)
                 self.inProgress = true

@@ -11,7 +11,7 @@ class BankAccountInfoTests: XCTestCase {
                 firstName: "Dolly",
                 lastName: "Dog",
                 bankRoutingNumber: "123456",
-                bankAccountNumber: client.createSecureString(from: "4111111111111111"),
+                bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
                 bankAccountType: .checking,
                 bankAccountHolderType: .personal
         )
@@ -37,7 +37,7 @@ class BankAccountInfoTests: XCTestCase {
         let creditCard = BankAccountInfo(
                 fullName: "Dolly Dog",
                 bankRoutingNumber: "123456",
-                bankAccountNumber: client.createSecureString(from: "4111111111111111"),
+                bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
                 bankAccountType: .checking,
                 bankAccountHolderType: .personal
         )
