@@ -6,14 +6,14 @@ import Foundation
 import UIKit
 import CoreSdk
 
-public protocol CardBrandDeterminationDelegate {
-    func cardBrandDetermination(brand: CardBrand)
+public protocol SPCreditCardNumberTextFieldDelegate {
+    func cardBrandDetermined(brand: CardBrand)
 }
 
 public class SPCreditCardNumberTextField: SPSecureTextField {
     @IBInspectable public var maskCharacter: String = "*"
 
-    public var cardTypeDeterminationDelegate: CardBrandDeterminationDelegate?
+    public var cardNumberTextFieldDelegate: SPCreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
     private var masked: Bool = false
 
@@ -49,7 +49,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 extension SPCreditCardNumberTextField {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         let cardBrand = CardBrand.from(textField.text)
-        cardTypeDeterminationDelegate?.cardBrandDetermination(brand: cardBrand)
+        cardNumberTextFieldDelegate?.cardBrandDetermined(brand: cardBrand)
         applyMask()
     }
 

@@ -15,8 +15,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureHandlers()
-        form?.viewDidLoad()
+        configureDelegates()
         setDefaults()
     }
 
@@ -38,7 +37,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
         form?.bankAccountDefaults = defaults
     }
 
-    func configureHandlers() {
+    func configureDelegates() {
         self.form?.delegate = self
         self.form?.fullName?.delegate = self
         self.form?.bankAccountRoutingNumber?.delegate = self

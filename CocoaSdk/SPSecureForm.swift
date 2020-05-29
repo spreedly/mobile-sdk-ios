@@ -56,7 +56,6 @@ public class SPSecureForm: UIView {
     public var creditCardDefaults: CreditCardInfo?
     @IBOutlet public weak var fullName: ValidatedTextField?
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
-    @IBOutlet public weak var cardBrand: UIButton?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
     private var creditCardFields: [UIView?] {
@@ -114,10 +113,6 @@ public class SPSecureForm: UIView {
         default:
             return nil
         }
-    }
-
-    public func viewDidLoad() {
-        creditCardNumber?.cardTypeDeterminationDelegate = self
     }
 }
 
@@ -201,13 +196,6 @@ extension SPSecureForm {
                 }
             }
         })
-    }
-}
-
-extension SPSecureForm: CardBrandDeterminationDelegate {
-    public func cardBrandDetermination(brand: CardBrand) {
-        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: "spr_card_unknown")
-        self.cardBrand?.setImage(image, for: .normal)
     }
 }
 
