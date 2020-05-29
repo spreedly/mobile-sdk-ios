@@ -52,11 +52,22 @@ public class SPSecureForm: UIView {
         return client
     }
 
+    func getClientOrDieTrying() -> SpreedlyClient {
+        let client: SpreedlyClient
+        do {
+            client = try getClient()
+        } catch SPSecureClientError.noSpreedlyCredentials {
+            fatalError("No credentials were specified.")
+        } catch {
+            fatalError("Error: \(error)")
+        }
+        return client
+    }
+
     // Credit Card fields
     public var creditCardDefaults: CreditCardInfo?
     @IBOutlet public weak var fullName: ValidatedTextField?
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
-    @IBOutlet public weak var cardBrand: UIButton?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
     private var creditCardFields: [UIView?] {
@@ -86,17 +97,6 @@ public class SPSecureForm: UIView {
         }
     }
 
-    func displayAlert(message: String, title: String) {
-        let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        window?.rootViewController?.present(alert, animated: true)
-    }
-
     func keyToView(_ key: String?) -> UIView? {
         switch (key) {
         case "number":
@@ -115,29 +115,15 @@ public class SPSecureForm: UIView {
             return nil
         }
     }
-
-    public func viewDidLoad() {
-        creditCardNumber?.cardTypeDeterminationDelegate = self
-    }
 }
 
 extension SPSecureForm {
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
         unsetErrorFor(creditCardFields)
 
-        let client: SpreedlyClient
-        do {
-            client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
-            displayAlert(message: "No credentials were specified.", title: "Error")
-            return
-        } catch {
-            displayAlert(message: "Error: \(error)", title: "Error")
-            return
-        }
+        let client = getClientOrDieTrying()
 
         let info = CreditCardInfo(from: creditCardDefaults)
-
         info.fullName = fullName?.text()
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
@@ -158,39 +144,35 @@ extension SPSecureForm {
 }
 
 extension SPSecureForm {
+    private var selectedHolderType: BankAccountHolderType {
+        switch bankAccountHolderType?.selectedSegmentIndex {
+        case 0:
+            return .personal
+        default:
+            return .business
+        }
+    }
+
+    private var selectedAccountType: BankAccountType {
+        switch bankAccountType?.selectedSegmentIndex {
+        case 0:
+            return .checking
+        default:
+            return .savings
+        }
+    }
+
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         unsetErrorFor(bankAccountFields)
 
-        let client: SpreedlyClient
-        do {
-            client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
-            displayAlert(message: "No credentials were specified.", title: "Error")
-            return
-        } catch {
-            displayAlert(message: "Error: \(error)", title: "Error")
-            return
-        }
+        let client = getClientOrDieTrying()
 
         let info = BankAccountInfo(from: bankAccountDefaults)
-
         info.fullName = fullName?.text()
         info.bankAccountNumber = bankAccountNumber?.secureText()
         info.bankRoutingNumber = bankAccountRoutingNumber?.text()
-
-        switch bankAccountHolderType?.selectedSegmentIndex {
-        case 0:
-            info.bankAccountHolderType = .personal
-        default:
-            info.bankAccountHolderType = .business
-        }
-
-        switch bankAccountType?.selectedSegmentIndex {
-        case 0:
-            info.bankAccountType = .checking
-        default:
-            info.bankAccountType = .savings
-        }
+        info.bankAccountHolderType = selectedHolderType
+        info.bankAccountType = selectedAccountType
 
         _ = client.createBankAccountPaymentMethod(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
@@ -201,13 +183,6 @@ extension SPSecureForm {
                 }
             }
         })
-    }
-}
-
-extension SPSecureForm: CardBrandDeterminationDelegate {
-    public func cardBrandDetermination(brand: CardBrand) {
-        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: "spr_card_unknown")
-        self.cardBrand?.setImage(image, for: .normal)
     }
 }
 

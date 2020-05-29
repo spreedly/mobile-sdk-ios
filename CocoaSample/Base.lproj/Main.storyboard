@@ -136,7 +136,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Vp-Pn-Miu"/>
                         <connections>
-                            <outlet property="cardBrand" destination="m2o-ud-dCK" id="REM-eZ-M4O"/>
                             <outlet property="creditCardNumber" destination="piH-B3-ODf" id="sal-d6-Trt"/>
                             <outlet property="creditCardVerificationNumber" destination="TrW-GT-cYd" id="yAx-BZ-ZAz"/>
                             <outlet property="expirationDate" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
@@ -145,6 +144,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Credit Card Transaction" id="64D-cS-tgt"/>
                     <connections>
+                        <outlet property="cardBrand" destination="m2o-ud-dCK" id="6zV-5x-Crw"/>
+                        <outlet property="creditCardNumber" destination="piH-B3-ODf" id="dbJ-Of-fdh"/>
                         <outlet property="form" destination="Dpo-s2-wSB" id="xgl-a7-OLt"/>
                     </connections>
                 </viewController>
@@ -265,7 +266,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bank Account Transaction" id="dLs-e8-Tef"/>
                     <connections>
+                        <outlet property="accountNumber" destination="vhG-B3-xr6" id="M5c-FY-yEp"/>
                         <outlet property="form" destination="5c7-Hk-Iwi" id="may-cB-9RA"/>
+                        <outlet property="fullName" destination="u81-z0-r9G" id="sh7-fG-dYL"/>
+                        <outlet property="routingNumber" destination="SEC-Fl-4Vn" id="Pkf-yY-DCH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OY-8s-lT1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
