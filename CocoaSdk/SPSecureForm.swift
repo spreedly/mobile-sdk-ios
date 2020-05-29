@@ -70,7 +70,7 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
-    private var creditCardFields: [UIView?] {
+    private var creditCardFields: [ValidatedTextField?] {
         [fullName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
 
@@ -80,24 +80,24 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var bankAccountRoutingNumber: ValidatedTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
-    private var bankAccountFields: [UIView?] {
+    private var bankAccountFields: [ValidatedTextField?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber]
     }
 
     private func notifyFieldsOf(errors: [SpreedlyError]) {
         for err in errors {
-            let view = keyToView(err.attribute)
-            view?.setError(message: err.message)
+            let field = findField(with: err.attribute)
+            field?.setError(because: err.message)
         }
     }
 
-    private func unsetErrorFor(_ fields: [UIView?]) {
+    private func unsetErrorFor(_ fields: [ValidatedTextField?]) {
         for field in fields {
             field?.unsetError()
         }
     }
 
-    func keyToView(_ key: String?) -> UIView? {
+    private func findField(with key: String?) -> ValidatedTextField? {
         switch (key) {
         case "number":
             return creditCardNumber
@@ -183,27 +183,5 @@ extension SPSecureForm {
                 }
             }
         })
-    }
-}
-
-extension UIView {
-    @objc
-    open func setError(message: String) {
-        print("My error is: \(message)")
-    }
-
-    @objc
-    open func unsetError() {
-
-    }
-}
-
-extension ValidatedTextField {
-    open override func setError(message: String) {
-        invalidate(because: message)
-    }
-
-    open override func unsetError() {
-        validate()
     }
 }
