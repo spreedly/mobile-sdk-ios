@@ -4,6 +4,14 @@
 
 import Foundation
 
+@objc public protocol SpreedlySecureOpaqueString {
+    func clear()
+
+    func append(_ string: String)
+
+    func removeLastCharacter()
+}
+
 class SpreedlySecureOpaqueStringImpl: NSObject, SpreedlySecureOpaqueString {
     private var data: [Character] = []
 

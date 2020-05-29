@@ -67,11 +67,3 @@ public enum SpreedlySecurityError: Error {
 public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
     SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
 }
-
-@objc public protocol SpreedlySecureOpaqueString {
-    func clear()
-
-    func append(_ string: String)
-
-    func removeLastCharacter()
-}
