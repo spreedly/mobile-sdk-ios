@@ -63,9 +63,14 @@ extension SPCreditCardNumberTextField {
             return ""
         }
 
-        if let foo = cardNumber.index(cardNumber.endIndex, offsetBy: -4, limitedBy: cardNumber.startIndex) {
-            return String(cardNumber[foo...])
+        if let lastFourStartIndex = cardNumber.index(
+                cardNumber.endIndex,
+                offsetBy: -4,
+                limitedBy: cardNumber.startIndex
+        ) {
+            return String(cardNumber[lastFourStartIndex...])
         } else {
+            // there must be less than 4 digits so return what there is
             return cardNumber
         }
     }
