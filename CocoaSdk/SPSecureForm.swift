@@ -107,6 +107,10 @@ public class SPSecureForm: UIView {
             return expirationDate
         case "first_name", "last_name", "full_name":
             return fullName
+        case "account_number":
+            return bankAccountNumber
+        case "routing_number":
+            return bankAccountRoutingNumber
         default:
             return nil
         }
