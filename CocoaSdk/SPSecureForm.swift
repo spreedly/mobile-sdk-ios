@@ -81,7 +81,7 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
     private var bankAccountFields: [UIView?] {
-        [fullName, bankAccountNumber, bankAccountRoutingNumber, bankAccountType, bankAccountHolderType]
+        [fullName, bankAccountNumber, bankAccountRoutingNumber]
     }
 
     private func notifyFieldsOf(errors: [SpreedlyError]) {
