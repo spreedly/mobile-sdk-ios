@@ -62,9 +62,9 @@ public class SPExpirationTextField: ValidatedTextField, UITextFieldDelegate {
 
     public func formatExpiration(_ string: String) -> String {
         var formattedString = String()
-        let normalizedString = string.onlyNumbers()
+        let dateDigits = string.onlyNumbers()
 
-        for (index, character) in normalizedString.enumerated() {
+        for (index, character) in dateDigits.enumerated() {
             formattedString.append(character)
             if index == 1 {
                 formattedString.append("/")
