@@ -13,7 +13,7 @@ public protocol SpreedlyClient {
     func createCreditCardPaymentMethod(
             creditCard: CreditCardInfo,
             email: String?,
-            metadata: [String: String]?
+            metadata: Metadata?
     ) -> Single<Transaction<CreditCardResult>>
 
     func createBankAccountPaymentMethod(
@@ -23,7 +23,7 @@ public protocol SpreedlyClient {
     func createBankAccountPaymentMethod(
             bankAccount: BankAccountInfo,
             email: String?,
-            metadata: [String: String]?
+            metadata: Metadata?
     ) -> Single<Transaction<BankAccountResult>>
 
     func recache(
@@ -38,7 +38,7 @@ public protocol SpreedlyClient {
     func createApplePayPaymentMethod(
             applePay: ApplePayInfo,
             email: String?,
-            metadata: [String: String]?
+            metadata: Metadata?
     ) -> Single<Transaction<ApplePayResult>>
 }
 

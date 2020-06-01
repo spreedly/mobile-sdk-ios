@@ -45,6 +45,7 @@ public class PaymentMethodResultBase {
     public let address: Address?
     public let shippingAddress: Address?
     public let errors: [SpreedlyError]
+    public let metadata: Metadata?
 
     required init(from json: [String: Any]) {
         token = json.string(optional: "token")
@@ -61,6 +62,7 @@ public class PaymentMethodResultBase {
         address = Address(from: json, as: .billing)
         shippingAddress = Address(from: json, as: .shipping)
         errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) }) ?? []
+        metadata = json.object(optional: "metadata")
     }
 }
 

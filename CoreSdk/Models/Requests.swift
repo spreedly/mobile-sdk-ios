@@ -1,5 +1,9 @@
 import PassKit
 
+/// Metadata key-value pairs (limit 25). Keys are limited to 50 characters.
+/// Values are limited to 500 characters and cannot contain compounding data types.
+public typealias Metadata = [String: Any]
+
 public class PaymentMethodRequestBase {
     public var fullName: String?
     public var firstName: String?
@@ -94,11 +98,11 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
-                "metadata": metadata ?? [:],
+                "metadata": metadata ?? Metadata(),
                 "credit_card": try self.toJson(),
                 "retained": self.retained ?? false
             ]
@@ -182,11 +186,11 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
-                "metadata": metadata ?? [:],
+                "metadata": metadata ?? Metadata(),
                 "bank_account": try self.toJson(),
                 "retained": self.retained ?? false
             ]
@@ -224,10 +228,10 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: [String: String]?) throws -> [String: Any] {
+    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
         var paymentMethod: [String: Any] = [
             "email": email ?? "",
-            "metadata": metadata ?? [:],
+            "metadata": metadata ?? Metadata(),
             "apple_pay": try self.toJson(),
             "retained": self.retained ?? false
         ]
