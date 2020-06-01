@@ -58,7 +58,7 @@ class CreditCardTests: XCTestCase {
 
         let email = "dolly@dog.com"
 
-        let metadata: [String: Any] = [
+        let metadata: Metadata = [
             "stringKey": "correcthorsebatterystaple",
             "intKey": 42,
             "doubleKey": 3.14,
