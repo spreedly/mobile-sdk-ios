@@ -58,7 +58,14 @@ class CreditCardTests: XCTestCase {
 
         let email = "dolly@dog.com"
 
-        let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email, metadata: nil)
+        let metadata: [String: Any] = [
+            "stringKey": "correcthorsebatterystaple",
+            "intKey": 42,
+            "doubleKey": 3.14,
+            "boolKey": false
+        ]
+
+        let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email, metadata: metadata)
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
@@ -69,6 +76,11 @@ class CreditCardTests: XCTestCase {
 
         XCTAssertEqual(result.address, billing)
         XCTAssertEqual(result.shippingAddress, shipping)
+
+        XCTAssertEqual(result.metadata?["stringKey"] as? String, "correcthorsebatterystaple")
+        XCTAssertEqual(result.metadata?["intKey"] as? Int, 42)
+        XCTAssertEqual(result.metadata?["doubleKey"] as? Double, 3.14)
+        XCTAssertEqual(result.metadata?["boolKey"] as? Bool, false)
     }
 }
 
