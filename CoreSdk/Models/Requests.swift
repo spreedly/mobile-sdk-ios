@@ -10,8 +10,8 @@ public class PaymentMethodRequestBase {
     public var lastName: String?
     public var company: String?
 
-    public var address: Address?
-    public var shippingAddress: Address?
+    public var address: Address
+    public var shippingAddress: Address
 
     public var retained: Bool?
 
@@ -31,8 +31,8 @@ public class PaymentMethodRequestBase {
         result.maybeSet("last_name", lastName)
         result.maybeSet("company", company)
 
-        self.address?.toJson(&result, .billing)
-        self.shippingAddress?.toJson(&result, .shipping)
+        self.address.toJson(&result, .billing)
+        self.shippingAddress.toJson(&result, .shipping)
 
         return result
     }
@@ -85,8 +85,12 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     /// - Parameter info: The source of the values.
     public init(from info: CreditCardInfo?) {
         super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
-        address = info?.address
-        shippingAddress = info?.shippingAddress
+        if let address = info?.address {
+            self.address = address
+        }
+        if let shippingAddress = info?.shippingAddress {
+            self.shippingAddress = shippingAddress
+        }
         company = info?.company
     }
 
@@ -171,8 +175,12 @@ public class BankAccountInfo: PaymentMethodRequestBase {
     /// - Parameter info: The source of the values.
     public init(from info: BankAccountInfo?) {
         super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
-        address = info?.address
-        shippingAddress = info?.shippingAddress
+        if let address = info?.address {
+            self.address = address
+        }
+        if let shippingAddress = info?.shippingAddress {
+            self.shippingAddress = shippingAddress
+        }
         company = info?.company
         bankAccountType = info?.bankAccountType
         bankAccountHolderType = info?.bankAccountHolderType
@@ -247,12 +255,8 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         paymentMethod.maybeSet("full_name", self.fullName)
         paymentMethod.maybeSet("company", self.company)
 
-        if let address = self.address {
-            address.toJson(&paymentMethod, .billing)
-        }
-        if let shipping = self.shippingAddress {
-            shipping.toJson(&paymentMethod, .shipping)
-        }
+        address.toJson(&paymentMethod, .billing)
+        shippingAddress.toJson(&paymentMethod, .shipping)
 
         return [
             "payment_method": paymentMethod
