@@ -56,4 +56,33 @@ class BankAccountInfoTests: XCTestCase {
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
+
+    func testFromShouldClone() {
+        let source = BankAccountInfo()
+        source.fullName = "Dolly Dog"
+        source.firstName = "Dolly"
+        source.lastName = "Dog"
+
+        source.bankAccountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "9876543210")
+        source.bankRoutingNumber = "021000021"
+        source.bankAccountType = .savings
+        source.bankAccountHolderType = .business
+
+        source.address?.address1 = "123 Fake St"
+        source.shippingAddress?.address1 = "321 Wall St"
+
+        let sink = BankAccountInfo.init(from: source)
+
+        XCTAssertEqual(sink.fullName, source.fullName)
+        XCTAssertEqual(sink.firstName, source.firstName)
+        XCTAssertEqual(sink.lastName, source.lastName)
+
+        XCTAssertNil(sink.bankAccountNumber)
+        XCTAssertNil(sink.bankRoutingNumber)
+        XCTAssertEqual(sink.bankAccountType, source.bankAccountType)
+        XCTAssertEqual(sink.bankAccountHolderType, source.bankAccountHolderType)
+
+        XCTAssertEqual(sink.address, source.address)
+        XCTAssertEqual(sink.shippingAddress, source.shippingAddress)
+    }
 }
