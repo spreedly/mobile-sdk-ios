@@ -88,7 +88,7 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
     private var bankAccountFields: [ValidatedTextField?] {
-        [fullName, bankAccountNumber, bankAccountRoutingNumber]
+        [fullName, firstName, lastName, bankAccountNumber, bankAccountRoutingNumber]
     }
 
     // Address fields
