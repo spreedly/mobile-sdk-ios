@@ -70,6 +70,7 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: SPExpirationTextField?
+    @IBOutlet public weak var company: UITextField?
     private var creditCardFields: [ValidatedTextField?] {
         [fullName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
@@ -83,6 +84,26 @@ public class SPSecureForm: UIView {
     private var bankAccountFields: [ValidatedTextField?] {
         [fullName, bankAccountNumber, bankAccountRoutingNumber]
     }
+
+    @IBOutlet public weak var email: UITextField?
+
+    // Address fields
+    @IBOutlet public weak var address1: UITextField?
+    @IBOutlet public weak var address2: UITextField?
+    @IBOutlet public weak var city: UITextField?
+    @IBOutlet public weak var state: UITextField?
+    @IBOutlet public weak var zip: UITextField?
+    @IBOutlet public weak var country: UITextField?
+    @IBOutlet public weak var phoneNumber: UITextField?
+
+    // Shipping address fields
+    @IBOutlet public weak var shippingAddress1: UITextField?
+    @IBOutlet public weak var shippingAddress2: UITextField?
+    @IBOutlet public weak var shippingCity: UITextField?
+    @IBOutlet public weak var shippingState: UITextField?
+    @IBOutlet public weak var shippingZip: UITextField?
+    @IBOutlet public weak var shippingCountry: UITextField?
+    @IBOutlet public weak var shippingPhoneNumber: UITextField?
 
     private func notifyFieldsOf(errors: [SpreedlyError]) {
         for err in errors {
@@ -124,14 +145,16 @@ extension SPSecureForm {
         let client = getClientOrDieTrying()
 
         let info = CreditCardInfo(from: creditCardDefaults)
-        info.fullName = fullName?.text
-        info.number = creditCardNumber?.secureText()
-        info.verificationValue = creditCardVerificationNumber?.secureText()
-        let dateParts = expirationDate?.dateParts()
-        info.month = dateParts?.month
-        info.year = dateParts?.year
+        maybeSetCardFields(on: info)
+        maybeSetAddress(on: info)
+        maybeSetShippingAddress(on: info)
 
-        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
+        var email: String?
+        if let emailValue = self.email?.text {
+            email = emailValue
+        }
+
+        _ = client.createCreditCardPaymentMethod(creditCard: info, email: email, metadata: nil).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOf(errors: errors)
@@ -140,6 +163,72 @@ extension SPSecureForm {
                 }
             }
         })
+    }
+
+    private func maybeSetCardFields(on info: CreditCardInfo) {
+        // Always number and verification from this form
+        info.number = creditCardNumber?.secureText()
+        info.verificationValue = creditCardVerificationNumber?.secureText()
+
+        if let fullName = fullName?.text {
+            info.fullName = fullName
+        }
+        if let dateParts = expirationDate?.dateParts()
+        {
+            info.month = dateParts.month
+            info.year = dateParts.year
+        }
+        if let company = company?.text {
+            info.company = company
+        }
+    }
+
+    private func maybeSetAddress(on info: CreditCardInfo) {
+        if let address1 = address1?.text {
+            info.address?.address1 = address1
+        }
+        if let address2 = address2?.text {
+            info.address?.address2 = address2
+        }
+        if let city = city?.text {
+            info.address?.city = city
+        }
+        if let state = state?.text {
+            info.address?.state = state
+        }
+        if let zip = zip?.text {
+            info.address?.zip = zip
+        }
+        if let country = country?.text {
+            info.address?.country = country
+        }
+        if let phoneNumber = phoneNumber?.text {
+            info.address?.phoneNumber = phoneNumber
+        }
+    }
+
+    private func maybeSetShippingAddress(on info: CreditCardInfo) {
+        if let address1 = shippingAddress1?.text {
+            info.shippingAddress?.address1 = address1
+        }
+        if let address2 = shippingAddress2?.text {
+            info.shippingAddress?.address2 = address2
+        }
+        if let city = shippingCity?.text {
+            info.shippingAddress?.city = city
+        }
+        if let state = shippingState?.text {
+            info.shippingAddress?.state = state
+        }
+        if let zip = shippingZip?.text {
+            info.shippingAddress?.zip = zip
+        }
+        if let country = shippingCountry?.text {
+            info.shippingAddress?.country = country
+        }
+        if let phoneNumber = shippingPhoneNumber?.text {
+            info.shippingAddress?.phoneNumber = phoneNumber
+        }
     }
 }
 

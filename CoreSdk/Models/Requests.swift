@@ -19,6 +19,9 @@ public class PaymentMethodRequestBase {
         self.fullName = fullName
         self.firstName = firstName
         self.lastName = lastName
+
+        self.address = Address()
+        self.shippingAddress = Address()
     }
 
     internal func toJson() throws -> [String: Any] {
