@@ -57,4 +57,31 @@ class CreditCardInfoTests: XCTestCase {
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
+
+    func testFromShouldClone() {
+        let source = CreditCardInfo()
+        source.fullName = "Dolly Dog"
+        source.firstName = "Dolly"
+        source.lastName = "Dog"
+
+        source.number = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        source.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "123")
+        source.company = "Border LLC"
+
+        source.address?.address1 = "123 Fake St"
+        source.shippingAddress?.address1 = "321 Wall St"
+
+        let sink = CreditCardInfo.init(from: source)
+
+        XCTAssertEqual(sink.fullName, source.fullName)
+        XCTAssertEqual(sink.firstName, source.firstName)
+        XCTAssertEqual(sink.lastName, source.lastName)
+
+        XCTAssertNil(sink.number)
+        XCTAssertNil(sink.verificationValue)
+        XCTAssertEqual(sink.company, source.company)
+
+        XCTAssertEqual(sink.address, source.address)
+        XCTAssertEqual(sink.shippingAddress, source.shippingAddress)
+    }
 }
