@@ -24,6 +24,7 @@ class CardBrandTests: XCTestCase {
         XCTAssertEqual(CardBrand.from("4111 1111 1111 1111"), CardBrand.visa)
         XCTAssertEqual(CardBrand.from("4444333322221111455"), CardBrand.visa)
     }
+
     func testWhenNumberIdentifiableShouldDetermineBrand() {
         // Unofficial numbers
         XCTAssertEqual(CardBrand.from("600722             "), CardBrand.forbrubsforeningen)

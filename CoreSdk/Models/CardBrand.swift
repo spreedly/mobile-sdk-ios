@@ -44,7 +44,7 @@ public enum CardBrand: String {
             return .unknown
         }
 
-        return brandData.first(where: {(_, params) in params.detect(number) })?.key ?? .unknown
+        return brandData.first(where: { (_, params) in params.detect(number) })?.key ?? .unknown
     }
 
     var parameters: BrandParameters {
