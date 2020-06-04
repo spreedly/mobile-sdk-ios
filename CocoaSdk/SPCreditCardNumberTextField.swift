@@ -99,7 +99,7 @@ extension SPCreditCardNumberTextField {
     }
 
     public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+        guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
             return false
         }
 
