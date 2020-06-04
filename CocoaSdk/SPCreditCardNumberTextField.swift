@@ -116,9 +116,12 @@ extension SPCreditCardNumberTextField {
             return false
         }
 
-        let requested = "\(current)\(cleaned)"
+        let brand = CardBrand.from(current)
 
-        guard requested.count <= "1234 5678 1234 5678".count else {
+        let requested = "\(current)\(cleaned)"
+        let maxDigits = brand.maxLength(number: requested)
+
+        guard requested.onlyNumbers().count <= maxDigits else {
             // too many characters are coming in
             return false
         }
