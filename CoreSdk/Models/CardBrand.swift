@@ -59,12 +59,7 @@ public enum CardBrand: String {
             return .unknown
         }
 
-        for (brand, parameters) in brandData {
-            if parameters.detect(number) {
-                return brand
-            }
-        }
-        return .unknown
+        return brandData.first(where: {(_, params) in params.detect(number) })?.key ?? .unknown
     }
 
     var parameters: BrandParameters? {
