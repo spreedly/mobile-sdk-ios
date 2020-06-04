@@ -47,12 +47,12 @@ public enum CardBrand: String {
         return brandData.first(where: { (_, params) in params.detect(number) })?.key ?? .unknown
     }
 
-    var parameters: BrandParameters {
-        brandData[self]!
+    var parameters: BrandParameters? {
+        brandData[self]
     }
 
     public var maxLength: Int {
-        parameters.maxLength
+        parameters?.maxLength ?? 19
     }
 }
 
