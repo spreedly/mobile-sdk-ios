@@ -37,4 +37,9 @@ class CardBrandTests: XCTestCase {
         XCTAssertEqual(CardBrand.from("1234 5             "), CardBrand.unknown)
         XCTAssertEqual(CardBrand.from("0000 0000 0000 0000"), CardBrand.unknown)
     }
+
+    func testCanReadMaxLength() {
+        let brand = CardBrand.from("4111 1111 1111 1111")
+        XCTAssertEqual(brand.maxLength, 19)
+    }
 }
