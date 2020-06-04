@@ -4,43 +4,187 @@
 
 import Foundation
 
+typealias BrandDetector = (String) -> Bool
+
+struct BrandParameters {
+    let maxLength: Int
+    let detect: BrandDetector
+
+    init(max: Int, detect: @escaping BrandDetector) {
+        self.maxLength = max
+        self.detect = detect
+    }
+}
+
 public enum CardBrand: String {
-    case visa
-    case mastercard
-    case discover
+    case alelo
     case amex
+    case cabal
+    case carnet
+    case dankort
+    case dinersClub
+    case discover
+    case elo
+    case forbrubsforeningen
+    case jcb
+    case maestro
+    case mastercard
+    case naranja
+    case sodexo
+    case unionpay
+    case visa
+    case vr
+
     case unknown
 
     /// Parses the given string determining and returning the appropriate
     /// brand, otherwise .unknown.
     public static func from(_ number: String?) -> CardBrand {
-        guard let number = number else {
+        guard let number = number?.onlyNumbers() else {
             return .unknown
         }
 
-        let cleanNumber = String(number.filter { $0.isNumber} )
-        guard
-                let binEnding = cleanNumber.index(number.startIndex, offsetBy: 6, limitedBy: cleanNumber.endIndex),
-                let bin = Int(cleanNumber.prefix(upTo: binEnding)) else {
-            return .unknown
-        }
+        return brandData.first(where: { (_, params) in params.detect(number) })?.key ?? .unknown
+    }
 
-        switch bin {
-        case 400000...499999: // 4
-            return .visa
-        case 222100...272099, // 2221-2720
-             510000...559999: // 51-55
-            return .mastercard
-        case 601100...601199, // 6011
-             622426...622925, // 622126-622925
-             644000...649999, // 644-649
-             650000...659999: // 65
-            return .discover
-        case 340000...349999, // 34
-             370000...379999: // 37
-            return .amex
-        default:
-            return .unknown
+    var parameters: BrandParameters {
+        brandData[self]!
+    }
+
+    public var maxLength: Int {
+        parameters.maxLength
+    }
+}
+
+
+let brandData: [CardBrand: BrandParameters] = [
+    .alelo: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.alelo)
+            }
+    ),
+    .amex: BrandParameters(
+            max: 15,
+            detect: {
+                $0.bin(beginning: CardRanges.amex)
+            }
+    ),
+    .cabal: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 8, in: CardRanges.cabal)
+            }
+    ),
+    .carnet: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.carnet) || $0.bin(beginning: CardRanges.carnetBins)
+            }
+    ),
+    .dankort: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(beginning: CardRanges.dankort)
+            }
+    ),
+    .dinersClub: BrandParameters(
+            max: 19,
+            detect: {
+                $0.bin(length: 3, in: CardRanges.dinersClub)
+            }
+    ),
+    .discover: BrandParameters(
+            max: 19,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.discover)
+            }
+    ),
+    .elo: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.elo)
+            }
+    ),
+    .forbrubsforeningen: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(beginning: CardRanges.forbrubsforeningen)
+            }
+    ),
+    .jcb: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 4, in: CardRanges.jcb)
+            }
+    ),
+    .maestro: BrandParameters(
+            max: 19,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.maestro)
+            }
+    ),
+    .mastercard: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.mastercard)
+            }
+    ),
+    .naranja: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(length: 6, in: CardRanges.naranja)
+            }
+    ),
+    .sodexo: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(beginning: CardRanges.sodexo)
+            }
+    ),
+    .unionpay: BrandParameters(
+            max: 19,
+            detect: {
+                $0.bin(length: 8, in: CardRanges.unionPay)
+            }
+    ),
+    .visa: BrandParameters(
+            max: 19,
+            detect: {
+                $0.bin(beginning: CardRanges.visa)
+            }
+    ),
+    .vr: BrandParameters(
+            max: 16,
+            detect: {
+                $0.bin(beginning: CardRanges.vr)
+            }
+    )
+]
+
+fileprivate extension String {
+    func bin(length: Int, in binRanges: [ClosedRange<Int>]) -> Bool {
+        let cleaned = self.onlyNumbers()
+        guard cleaned.count >= length,
+              let bin = Int(cleaned.prefix(length)) else {
+            return false
         }
+        return binRanges.contains { range in
+            range.contains(bin)
+        }
+    }
+
+    func bin(beginning bins: [String]) -> Bool {
+        let cleaned = self.onlyNumbers()
+
+        return bins.contains(where: { bin in
+            bin == cleaned.prefix(bin.count)
+        })
+    }
+
+    func onlyNumbers() -> String {
+        String(self.filter {
+            $0.isNumber
+        })
     }
 }
