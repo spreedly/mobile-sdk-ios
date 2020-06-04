@@ -42,11 +42,16 @@ class CardRanges {
         "5019"
     ]
 
-    static let dinersClub = [
+    static let dinersClub16Digit = [
         300...305,
-        360...369,
         380...389
     ]
+
+    static let dinersClub14Digit = [
+        360...369
+    ]
+
+    static let dinersClub = dinersClub16Digit + dinersClub14Digit
 
     static let discover = [
         601100...601199, // 6011

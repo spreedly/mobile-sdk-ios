@@ -112,7 +112,7 @@ let brandData: [CardBrand: BrandParameters] = [
             }
     ),
     .dinersClub: BrandParameters(
-            length: 14,
+            length: 19,
             detect: {
                 $0.bin(length: 3, in: CardRanges.dinersClub)
             }
