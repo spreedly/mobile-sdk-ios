@@ -162,7 +162,6 @@ class CardRanges {
     ]
 }
 
-
 extension Int {
     var range: ClosedRange<Int> {
         self...self
