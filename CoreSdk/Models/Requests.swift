@@ -11,7 +11,7 @@ public class PaymentMethodRequestBase: NSObject {
     @objc public var company: String?
 
     @objc public var address: Address
-    public var shippingAddress: Address
+    @objc public var shippingAddress: Address
 
     public var retained: Bool?
 
@@ -40,8 +40,8 @@ public class PaymentMethodRequestBase: NSObject {
 }
 
 public class CreditCardInfo: PaymentMethodRequestBase {
-    public var number: SpreedlySecureOpaqueString?
-    public var verificationValue: SpreedlySecureOpaqueString?
+    @objc public var number: SpreedlySecureOpaqueString?
+    @objc public var verificationValue: SpreedlySecureOpaqueString?
     public var year: Int?
     public var month: Int?
 
@@ -116,6 +116,32 @@ public class CreditCardInfo: PaymentMethodRequestBase {
                 "retained": self.retained ?? false
             ]
         ]
+    }
+}
+
+extension CreditCardInfo {
+    @objc(year) public var yearNumber: NSNumber? {
+        get {
+            guard let year = self.year else {
+                return nil
+            }
+            return NSNumber(value: year)
+        }
+        set{
+            self.year = newValue?.intValue
+        }
+    }
+
+    @objc(month) public var monthNumber: NSNumber? {
+        get {
+            guard let month = self.month else {
+                return nil
+            }
+            return NSNumber(value: month)
+        }
+        set{
+            self.month = newValue?.intValue
+        }
     }
 }
 
