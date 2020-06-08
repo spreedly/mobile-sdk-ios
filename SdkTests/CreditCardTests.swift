@@ -81,7 +81,7 @@ class CreditCardInfoTests: XCTestCase {
         XCTAssertNil(sink.verificationValue)
         XCTAssertEqual(sink.company, source.company)
 
-        XCTAssertEqual(sink.address, source.address)
+        XCTAssertEqual(sink.address?.address1, "123 Fake St")
         XCTAssertEqual(sink.shippingAddress, source.shippingAddress)
     }
 }

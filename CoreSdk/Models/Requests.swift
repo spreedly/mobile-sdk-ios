@@ -4,13 +4,13 @@ import PassKit
 /// Values are limited to 500 characters and cannot contain compounding data types.
 public typealias Metadata = [String: Any]
 
-public class PaymentMethodRequestBase {
-    public var fullName: String?
-    public var firstName: String?
-    public var lastName: String?
-    public var company: String?
+public class PaymentMethodRequestBase: NSObject {
+    @objc public var fullName: String?
+    @objc public var firstName: String?
+    @objc public var lastName: String?
+    @objc public var company: String?
 
-    public var address: Address?
+    @objc public var address: Address?
     public var shippingAddress: Address?
 
     public var retained: Bool?
@@ -19,8 +19,12 @@ public class PaymentMethodRequestBase {
         self.fullName = fullName
         self.firstName = firstName
         self.lastName = lastName
+
+        self.address = Address()
+        self.shippingAddress = Address()
     }
 
+    @objc(toJson:)
     internal func toJson() throws -> [String: Any] {
         var result: [String: Any] = [:]
         result.maybeSet("full_name", fullName)
@@ -41,7 +45,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     public var year: Int?
     public var month: Int?
 
-    public init() {
+    @objc public init() {
         super.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
@@ -87,7 +91,8 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         company = info?.company
     }
 
-    internal override func toJson() throws -> [String: Any] {
+
+    public override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
         try result.setOpaqueString("number", number)

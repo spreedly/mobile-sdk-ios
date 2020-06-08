@@ -12,6 +12,7 @@
 		3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C6C5F62247EF30900ADFFE7 /* Pods_CocoaSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */; };
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
+		3CFE89C3248EBAB7005E64B4 /* CreditCardInfoCompatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -166,6 +167,7 @@
 		2B768D18AC34FBC5B2056860 /* Pods-CocoaSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSdk.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSdk/Pods-CocoaSdk.debug.xcconfig"; sourceTree = "<group>"; };
 		38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C934897246F084D003C84C7 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
+		3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardInfoCompatTests.m; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -304,6 +306,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CFE89BE248EB5CA005E64B4 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */,
+			);
+			path = Compatibility;
+			sourceTree = "<group>";
+		};
 		442A2206D806C97B75A00795 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +374,7 @@
 		442A240EC140D34D76A3C73E /* SdkTests */ = {
 			isa = PBXGroup;
 			children = (
+				3CFE89BE248EB5CA005E64B4 /* Compatibility */,
 				442A213C18A35388BDA5861C /* Info.plist */,
 				442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */,
 				F076C7C99365328F2BCA318A /* BankAccountTests.swift */,
@@ -656,6 +667,7 @@
 					};
 					442A245F082E0723AA955F94 = {
 						DevelopmentTeam = LW36989798;
+						LastSwiftMigration = 1150;
 					};
 					442A266B984463F40F3FE1D6 = {
 						DevelopmentTeam = LW36989798;
@@ -1026,6 +1038,7 @@
 				F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */,
 				F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */,
 				F076C345015EC5AAD59657EF /* JSONExtensionsTests.swift in Sources */,
+				3CFE89C3248EBAB7005E64B4 /* CreditCardInfoCompatTests.m in Sources */,
 				F076C12BA6F3E33F83E1FB90 /* CardBrandTests.swift in Sources */,
 				F076C940E8FECFAFF9199419 /* ApplePayTests.swift in Sources */,
 			);
@@ -1759,6 +1772,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "SdkTests/Compatibility/SdkTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1826,6 +1840,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.SdkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "SdkTests/Compatibility/SdkTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
