@@ -27,6 +27,10 @@ public class Address: NSObject {
         }
     }
 
+    public override init() {
+        super.init()
+    }
+
     init?(from json: [String: Any], as type: AddressType) {
         let prefix = type.prefix
 

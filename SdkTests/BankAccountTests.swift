@@ -68,8 +68,8 @@ class BankAccountInfoTests: XCTestCase {
         source.bankAccountType = .savings
         source.bankAccountHolderType = .business
 
-        source.address?.address1 = "123 Fake St"
-        source.shippingAddress?.address1 = "321 Wall St"
+        source.address.address1 = "123 Fake St"
+        source.shippingAddress.address1 = "321 Wall St"
 
         let sink = BankAccountInfo.init(from: source)
 
