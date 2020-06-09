@@ -11,11 +11,36 @@ public protocol SPCreditCardNumberTextFieldDelegate {
 }
 
 public class SPCreditCardNumberTextField: SPSecureTextField {
+    static private let unknownCard: String = "spr_card_unknown"
     @IBInspectable public var maskCharacter: String = "*"
 
     public var cardNumberTextFieldDelegate: SPCreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
     private var masked: Bool = false
+    private let image = UIImageView(image: UIImage(named: SPCreditCardNumberTextField.unknownCard))
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        addSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        image.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        addSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        image.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
+    }
+
+    func cardBrandDetermined(brand: CardBrand) {
+        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: SPCreditCardNumberTextField.unknownCard)
+        self.image.image = image
+    }
 
     private var rawText: String? {
         masked ? unmaskedText : text
@@ -46,9 +71,16 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 
 // MARK: - UITextFieldDelegate methods
 extension SPCreditCardNumberTextField {
-    public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
-        let cardBrand = CardBrand.from(textField.text)
+    @discardableResult
+    func determineCardBrand(_ number: String) -> CardBrand {
+        let cardBrand = CardBrand.from(number)
+        self.cardBrandDetermined(brand: cardBrand)
         cardNumberTextFieldDelegate?.cardBrandDetermined(brand: cardBrand)
+        return cardBrand
+    }
+
+    public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
+        determineCardBrand(textField.text ?? "")
         applyMask()
     }
 
@@ -116,7 +148,7 @@ extension SPCreditCardNumberTextField {
             return false
         }
 
-        let brand = CardBrand.from(current)
+        let brand = determineCardBrand(current)
 
         let requested = "\(current)\(cleaned)"
 
@@ -126,6 +158,7 @@ extension SPCreditCardNumberTextField {
         }
 
         textField.text = formatCardNumber(requested)
+        determineCardBrand(requested)
         return false
     }
 }

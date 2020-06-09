@@ -11,8 +11,6 @@ import RxSwift
 class CreditCardFormViewController: UIViewController {
 
     @IBOutlet var form: SPSecureForm?
-    @IBOutlet weak var cardBrand: UIButton!
-    @IBOutlet weak var creditCardNumber: SPCreditCardNumberTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +39,6 @@ class CreditCardFormViewController: UIViewController {
 
     func configureDelegates() {
         form?.delegate = self
-        creditCardNumber.cardNumberTextFieldDelegate = self
     }
 }
 
@@ -63,12 +60,5 @@ extension CreditCardFormViewController: SPSecureFormDelegate {
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         self.present(alert, animated: true)
-    }
-}
-
-extension CreditCardFormViewController: SPCreditCardNumberTextFieldDelegate {
-    public func cardBrandDetermined(brand: CardBrand) {
-        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: "spr_card_unknown")
-        self.cardBrand.setImage(image, for: .normal)
     }
 }
