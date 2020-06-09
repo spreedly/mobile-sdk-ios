@@ -99,7 +99,7 @@ extension SPCreditCardNumberTextField {
     }
 
     public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+        guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
             return false
         }
 
@@ -116,9 +116,11 @@ extension SPCreditCardNumberTextField {
             return false
         }
 
+        let brand = CardBrand.from(current)
+
         let requested = "\(current)\(cleaned)"
 
-        guard requested.count <= "1234 5678 1234 5678".count else {
+        guard requested.onlyNumbers().count <= brand.maxLength else {
             // too many characters are coming in
             return false
         }

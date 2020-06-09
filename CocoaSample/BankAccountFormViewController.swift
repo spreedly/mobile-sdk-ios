@@ -14,7 +14,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fullName: ValidatedTextField!
     @IBOutlet weak var accountNumber: SPSecureTextField!
     @IBOutlet weak var routingNumber: ValidatedTextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +42,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
 
     func configureDelegates() {
         form?.delegate = self
-        
+
         fullName.delegate = self
         accountNumber.delegate = self
         routingNumber.delegate = self
@@ -59,12 +59,22 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-
 extension BankAccountFormViewController: SPSecureFormDelegate {
     func spreedly<TResult>(secureForm form: SPSecureForm, success transaction: Transaction<TResult>) where TResult: PaymentMethodResultBase {
-        print("My payment token is \(transaction.paymentMethod?.token ?? "empty")")
+        let token = transaction.paymentMethod?.token ?? "empty"
+        print("My payment token is \(token)")
 
-        self.navigationController?.popViewController(animated: true)
+        displayAlert(message: "Token: \(token)", title: "Success")
+    }
 
+    func displayAlert(message: String, title: String) {
+        let alert = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
     }
 }
