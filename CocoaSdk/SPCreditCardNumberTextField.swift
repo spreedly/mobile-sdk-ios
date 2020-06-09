@@ -22,15 +22,16 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubview(image)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        image.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
+        addBrandImage()
     }
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
 
+        addBrandImage()
+    }
+
+    private func addBrandImage() {
         addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
