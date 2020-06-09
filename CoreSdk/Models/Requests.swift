@@ -87,10 +87,10 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     public init(from info: CreditCardInfo?) {
         super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
         if let address = info?.address {
-            self.address = address
+            self.address = Address(from: address)
         }
         if let shippingAddress = info?.shippingAddress {
-            self.shippingAddress = shippingAddress
+            self.shippingAddress = Address(from: shippingAddress)
         }
         company = info?.company
     }
@@ -238,10 +238,10 @@ public class BankAccountInfo: PaymentMethodRequestBase {
     public init(from info: BankAccountInfo?) {
         super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
         if let address = info?.address {
-            self.address = address
+            self.address = Address(from: address)
         }
         if let shippingAddress = info?.shippingAddress {
-            self.shippingAddress = shippingAddress
+            self.shippingAddress = Address(from: shippingAddress)
         }
         company = info?.company
         bankAccountType = info?.bankAccountType ?? BankAccountType.unknown

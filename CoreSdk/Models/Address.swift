@@ -31,6 +31,16 @@ public class Address: NSObject {
         super.init()
     }
 
+    @objc public init(from other: Address) {
+        address1 = other.address1
+        address2 = other.address2
+        city = other.city
+        state = other.state
+        zip = other.zip
+        country = other.country
+        phoneNumber = other.phoneNumber
+    }
+
     init?(from json: [String: Any], as type: AddressType) {
         let prefix = type.prefix
 
