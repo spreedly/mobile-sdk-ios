@@ -76,7 +76,11 @@ extension SPCreditCardNumberTextField {
     func determineCardBrand(_ number: String) -> CardBrand {
         let cardBrand = CardBrand.from(number)
         self.cardBrandDetermined(brand: cardBrand)
-        cardNumberTextFieldDelegate?.cardBrandDetermined(brand: cardBrand)
+
+        DispatchQueue.global(qos: .default).async {
+            self.cardNumberTextFieldDelegate?.cardBrandDetermined(brand: cardBrand)
+        }
+
         return cardBrand
     }
 
