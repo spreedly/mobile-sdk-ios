@@ -145,23 +145,57 @@ extension CreditCardInfo {
     }
 }
 
-public enum BankAccountType: String, CaseIterable {
+@objc public enum BankAccountType: Int, CaseIterable {
+    case unknown
     case checking
     case savings
+
+    public var stringValue: String? {
+        switch self {
+        case .unknown: return nil
+        case .checking: return "checking"
+        case .savings: return "savings"
+        }
+    }
+
+    static func from(_ string: String?) -> BankAccountType {
+        switch string {
+        case "checking": return .checking
+        case "savings": return .savings
+        default: return .unknown
+        }
+    }
 }
 
-public enum BankAccountHolderType: String, CaseIterable {
+@objc public enum BankAccountHolderType: Int, CaseIterable {
+    case unknown
     case business
     case personal
+
+    public var stringValue: String? {
+        switch self {
+        case .unknown: return nil
+        case .business: return "business"
+        case .personal: return "personal"
+        }
+    }
+
+    static func from(_ string: String?) -> BankAccountHolderType {
+        switch string {
+        case "business": return .business
+        case "personal": return .personal
+        default: return .unknown
+        }
+    }
 }
 
 public class BankAccountInfo: PaymentMethodRequestBase {
-    public var bankRoutingNumber: String?
-    public var bankAccountNumber: SpreedlySecureOpaqueString?
-    public var bankAccountType: BankAccountType?
-    public var bankAccountHolderType: BankAccountHolderType?
+    @objc public var bankRoutingNumber: String?
+    @objc public var bankAccountNumber: SpreedlySecureOpaqueString?
+    @objc public var bankAccountType: BankAccountType = .unknown
+    @objc public var bankAccountHolderType: BankAccountHolderType = .unknown
 
-    public init() {
+    @objc public init() {
         super.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
@@ -210,17 +244,17 @@ public class BankAccountInfo: PaymentMethodRequestBase {
             self.shippingAddress = shippingAddress
         }
         company = info?.company
-        bankAccountType = info?.bankAccountType
-        bankAccountHolderType = info?.bankAccountHolderType
+        bankAccountType = info?.bankAccountType ?? BankAccountType.unknown
+        bankAccountHolderType = info?.bankAccountHolderType ?? BankAccountHolderType.unknown
     }
 
-    internal override func toJson() throws -> [String: Any] {
+    public override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
         result.maybeSet("bank_routing_number", bankRoutingNumber)
         try result.setOpaqueString("bank_account_number", bankAccountNumber)
-        result.maybeSetEnum("bank_account_type", bankAccountType)
-        result.maybeSetEnum("bank_account_holder_type", bankAccountHolderType)
+        result.maybeSet("bank_account_type", bankAccountType.stringValue)
+        result.maybeSet("bank_account_holder_type", bankAccountHolderType.stringValue)
 
         return result
     }

@@ -13,6 +13,7 @@
 		3C6C5F62247EF30900ADFFE7 /* Pods_CocoaSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */; };
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		3CFE89C3248EBAB7005E64B4 /* CreditCardInfoCompatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */; };
+		3CFE89C6248EF598005E64B4 /* BankAccountInfoCompatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F076C336A9484EE260A96D62 /* BankAccountInfoCompatTests.m */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -229,6 +230,7 @@
 		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C13DBF12B3488EFCDE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		F076C2EB71479F8B5C3F5C7D /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
+		F076C336A9484EE260A96D62 /* BankAccountInfoCompatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankAccountInfoCompatTests.m; sourceTree = "<group>"; };
 		F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountFormViewController.swift; sourceTree = "<group>"; };
 		F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSecureTextField.swift; sourceTree = "<group>"; };
 		F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPExpirationTextField.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */,
+				F076C336A9484EE260A96D62 /* BankAccountInfoCompatTests.m */,
 			);
 			path = Compatibility;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CFE89C6248EF598005E64B4 /* BankAccountInfoCompatTests.m in Sources */,
 				442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */,
 				F076C8DFE215ECEECB1C700C /* BankAccountTests.swift in Sources */,
 				F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */,

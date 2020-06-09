@@ -107,8 +107,8 @@ public class BankAccountResult: PaymentMethodResultBase {
 
     required init(from json: [String: Any]) {
         bankName = json.string(optional: "bank_name")
-        accountType = json.enumValue(optional: "account_type")
-        accountHolderType = json.enumValue(optional: "account_holder_type")
+        accountType = BankAccountType.from(json.string(optional: "account_type"))
+        accountHolderType = BankAccountHolderType.from(json.string(optional: "account_holder_type"))
         routingNumberDisplayDigits = json.string(optional: "routing_number_display_digits")
         accountNumberDisplayDigits = json.string(optional: "account_number_display_digits")
         routingNumber = json.string(optional: "routing_number")
