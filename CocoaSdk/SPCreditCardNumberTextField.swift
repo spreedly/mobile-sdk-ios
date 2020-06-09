@@ -124,20 +124,15 @@ extension SPCreditCardNumberTextField {
             return false
         }
 
-        guard string.count > 0 else {
-            // allow backspace/delete
-            return true
-        }
-
         let cleaned = string.onlyNumbers()
-        guard cleaned.count > 0 else {
+        guard string.count == 0 || cleaned.count > 0 else {
             // none of the replacementString was useful
             return false
         }
 
         let current = textField.text ?? ""
-        let brand = determineCardBrand(current)
-        let requested = "\(current)\(cleaned)"
+        let requested = current.replacing(range: range, with: cleaned)
+        let brand = CardBrand.from(requested)
 
         guard requested.onlyNumbers().count <= brand.maxLength else {
             // too many characters are coming in
@@ -147,5 +142,15 @@ extension SPCreditCardNumberTextField {
         textField.text = formatCardNumber(requested)
         determineCardBrand(requested)
         return false
+    }
+}
+
+fileprivate extension String {
+    func replacing(range: NSRange, with string: String) -> String {
+        var result = self
+        let startEdit = result.index(result.startIndex, offsetBy: range.location)
+        let endEdit = result.index(startEdit, offsetBy: range.length)
+        result.replaceSubrange(startEdit..<endEdit, with: string)
+        return result
     }
 }
