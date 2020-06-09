@@ -89,23 +89,6 @@ extension SPCreditCardNumberTextField {
         return true
     }
 
-    private var lastFour: String {
-        guard let cardNumber = text?.onlyNumbers() else {
-            return ""
-        }
-
-        if let lastFourStartIndex = cardNumber.index(
-                cardNumber.endIndex,
-                offsetBy: -4,
-                limitedBy: cardNumber.startIndex
-        ) {
-            return String(cardNumber[lastFourStartIndex...])
-        } else {
-            // there must be less than 4 digits so return what there is
-            return cardNumber
-        }
-    }
-
     private func applyMask() {
         guard !masked,
               let rawNumber = text else {
@@ -117,6 +100,7 @@ extension SPCreditCardNumberTextField {
         let maskCharacterCount = max(cardNumber.count - 4, 0)
 
         let mask = String(repeating: maskCharacter, count: maskCharacterCount)
+        let lastFour = cardNumber.suffix(4)
         text = formatCardNumber(mask + lastFour)
         masked = true
     }
@@ -140,16 +124,14 @@ extension SPCreditCardNumberTextField {
             return true
         }
 
-        let current = textField.text ?? ""
-
         let cleaned = string.onlyNumbers()
         guard cleaned.count > 0 else {
             // none of the replacementString was useful
             return false
         }
 
+        let current = textField.text ?? ""
         let brand = determineCardBrand(current)
-
         let requested = "\(current)\(cleaned)"
 
         guard requested.onlyNumbers().count <= brand.maxLength else {
