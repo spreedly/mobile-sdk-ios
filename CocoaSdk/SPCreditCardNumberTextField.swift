@@ -38,7 +38,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
         image.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
     }
 
-    func cardBrandDetermined(brand: CardBrand) {
+    func updateCardBrandImage(brand: CardBrand) {
         let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: SPCreditCardNumberTextField.unknownCard)
         self.image.image = image
     }
@@ -75,7 +75,7 @@ extension SPCreditCardNumberTextField {
     @discardableResult
     func determineCardBrand(_ number: String) -> CardBrand {
         let cardBrand = CardBrand.from(number)
-        self.cardBrandDetermined(brand: cardBrand)
+        self.updateCardBrandImage(brand: cardBrand)
 
         DispatchQueue.global(qos: .default).async {
             self.cardNumberTextFieldDelegate?.cardBrandDetermined(brand: cardBrand)
