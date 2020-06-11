@@ -36,6 +36,10 @@ public class PaymentMethodRequestBase: NSObject {
 
         return result
     }
+
+    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+        fatalError("must be overridden")
+    }
 }
 
 public class CreditCardInfo: PaymentMethodRequestBase {
@@ -107,7 +111,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
@@ -207,7 +211,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         super.init(fullName: fullName, firstName: nil, lastName: nil)
     }
 
-    public init(
+    @objc public init(
             firstName: String,
             lastName: String,
             bankRoutingNumber: String,
@@ -253,7 +257,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
@@ -298,7 +302,7 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
         var paymentMethod: [String: Any] = [
             "email": email ?? "",
             "metadata": metadata ?? Metadata(),

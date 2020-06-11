@@ -109,18 +109,19 @@ public class CreditCardResult: PaymentMethodResultBase {
     }
 }
 
+@objc(SPRBankAccountResult)
 public class BankAccountResult: PaymentMethodResultBase {
     class var paymentMethodType: String {
         "bank_account"
     }
 
-    public var bankName: String?
-    public var accountType: BankAccountType?
-    public var accountHolderType: BankAccountHolderType?
-    public var routingNumberDisplayDigits: String?
-    public var accountNumberDisplayDigits: String?
-    public var routingNumber: String?
-    public var accountNumber: String?
+    @objc public var bankName: String?
+    @objc public var accountType: BankAccountType = .unknown
+    @objc public var accountHolderType: BankAccountHolderType = .unknown
+    @objc public var routingNumberDisplayDigits: String?
+    @objc public var accountNumberDisplayDigits: String?
+    @objc public var routingNumber: String?
+    @objc public var accountNumber: String?
 
     required init(from json: [String: Any]) {
         bankName = json.string(optional: "bank_name")

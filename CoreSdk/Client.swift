@@ -53,9 +53,9 @@ public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool =
 
 @objc(SPRClient)
 public protocol _ObjCClient {
-    @objc(createPaymentMethodWithCreditCard:)
+    @objc(createPaymentMethodFrom:)
     func _objCCreatePaymentMethod(
-            creditCard: CreditCardInfo
+            from: PaymentMethodRequestBase
     ) -> _ObjCSingleTransaction
 }
 

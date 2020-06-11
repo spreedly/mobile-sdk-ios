@@ -143,8 +143,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 }
 
 extension SpreedlyClientImpl: _ObjCClient {
-    @objc(createPaymentMethodWithCreditCard:)
-    func _objCCreatePaymentMethod(creditCard info: CreditCardInfo) -> _ObjCSingleTransaction {
+    @objc(createPaymentMethodFrom:)
+    func _objCCreatePaymentMethod(from info: PaymentMethodRequestBase) -> _ObjCSingleTransaction {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         let email = ""

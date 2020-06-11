@@ -9,6 +9,8 @@ import CoreSdk
 public class Helpers: NSObject {
     @objc public static let testCardNumber = "4111111111111111"
     @objc public static let verificationValue = "919"
+    @objc public static let testBankRoutingNumber = "021000021"
+    @objc public static let testBankAccountNumber = "9876543210"
 
     @objc public static var key: String {
         ProcessInfo.processInfo.environment["ENV_KEY"] ?? secretEnvKey
@@ -24,6 +26,10 @@ public class Helpers: NSObject {
 
     @objc public static var secureVerificationValue: SpreedlySecureOpaqueString {
         SpreedlySecureOpaqueStringBuilder.build(from: verificationValue)
+    }
+
+    @objc public static var secureBankAccountNumber: SpreedlySecureOpaqueString {
+        SpreedlySecureOpaqueStringBuilder.build(from: testBankAccountNumber)
     }
 
     static func createClient() -> SpreedlyClient {
