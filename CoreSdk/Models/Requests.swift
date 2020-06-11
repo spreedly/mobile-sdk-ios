@@ -63,6 +63,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         super.init(fullName: fullName, firstName: nil, lastName: nil)
     }
 
+    @objc
     public init(
             firstName: String,
             lastName: String,

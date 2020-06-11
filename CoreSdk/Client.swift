@@ -49,3 +49,19 @@ public enum SpreedlySecurityError: Error {
 public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
     SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
 }
+
+
+@objc(SPRClient)
+public protocol _ObjCClient {
+    @objc(createPaymentMethodWithCreditCard:)
+    func _objCCreatePaymentMethod(
+            creditCard: CreditCardInfo
+    ) -> _ObjCSingleTransaction
+}
+
+@objc(SPRClientFactory)
+public class _ObjCClientFactory: NSObject {
+    @objc public static func createClient(envKey: String, envSecret: String, test: Bool) -> _ObjCClient {
+        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
+    }
+}

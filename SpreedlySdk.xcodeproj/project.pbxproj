@@ -14,6 +14,7 @@
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		3CFE89C3248EBAB7005E64B4 /* CreditCardInfoCompatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */; };
 		3CFE89C6248EF598005E64B4 /* BankAccountInfoCompatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F076C336A9484EE260A96D62 /* BankAccountInfoCompatTests.m */; };
+		3CFE89C92491383D005E64B4 /* CreditCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C82491383D005E64B4 /* CreditCardTests.m */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -169,6 +170,7 @@
 		38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C934897246F084D003C84C7 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
 		3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardInfoCompatTests.m; sourceTree = "<group>"; };
+		3CFE89C82491383D005E64B4 /* CreditCardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardTests.m; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -313,6 +315,14 @@
 			children = (
 				3CFE89C2248EBAB7005E64B4 /* CreditCardInfoCompatTests.m */,
 				F076C336A9484EE260A96D62 /* BankAccountInfoCompatTests.m */,
+			);
+			path = Compatibility;
+			sourceTree = "<group>";
+		};
+		3CFE89C724913820005E64B4 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				3CFE89C82491383D005E64B4 /* CreditCardTests.m */,
 			);
 			path = Compatibility;
 			sourceTree = "<group>";
@@ -492,6 +502,7 @@
 		F076C1956F58D46CD96B24BB /* SdkIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				3CFE89C724913820005E64B4 /* Compatibility */,
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
 				F076C9783EA29205F1021D9A /* Internal */,
 				442A21244C58460DB48ED6B3 /* Secrets.swift */,
@@ -678,6 +689,7 @@
 					};
 					F076CF9042A128DEBCC6BDA2 = {
 						DevelopmentTeam = LW36989798;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -1073,6 +1085,7 @@
 				442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */,
 				F076C5168326BA6146E7048D /* Helpers.swift in Sources */,
 				F076C1D252D80581E030E1A3 /* ApplePayTests.swift in Sources */,
+				3CFE89C92491383D005E64B4 /* CreditCardTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1886,6 +1899,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LW36989798;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1955,6 +1969,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LW36989798;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

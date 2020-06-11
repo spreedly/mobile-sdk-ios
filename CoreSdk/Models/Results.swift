@@ -30,22 +30,22 @@ public struct SpreedlyError: Decodable {
     }
 }
 
-public class PaymentMethodResultBase {
-    public let token: String?
+public class PaymentMethodResultBase: NSObject {
+    @objc public let token: String?
     public let storageState: StorageState?
     public let test: Bool
     public let paymentMethodType: PaymentMethodType?
 
-    public let email: String?
-    public let firstName: String?
-    public let lastName: String?
-    public let fullName: String?
-    public let company: String?
+    @objc public let email: String?
+    @objc public let firstName: String?
+    @objc public let lastName: String?
+    @objc public let fullName: String?
+    @objc public let company: String?
 
-    public let address: Address?
-    public let shippingAddress: Address?
+    @objc public let address: Address?
+    @objc public let shippingAddress: Address?
     public let errors: [SpreedlyError]
-    public let metadata: Metadata?
+    @objc public let metadata: Metadata?
 
     required init(from json: [String: Any]) {
         token = json.string(optional: "token")
@@ -66,18 +66,23 @@ public class PaymentMethodResultBase {
     }
 }
 
+@objc(SPRCreditCardResult)
 public class CreditCardResult: PaymentMethodResultBase {
-    public var cardType: String?
+    class var paymentMethodType: String {
+        "credit_card"
+    }
+
+    @objc public var cardType: String?
     public var year: Int?
     public var month: Int?
 
-    public var lastFourDigits: String?
-    public var firstSixDigits: String?
-    public var number: String?
+    @objc public var lastFourDigits: String?
+    @objc public var firstSixDigits: String?
+    @objc public var number: String?
 
     public var eligibleForCardUpdater: Bool?
-    public var callbackUrl: String?
-    public var fingerprint: String?
+    @objc public var callbackUrl: String?
+    @objc public var fingerprint: String?
 
     required init(from json: [String: Any]) {
         cardType = json.string(optional: "card_type")
@@ -94,9 +99,21 @@ public class CreditCardResult: PaymentMethodResultBase {
 
         super.init(from: json)
     }
+
+    @objc(year) public var _objCYear: Int {
+        year ?? 0
+    }
+
+    @objc(month) public var _objcMonth: Int {
+        month ?? 0
+    }
 }
 
 public class BankAccountResult: PaymentMethodResultBase {
+    class var paymentMethodType: String {
+        "bank_account"
+    }
+
     public var bankName: String?
     public var accountType: BankAccountType?
     public var accountHolderType: BankAccountHolderType?
@@ -119,4 +136,7 @@ public class BankAccountResult: PaymentMethodResultBase {
 }
 
 public class ApplePayResult: CreditCardResult {
+    class override var paymentMethodType: String {
+        "apple_pay"
+    }
 }

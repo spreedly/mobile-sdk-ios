@@ -141,3 +141,26 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 })
     }
 }
+
+extension SpreedlyClientImpl: _ObjCClient {
+    @objc(createPaymentMethodWithCreditCard:)
+    func _objCCreatePaymentMethod(creditCard info: CreditCardInfo) -> _ObjCSingleTransaction {
+        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+
+        let email = ""
+        let metadata = Metadata()
+
+        let single = Single<_ObjCTransaction>.deferred {
+            let request = try info.toRequestJson(email: email, metadata: metadata)
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return self.process(request: urlRequest).map { data -> _ObjCTransaction in
+                try _ObjCTransaction.unwrap(from: data)
+            }
+        }
+
+        return _ObjCSingleTransaction(observable: single)
+    }
+}
