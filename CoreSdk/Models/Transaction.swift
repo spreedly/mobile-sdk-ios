@@ -5,17 +5,16 @@
 import Foundation
 import RxSwift
 
-public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResultBase {
-    public let token: String?
-    public let createdAt: Date?
-    public let updatedAt: Date?
-    public let succeeded: Bool
-    public let transactionType: String?
-    public let retained: Bool
-    public let state: String?
-    public let messageKey: String
-    public let message: String
-    public let paymentMethod: TPaymentMethod?
+public class TransactionBase: NSObject {
+    @objc public let token: String?
+    @objc public let createdAt: Date?
+    @objc public let updatedAt: Date?
+    @objc public let succeeded: Bool
+    @objc public let transactionType: String?
+    @objc public let retained: Bool
+    @objc public let state: String?
+    @objc public let messageKey: String
+    @objc public let message: String
     public let errors: [SpreedlyError]?
 
     init(from json: [String: Any]) {
@@ -31,16 +30,21 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
         transactionType = json.string(optional: "transaction_type")
         retained = json.bool(optional: "retained") ?? false
         state = json.string(optional: "state")
+    }
+}
 
+public class Transaction<TPaymentMethod>: TransactionBase where TPaymentMethod: PaymentMethodResultBase {
+    public let paymentMethod: TPaymentMethod?
+
+    override init(from json: [String: Any]) {
         if let paymentMethodJson = json.object(optional: "payment_method") {
             paymentMethod = TPaymentMethod(from: paymentMethodJson)
         } else {
             paymentMethod = nil
         }
-    }
-}
 
-extension Transaction {
+        super.init(from: json)
+    }
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
         let json = try data.decodeJson()
@@ -53,48 +57,29 @@ extension Transaction {
 }
 
 @objc(SPRTransaction)
-public class _ObjCTransaction: NSObject {
-    @objc public let token: String?
-    public let createdAt: Date?
-    public let updatedAt: Date?
-    public let succeeded: Bool
-    public let transactionType: String?
-    public let retained: Bool
-    public let state: String?
-    public let messageKey: String
-    public let message: String
+public class _ObjCTransaction: TransactionBase {
     @objc public var paymentMethod: PaymentMethodResultBase?
-    public let errors: [SpreedlyError]?
 
     @objc public var creditCard: CreditCardResult? {
         paymentMethod as? CreditCardResult
     }
+    @objc public var bankAccount: BankAccountResult? {
+        paymentMethod as? BankAccountResult
+    }
+    @objc public var applePay: ApplePayResult? {
+        paymentMethod as? ApplePayResult
+    }
 
-    init(from json: [String: Any]) {
-
-        let errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) })
-        self.errors = errors
-        messageKey = json.string(optional: "messageKey") ?? errors?[0].key ?? "unknown"
-        message = json.string(optional: "message") ?? errors?[0].message ?? "Unknown Error"
-
-        token = json.string(optional: "token")
-        createdAt = json.date(optional: "created_at")
-        updatedAt = json.date(optional: "updated_at")
-        succeeded = json.bool(optional: "succeeded") ?? false
-        transactionType = json.string(optional: "transaction_type")
-        retained = json.bool(optional: "retained") ?? false
-        state = json.string(optional: "state")
-
-        super.init()
-
+    override init(from json: [String: Any]) {
         if let paymentMethodJson = json.object(optional: "payment_method") {
-            paymentMethod = initPaymentMethod(json: paymentMethodJson)
+            paymentMethod = _ObjCTransaction.initPaymentMethod(from: paymentMethodJson)
         } else {
             paymentMethod = nil
         }
+        super.init(from: json)
     }
 
-    private func initPaymentMethod(json: [String: Any]) -> PaymentMethodResultBase? {
+    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
         let paymentMethodType = json.string(optional: "payment_method_type")
 
         switch paymentMethodType {
