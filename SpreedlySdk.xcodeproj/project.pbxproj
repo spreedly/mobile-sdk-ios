@@ -15,6 +15,7 @@
 		3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */; };
 		3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */; };
 		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
+		3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -172,6 +173,7 @@
 		3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankAccountCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
+		3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayCompatibilityTests.m; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */,
 				3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */,
+				3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */,
 			);
 			path = Compatibility;
 			sourceTree = "<group>";
@@ -1077,6 +1080,7 @@
 				442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */,
 				F076C5168326BA6146E7048D /* Helpers.swift in Sources */,
 				F076C1D252D80581E030E1A3 /* ApplePayTests.swift in Sources */,
+				3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */,
 				3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
