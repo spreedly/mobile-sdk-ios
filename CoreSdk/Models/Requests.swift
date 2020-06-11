@@ -5,6 +5,9 @@ import PassKit
 public typealias Metadata = [String: Any]
 
 public class PaymentMethodRequestBase: NSObject {
+    @objc public var email: String?
+    @objc public var metadata: Metadata?
+
     @objc public var fullName: String?
     @objc public var firstName: String?
     @objc public var lastName: String?
@@ -37,7 +40,7 @@ public class PaymentMethodRequestBase: NSObject {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    internal func toRequestJson() throws -> [String: Any] {
         fatalError("must be overridden")
     }
 }
@@ -111,7 +114,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         return result
     }
 
-    override func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson() throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
@@ -257,7 +260,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         return result
     }
 
-    override func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson() throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
@@ -302,7 +305,7 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         return result
     }
 
-    override func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson() throws -> [String: Any] {
         var paymentMethod: [String: Any] = [
             "email": email ?? "",
             "metadata": metadata ?? Metadata(),

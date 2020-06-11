@@ -47,12 +47,9 @@ public class Helpers: NSObject {
                 month: 1
         )
         creditCard.retained = retained
+        creditCard.email = "dolly@dog.com"
 
-        return client.createCreditCardPaymentMethod(
-                creditCard: creditCard,
-                email: "dolly@dog.com",
-                metadata: nil
-        )
+        return client.createCreditCardPaymentMethod(creditCard: creditCard)
     }
 }
 

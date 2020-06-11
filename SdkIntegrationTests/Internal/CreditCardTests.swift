@@ -56,23 +56,23 @@ class CreditCardTests: XCTestCase {
         shipping.phoneNumber = "206-555-2222"
         info.shippingAddress = shipping
 
-        let email = "dolly@dog.com"
+        info.email = "dolly@dog.com"
 
-        let metadata: Metadata = [
+        info.metadata = [
             "stringKey": "correcthorsebatterystaple",
             "intKey": 42,
             "doubleKey": 3.14,
             "boolKey": false
         ]
 
-        let promise = client.createCreditCardPaymentMethod(creditCard: info, email: email, metadata: metadata)
+        let promise = client.createCreditCardPaymentMethod(creditCard: info)
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
         CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
         XCTAssertNil(result.callbackUrl)
-        XCTAssertEqual(result.email, email)
+        XCTAssertEqual(result.email, info.email)
 
         XCTAssertEqual(result.address, billing)
         XCTAssertEqual(result.shippingAddress, shipping)

@@ -60,16 +60,16 @@ class ApplePayTests: XCTestCase {
         shipping.phoneNumber = "206-555-2222"
         info.shippingAddress = shipping
 
-        let email = "dolly@dog.com"
+        info.email = "dolly@dog.com"
 
-        let promise = client.createApplePayPaymentMethod(applePay: info, email: email, metadata: nil)
+        let promise = client.createApplePayPaymentMethod(applePay: info)
 
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .applePay)
         self.assertCardFieldsPopulate(result: result, info: info)
-        XCTAssertEqual(result.email, email)
+        XCTAssertEqual(result.email, info.email)
 
         XCTAssertEqual(result.address, billing)
         XCTAssertEqual(result.shippingAddress, shipping)

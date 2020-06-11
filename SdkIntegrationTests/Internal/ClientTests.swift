@@ -18,7 +18,7 @@ class ClientTests: XCTestCase {
                 year: 2029,
                 month: 1
         )
-        let resp = client.createCreditCardPaymentMethod(creditCard: info, email: nil, metadata: nil)
+        let resp = client.createCreditCardPaymentMethod(creditCard: info)
         let trans = try resp.assertResult(self)
 
         XCTAssertFalse(trans.succeeded)
