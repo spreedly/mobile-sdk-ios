@@ -16,7 +16,7 @@ public class TransactionBase: NSObject {
     @objc public let state: String?
     @objc public let messageKey: String
     @objc public let message: String
-    public let errors: [SpreedlyError]?
+    @objc public let errors: [SpreedlyError]?
 
     init(from json: [String: Any]) {
         let errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) })

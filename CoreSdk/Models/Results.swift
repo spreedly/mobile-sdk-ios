@@ -56,10 +56,11 @@ public enum _ObjCPaymentMethodType: Int {
     }
 }
 
-public struct SpreedlyError: Decodable {
-    public let key: String
-    public let message: String
-    public let attribute: String?
+@objc(SPRError)
+public class SpreedlyError: NSObject {
+    @objc public let key: String
+    @objc public let message: String
+    @objc public let attribute: String?
 
     init(from json: [String: Any]) throws {
         key = try json.string(for: "key")
@@ -82,7 +83,7 @@ public class PaymentMethodResultBase: NSObject {
 
     @objc public let address: Address?
     @objc public let shippingAddress: Address?
-    public let errors: [SpreedlyError]
+    @objc public let errors: [SpreedlyError]
     @objc public let metadata: Metadata?
 
     required init(from json: [String: Any]) {
