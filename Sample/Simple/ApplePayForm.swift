@@ -111,7 +111,7 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             paymentStatus = .failure
             completion(.failure)
         } else {
-            let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
+            let client = ClientFactory.create(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
             let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", payment: payment)
             info.testCardNumber = "4111111111111111"
 
