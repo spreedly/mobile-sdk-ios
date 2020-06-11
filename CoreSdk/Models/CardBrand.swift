@@ -33,7 +33,7 @@ public enum CardBrand: String {
     case sodexo
     case unionpay
     case visa
-    case vr
+    case vrPayment
 
     case unknown
 
@@ -55,7 +55,6 @@ public enum CardBrand: String {
         parameters?.maxLength ?? 19
     }
 }
-
 
 let brandData: [CardBrand: BrandParameters] = [
     .alelo: BrandParameters(
@@ -154,10 +153,10 @@ let brandData: [CardBrand: BrandParameters] = [
                 $0.bin(beginning: CardRanges.visa)
             }
     ),
-    .vr: BrandParameters(
+    .vrPayment: BrandParameters(
             max: 16,
             detect: {
-                $0.bin(beginning: CardRanges.vr)
+                $0.bin(beginning: CardRanges.vrPayment)
             }
     )
 ]

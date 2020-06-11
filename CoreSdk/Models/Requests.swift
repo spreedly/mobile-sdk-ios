@@ -102,7 +102,6 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         company = info?.company
     }
 
-
     override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
