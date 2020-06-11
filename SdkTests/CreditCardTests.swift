@@ -7,7 +7,7 @@ import XCTest
 
 class CreditCardInfoTests: XCTestCase {
     func testCanEncode() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let creditCard = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
@@ -34,7 +34,7 @@ class CreditCardInfoTests: XCTestCase {
     }
 
     func testCanEncodeWithFullName() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let creditCard = CreditCardInfo(
                 fullName: "Dolly Dog",
                 number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),

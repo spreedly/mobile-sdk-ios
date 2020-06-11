@@ -46,11 +46,6 @@ public enum SpreedlySecurityError: Error {
     case invalidOpaqueString
 }
 
-public func createSpreedlyClient(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
-    SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
-}
-
-
 @objc(SPRClient)
 public protocol _ObjCClient {
     @objc(createPaymentMethodFrom:)
@@ -60,8 +55,13 @@ public protocol _ObjCClient {
 }
 
 @objc(SPRClientFactory)
-public class _ObjCClientFactory: NSObject {
-    @objc public static func createClient(envKey: String, envSecret: String, test: Bool) -> _ObjCClient {
+public class ClientFactory: NSObject {
+    public static func create(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
+        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
+    }
+
+    @objc(createWithEnvKey:envSecret:test:)
+    public static func _objCCreate(envKey: String, envSecret: String, test: Bool) -> _ObjCClient {
         SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
     }
 }

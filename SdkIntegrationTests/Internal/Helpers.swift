@@ -33,7 +33,7 @@ public class Helpers: NSObject {
     }
 
     static func createClient() -> SpreedlyClient {
-        createSpreedlyClient(envKey: key, envSecret: secret, test: true)
+        ClientFactory.create(envKey: key, envSecret: secret, test: true)
     }
 
     static func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCardResult>> {
@@ -59,6 +59,6 @@ public class Helpers: NSObject {
 extension Helpers {
     @objc(createClient)
     public static func _objCCreateClient() -> _ObjCClient {
-        _ObjCClientFactory.createClient(envKey: key, envSecret: secret, test: true)
+        ClientFactory._objCCreate(envKey: key, envSecret: secret, test: true)
     }
 }

@@ -6,7 +6,7 @@ import XCTest
 
 class BankAccountInfoTests: XCTestCase {
     func testCanEncode() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let creditCard = BankAccountInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
@@ -33,7 +33,7 @@ class BankAccountInfoTests: XCTestCase {
     }
 
     func testCanEncodeWithFullName() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let creditCard = BankAccountInfo(
                 fullName: "Dolly Dog",
                 bankRoutingNumber: "123456",
