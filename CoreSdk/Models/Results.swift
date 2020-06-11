@@ -18,6 +18,27 @@ public enum PaymentMethodType: String, Codable {
     case thirdPartyToken = "third_party_token"
 }
 
+@objc(SPRPaymentMethodType)
+public enum _ObjCPaymentMethodType: Int {
+    case unknown = 0
+    case creditCard
+    case bankAccount
+    case applePay
+    case googlePay
+    case thirdPartyToken
+
+    static func from(type: PaymentMethodType?) -> _ObjCPaymentMethodType {
+        switch type {
+        case .creditCard: return creditCard
+        case .bankAccount: return bankAccount
+        case .applePay: return applePay
+        case .googlePay: return googlePay
+        case .thirdPartyToken: return thirdPartyToken
+        default: return unknown
+        }
+    }
+}
+
 public struct SpreedlyError: Decodable {
     public let key: String
     public let message: String
@@ -63,6 +84,13 @@ public class PaymentMethodResultBase: NSObject {
         shippingAddress = Address(from: json, as: .shipping)
         errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) }) ?? []
         metadata = json.object(optional: "metadata")
+    }
+}
+
+extension PaymentMethodResultBase {
+    @objc(paymentMethodType)
+    public var _objCPaymentMethodType: _ObjCPaymentMethodType {
+        _ObjCPaymentMethodType.from(type: paymentMethodType)
     }
 }
 
