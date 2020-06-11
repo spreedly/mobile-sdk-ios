@@ -14,6 +14,7 @@
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */; };
 		3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */; };
+		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -170,6 +171,7 @@
 		3C934897246F084D003C84C7 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
 		3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankAccountCompatibilityTests.m; sourceTree = "<group>"; };
+		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				442A2676F741069CFE144943 /* Internal */,
 				442A28F5BF2E3FC3A953C5B2 /* Models */,
 				F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */,
+				3CFE89CC2491E045005E64B4 /* ClientFactory.swift */,
 			);
 			path = CoreSdk;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A2759E4BC22B35E134335 /* Client.swift in Sources */,
+				3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */,
 				442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */,
 				F076C83937EF48B8921DA967 /* JSON.swift in Sources */,
 				442A24BD208E1F48D39262F3 /* Results.swift in Sources */,
