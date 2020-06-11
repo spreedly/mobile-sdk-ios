@@ -5,6 +5,7 @@
 import Foundation
 import RxSwift
 
+@objc(SPRTransactionBase)
 public class TransactionBase: NSObject {
     @objc public let token: String?
     @objc public let createdAt: Date?
