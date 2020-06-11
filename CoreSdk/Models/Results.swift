@@ -10,6 +10,23 @@ public enum StorageState: String, Codable {
     case redacted
 }
 
+@objc(SPRStorageState)
+public enum _ObjCStorageState: Int {
+    case unknown = 0
+    case cached
+    case retained
+    case redacted
+
+    static func from(_ source: StorageState?) -> _ObjCStorageState {
+        switch source {
+        case .cached: return cached
+        case .retained: return retained
+        case .redacted: return redacted
+        default: return unknown
+        }
+    }
+}
+
 public enum PaymentMethodType: String, Codable {
     case creditCard = "credit_card"
     case bankAccount = "bank_account"
@@ -27,8 +44,8 @@ public enum _ObjCPaymentMethodType: Int {
     case googlePay
     case thirdPartyToken
 
-    static func from(type: PaymentMethodType?) -> _ObjCPaymentMethodType {
-        switch type {
+    static func from(_ source: PaymentMethodType?) -> _ObjCPaymentMethodType {
+        switch source {
         case .creditCard: return creditCard
         case .bankAccount: return bankAccount
         case .applePay: return applePay
@@ -54,7 +71,7 @@ public struct SpreedlyError: Decodable {
 public class PaymentMethodResultBase: NSObject {
     @objc public let token: String?
     public let storageState: StorageState?
-    public let test: Bool
+    @objc public let test: Bool
     public let paymentMethodType: PaymentMethodType?
 
     @objc public let email: String?
@@ -90,7 +107,12 @@ public class PaymentMethodResultBase: NSObject {
 extension PaymentMethodResultBase {
     @objc(paymentMethodType)
     public var _objCPaymentMethodType: _ObjCPaymentMethodType {
-        _ObjCPaymentMethodType.from(type: paymentMethodType)
+        _ObjCPaymentMethodType.from(paymentMethodType)
+    }
+
+    @objc(storageState)
+    public var _objCStorageState: _ObjCStorageState {
+        _ObjCStorageState.from(storageState)
     }
 }
 

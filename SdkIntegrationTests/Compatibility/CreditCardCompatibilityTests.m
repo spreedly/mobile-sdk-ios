@@ -49,6 +49,7 @@
         SPRCreditCardResult *result = t.creditCard;
         XCTAssertNotNil(result.token);
         XCTAssertEqual(result.paymentMethodType, SPRPaymentMethodTypeCreditCard);
+        XCTAssertEqual(result.storageState, SPRStorageStateCached);
         XCTAssertEqualObjects(result.firstName, @"Dolly");
         XCTAssertEqualObjects(result.lastName, @"Dog");
         XCTAssertEqualObjects(result.company, @"Growlers LLC");

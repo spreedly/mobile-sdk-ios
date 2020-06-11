@@ -35,6 +35,7 @@
         SPRBankAccountResult *result = t.bankAccount;
         XCTAssertNotNil(result.token);
         XCTAssertEqual(result.paymentMethodType, SPRPaymentMethodTypeBankAccount);
+        XCTAssertEqual(result.storageState, SPRStorageStateCached);
         XCTAssertNil(result.bankName);
         XCTAssertEqualObjects(result.firstName, @"Dolly");
         XCTAssertEqualObjects(result.lastName, @"Dog");
