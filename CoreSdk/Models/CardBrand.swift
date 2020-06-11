@@ -33,7 +33,7 @@ public enum CardBrand: String {
     case sodexo
     case unionpay
     case visa
-    case vrPayment
+    case vr // swiftlint:disable:this identifier_name
 
     case unknown
 
@@ -153,7 +153,7 @@ let brandData: [CardBrand: BrandParameters] = [
                 $0.bin(beginning: CardRanges.visa)
             }
     ),
-    .vrPayment: BrandParameters(
+    .vr: BrandParameters(
             max: 16,
             detect: {
                 $0.bin(beginning: CardRanges.vrPayment)

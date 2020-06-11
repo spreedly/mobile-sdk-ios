@@ -158,7 +158,7 @@ class CardRanges {
         "4"
     ]
 
-    static let vrPayment = [
+    static let vr = [ // swiftlint:disable:this identifier_name
         "627416",
         "637036"
     ]
