@@ -156,7 +156,7 @@ let brandData: [CardBrand: BrandParameters] = [
     .vr: BrandParameters(
             max: 16,
             detect: {
-                $0.bin(beginning: CardRanges.vrPayment)
+                $0.bin(beginning: CardRanges.vr)
             }
     )
 ]
