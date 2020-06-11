@@ -24,7 +24,6 @@ public class PaymentMethodRequestBase: NSObject {
         self.shippingAddress = Address()
     }
 
-    @objc(toJson:)
     internal func toJson() throws -> [String: Any] {
         var result: [String: Any] = [:]
         result.maybeSet("full_name", fullName)
@@ -97,7 +96,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     }
 
 
-    public override func toJson() throws -> [String: Any] {
+    override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
         try result.setOpaqueString("number", number)
@@ -121,27 +120,21 @@ public class CreditCardInfo: PaymentMethodRequestBase {
 }
 
 extension CreditCardInfo {
-    @objc(year) public var yearNumber: NSNumber? {
+    @objc(year) public var _objCYear: Int {
         get {
-            guard let year = self.year else {
-                return nil
-            }
-            return NSNumber(value: year)
+            year ?? 0
         }
-        set{
-            self.year = newValue?.intValue
+        set {
+            self.year = newValue
         }
     }
 
-    @objc(month) public var monthNumber: NSNumber? {
+    @objc(month) public var _objCMonth: Int {
         get {
-            guard let month = self.month else {
-                return nil
-            }
-            return NSNumber(value: month)
+            month ?? 0
         }
-        set{
-            self.month = newValue?.intValue
+        set {
+            self.month = newValue
         }
     }
 }
@@ -249,7 +242,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         bankAccountHolderType = info?.bankAccountHolderType ?? BankAccountHolderType.unknown
     }
 
-    public override func toJson() throws -> [String: Any] {
+    override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
         result.maybeSet("bank_routing_number", bankRoutingNumber)
