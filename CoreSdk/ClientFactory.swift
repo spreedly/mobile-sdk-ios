@@ -14,7 +14,7 @@ public class ClientFactory: NSObject {
     }
 
     @objc(createWithEnvKey:envSecret:test:)
-    public static func _objCCreate(envKey: String, envSecret: String, test: Bool) -> _ObjCClient {
+    public static func _objCCreate(envKey: String, envSecret: String, test: Bool) -> _ObjCClient { // swiftlint:disable:this identifier_name line_length
         SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
     }
 }

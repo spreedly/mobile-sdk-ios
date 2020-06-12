@@ -37,7 +37,7 @@ struct BankAccountForm: View {
                 Text("Error: \(error!)").foregroundColor(.red)
             }
             Button("Submit") {
-                let client = createSpreedlyClient(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
+                let client = ClientFactory.create(envKey: secretEnvKey, envSecret: secretEnvSecret, test: true)
                 let baInfo = BankAccountInfo(
                         fullName: self.name,
                         bankRoutingNumber: self.routingNumber,
