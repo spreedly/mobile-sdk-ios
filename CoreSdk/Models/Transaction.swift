@@ -3,19 +3,20 @@
 //
 
 import Foundation
+import RxSwift
 
-public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResultBase {
-    public let token: String?
-    public let createdAt: Date?
-    public let updatedAt: Date?
-    public let succeeded: Bool
-    public let transactionType: String?
-    public let retained: Bool
-    public let state: String?
-    public let messageKey: String
-    public let message: String
-    public let paymentMethod: TPaymentMethod?
-    public let errors: [SpreedlyError]?
+@objc(SPRTransactionBase)
+public class TransactionBase: NSObject {
+    @objc public let token: String?
+    @objc public let createdAt: Date?
+    @objc public let updatedAt: Date?
+    @objc public let succeeded: Bool
+    @objc public let transactionType: String?
+    @objc public let retained: Bool
+    @objc public let state: String?
+    @objc public let messageKey: String
+    @objc public let message: String
+    @objc public let errors: [SpreedlyError]?
 
     init(from json: [String: Any]) {
         let errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) })
@@ -30,16 +31,21 @@ public class Transaction<TPaymentMethod> where TPaymentMethod: PaymentMethodResu
         transactionType = json.string(optional: "transaction_type")
         retained = json.bool(optional: "retained") ?? false
         state = json.string(optional: "state")
+    }
+}
 
+public class Transaction<TPaymentMethod>: TransactionBase where TPaymentMethod: PaymentMethodResultBase {
+    public let paymentMethod: TPaymentMethod?
+
+    override init(from json: [String: Any]) {
         if let paymentMethodJson = json.object(optional: "payment_method") {
             paymentMethod = TPaymentMethod(from: paymentMethodJson)
         } else {
             paymentMethod = nil
         }
-    }
-}
 
-extension Transaction {
+        super.init(from: json)
+    }
 
     static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
         let json = try data.decodeJson()
@@ -48,5 +54,63 @@ extension Transaction {
         }
 
         return Transaction(from: json)
+    }
+}
+
+@objc(SPRTransaction)
+public class _ObjCTransaction: TransactionBase { // swiftlint:disable:this type_name
+    @objc public var paymentMethod: PaymentMethodResultBase?
+
+    @objc public var creditCard: CreditCardResult? {
+        paymentMethod as? CreditCardResult
+    }
+    @objc public var bankAccount: BankAccountResult? {
+        paymentMethod as? BankAccountResult
+    }
+    @objc public var applePay: ApplePayResult? {
+        paymentMethod as? ApplePayResult
+    }
+
+    override init(from json: [String: Any]) {
+        if let paymentMethodJson = json.object(optional: "payment_method") {
+            paymentMethod = _ObjCTransaction.initPaymentMethod(from: paymentMethodJson)
+        } else {
+            paymentMethod = nil
+        }
+        super.init(from: json)
+    }
+
+    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
+        let paymentMethodType = json.string(optional: "payment_method_type")
+
+        switch paymentMethodType {
+        case CreditCardResult.paymentMethodType: return CreditCardResult(from: json)
+        case BankAccountResult.paymentMethodType: return BankAccountResult(from: json)
+        case ApplePayResult.paymentMethodType: return ApplePayResult(from: json)
+        default: return nil
+        }
+    }
+
+    static func unwrap(from data: Data) throws -> _ObjCTransaction {
+        let json = try data.decodeJson()
+        if json.keys.contains("transaction") {
+            return _ObjCTransaction(from: try json.object(for: "transaction"))
+        }
+
+        return _ObjCTransaction(from: json)
+    }
+}
+
+@objc(SPRSingleTransaction)
+public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
+    private var observable: Single<_ObjCTransaction>
+
+    init(observable: Single<_ObjCTransaction>) {
+        self.observable = observable
+    }
+
+    @objc
+    public func subscribe(onSuccess: ((_ObjCTransaction) -> Void)?, onError: ((Error) -> Void)?) {
+        _ = observable.subscribe(onSuccess: onSuccess, onError: onError)
     }
 }

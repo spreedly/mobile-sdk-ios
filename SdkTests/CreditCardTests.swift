@@ -7,7 +7,7 @@ import XCTest
 
 class CreditCardInfoTests: XCTestCase {
     func testCanEncode() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let creditCard = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
@@ -34,7 +34,7 @@ class CreditCardInfoTests: XCTestCase {
     }
 
     func testCanEncodeWithFullName() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let creditCard = CreditCardInfo(
                 fullName: "Dolly Dog",
                 number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
@@ -68,8 +68,8 @@ class CreditCardInfoTests: XCTestCase {
         source.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "123")
         source.company = "Border LLC"
 
-        source.address?.address1 = "123 Fake St"
-        source.shippingAddress?.address1 = "321 Wall St"
+        source.address.address1 = "123 Fake St"
+        source.shippingAddress.address1 = "321 Wall St"
 
         let sink = CreditCardInfo.init(from: source)
 
@@ -81,7 +81,7 @@ class CreditCardInfoTests: XCTestCase {
         XCTAssertNil(sink.verificationValue)
         XCTAssertEqual(sink.company, source.company)
 
-        XCTAssertEqual(sink.address, source.address)
+        XCTAssertEqual(sink.address.address1, "123 Fake St")
         XCTAssertEqual(sink.shippingAddress, source.shippingAddress)
     }
 }
