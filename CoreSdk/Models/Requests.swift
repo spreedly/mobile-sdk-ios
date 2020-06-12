@@ -4,14 +4,17 @@ import PassKit
 /// Values are limited to 500 characters and cannot contain compounding data types.
 public typealias Metadata = [String: Any]
 
-public class PaymentMethodRequestBase {
-    public var fullName: String?
-    public var firstName: String?
-    public var lastName: String?
-    public var company: String?
+public class PaymentMethodRequestBase: NSObject {
+    @objc public var email: String?
+    @objc public var metadata: Metadata?
 
-    public var address: Address?
-    public var shippingAddress: Address?
+    @objc public var fullName: String?
+    @objc public var firstName: String?
+    @objc public var lastName: String?
+    @objc public var company: String?
+
+    @objc public var address: Address
+    @objc public var shippingAddress: Address
 
     public var retained: Bool?
 
@@ -19,6 +22,9 @@ public class PaymentMethodRequestBase {
         self.fullName = fullName
         self.firstName = firstName
         self.lastName = lastName
+
+        self.address = Address()
+        self.shippingAddress = Address()
     }
 
     internal func toJson() throws -> [String: Any] {
@@ -28,20 +34,24 @@ public class PaymentMethodRequestBase {
         result.maybeSet("last_name", lastName)
         result.maybeSet("company", company)
 
-        self.address?.toJson(&result, .billing)
-        self.shippingAddress?.toJson(&result, .shipping)
+        self.address.toJson(&result, .billing)
+        self.shippingAddress.toJson(&result, .shipping)
 
         return result
+    }
+
+    internal func toRequestJson() throws -> [String: Any] {
+        fatalError("must be overridden")
     }
 }
 
 public class CreditCardInfo: PaymentMethodRequestBase {
-    public var number: SpreedlySecureOpaqueString?
-    public var verificationValue: SpreedlySecureOpaqueString?
+    @objc public var number: SpreedlySecureOpaqueString?
+    @objc public var verificationValue: SpreedlySecureOpaqueString?
     public var year: Int?
     public var month: Int?
 
-    public init() {
+    @objc public init() {
         super.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
@@ -59,6 +69,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         super.init(fullName: fullName, firstName: nil, lastName: nil)
     }
 
+    @objc
     public init(
             firstName: String,
             lastName: String,
@@ -82,12 +93,16 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     /// - Parameter info: The source of the values.
     public init(from info: CreditCardInfo?) {
         super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
-        address = info?.address
-        shippingAddress = info?.shippingAddress
+        if let address = info?.address {
+            self.address = Address(from: address)
+        }
+        if let shippingAddress = info?.shippingAddress {
+            self.shippingAddress = Address(from: shippingAddress)
+        }
         company = info?.company
     }
 
-    internal override func toJson() throws -> [String: Any] {
+    override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
         try result.setOpaqueString("number", number)
@@ -98,7 +113,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson() throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
@@ -110,23 +125,77 @@ public class CreditCardInfo: PaymentMethodRequestBase {
     }
 }
 
-public enum BankAccountType: String, CaseIterable {
-    case checking
-    case savings
+extension CreditCardInfo {
+    @objc(year) public var _objCYear: Int { // swiftlint:disable:this identifier_name
+        get {
+            year ?? 0
+        }
+        set {
+            self.year = newValue
+        }
+    }
+
+    @objc(month) public var _objCMonth: Int { // swiftlint:disable:this identifier_name
+        get {
+            month ?? 0
+        }
+        set {
+            self.month = newValue
+        }
+    }
 }
 
-public enum BankAccountHolderType: String, CaseIterable {
+@objc public enum BankAccountType: Int, CaseIterable {
+    case unknown
+    case checking
+    case savings
+
+    public var stringValue: String? {
+        switch self {
+        case .unknown: return nil
+        case .checking: return "checking"
+        case .savings: return "savings"
+        }
+    }
+
+    static func from(_ string: String?) -> BankAccountType {
+        switch string {
+        case "checking": return .checking
+        case "savings": return .savings
+        default: return .unknown
+        }
+    }
+}
+
+@objc public enum BankAccountHolderType: Int, CaseIterable {
+    case unknown
     case business
     case personal
+
+    public var stringValue: String? {
+        switch self {
+        case .unknown: return nil
+        case .business: return "business"
+        case .personal: return "personal"
+        }
+    }
+
+    static func from(_ string: String?) -> BankAccountHolderType {
+        switch string {
+        case "business": return .business
+        case "personal": return .personal
+        default: return .unknown
+        }
+    }
 }
 
 public class BankAccountInfo: PaymentMethodRequestBase {
-    public var bankRoutingNumber: String?
-    public var bankAccountNumber: SpreedlySecureOpaqueString?
-    public var bankAccountType: BankAccountType?
-    public var bankAccountHolderType: BankAccountHolderType?
+    @objc public var bankRoutingNumber: String?
+    @objc public var bankAccountNumber: SpreedlySecureOpaqueString?
+    @objc public var bankAccountType: BankAccountType = .unknown
+    @objc public var bankAccountHolderType: BankAccountHolderType = .unknown
 
-    public init() {
+    @objc public init() {
         super.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
@@ -144,7 +213,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         super.init(fullName: fullName, firstName: nil, lastName: nil)
     }
 
-    public init(
+    @objc public init(
             firstName: String,
             lastName: String,
             bankRoutingNumber: String,
@@ -168,25 +237,29 @@ public class BankAccountInfo: PaymentMethodRequestBase {
     /// - Parameter info: The source of the values.
     public init(from info: BankAccountInfo?) {
         super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
-        address = info?.address
-        shippingAddress = info?.shippingAddress
+        if let address = info?.address {
+            self.address = Address(from: address)
+        }
+        if let shippingAddress = info?.shippingAddress {
+            self.shippingAddress = Address(from: shippingAddress)
+        }
         company = info?.company
-        bankAccountType = info?.bankAccountType
-        bankAccountHolderType = info?.bankAccountHolderType
+        bankAccountType = info?.bankAccountType ?? BankAccountType.unknown
+        bankAccountHolderType = info?.bankAccountHolderType ?? BankAccountHolderType.unknown
     }
 
-    internal override func toJson() throws -> [String: Any] {
+    override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
         result.maybeSet("bank_routing_number", bankRoutingNumber)
         try result.setOpaqueString("bank_account_number", bankAccountNumber)
-        result.maybeSetEnum("bank_account_type", bankAccountType)
-        result.maybeSetEnum("bank_account_holder_type", bankAccountHolderType)
+        result.maybeSet("bank_account_type", bankAccountType.stringValue)
+        result.maybeSet("bank_account_holder_type", bankAccountHolderType.stringValue)
 
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson() throws -> [String: Any] {
         [
             "payment_method": [
                 "email": email ?? "",
@@ -200,18 +273,21 @@ public class BankAccountInfo: PaymentMethodRequestBase {
 
 public class ApplePayInfo: PaymentMethodRequestBase {
     let paymentToken: Data
-    public var testCardNumber: String?
+    @objc public var testCardNumber: String?
 
-    public convenience init(firstName: String, lastName: String, paymentTokenData: Data) {
+    @objc public convenience init(firstName: String, lastName: String, paymentTokenData: Data) {
         self.init(fullName: nil, firstName: firstName, lastName: lastName, paymentTokenData: paymentTokenData)
     }
-    public convenience init(firstName: String, lastName: String, payment: PKPayment) {
+
+    @objc public convenience init(firstName: String, lastName: String, payment: PKPayment) {
         self.init(firstName: firstName, lastName: lastName, paymentTokenData: payment.token.paymentData)
     }
-    public convenience init(fullName: String, paymentTokenData: Data) {
+
+    @objc public convenience init(fullName: String, paymentTokenData: Data) {
         self.init(fullName: fullName, firstName: nil, lastName: nil, paymentTokenData: paymentTokenData)
     }
-    public convenience init(fullName: String, payment: PKPayment) {
+
+    @objc public convenience init(fullName: String, payment: PKPayment) {
         self.init(fullName: fullName, paymentTokenData: payment.token.paymentData)
     }
 
@@ -228,7 +304,7 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         return result
     }
 
-    internal func toRequestJson(email: String?, metadata: Metadata?) throws -> [String: Any] {
+    override func toRequestJson() throws -> [String: Any] {
         var paymentMethod: [String: Any] = [
             "email": email ?? "",
             "metadata": metadata ?? Metadata(),
@@ -244,12 +320,8 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         paymentMethod.maybeSet("full_name", self.fullName)
         paymentMethod.maybeSet("company", self.company)
 
-        if let address = self.address {
-            address.toJson(&paymentMethod, .billing)
-        }
-        if let shipping = self.shippingAddress {
-            shipping.toJson(&paymentMethod, .shipping)
-        }
+        address.toJson(&paymentMethod, .billing)
+        shippingAddress.toJson(&paymentMethod, .shipping)
 
         return [
             "payment_method": paymentMethod

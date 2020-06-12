@@ -43,7 +43,7 @@ public class SPSecureForm: UIView {
         }
 
         let credentials = try getCredentials()
-        let client = createSpreedlyClient(
+        let client = ClientFactory.create(
                 envKey: credentials.envKey,
                 envSecret: credentials.envSecret,
                 test: credentials.test

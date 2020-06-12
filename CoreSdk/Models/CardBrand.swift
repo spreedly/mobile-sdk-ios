@@ -33,7 +33,7 @@ public enum CardBrand: String {
     case sodexo
     case unionpay
     case visa
-    case vr
+    case vr // swiftlint:disable:this identifier_name
 
     case unknown
 
@@ -55,7 +55,6 @@ public enum CardBrand: String {
         parameters?.maxLength ?? 19
     }
 }
-
 
 let brandData: [CardBrand: BrandParameters] = [
     .alelo: BrandParameters(

@@ -10,6 +10,23 @@ public enum StorageState: String, Codable {
     case redacted
 }
 
+@objc(SPRStorageState)
+public enum _ObjCStorageState: Int { // swiftlint:disable:this type_name
+    case unknown = 0
+    case cached
+    case retained
+    case redacted
+
+    static func from(_ source: StorageState?) -> _ObjCStorageState {
+        switch source {
+        case .cached: return cached
+        case .retained: return retained
+        case .redacted: return redacted
+        default: return unknown
+        }
+    }
+}
+
 public enum PaymentMethodType: String, Codable {
     case creditCard = "credit_card"
     case bankAccount = "bank_account"
@@ -18,10 +35,32 @@ public enum PaymentMethodType: String, Codable {
     case thirdPartyToken = "third_party_token"
 }
 
-public struct SpreedlyError: Decodable {
-    public let key: String
-    public let message: String
-    public let attribute: String?
+@objc(SPRPaymentMethodType)
+public enum _ObjCPaymentMethodType: Int { // swiftlint:disable:this type_name
+    case unknown = 0
+    case creditCard
+    case bankAccount
+    case applePay
+    case googlePay
+    case thirdPartyToken
+
+    static func from(_ source: PaymentMethodType?) -> _ObjCPaymentMethodType {
+        switch source {
+        case .creditCard: return creditCard
+        case .bankAccount: return bankAccount
+        case .applePay: return applePay
+        case .googlePay: return googlePay
+        case .thirdPartyToken: return thirdPartyToken
+        default: return unknown
+        }
+    }
+}
+
+@objc(SPRError)
+public class SpreedlyError: NSObject {
+    @objc public let key: String
+    @objc public let message: String
+    @objc public let attribute: String?
 
     init(from json: [String: Any]) throws {
         key = try json.string(for: "key")
@@ -30,22 +69,22 @@ public struct SpreedlyError: Decodable {
     }
 }
 
-public class PaymentMethodResultBase {
-    public let token: String?
+public class PaymentMethodResultBase: NSObject {
+    @objc public let token: String?
     public let storageState: StorageState?
-    public let test: Bool
+    @objc public let test: Bool
     public let paymentMethodType: PaymentMethodType?
 
-    public let email: String?
-    public let firstName: String?
-    public let lastName: String?
-    public let fullName: String?
-    public let company: String?
+    @objc public let email: String?
+    @objc public let firstName: String?
+    @objc public let lastName: String?
+    @objc public let fullName: String?
+    @objc public let company: String?
 
-    public let address: Address?
-    public let shippingAddress: Address?
-    public let errors: [SpreedlyError]
-    public let metadata: Metadata?
+    @objc public let address: Address?
+    @objc public let shippingAddress: Address?
+    @objc public let errors: [SpreedlyError]
+    @objc public let metadata: Metadata?
 
     required init(from json: [String: Any]) {
         token = json.string(optional: "token")
@@ -66,18 +105,35 @@ public class PaymentMethodResultBase {
     }
 }
 
+extension PaymentMethodResultBase {
+    @objc(paymentMethodType)
+    public var _objCPaymentMethodType: _ObjCPaymentMethodType { // swiftlint:disable:this identifier_name
+        _ObjCPaymentMethodType.from(paymentMethodType)
+    }
+
+    @objc(storageState)
+    public var _objCStorageState: _ObjCStorageState { // swiftlint:disable:this identifier_name
+        _ObjCStorageState.from(storageState)
+    }
+}
+
+@objc(SPRCreditCardResult)
 public class CreditCardResult: PaymentMethodResultBase {
-    public var cardType: String?
+    class var paymentMethodType: String {
+        "credit_card"
+    }
+
+    @objc public var cardType: String?
     public var year: Int?
     public var month: Int?
 
-    public var lastFourDigits: String?
-    public var firstSixDigits: String?
-    public var number: String?
+    @objc public var lastFourDigits: String?
+    @objc public var firstSixDigits: String?
+    @objc public var number: String?
 
     public var eligibleForCardUpdater: Bool?
-    public var callbackUrl: String?
-    public var fingerprint: String?
+    @objc public var callbackUrl: String?
+    @objc public var fingerprint: String?
 
     required init(from json: [String: Any]) {
         cardType = json.string(optional: "card_type")
@@ -94,21 +150,34 @@ public class CreditCardResult: PaymentMethodResultBase {
 
         super.init(from: json)
     }
+
+    @objc(year) public var _objCYear: Int { // swiftlint:disable:this identifier_name
+        year ?? 0
+    }
+
+    @objc(month) public var _objcMonth: Int { // swiftlint:disable:this identifier_name
+        month ?? 0
+    }
 }
 
+@objc(SPRBankAccountResult)
 public class BankAccountResult: PaymentMethodResultBase {
-    public var bankName: String?
-    public var accountType: BankAccountType?
-    public var accountHolderType: BankAccountHolderType?
-    public var routingNumberDisplayDigits: String?
-    public var accountNumberDisplayDigits: String?
-    public var routingNumber: String?
-    public var accountNumber: String?
+    class var paymentMethodType: String {
+        "bank_account"
+    }
+
+    @objc public var bankName: String?
+    @objc public var accountType: BankAccountType = .unknown
+    @objc public var accountHolderType: BankAccountHolderType = .unknown
+    @objc public var routingNumberDisplayDigits: String?
+    @objc public var accountNumberDisplayDigits: String?
+    @objc public var routingNumber: String?
+    @objc public var accountNumber: String?
 
     required init(from json: [String: Any]) {
         bankName = json.string(optional: "bank_name")
-        accountType = json.enumValue(optional: "account_type")
-        accountHolderType = json.enumValue(optional: "account_holder_type")
+        accountType = BankAccountType.from(json.string(optional: "account_type"))
+        accountHolderType = BankAccountHolderType.from(json.string(optional: "account_holder_type"))
         routingNumberDisplayDigits = json.string(optional: "routing_number_display_digits")
         accountNumberDisplayDigits = json.string(optional: "account_number_display_digits")
         routingNumber = json.string(optional: "routing_number")
@@ -119,4 +188,7 @@ public class BankAccountResult: PaymentMethodResultBase {
 }
 
 public class ApplePayResult: CreditCardResult {
+    class override var paymentMethodType: String {
+        "apple_pay"
+    }
 }
