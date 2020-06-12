@@ -30,7 +30,7 @@ class CardBrandTests: XCTestCase {
         XCTAssertEqual(CardBrand.from("600722             "), CardBrand.forbrubsforeningen)
         XCTAssertEqual(CardBrand.from("606071             "), CardBrand.sodexo)
         XCTAssertEqual(CardBrand.from("81000099           "), CardBrand.unionpay)
-        XCTAssertEqual(CardBrand.from("627416             "), CardBrand.vrPayment)
+        XCTAssertEqual(CardBrand.from("627416             "), CardBrand.vr)
     }
 
     func testWhenInvalidNumberShouldDetermineUnknown() {
