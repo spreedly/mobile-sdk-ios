@@ -102,7 +102,6 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         company = info?.company
     }
 
-
     override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
@@ -127,7 +126,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
 }
 
 extension CreditCardInfo {
-    @objc(year) public var _objCYear: Int {
+    @objc(year) public var _objCYear: Int { // swiftlint:disable:this identifier_name
         get {
             year ?? 0
         }
@@ -136,7 +135,7 @@ extension CreditCardInfo {
         }
     }
 
-    @objc(month) public var _objCMonth: Int {
+    @objc(month) public var _objCMonth: Int { // swiftlint:disable:this identifier_name
         get {
             month ?? 0
         }
@@ -274,21 +273,21 @@ public class BankAccountInfo: PaymentMethodRequestBase {
 
 public class ApplePayInfo: PaymentMethodRequestBase {
     let paymentToken: Data
-    public var testCardNumber: String?
+    @objc public var testCardNumber: String?
 
-    public convenience init(firstName: String, lastName: String, paymentTokenData: Data) {
+    @objc public convenience init(firstName: String, lastName: String, paymentTokenData: Data) {
         self.init(fullName: nil, firstName: firstName, lastName: lastName, paymentTokenData: paymentTokenData)
     }
 
-    public convenience init(firstName: String, lastName: String, payment: PKPayment) {
+    @objc public convenience init(firstName: String, lastName: String, payment: PKPayment) {
         self.init(firstName: firstName, lastName: lastName, paymentTokenData: payment.token.paymentData)
     }
 
-    public convenience init(fullName: String, paymentTokenData: Data) {
+    @objc public convenience init(fullName: String, paymentTokenData: Data) {
         self.init(fullName: fullName, firstName: nil, lastName: nil, paymentTokenData: paymentTokenData)
     }
 
-    public convenience init(fullName: String, payment: PKPayment) {
+    @objc public convenience init(fullName: String, payment: PKPayment) {
         self.init(fullName: fullName, paymentTokenData: payment.token.paymentData)
     }
 
