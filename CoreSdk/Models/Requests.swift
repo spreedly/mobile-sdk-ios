@@ -126,7 +126,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
 }
 
 extension CreditCardInfo {
-    @objc(year) public var _objCYear: Int {
+    @objc(year) public var _objCYear: Int { // swiftlint:disable:this identifier_name
         get {
             year ?? 0
         }
@@ -135,7 +135,7 @@ extension CreditCardInfo {
         }
     }
 
-    @objc(month) public var _objCMonth: Int {
+    @objc(month) public var _objCMonth: Int { // swiftlint:disable:this identifier_name
         get {
             month ?? 0
         }

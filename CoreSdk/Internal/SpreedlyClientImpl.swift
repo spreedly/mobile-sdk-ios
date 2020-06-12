@@ -123,7 +123,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
 extension SpreedlyClientImpl: _ObjCClient {
     @objc(createPaymentMethodFrom:)
-    func _objCCreatePaymentMethod(from info: PaymentMethodRequestBase) -> _ObjCSingleTransaction {
+    func _objCCreatePaymentMethod(from info: PaymentMethodRequestBase) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         let single = Single<_ObjCTransaction>.deferred {

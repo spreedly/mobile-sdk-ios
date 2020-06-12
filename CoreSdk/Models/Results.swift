@@ -11,7 +11,7 @@ public enum StorageState: String, Codable {
 }
 
 @objc(SPRStorageState)
-public enum _ObjCStorageState: Int {
+public enum _ObjCStorageState: Int { // swiftlint:disable:this type_name
     case unknown = 0
     case cached
     case retained
@@ -36,7 +36,7 @@ public enum PaymentMethodType: String, Codable {
 }
 
 @objc(SPRPaymentMethodType)
-public enum _ObjCPaymentMethodType: Int {
+public enum _ObjCPaymentMethodType: Int { // swiftlint:disable:this type_name
     case unknown = 0
     case creditCard
     case bankAccount
@@ -107,12 +107,12 @@ public class PaymentMethodResultBase: NSObject {
 
 extension PaymentMethodResultBase {
     @objc(paymentMethodType)
-    public var _objCPaymentMethodType: _ObjCPaymentMethodType {
+    public var _objCPaymentMethodType: _ObjCPaymentMethodType { // swiftlint:disable:this identifier_name
         _ObjCPaymentMethodType.from(paymentMethodType)
     }
 
     @objc(storageState)
-    public var _objCStorageState: _ObjCStorageState {
+    public var _objCStorageState: _ObjCStorageState { // swiftlint:disable:this identifier_name
         _ObjCStorageState.from(storageState)
     }
 }
@@ -151,11 +151,11 @@ public class CreditCardResult: PaymentMethodResultBase {
         super.init(from: json)
     }
 
-    @objc(year) public var _objCYear: Int {
+    @objc(year) public var _objCYear: Int { // swiftlint:disable:this identifier_name
         year ?? 0
     }
 
-    @objc(month) public var _objcMonth: Int {
+    @objc(month) public var _objcMonth: Int { // swiftlint:disable:this identifier_name
         month ?? 0
     }
 }

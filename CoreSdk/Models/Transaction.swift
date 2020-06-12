@@ -58,7 +58,7 @@ public class Transaction<TPaymentMethod>: TransactionBase where TPaymentMethod: 
 }
 
 @objc(SPRTransaction)
-public class _ObjCTransaction: TransactionBase {
+public class _ObjCTransaction: TransactionBase { // swiftlint:disable:this type_name
     @objc public var paymentMethod: PaymentMethodResultBase?
 
     @objc public var creditCard: CreditCardResult? {
@@ -102,7 +102,7 @@ public class _ObjCTransaction: TransactionBase {
 }
 
 @objc(SPRSingleTransaction)
-public class _ObjCSingleTransaction: NSObject {
+public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
     private var observable: Single<_ObjCTransaction>
 
     init(observable: Single<_ObjCTransaction>) {
