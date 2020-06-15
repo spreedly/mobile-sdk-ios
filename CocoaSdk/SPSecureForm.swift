@@ -289,7 +289,7 @@ extension BankAccountInfo {
 }
 
 extension Address {
-    mutating func unlessNil<T>(set path: WritableKeyPath<Address, T>, to value: T?) {
+    func unlessNil<T>(set path: ReferenceWritableKeyPath<Address, T>, to value: T?) {
         if let value = value {
             self[keyPath: path] = value
         }
