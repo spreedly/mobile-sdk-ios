@@ -140,7 +140,7 @@ extension SPCreditCardNumberTextField {
             return nil
         }
 
-        return formatCardNumber(requested)
+        return requested
     }
 
     public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -148,9 +148,9 @@ extension SPCreditCardNumberTextField {
             return false
         }
 
-        if let formattedNumber = cleanAndReplace(current: textField.text ?? "", range: range, replacementString: string) {
-            textField.text = formattedNumber
-            determineCardBrand(formattedNumber)
+        if let requested = cleanAndReplace(current: textField.text ?? "", range: range, replacementString: string) {
+            textField.text = formatCardNumber(requested)
+            determineCardBrand(requested)
         }
         return false
     }

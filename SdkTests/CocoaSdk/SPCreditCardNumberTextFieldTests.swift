@@ -10,6 +10,9 @@ import XCTest
 @testable import CocoaSdk
 
 class SPCreditCardNumberTextFieldTests: XCTestCase {
+    let number19Digits = "4111 1111 1111 1111 111"
+    let number16Digits = "5454 5454 5454 5454"
+
     func testFormatCardNumber() {
         let field = SPCreditCardNumberTextField()
         XCTAssertEqual(field.formatCardNumber(""), "")
@@ -26,9 +29,10 @@ class SPCreditCardNumberTextFieldTests: XCTestCase {
         XCTAssertEqual(clean("", 0.step(0), "1"), "1", "previously empty")
         XCTAssertEqual(clean("4111", 0.step(4), "9"), "9", "can replace all")
         XCTAssertEqual(clean("4111", 0.step(4), ""), "", "can clear all")
+        XCTAssertEqual(clean("4111", 4.step(0), "1"), "41111", "can add to existing")
 
-        XCTAssertNil(clean("4111 1111 1111 1111 111", 23.step(0), "9"), "max digits 19")
-        XCTAssertNil(clean("5454 5454 5454 5454", 19.step(0), "9"), "max digits 16")
+        XCTAssertNil(clean(number19Digits, 23.step(0), "9"), "max digits 19")
+        XCTAssertNil(clean(number16Digits, 19.step(0), "9"), "max digits 16")
         XCTAssertNil(clean("4111", 4.step(0), "a"), "numbers only")
     }
 
