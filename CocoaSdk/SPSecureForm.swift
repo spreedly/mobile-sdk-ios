@@ -43,7 +43,7 @@ public class SPSecureForm: UIView {
         }
 
         let credentials = try getCredentials()
-        let client = createSpreedlyClient(
+        let client = ClientFactory.create(
                 envKey: credentials.envKey,
                 envSecret: credentials.envSecret,
                 test: credentials.test
@@ -178,7 +178,7 @@ extension SPSecureForm {
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
 
-        _ = client.createCreditCardPaymentMethod(creditCard: info, email: email?.text, metadata: nil).subscribe(onSuccess: { transaction in
+        _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOf(errors: errors)
@@ -221,7 +221,7 @@ extension SPSecureForm {
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
 
-        _ = client.createBankAccountPaymentMethod(bankAccount: info, email: email?.text, metadata: nil).subscribe(onSuccess: { transaction in
+        _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOf(errors: errors)

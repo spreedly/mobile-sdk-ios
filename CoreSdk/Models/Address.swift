@@ -4,14 +4,14 @@
 
 import Foundation
 
-public struct Address: Equatable {
-    public var address1: String?
-    public var address2: String?
-    public var city: String?
-    public var state: String?
-    public var zip: String?
-    public var country: String?
-    public var phoneNumber: String?
+public class Address: NSObject {
+    @objc public var address1: String?
+    @objc public var address2: String?
+    @objc public var city: String?
+    @objc public var state: String?
+    @objc public var zip: String?
+    @objc public var country: String?
+    @objc public var phoneNumber: String?
 
     public enum AddressType {
         case billing
@@ -27,7 +27,18 @@ public struct Address: Equatable {
         }
     }
 
-    public init() {
+    public override init() {
+        super.init()
+    }
+
+    @objc public init(from other: Address) {
+        address1 = other.address1
+        address2 = other.address2
+        city = other.city
+        state = other.state
+        zip = other.zip
+        country = other.country
+        phoneNumber = other.phoneNumber
     }
 
     init?(from json: [String: Any], as type: AddressType) {
@@ -56,5 +67,18 @@ public struct Address: Equatable {
         result.maybeSet("\(prefix)zip", zip)
         result.maybeSet("\(prefix)country", country)
         result.maybeSet("\(prefix)phone_number", phoneNumber)
+    }
+
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Address else {
+            return false
+        }
+        return self.address1 == other.address1
+                && self.address2 == other.address2
+                && self.city == other.city
+                && self.state == other.state
+                && self.zip == other.zip
+                && self.country == other.country
+                && self.phoneNumber == other.phoneNumber
     }
 }

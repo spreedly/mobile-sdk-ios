@@ -32,19 +32,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         return URLSession(configuration: config)
     }
 
-    func createCreditCardPaymentMethod(creditCard: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
-        createCreditCardPaymentMethod(creditCard: creditCard, email: nil, metadata: nil)
-    }
-
-    func createCreditCardPaymentMethod(
-            creditCard info: CreditCardInfo,
-            email: String? = nil,
-            metadata: Metadata? = nil
-    ) -> Single<Transaction<CreditCardResult>> {
+    func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
-            let request = try info.toRequestJson(email: email, metadata: metadata)
+            let request = try info.toRequestJson()
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
@@ -55,19 +47,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func createBankAccountPaymentMethod(bankAccount: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
-        createBankAccountPaymentMethod(bankAccount: bankAccount, email: nil, metadata: nil)
-    }
-
-    func createBankAccountPaymentMethod(
-            bankAccount info: BankAccountInfo,
-            email: String? = nil,
-            metadata: Metadata? = nil
-    ) -> Single<Transaction<BankAccountResult>> {
+    func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
-            let request = try info.toRequestJson(email: email, metadata: metadata)
+            let request = try info.toRequestJson()
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
@@ -78,7 +62,10 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>> {
+    func recache(
+            token: String,
+            verificationValue: SpreedlySecureOpaqueString
+    ) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
 
         return Single.deferred {
@@ -100,19 +87,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func createApplePayPaymentMethod(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
-        createApplePayPaymentMethod(applePay: info, email: nil, metadata: nil)
-    }
-
-    func createApplePayPaymentMethod(
-            applePay info: ApplePayInfo,
-            email: String?,
-            metadata: Metadata?
-    ) -> Single<Transaction<ApplePayResult>> {
+    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
-            let request = try info.toRequestJson(email: email, metadata: metadata)
+            let request = try info.toRequestJson()
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
@@ -139,5 +118,25 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                     let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
                     print("Response was\n", json)
                 })
+    }
+}
+
+extension SpreedlyClientImpl: _ObjCClient {
+    @objc(createPaymentMethodFrom:)
+    func _objCCreatePaymentMethod(from info: PaymentMethodRequestBase) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
+        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+
+        let single = Single<_ObjCTransaction>.deferred {
+            let request = try info.toRequestJson()
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = try request.encodeJson()
+
+            return self.process(request: urlRequest).map { data -> _ObjCTransaction in
+                try _ObjCTransaction.unwrap(from: data)
+            }
+        }
+
+        return _ObjCSingleTransaction(observable: single)
     }
 }

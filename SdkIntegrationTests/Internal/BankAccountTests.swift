@@ -11,13 +11,13 @@ class BankAccountTests: XCTestCase {
         let info = BankAccountInfo(
                 firstName: "Asha",
                 lastName: "Dog",
-                bankRoutingNumber: "021000021",
-                bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: "9876543210"),
+                bankRoutingNumber: Helpers.testBankRoutingNumber,
+                bankAccountNumber: Helpers.secureBankAccountNumber,
                 bankAccountType: .checking,
                 bankAccountHolderType: .personal
         )
 
-        let promise = client.createBankAccountPaymentMethod(bankAccount: info)
+        let promise = client.createPaymentMethodFrom(bankAccount: info)
 
         let transaction = try promise.assertResult(self)
         let bankAccount = transaction.paymentMethod!

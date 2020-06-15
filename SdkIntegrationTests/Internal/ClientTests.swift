@@ -9,7 +9,7 @@ class ClientTests: XCTestCase {
     /// The API responds with a 401 and a valid JSON response, the client should return the decoded JSON response.
     /// If trans.message is null, then the client should populate it with the first error message from trans.errors
     func testEmptyKeyAndSecret() throws {
-        let client = createSpreedlyClient(envKey: "", envSecret: "")
+        let client = ClientFactory.create(envKey: "", envSecret: "")
         let info = CreditCardInfo(
                 firstName: "Dolly",
                 lastName: "Dog",
@@ -18,7 +18,7 @@ class ClientTests: XCTestCase {
                 year: 2029,
                 month: 1
         )
-        let resp = client.createCreditCardPaymentMethod(creditCard: info, email: nil, metadata: nil)
+        let resp = client.createPaymentMethodFrom(creditCard: info)
         let trans = try resp.assertResult(self)
 
         XCTAssertFalse(trans.succeeded)

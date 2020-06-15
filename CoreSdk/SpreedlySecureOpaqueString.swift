@@ -50,8 +50,8 @@ extension SpreedlySecureOpaqueStringImpl: Encodable {
     }
 }
 
-public class SpreedlySecureOpaqueStringBuilder {
-    public static func build(from string: String?) -> SpreedlySecureOpaqueString {
+public class SpreedlySecureOpaqueStringBuilder: NSObject {
+    @objc public static func build(from string: String?) -> SpreedlySecureOpaqueString {
         guard let string = string else {
             return SpreedlySecureOpaqueStringImpl()
         }

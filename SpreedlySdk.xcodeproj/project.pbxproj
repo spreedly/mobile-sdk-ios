@@ -12,6 +12,11 @@
 		3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C6C5F62247EF30900ADFFE7 /* Pods_CocoaSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */; };
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
+		3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */; };
+		3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */; };
+		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
+		3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */; };
+		3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -74,6 +79,7 @@
 		F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */; };
 		F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
 		F076CC51543D226BF5DFB723 /* SPSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */; };
+		F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */; };
 		F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +90,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 442A2CD52CC6A2C10B2623E8;
 			remoteInfo = CoreSdk;
+		};
+		3CFE89D62497F559005E64B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 442A2FFF3C8CF6261881A39B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442A2CE4EFF32CF9B02D6A78;
+			remoteInfo = CocoaSdk;
 		};
 		442A25DEE2FE4712EA1D3FAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -166,6 +179,11 @@
 		2B768D18AC34FBC5B2056860 /* Pods-CocoaSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSdk.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSdk/Pods-CocoaSdk.debug.xcconfig"; sourceTree = "<group>"; };
 		38A64E01653EE7B39747A5C2 /* Pods_CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C934897246F084D003C84C7 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
+		3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardCompatibilityTests.m; sourceTree = "<group>"; };
+		3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankAccountCompatibilityTests.m; sourceTree = "<group>"; };
+		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
+		3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayCompatibilityTests.m; sourceTree = "<group>"; };
+		3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextFieldTests.swift; sourceTree = "<group>"; };
 		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -238,6 +256,7 @@
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		F076CA9E54CC1E288449091E /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AdditionsTests.swift"; sourceTree = "<group>"; };
 		F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionsTests.swift; sourceTree = "<group>"; };
 		F076CB8C9D4B8CE905B35F73 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueString.swift; sourceTree = "<group>"; };
@@ -304,6 +323,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CFE89C724913820005E64B4 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */,
+				3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */,
+				3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */,
+			);
+			path = Compatibility;
+			sourceTree = "<group>";
+		};
+		3CFE89D024943A3C005E64B4 /* CocoaSdk */ = {
+			isa = PBXGroup;
+			children = (
+				3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */,
+				F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */,
+			);
+			path = CocoaSdk;
+			sourceTree = "<group>";
+		};
 		442A2206D806C97B75A00795 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +402,7 @@
 		442A240EC140D34D76A3C73E /* SdkTests */ = {
 			isa = PBXGroup;
 			children = (
+				3CFE89D024943A3C005E64B4 /* CocoaSdk */,
 				442A213C18A35388BDA5861C /* Info.plist */,
 				442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */,
 				F076C7C99365328F2BCA318A /* BankAccountTests.swift */,
@@ -385,6 +424,7 @@
 				442A2676F741069CFE144943 /* Internal */,
 				442A28F5BF2E3FC3A953C5B2 /* Models */,
 				F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */,
+				3CFE89CC2491E045005E64B4 /* ClientFactory.swift */,
 			);
 			path = CoreSdk;
 			sourceTree = "<group>";
@@ -478,6 +518,7 @@
 		F076C1956F58D46CD96B24BB /* SdkIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				3CFE89C724913820005E64B4 /* Compatibility */,
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
 				F076C9783EA29205F1021D9A /* Internal */,
 				442A21244C58460DB48ED6B3 /* Secrets.swift */,
@@ -555,6 +596,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3CFE89D72497F559005E64B4 /* PBXTargetDependency */,
 				442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */,
 			);
 			name = SdkTests;
@@ -656,6 +698,7 @@
 					};
 					442A245F082E0723AA955F94 = {
 						DevelopmentTeam = LW36989798;
+						LastSwiftMigration = 1150;
 					};
 					442A266B984463F40F3FE1D6 = {
 						DevelopmentTeam = LW36989798;
@@ -663,6 +706,7 @@
 					};
 					F076CF9042A128DEBCC6BDA2 = {
 						DevelopmentTeam = LW36989798;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -978,6 +1022,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A2759E4BC22B35E134335 /* Client.swift in Sources */,
+				3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */,
 				442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */,
 				F076C83937EF48B8921DA967 /* JSON.swift in Sources */,
 				442A24BD208E1F48D39262F3 /* Results.swift in Sources */,
@@ -1027,7 +1072,9 @@
 				F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */,
 				F076C345015EC5AAD59657EF /* JSONExtensionsTests.swift in Sources */,
 				F076C12BA6F3E33F83E1FB90 /* CardBrandTests.swift in Sources */,
+				3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */,
 				F076C940E8FECFAFF9199419 /* ApplePayTests.swift in Sources */,
+				F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,12 +1097,15 @@
 			files = (
 				442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */,
 				442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */,
+				3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */,
 				442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */,
 				442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */,
 				442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */,
 				442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */,
 				F076C5168326BA6146E7048D /* Helpers.swift in Sources */,
 				F076C1D252D80581E030E1A3 /* ApplePayTests.swift in Sources */,
+				3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */,
+				3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,6 +1116,11 @@
 			isa = PBXTargetDependency;
 			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
 			targetProxy = 3C31533E24770C9C00C86272 /* PBXContainerItemProxy */;
+		};
+		3CFE89D72497F559005E64B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */;
+			targetProxy = 3CFE89D62497F559005E64B4 /* PBXContainerItemProxy */;
 		};
 		442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1869,6 +1924,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LW36989798;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1938,6 +1994,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LW36989798;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
