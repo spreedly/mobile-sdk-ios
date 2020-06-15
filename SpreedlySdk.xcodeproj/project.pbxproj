@@ -16,7 +16,7 @@
 		3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */; };
 		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
 		3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */; };
-		3CFE89D224943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */; };
+		3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */; };
 		442A20923356DF11D178209C /* CreditCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A254E2FC004C960E0BDF0 /* CreditCardForm.swift */; };
 		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -90,7 +90,7 @@
 			remoteGlobalIDString = 442A2CD52CC6A2C10B2623E8;
 			remoteInfo = CoreSdk;
 		};
-		3CFE89D324943A79005E64B4 /* PBXContainerItemProxy */ = {
+		3CFE89D62497F559005E64B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 442A2FFF3C8CF6261881A39B /* Project object */;
 			proxyType = 1;
@@ -399,6 +399,7 @@
 		442A240EC140D34D76A3C73E /* SdkTests */ = {
 			isa = PBXGroup;
 			children = (
+				3CFE89D024943A3C005E64B4 /* CocoaSdk */,
 				442A213C18A35388BDA5861C /* Info.plist */,
 				442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */,
 				F076C7C99365328F2BCA318A /* BankAccountTests.swift */,
@@ -514,7 +515,6 @@
 		F076C1956F58D46CD96B24BB /* SdkIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				3CFE89D024943A3C005E64B4 /* CocoaSdk */,
 				3CFE89C724913820005E64B4 /* Compatibility */,
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
 				F076C9783EA29205F1021D9A /* Internal */,
@@ -593,6 +593,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3CFE89D72497F559005E64B4 /* PBXTargetDependency */,
 				442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */,
 			);
 			name = SdkTests;
@@ -675,7 +676,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3CFE89D424943A79005E64B4 /* PBXTargetDependency */,
 				F076C82917A686595CA2F8F2 /* PBXTargetDependency */,
 			);
 			name = SdkIntegrationTests;
@@ -1069,6 +1069,7 @@
 				F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */,
 				F076C345015EC5AAD59657EF /* JSONExtensionsTests.swift in Sources */,
 				F076C12BA6F3E33F83E1FB90 /* CardBrandTests.swift in Sources */,
+				3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */,
 				F076C940E8FECFAFF9199419 /* ApplePayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1092,7 +1093,6 @@
 			files = (
 				442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */,
 				442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */,
-				3CFE89D224943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */,
 				3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */,
 				442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */,
 				442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */,
@@ -1113,10 +1113,10 @@
 			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
 			targetProxy = 3C31533E24770C9C00C86272 /* PBXContainerItemProxy */;
 		};
-		3CFE89D424943A79005E64B4 /* PBXTargetDependency */ = {
+		3CFE89D72497F559005E64B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */;
-			targetProxy = 3CFE89D324943A79005E64B4 /* PBXContainerItemProxy */;
+			targetProxy = 3CFE89D62497F559005E64B4 /* PBXContainerItemProxy */;
 		};
 		442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
