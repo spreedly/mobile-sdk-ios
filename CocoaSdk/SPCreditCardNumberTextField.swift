@@ -55,7 +55,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
         return SpreedlySecureOpaqueStringBuilder.build(from: cardNumber)
     }
 
-    public func formatCardNumber(_ string: String) -> String {
+    func formatCardNumber(_ string: String) -> String {
         var formattedString = String()
         let cardNumber = string.withoutSpaces()
         for (index, character) in cardNumber.enumerated() {
@@ -94,6 +94,15 @@ extension SPCreditCardNumberTextField {
         return true
     }
 
+    func generateMasked(from string: String) -> String {
+        let cardNumber = string.onlyNumbers()
+        let maskCharacterCount = max(cardNumber.count - 4, 0)
+
+        let mask = String(repeating: maskCharacter, count: maskCharacterCount)
+        let lastFour = cardNumber.suffix(4)
+        return mask + lastFour
+    }
+
     private func applyMask() {
         guard !masked,
               let rawNumber = text else {
@@ -101,12 +110,9 @@ extension SPCreditCardNumberTextField {
         }
 
         unmaskedText = rawNumber
-        let cardNumber = rawNumber.onlyNumbers()
-        let maskCharacterCount = max(cardNumber.count - 4, 0)
+        let maskedNumber = generateMasked(from: rawNumber)
 
-        let mask = String(repeating: maskCharacter, count: maskCharacterCount)
-        let lastFour = cardNumber.suffix(4)
-        text = formatCardNumber(mask + lastFour)
+        text = formatCardNumber(maskedNumber)
         masked = true
     }
 
@@ -119,28 +125,33 @@ extension SPCreditCardNumberTextField {
         masked = false
     }
 
-    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
-            return false
-        }
-
+    func cleanAndReplace(current: String, range: NSRange, replacementString string: String) -> String? {
         let cleaned = string.onlyNumbers()
         guard string.count == 0 || cleaned.count > 0 else {
             // none of the replacementString was useful
-            return false
+            return nil
         }
 
-        let current = textField.text ?? ""
         let requested = current.replacing(range: range, with: cleaned)
         let brand = CardBrand.from(requested)
 
         guard requested.onlyNumbers().count <= brand.maxLength else {
             // too many characters are coming in
+            return nil
+        }
+
+        return requested
+    }
+
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
             return false
         }
 
-        textField.text = formatCardNumber(requested)
-        determineCardBrand(requested)
+        if let requested = cleanAndReplace(current: textField.text ?? "", range: range, replacementString: string) {
+            textField.text = formatCardNumber(requested)
+            determineCardBrand(requested)
+        }
         return false
     }
 }
