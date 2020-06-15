@@ -6,7 +6,7 @@ import Foundation
 
 extension String {
     func onlyNumbers() -> String {
-        String(self.filter{ $0.isNumber })
+        String(self.filter { $0.isNumber })
     }
 
     func withoutSpaces() -> String {
