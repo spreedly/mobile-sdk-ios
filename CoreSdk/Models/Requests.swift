@@ -34,8 +34,8 @@ public class PaymentMethodRequestBase: NSObject {
         result.maybeSet("last_name", lastName)
         result.maybeSet("company", company)
 
-        self.address.toJson(&result, .billing)
-        self.shippingAddress.toJson(&result, .shipping)
+        result.merge(address.toJson(type: .billing), uniquingKeysWith: { $1 })
+        result.merge(shippingAddress.toJson(type: .shipping), uniquingKeysWith: { $1 })
 
         return result
     }
@@ -320,8 +320,8 @@ public class ApplePayInfo: PaymentMethodRequestBase {
         paymentMethod.maybeSet("full_name", self.fullName)
         paymentMethod.maybeSet("company", self.company)
 
-        address.toJson(&paymentMethod, .billing)
-        shippingAddress.toJson(&paymentMethod, .shipping)
+        paymentMethod.merge(address.toJson(type: .billing), uniquingKeysWith: { $1 })
+        paymentMethod.merge(shippingAddress.toJson(type: .shipping), uniquingKeysWith: { $1 })
 
         return [
             "payment_method": paymentMethod

@@ -57,9 +57,9 @@ public class Address: NSObject {
         phoneNumber = json.string(optional: "\(prefix)phone_number")
     }
 
-    func toJson(_ result: inout [String: Any], _ type: AddressType) {
+    func toJson(type: AddressType) -> [String: Any] {
         let prefix = type.prefix
-
+        var result = [String: Any]()
         result.maybeSet("\(prefix)address1", address1)
         result.maybeSet("\(prefix)address2", address2)
         result.maybeSet("\(prefix)city", city)
@@ -67,6 +67,7 @@ public class Address: NSObject {
         result.maybeSet("\(prefix)zip", zip)
         result.maybeSet("\(prefix)country", country)
         result.maybeSet("\(prefix)phone_number", phoneNumber)
+        return result
     }
 
     public override func isEqual(_ object: Any?) -> Bool {
