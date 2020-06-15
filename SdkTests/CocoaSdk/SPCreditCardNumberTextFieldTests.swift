@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-import CocoaSdk
+@testable import CocoaSdk
 
 class SPCreditCardNumberTextFieldTests: XCTestCase {
     func testFormatCardNumber() {

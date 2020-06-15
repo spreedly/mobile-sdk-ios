@@ -55,7 +55,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
         return SpreedlySecureOpaqueStringBuilder.build(from: cardNumber)
     }
 
-    public func formatCardNumber(_ string: String) -> String {
+    func formatCardNumber(_ string: String) -> String {
         var formattedString = String()
         let cardNumber = string.withoutSpaces()
         for (index, character) in cardNumber.enumerated() {
@@ -94,7 +94,7 @@ extension SPCreditCardNumberTextField {
         return true
     }
 
-    public func generateMasked(from string: String) -> String {
+    func generateMasked(from string: String) -> String {
         let cardNumber = string.onlyNumbers()
         let maskCharacterCount = max(cardNumber.count - 4, 0)
 
@@ -125,7 +125,7 @@ extension SPCreditCardNumberTextField {
         masked = false
     }
 
-    public func cleanAndReplace(current: String, range: NSRange, replacementString string: String) -> String? {
+    func cleanAndReplace(current: String, range: NSRange, replacementString string: String) -> String? {
         let cleaned = string.onlyNumbers()
         guard string.count == 0 || cleaned.count > 0 else {
             // none of the replacementString was useful
