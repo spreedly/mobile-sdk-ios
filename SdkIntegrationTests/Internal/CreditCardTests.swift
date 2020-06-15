@@ -17,7 +17,7 @@ class CreditCardTests: XCTestCase {
                 month: 1
         )
 
-        let promise = client.createCreditCardPaymentMethod(creditCard: info)
+        let promise = client.createPaymentMethodFrom(creditCard: info)
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 
@@ -65,7 +65,7 @@ class CreditCardTests: XCTestCase {
             "boolKey": false
         ]
 
-        let promise = client.createCreditCardPaymentMethod(creditCard: info)
+        let promise = client.createPaymentMethodFrom(creditCard: info)
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
 

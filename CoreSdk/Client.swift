@@ -6,13 +6,13 @@ import Foundation
 import RxSwift
 
 public protocol SpreedlyClient {
-    func createCreditCardPaymentMethod(creditCard: CreditCardInfo) -> Single<Transaction<CreditCardResult>>
+    func createPaymentMethodFrom(creditCard: CreditCardInfo) -> Single<Transaction<CreditCardResult>>
 
-    func createBankAccountPaymentMethod(bankAccount: BankAccountInfo) -> Single<Transaction<BankAccountResult>>
+    func createPaymentMethodFrom(bankAccount: BankAccountInfo) -> Single<Transaction<BankAccountResult>>
 
     func recache(token: String, verificationValue: SpreedlySecureOpaqueString) -> Single<Transaction<CreditCardResult>>
 
-    func createApplePayPaymentMethod(applePay: ApplePayInfo) -> Single<Transaction<ApplePayResult>>
+    func createPaymentMethodFrom(applePay: ApplePayInfo) -> Single<Transaction<ApplePayResult>>
 }
 
 public enum SpreedlySecurityError: Error {

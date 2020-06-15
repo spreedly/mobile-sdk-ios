@@ -56,7 +56,7 @@ struct CreditCardForm: View {
                     self.inProgress = true
                     self.token = nil
                     self.error = nil
-                    client.createCreditCardPaymentMethod(creditCard: ccInfo)
+                    client.createPaymentMethodFrom(creditCard: ccInfo)
                             .subscribe(onSuccess: { transaction in
                                 if transaction.succeeded {
                                     self.token = transaction.token

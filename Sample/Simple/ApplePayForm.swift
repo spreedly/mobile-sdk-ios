@@ -115,7 +115,7 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", payment: payment)
             info.testCardNumber = "4111111111111111"
 
-            _ = client.createApplePayPaymentMethod(applePay: info).subscribe(onSuccess: { transaction in
+            _ = client.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
                 let result = transaction.paymentMethod!
                 guard result.errors.count == 0 else {
                     self.error = result.errors[0].message

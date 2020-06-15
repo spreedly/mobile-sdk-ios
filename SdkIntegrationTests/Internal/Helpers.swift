@@ -49,7 +49,7 @@ public class Helpers: NSObject {
         creditCard.retained = retained
         creditCard.email = "dolly@dog.com"
 
-        return client.createCreditCardPaymentMethod(creditCard: creditCard)
+        return client.createPaymentMethodFrom(creditCard: creditCard)
     }
 }
 
