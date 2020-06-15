@@ -44,12 +44,12 @@ class SPCreditCardNumberTextFieldTests: XCTestCase {
         XCTAssertEqual(field.generateMasked(from: "41"), "41")
         XCTAssertEqual(field.generateMasked(from: "411"), "411")
         XCTAssertEqual(field.generateMasked(from: "4111"), "4111")
-        XCTAssertEqual(field.generateMasked(from: "41111"), "*111 1")
-        XCTAssertEqual(field.generateMasked(from: "41111111"), "**** 1111")
-        XCTAssertEqual(field.generateMasked(from: "411111111111"), "**** **** 1111")
-        XCTAssertEqual(field.generateMasked(from: "4111111111111111"), "**** **** **** 1111")
-        XCTAssertEqual(field.generateMasked(from: "4111 1111 1111 1111"), "**** **** **** 1111")
-        XCTAssertEqual(field.generateMasked(from: "4111111111111111111"), "**** **** **** ***1 111")
+        XCTAssertEqual(field.generateMasked(from: "41111"), "*1111")
+        XCTAssertEqual(field.generateMasked(from: "41111111"), "****1111")
+        XCTAssertEqual(field.generateMasked(from: "411111111111"), "********1111")
+        XCTAssertEqual(field.generateMasked(from: "4111111111111111"), "************1111")
+        XCTAssertEqual(field.generateMasked(from: "4111 1111 1111 1111"), "************1111")
+        XCTAssertEqual(field.generateMasked(from: "4111111111111111111"), "***************1111")
     }
 }
 

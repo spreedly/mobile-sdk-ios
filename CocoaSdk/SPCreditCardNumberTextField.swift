@@ -100,7 +100,7 @@ extension SPCreditCardNumberTextField {
 
         let mask = String(repeating: maskCharacter, count: maskCharacterCount)
         let lastFour = cardNumber.suffix(4)
-        return formatCardNumber(mask + lastFour)
+        return mask + lastFour
     }
 
     private func applyMask() {
@@ -112,7 +112,7 @@ extension SPCreditCardNumberTextField {
         unmaskedText = rawNumber
         let maskedNumber = generateMasked(from: rawNumber)
 
-        text = maskedNumber
+        text = formatCardNumber(maskedNumber)
         masked = true
     }
 
