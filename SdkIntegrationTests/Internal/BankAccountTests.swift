@@ -17,7 +17,7 @@ class BankAccountTests: XCTestCase {
                 bankAccountHolderType: .personal
         )
 
-        let promise = client.createBankAccountPaymentMethod(bankAccount: info)
+        let promise = client.createPaymentMethodFrom(bankAccount: info)
 
         let transaction = try promise.assertResult(self)
         let bankAccount = transaction.paymentMethod!

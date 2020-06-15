@@ -12,7 +12,7 @@ class ApplePayTests: XCTestCase {
         let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: Helpers.paymentTokenData)
         info.testCardNumber = Helpers.testCardNumber
 
-        let promise = client.createApplePayPaymentMethod(applePay: info)
+        let promise = client.createPaymentMethodFrom(applePay: info)
 
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!
@@ -49,7 +49,7 @@ class ApplePayTests: XCTestCase {
 
         info.email = "dolly@dog.com"
 
-        let promise = client.createApplePayPaymentMethod(applePay: info)
+        let promise = client.createPaymentMethodFrom(applePay: info)
 
         let transaction = try promise.assertResult(self)
         let result = transaction.paymentMethod!

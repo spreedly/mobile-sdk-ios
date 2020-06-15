@@ -47,7 +47,7 @@ struct BankAccountForm: View {
                 self.inProgress = true
                 self.token = nil
                 self.error = nil
-                client.createBankAccountPaymentMethod(bankAccount: baInfo)
+                client.createPaymentMethodFrom(bankAccount: baInfo)
                         .subscribe(onSuccess: { transaction in
                             if transaction.succeeded {
                                 self.token = transaction.token

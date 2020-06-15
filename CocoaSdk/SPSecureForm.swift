@@ -131,7 +131,7 @@ extension SPSecureForm {
         info.month = dateParts?.month
         info.year = dateParts?.year
 
-        _ = client.createCreditCardPaymentMethod(creditCard: info).subscribe(onSuccess: { transaction in
+        _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOf(errors: errors)
@@ -174,7 +174,7 @@ extension SPSecureForm {
         info.bankAccountHolderType = selectedHolderType
         info.bankAccountType = selectedAccountType
 
-        _ = client.createBankAccountPaymentMethod(bankAccount: info).subscribe(onSuccess: { transaction in
+        _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOf(errors: errors)

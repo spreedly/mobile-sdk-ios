@@ -32,7 +32,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         return URLSession(configuration: config)
     }
 
-    func createCreditCardPaymentMethod(creditCard info: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
+    func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
@@ -47,7 +47,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func createBankAccountPaymentMethod(bankAccount info: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
+    func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
@@ -87,7 +87,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func createApplePayPaymentMethod(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
+    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
         let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
 
         return Single.deferred {
