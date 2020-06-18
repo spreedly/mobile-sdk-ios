@@ -18,6 +18,7 @@ class ClientTests: XCTestCase {
                 year: 2029,
                 month: 1
         )
+        info.retained = true
         let resp = client.createPaymentMethodFrom(creditCard: info)
         let trans = try resp.assertResult(self)
 
