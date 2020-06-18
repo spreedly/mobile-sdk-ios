@@ -128,12 +128,6 @@ extension Dictionary where Key == String, Value == Any {
 }
 
 extension Dictionary where Key == String, Value == Any {
-    mutating func maybeSetEnum<T: RawRepresentable>(_ key: String, _ value: T?) where T.RawValue == String {
-        if let value = value {
-            self[key] = value.rawValue
-        }
-    }
-
     mutating func maybeSet<T>(_ key: String, _ value: T?) {
         if let value = value {
             self[key] = value
