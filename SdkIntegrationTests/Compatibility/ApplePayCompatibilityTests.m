@@ -47,7 +47,7 @@
     [transaction subscribeOnSuccess:^(SPRTransaction *t) {
         XCTAssertNotNil(t.token);
 
-        SPRCreditCardResult *result = t.creditCard;
+        SPRCreditCardResult *result = t.applePay;
         XCTAssertNotNil(result.token);
         XCTAssertEqual(result.paymentMethodType, SPRPaymentMethodTypeApplePay);
         XCTAssertEqual(result.storageState, SPRStorageStateCached);
