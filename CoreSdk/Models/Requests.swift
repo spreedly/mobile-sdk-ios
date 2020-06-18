@@ -16,6 +16,8 @@ public class PaymentMethodRequestBase: NSObject {
     @objc public var address: Address
     @objc public var shippingAddress: Address
 
+    /// When true, an authenticated request must be sent to the server including both the
+    /// environment key and secret.
     public var retained: Bool?
 
     init(fullName: String?, firstName: String?, lastName: String?) {
@@ -28,7 +30,7 @@ public class PaymentMethodRequestBase: NSObject {
     }
 
     internal func toJson() throws -> [String: Any] {
-        var result: [String: Any] = [:]
+        var result = [String: Any]()
         result.maybeSet("full_name", fullName)
         result.maybeSet("first_name", firstName)
         result.maybeSet("last_name", lastName)

@@ -10,7 +10,13 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     let envKey: String
     let envSecret: String
     let test: Bool
-    let baseUrl = URL(string: "https://core.spreedly.com/v1")!
+    static let baseUrl = URL(string: "https://core.spreedly.com/v1")!
+    let authenticatedPaymentMethodUrl = SpreedlyClientImpl.baseUrl.appendingPathComponent(
+            "/payment_methods.json", isDirectory: false
+    )
+    let unauthenticatedPaymentMethodUrl = SpreedlyClientImpl.baseUrl.appendingPathComponent(
+            "/payment_methods/restricted.json", isDirectory: false
+    )
 
     init(envKey: String, envSecret: String, test: Bool) {
         self.envKey = envKey
@@ -19,59 +25,48 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         super.init()
     }
 
-    func session() -> URLSession {
-        let config = URLSessionConfiguration.default
-        let userPasswordString = "\(envKey):\(envSecret)"
-        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
-        let encodedCredentials = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
-        config.httpAdditionalHeaders = [
-            "Authorization": "Basic \(encodedCredentials)",
-            "Content-Type": "application/json"
-        ]
+    func session(authenticated: Bool = false) -> URLSession {
+        var headers: [String: String] = ["Content-Type": "application/json"]
+        if authenticated {
+            headers["Authorization"] = "Basic \(encodedCredentials)"
+        }
 
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = headers
         return URLSession(configuration: config)
     }
 
+    private var encodedCredentials: String {
+        let userPasswordString = "\(envKey):\(envSecret)"
+        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
+        return userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+    }
+
     func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
-
-        return Single.deferred {
-            let request = try info.toRequestJson()
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "POST"
-            urlRequest.httpBody = try request.encodeJson()
-
-            return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
-                try Transaction<CreditCardResult>.unwrapFrom(data: data)
-            }
-        }
+        createPaymentMethod(from: info)
     }
 
     func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+        createPaymentMethod(from: info)
+    }
 
-        return Single.deferred {
-            let request = try info.toRequestJson()
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "POST"
-            urlRequest.httpBody = try request.encodeJson()
-
-            return self.process(request: urlRequest).map { data -> Transaction<BankAccountResult> in
-                try Transaction<BankAccountResult>.unwrapFrom(data: data)
-            }
-        }
+    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
+        createPaymentMethod(from: info)
     }
 
     func recache(
             token: String,
             verificationValue: SpreedlySecureOpaqueString
     ) -> Single<Transaction<CreditCardResult>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods/\(token)/recache.json", isDirectory: false)
+        let url = SpreedlyClientImpl.baseUrl.appendingPathComponent(
+                "/payment_methods/\(token)/recache.json", isDirectory: false
+        )
 
         return Single.deferred {
-            var creditCardJson: [String: Any] = [:]
+            var creditCardJson = [String: Any]()
             try creditCardJson.setOpaqueString("verification_value", verificationValue)
             let request: [String: Any] = [
+                "environment_key": self.envKey,
                 "payment_method": [
                     "credit_card": creditCardJson
                 ]
@@ -87,23 +82,37 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }
     }
 
-    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
-        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+    func createPaymentMethod<T: PaymentMethodResultBase>(
+            from info: PaymentMethodRequestBase
+    ) -> Single<Transaction<T>> {
+        Single.deferred {
+            let authenticated = info.retained ?? false
 
-        return Single.deferred {
-            let request = try info.toRequestJson()
+            var request = try info.toRequestJson()
+            let url: URL
+
+            if authenticated {
+                url = self.authenticatedPaymentMethodUrl
+            } else {
+                url = self.unauthenticatedPaymentMethodUrl
+                request["environment_key"] = self.envKey
+            }
+
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return self.process(request: urlRequest).map { data -> Transaction<ApplePayResult> in
-                try Transaction<ApplePayResult>.unwrapFrom(data: data)
+            return self.process(
+                    request: urlRequest,
+                    authenticated: authenticated
+            ).map { data -> Transaction<T> in
+                try Transaction<T>.unwrapFrom(data: data)
             }
         }
     }
 
-    func process(request: URLRequest) -> Single<Data> {
-        session().rx
+    func process(request: URLRequest, authenticated: Bool = false) -> Single<Data> {
+        session(authenticated: authenticated).rx
                 .data(request: request)
                 .catchError { error in
                     switch error {
@@ -124,15 +133,26 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 extension SpreedlyClientImpl: _ObjCClient {
     @objc(createPaymentMethodFrom:)
     func _objCCreatePaymentMethod(from info: PaymentMethodRequestBase) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
-        let url = baseUrl.appendingPathComponent("/payment_methods.json", isDirectory: false)
+        let url: URL
+        let authenticated: Bool
+        if info.retained ?? false {
+            authenticated = true
+            url = authenticatedPaymentMethodUrl
+        } else {
+            authenticated = false
+            url = unauthenticatedPaymentMethodUrl
+        }
 
         let single = Single<_ObjCTransaction>.deferred {
-            let request = try info.toRequestJson()
+            var request = try info.toRequestJson()
+            if !authenticated {
+                request["environment_key"] = self.envKey
+            }
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return self.process(request: urlRequest).map { data -> _ObjCTransaction in
+            return self.process(request: urlRequest, authenticated: authenticated).map { data -> _ObjCTransaction in
                 try _ObjCTransaction.unwrap(from: data)
             }
         }
