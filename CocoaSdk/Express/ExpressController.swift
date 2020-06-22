@@ -33,6 +33,11 @@ class ExpressController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? AddCardController {
             viewController.didAddCard = self.onCardAdded
+            return
+        }
+        if let viewController = segue.destination as? AddBankAccountController {
+            viewController.didAddBankAccount = self.onBankAccountAdded
+            return
         }
     }
 
@@ -42,6 +47,16 @@ class ExpressController: UIViewController {
                 type: .creditCard,
                 description: "\(brand.rawValue.capitalized) \(card.lastFourDigits ?? "")",
                 token: card.token ?? ""
+        ), at: 0)
+        self.paymentItems.reloadData()
+        self.paymentItems.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
+    }
+
+    func onBankAccountAdded(bank: BankAccountResult) {
+        self.items?.insert(PaymentMethodItem(
+                type: .bankAccount,
+                description: "Bank Account \(bank.accountNumber?.suffix(4) ?? "")",
+                token: bank.token ?? ""
         ), at: 0)
         self.paymentItems.reloadData()
         self.paymentItems.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
