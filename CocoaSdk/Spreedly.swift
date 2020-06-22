@@ -11,7 +11,7 @@ import PassKit
 
 public class Spreedly: NSObject {
     public static func express(context: ExpressContext) -> UIViewController {
-        let bundle = Bundle(for: SPSecureForm.self)
+        let bundle = Bundle(for: self)
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
         let view = storyboard.instantiateInitialViewController()! as ExpressController
         view.items = context.getPaymentMethods()
