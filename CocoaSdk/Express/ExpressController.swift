@@ -13,6 +13,7 @@ class ExpressController: UIViewController {
     @IBOutlet weak var paymentItems: UITableView!
 
     var items: [PaymentMethodItem]?
+    var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,15 @@ class ExpressController: UIViewController {
         paymentItems.dataSource = self
     }
 
+    @IBAction func done(_ sender: Any) {
+        let indexPath = paymentItems.indexPathForSelectedRow
+        guard let row = indexPath?.row,
+              let selectedPaymentMethod = items?[row] else {
+            return
+        }
 
+        didSelectPaymentMethod?(selectedPaymentMethod)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? AddCardController {
@@ -54,9 +63,9 @@ extension ExpressController: UITableViewDataSource {
 }
 
 public class PaymentMethodItem {
-    var type: PaymentMethodType
-    var description: String
-    var token: String
+    public let type: PaymentMethodType
+    public let description: String
+    public let token: String
 
     public init(type: PaymentMethodType, description: String, token: String) {
         self.type = type

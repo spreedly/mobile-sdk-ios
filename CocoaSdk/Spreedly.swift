@@ -15,6 +15,7 @@ public class Spreedly: NSObject {
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
         let view = storyboard.instantiateInitialViewController()! as ExpressController
         view.items = context.getPaymentMethods()
+        view.didSelectPaymentMethod = context.didSelectPaymentMethod
 
         return view
     }
@@ -23,6 +24,7 @@ public class Spreedly: NSObject {
 public class ExpressContext: NSObject {
     public var paymentMethods: [PaymentMethodItem]?
     public var allowApplePay = true
+    public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
 
     var applePayEnabled: Bool {
         PKPaymentAuthorizationViewController.canMakePayments()

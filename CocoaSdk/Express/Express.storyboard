@@ -97,7 +97,11 @@
                         <viewLayoutGuide key="safeArea" id="Lgx-Z7-Q2z"/>
                     </view>
                     <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Ky-mJ-8Ab"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Ky-mJ-8Ab">
+                            <connections>
+                                <action selector="done:" destination="p0P-8y-uz6" id="qjM-sa-ISz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="paymentItems" destination="MnJ-kl-ydc" id="lEC-o5-2PB"/>

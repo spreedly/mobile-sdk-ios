@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         context.paymentMethods = [
             PaymentMethodItem(type: .creditCard, description: "MC 5454", token: "abc456")
         ]
+        context.didSelectPaymentMethod = { item in
+            print("Payment method selected: \(item.description)")
+            self.navigationController?.popViewController(animated: true)
+        }
         let view = Spreedly.express(context: context)
         self.navigationController?.pushViewController(view, animated: true)
     }
