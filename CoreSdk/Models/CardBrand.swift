@@ -49,7 +49,7 @@ public enum CardBrand: String {
 
         return brandData.first(where: { (_, params) in params.detect(number) })?.key ?? .unknown
     }
-    public static func from(spreedlyType: String) -> CardBrand {
+    public static func from(spreedlyType: String?) -> CardBrand {
         brandData.first { _, params in
             params.spreedlyType == spreedlyType
         }?.key ?? .unknown

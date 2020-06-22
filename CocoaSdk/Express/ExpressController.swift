@@ -31,32 +31,23 @@ class ExpressController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? AddCardController {
-            viewController.didAddCard = self.onCardAdded
-            return
-        }
-        if let viewController = segue.destination as? AddBankAccountController {
-            viewController.didAddBankAccount = self.onBankAccountAdded
+        super.prepare(for: segue, sender: sender)
+
+        if let viewController = segue.destination as? AddPaymentMethodController {
+            viewController.didAddPaymentMethod = self.onPaymentMethodAdded
             return
         }
     }
 
-    func onCardAdded(card: CreditCardResult) {
-        let brand = CardBrand.from(spreedlyType: card.cardType ?? "")
-        self.items?.insert(PaymentMethodItem(
-                type: .creditCard,
-                description: "\(brand.rawValue.capitalized) \(card.lastFourDigits ?? "")",
-                token: card.token ?? ""
-        ), at: 0)
-        self.paymentItems.reloadData()
-        self.paymentItems.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
-    }
+    func onPaymentMethodAdded(method: PaymentMethodResultBase) {
+        guard let type = method.paymentMethodType else {
+            return
+        }
 
-    func onBankAccountAdded(bank: BankAccountResult) {
         self.items?.insert(PaymentMethodItem(
-                type: .bankAccount,
-                description: "Bank Account \(bank.accountNumber?.suffix(4) ?? "")",
-                token: bank.token ?? ""
+                type: type,
+                description: method.shortDescription,
+                token: method.token ?? ""
         ), at: 0)
         self.paymentItems.reloadData()
         self.paymentItems.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
@@ -86,8 +77,4 @@ public class PaymentMethodItem {
         self.description = description
         self.token = token
     }
-}
-
-class PaymentMethodTable: UITableView {
-
 }

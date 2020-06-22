@@ -15,7 +15,7 @@
 		3C9420EE249C0CC700D2B5E1 /* ExpressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420ED249C0CC700D2B5E1 /* ExpressController.swift */; };
 		3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */; };
 		3C9420F224A1294200D2B5E1 /* Spreedly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F124A1294200D2B5E1 /* Spreedly.swift */; };
-		3C9420F424A14DF900D2B5E1 /* AddBankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F324A14DF900D2B5E1 /* AddBankAccount.swift */; };
+		3C9420F624A16EB600D2B5E1 /* AddPaymentMethodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F524A16EB600D2B5E1 /* AddPaymentMethodController.swift */; };
 		3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */; };
 		3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */; };
 		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
@@ -190,7 +190,7 @@
 		3C9420ED249C0CC700D2B5E1 /* ExpressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressController.swift; sourceTree = "<group>"; };
 		3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpirationPickerField.swift; sourceTree = "<group>"; };
 		3C9420F124A1294200D2B5E1 /* Spreedly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spreedly.swift; sourceTree = "<group>"; };
-		3C9420F324A14DF900D2B5E1 /* AddBankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankAccount.swift; sourceTree = "<group>"; };
+		3C9420F524A16EB600D2B5E1 /* AddPaymentMethodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodController.swift; sourceTree = "<group>"; };
 		3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankAccountCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 				F076C069633042D73C8177FA /* Express.storyboard */,
 				3C9420ED249C0CC700D2B5E1 /* ExpressController.swift */,
 				F076C72ED9EC2828C97959FD /* AddCardController.swift */,
-				3C9420F324A14DF900D2B5E1 /* AddBankAccount.swift */,
+				3C9420F524A16EB600D2B5E1 /* AddPaymentMethodController.swift */,
 			);
 			path = Express;
 			sourceTree = "<group>";
@@ -1118,11 +1118,11 @@
 			files = (
 				442A2E09E5707DA5C0EC5A6D /* SPSecureForm.swift in Sources */,
 				F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */,
+				3C9420F624A16EB600D2B5E1 /* AddPaymentMethodController.swift in Sources */,
 				F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */,
 				3C9420EE249C0CC700D2B5E1 /* ExpressController.swift in Sources */,
 				F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */,
 				F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */,
-				3C9420F424A14DF900D2B5E1 /* AddBankAccount.swift in Sources */,
 				3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */,
 				3C9420F224A1294200D2B5E1 /* Spreedly.swift in Sources */,
 				F076CC51543D226BF5DFB723 /* SPSecureTextField.swift in Sources */,

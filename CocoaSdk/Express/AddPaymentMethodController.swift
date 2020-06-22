@@ -1,5 +1,5 @@
 //
-//  AddBankAccount.swift
+//  AddPaymentMethodController.swift
 //  CocoaSdk
 //
 //  Created by Eli Thompson on 6/22/20.
@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 import CoreSdk
 
-class AddBankAccountController: UIViewController {
+class AddPaymentMethodController: UIViewController {
     @IBOutlet weak var form: SPSecureForm!
 
-    var didAddBankAccount: ((BankAccountResult) -> Void)?
+    var didAddPaymentMethod: ((PaymentMethodResultBase) -> Void)?
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         configureDelegates()
     }
 
@@ -23,15 +25,15 @@ class AddBankAccountController: UIViewController {
     }
 }
 
-extension AddBankAccountController: SPSecureFormDelegate {
+extension AddPaymentMethodController: SPSecureFormDelegate {
     func spreedly<TResult>(
             secureForm form: SPSecureForm,
             success transaction: Transaction<TResult>
     ) where TResult: PaymentMethodResultBase {
-        guard let bank = transaction.paymentMethod as? BankAccountResult else {
+        guard let paymentMethod = transaction.paymentMethod else {
             return
         }
-        self.didAddBankAccount?(bank)
+        self.didAddPaymentMethod?(paymentMethod)
         self.navigationController?.popViewController(animated: true)
     }
 

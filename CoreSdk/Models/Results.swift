@@ -103,6 +103,10 @@ public class PaymentMethodResultBase: NSObject {
         errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) }) ?? []
         metadata = json.object(optional: "metadata")
     }
+
+    @objc public var shortDescription: String {
+        ""
+    }
 }
 
 extension PaymentMethodResultBase {
@@ -151,6 +155,11 @@ public class CreditCardResult: PaymentMethodResultBase {
         super.init(from: json)
     }
 
+    public override var shortDescription: String {
+        let brand = CardBrand.from(spreedlyType: cardType)
+        return "\(brand.rawValue.capitalized) \(lastFourDigits ?? "")"
+    }
+
     @objc(year) public var _objCYear: Int { // swiftlint:disable:this identifier_name
         year ?? 0
     }
@@ -184,6 +193,10 @@ public class BankAccountResult: PaymentMethodResultBase {
         accountNumber = json.string(optional: "account_number")
 
         super.init(from: json)
+    }
+
+    public override var shortDescription: String {
+        return "Bank Account \(accountNumber?.suffix(4) ?? "")"
     }
 }
 
