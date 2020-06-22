@@ -26,7 +26,7 @@
         <!--ExpressRootController-->
         <scene sceneID="wAw-Hf-ioB">
             <objects>
-                <viewController title="ExpressRootController" id="p0P-8y-uz6" customClass="ExpressRootController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ExpressRootController" id="p0P-8y-uz6" customClass="ExpressController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocx-fO-Vzh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lgx-Z7-Q2z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU"/>
+                    <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Ky-mJ-8Ab"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="paymentItems" destination="MnJ-kl-ydc" id="lEC-o5-2PB"/>
                     </connections>

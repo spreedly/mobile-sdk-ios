@@ -9,7 +9,7 @@ import UIKit
 import CoreSdk
 import PassKit
 
-class ExpressRootController: UIViewController {
+class ExpressController: UIViewController {
     @IBOutlet weak var paymentItems: UITableView!
 
     var items: [PaymentMethodItem]?
@@ -58,7 +58,7 @@ class ExpressRootController: UIViewController {
     }
 }
 
-extension ExpressRootController: UITableViewDataSource {
+extension ExpressController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items?.count ?? 0
     }
