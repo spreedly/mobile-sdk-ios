@@ -17,28 +17,10 @@ class ExpressController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        items = [
-            PaymentMethodItem(type: .creditCard, description: "Visa 1111", token: "abc123"),
-            PaymentMethodItem(type: .creditCard, description: "MC 5454", token: "abc456")
-        ]
-        if applePayEnabled {
-            items?.append(PaymentMethodItem(type: .applePay, description: "Apple Pay", token: "abc789"))
-        }
-
         paymentItems.dataSource = self
     }
 
-    var applePayEnabled: Bool {
-        PKPaymentAuthorizationViewController.canMakePayments()
-                && PKPaymentAuthorizationController.canMakePayments(
-                usingNetworks: [
-                    .visa,
-                    .masterCard,
-                    .discover,
-                    .amex
-                ]
-        )
-    }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? AddCardController {
@@ -76,7 +58,7 @@ public class PaymentMethodItem {
     var description: String
     var token: String
 
-    init(type: PaymentMethodType, description: String, token: String) {
+    public init(type: PaymentMethodType, description: String, token: String) {
         self.type = type
         self.description = description
         self.token = token

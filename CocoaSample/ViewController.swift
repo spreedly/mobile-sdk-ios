@@ -14,12 +14,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     @IBAction func launchExpress(_ sender: Any) {
-        let bundle = Bundle(for: SPSecureForm.self)
-        let sb = UIStoryboard(name: "Express", bundle: bundle)
-        let view = sb.instantiateInitialViewController()!
-//        self.present(view, animated: true)
+        let context = ExpressContext()
+        context.paymentMethods = [
+            PaymentMethodItem(type: .creditCard, description: "MC 5454", token: "abc456")
+        ]
+        let view = Spreedly.express(context: context)
         self.navigationController?.pushViewController(view, animated: true)
     }
 }
