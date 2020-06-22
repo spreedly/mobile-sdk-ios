@@ -98,7 +98,10 @@ extension ExpirationPickerField: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedItems[component] = items[component][row]
+        let monthRow = pickerView.selectedRow(inComponent: 0)
+        let yearRow = pickerView.selectedRow(inComponent: 2)
+        selectedItems[0] = items[0][monthRow]
+        selectedItems[2] = items[2][yearRow]
         text = "\(selectedItems[0])/\(selectedItems[2])"
         unsetError()
     }
