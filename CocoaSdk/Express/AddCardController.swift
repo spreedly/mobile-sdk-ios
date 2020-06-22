@@ -10,6 +10,8 @@ class AddCardController: UIViewController {
     @IBOutlet weak var expirationDate: ExpirationPickerField!
     @IBOutlet weak var form: SPSecureForm!
 
+    var didAddCard: ((CreditCardResult) -> Void)?
+
     @IBAction func pickerTriggered(_ sender: Any) {
         expirationDate?.showPicker()
     }
@@ -28,20 +30,10 @@ extension AddCardController: SPSecureFormDelegate {
             secureForm form: SPSecureForm,
             success transaction: Transaction<TResult>
     ) where TResult: PaymentMethodResultBase {
-        let token = transaction.paymentMethod?.token ?? "empty"
-        print("My payment token is \(token)")
-
-        displayAlert(message: "Token: \(token)", title: "Success")
-    }
-
-    func displayAlert(message: String, title: String) {
-        let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        self.present(alert, animated: true)
+        guard let card = transaction.paymentMethod as? CreditCardResult else {
+            return
+        }
+        self.didAddCard?(card)
+        self.navigationController?.popViewController(animated: true)
     }
 }

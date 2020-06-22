@@ -39,19 +39,34 @@ class ExpressRootController: UIViewController {
                 ]
         )
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? AddCardController {
+            viewController.didAddCard = self.onCardAdded
+        }
+    }
+
+    func onCardAdded(card: CreditCardResult) {
+        let brand = CardBrand.from(spreedlyType: card.cardType ?? "")
+        self.items?.insert(PaymentMethodItem(
+                type: .creditCard,
+                description: "\(brand.rawValue.capitalized) \(card.lastFourDigits ?? "")",
+                token: card.token ?? ""
+        ), at: 0)
+        self.paymentItems.reloadData()
+        self.paymentItems.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
+    }
 }
 
 extension ExpressRootController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Items count: \(items?.count ?? 0)")
-        return items?.count ?? 0
+        items?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
         let text = items?[indexPath.row].description ?? "\(indexPath.row)"
         cell.textLabel?.text = text
-        print("Row: \(indexPath.row), Text: \(text)")
         return cell
     }
 }
