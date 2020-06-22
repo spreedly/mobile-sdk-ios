@@ -76,7 +76,9 @@ public class SPSecureForm: UIView {
     // Credit card fields
     @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
-    @IBOutlet public weak var expirationDate: SPExpirationTextField?
+    @IBOutlet public weak var expirationDate: ValidatedTextField?
+    @IBOutlet public weak var expirationDateProvider: ExpirationDateProvider?
+
     @IBOutlet public weak var company: UITextField?
     private var creditCardFields: [ValidatedTextField?] {
         [fullName, firstName, lastName, creditCardNumber, creditCardVerificationNumber, expirationDate]
@@ -197,7 +199,7 @@ extension SPSecureForm {
         // Always get number and verification from this form
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
-        if let dateParts = expirationDate?.dateParts() {
+        if let dateParts = expirationDateProvider?.dateParts() {
             info.month = dateParts.month
             info.year = dateParts.year
         }
