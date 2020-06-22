@@ -10,7 +10,7 @@
         <!--Navigation Controller-->
         <scene sceneID="B5q-08-JsM">
             <objects>
-                <navigationController id="cZt-VL-gFr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" id="cZt-VL-gFr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PP8-xJ-QpB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-649" y="127"/>
         </scene>
-        <!--ExpressRootController-->
+        <!--ExpressController-->
         <scene sceneID="wAw-Hf-ioB">
             <objects>
-                <viewController title="ExpressRootController" id="p0P-8y-uz6" customClass="ExpressController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ExpressController" id="p0P-8y-uz6" customClass="ExpressController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocx-fO-Vzh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

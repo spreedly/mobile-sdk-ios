@@ -22,8 +22,7 @@ class ExpressController: UIViewController {
     }
 
     @IBAction func done(_ sender: Any) {
-        let indexPath = paymentItems.indexPathForSelectedRow
-        guard let row = indexPath?.row,
+        guard let row = paymentItems.indexPathForSelectedRow?.row,
               let selectedPaymentMethod = items?[row] else {
             return
         }

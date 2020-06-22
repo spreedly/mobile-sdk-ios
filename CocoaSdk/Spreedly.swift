@@ -10,13 +10,24 @@ import UIKit
 import PassKit
 
 public class Spreedly: NSObject {
-    public static func express(context: ExpressContext) -> UIViewController {
+    public static func express(context: ExpressContext, present: Bool = false) -> UIViewController {
         let bundle = Bundle(for: self)
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
-        let view = storyboard.instantiateInitialViewController()! as ExpressController
-        view.items = context.getPaymentMethods()
-        view.didSelectPaymentMethod = context.didSelectPaymentMethod
+        let view: UIViewController
+        let express: ExpressController
+        if present {
+            let navController = storyboard.instantiateViewController(
+                    withIdentifier: "NavigationController"
+            ) as! UINavigationController
+            express = navController.visibleViewController as! ExpressController
+            view = navController
+        } else {
+            express = storyboard.instantiateInitialViewController()! as ExpressController
+            view = express
+        }
 
+        express.items = context.getPaymentMethods()
+        express.didSelectPaymentMethod = context.didSelectPaymentMethod
         return view
     }
 }

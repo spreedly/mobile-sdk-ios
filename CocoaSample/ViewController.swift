@@ -18,13 +18,26 @@ class ViewController: UIViewController {
     @IBAction func launchExpress(_ sender: Any) {
         let context = ExpressContext()
         context.paymentMethods = [
-            PaymentMethodItem(type: .creditCard, description: "MC 5454", token: "abc456")
+            PaymentMethodItem(type: .creditCard, description: "MC 4444", token: "abc456")
         ]
         context.didSelectPaymentMethod = { item in
             print("Payment method selected: \(item.description)")
             self.navigationController?.popViewController(animated: true)
         }
         let view = Spreedly.express(context: context)
-        self.navigationController?.pushViewController(view, animated: true)
+        navigationController?.show(view, sender: self)
+    }
+
+    @IBAction func expressWithPresent(_ sender: Any) {
+        let context = ExpressContext()
+        context.paymentMethods = [
+            PaymentMethodItem(type: .creditCard, description: "MC 4444", token: "abc456")
+        ]
+        context.didSelectPaymentMethod = { item in
+            print("Payment method selected: \(item.description)")
+            self.dismiss(animated: true)
+        }
+        let view = Spreedly.express(context: context, present: true)
+        present(view, animated: true)
     }
 }
