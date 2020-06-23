@@ -131,81 +131,89 @@
         <!--Add a Bank Account-->
         <scene sceneID="PNW-YQ-Myg">
             <objects>
-                <viewController title="Add a Bank Account" id="4d7-45-AKY" customClass="AddPaymentMethodController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add a Bank Account" id="4d7-45-AKY" customClass="AddBankAccountController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SPSecureForm" customModule="CocoaSdk" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ied-2e-A3f">
-                                <rect key="frame" x="8" y="96" width="398" height="266.5"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="248"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accountholder name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CR-mS-hJr">
-                                        <rect key="frame" x="0.0" y="0.0" width="398" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-TA-RK3" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="20.5" width="398" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account holder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-TA-RK3" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="8" width="390" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ZkL-lh-iig"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-f0-y70">
-                                        <rect key="frame" x="0.0" y="54.5" width="398" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Accout number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="75" width="398" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Accout number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="48" width="390" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="rK9-bi-llP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routing number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="373-3O-jsm">
-                                        <rect key="frame" x="0.0" y="109" width="398" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="129.5" width="398" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="88" width="390" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="mip-gK-Qtc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jH-iC-R7Y">
-                                        <rect key="frame" x="0.0" y="163.5" width="398" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-Qj-yaf">
+                                        <rect key="frame" x="12" y="128" width="390" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj4-Cf-gz3">
+                                                <rect key="frame" x="0.0" y="2" width="390" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="textColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="6Cr-uD-r4Z"/>
+                                        </constraints>
+                                    </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="khP-qg-l90">
-                                        <rect key="frame" x="0.0" y="184" width="398" height="32"/>
+                                        <rect key="frame" x="12" y="148" width="390" height="32"/>
                                         <segments>
                                             <segment title="Checking"/>
                                             <segment title="Savings"/>
                                         </segments>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account holder type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJd-0D-Z44">
-                                        <rect key="frame" x="0.0" y="215" width="398" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Sw3-sd-M2w">
+                                        <rect key="frame" x="12" y="179" width="390" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account holder type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBB-aW-m9d">
+                                                <rect key="frame" x="0.0" y="12" width="390" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="textColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="p7k-eZ-Ftl"/>
+                                        </constraints>
+                                    </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PqR-CL-I5v">
-                                        <rect key="frame" x="0.0" y="235.5" width="398" height="32"/>
+                                        <rect key="frame" x="12" y="209" width="390" height="32"/>
                                         <segments>
                                             <segment title="Personal"/>
                                             <segment title="Business"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>
+                                <edgeInsets key="layoutMargins" top="8" left="12" bottom="8" right="12"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5s3-Zu-7sw" firstAttribute="trailing" secondItem="ied-2e-A3f" secondAttribute="trailing" constant="8" id="2qO-vX-AcA"/>
-                            <constraint firstItem="ied-2e-A3f" firstAttribute="leading" secondItem="5s3-Zu-7sw" secondAttribute="leading" constant="8" id="xh8-Xa-15G"/>
-                            <constraint firstItem="ied-2e-A3f" firstAttribute="top" secondItem="5s3-Zu-7sw" secondAttribute="top" constant="8" id="y0x-3v-WTK"/>
+                            <constraint firstItem="5s3-Zu-7sw" firstAttribute="trailing" secondItem="ied-2e-A3f" secondAttribute="trailing" id="2qO-vX-AcA"/>
+                            <constraint firstItem="ied-2e-A3f" firstAttribute="leading" secondItem="5s3-Zu-7sw" secondAttribute="leading" id="xh8-Xa-15G"/>
+                            <constraint firstItem="ied-2e-A3f" firstAttribute="top" secondItem="5s3-Zu-7sw" secondAttribute="top" id="y0x-3v-WTK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5s3-Zu-7sw"/>
                         <connections>
@@ -225,6 +233,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="form" destination="Xbx-bk-ami" id="0tf-ZV-bFU"/>
+                        <outlet property="stackView" destination="ied-2e-A3f" id="64I-PQ-bv0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o97-hs-Jxv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

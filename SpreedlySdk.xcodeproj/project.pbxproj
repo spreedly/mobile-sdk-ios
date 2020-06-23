@@ -18,6 +18,7 @@
 		3C9420F624A16EB600D2B5E1 /* AddPaymentMethodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F524A16EB600D2B5E1 /* AddPaymentMethodController.swift */; };
 		3CD0F3C124A2684800F1103F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD0F3C024A2684800F1103F /* Assets.xcassets */; };
 		3CD0F3C224A26B2800F1103F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD0F3C024A2684800F1103F /* Assets.xcassets */; };
+		3CD0F3C424A2BD1000F1103F /* AddBankAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */; };
 		3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */; };
 		3CFE89CB2491C0B8005E64B4 /* BankAccountCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */; };
 		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
@@ -196,6 +197,7 @@
 		3C9420F124A1294200D2B5E1 /* Spreedly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spreedly.swift; sourceTree = "<group>"; };
 		3C9420F524A16EB600D2B5E1 /* AddPaymentMethodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodController.swift; sourceTree = "<group>"; };
 		3CD0F3C024A2684800F1103F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankAccountController.swift; sourceTree = "<group>"; };
 		3CFE89C82491383D005E64B4 /* CreditCardCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CA2491C0B8005E64B4 /* BankAccountCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankAccountCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				3C9420F524A16EB600D2B5E1 /* AddPaymentMethodController.swift */,
 				F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */,
 				F076CBDE49B90D526E5AC36E /* CALayer+Additions.swift */,
+				3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */,
 			);
 			path = Express;
 			sourceTree = "<group>";
@@ -1141,6 +1144,7 @@
 				F076C9176B8B2E5F678C28B2 /* AddCardController.swift in Sources */,
 				F076CC54EF17C14CC2CE0AC0 /* UIStackView+Additions.swift in Sources */,
 				F076C33079FDF4532D77FBD0 /* CALayer+Additions.swift in Sources */,
+				3CD0F3C424A2BD1000F1103F /* AddBankAccountController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
