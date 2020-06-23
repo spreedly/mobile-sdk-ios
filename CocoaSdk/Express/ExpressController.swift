@@ -61,8 +61,10 @@ extension ExpressController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        let text = items?[indexPath.row].description ?? "\(indexPath.row)"
-        cell.textLabel?.text = text
+        if let item = items?[indexPath.row] {
+            cell.textLabel?.text = item.description
+            cell.imageView?.image = UIImage(named: item.imageName)
+        }
         return cell
     }
 }
@@ -71,6 +73,17 @@ public class PaymentMethodItem {
     public let type: PaymentMethodType
     public let description: String
     public let token: String
+
+    var imageName: String {
+        switch type {
+        case .bankAccount:
+            return "spr_icon_bank"
+        case .applePay:
+            return "spr_card_applepay"
+        default:
+            return "spr_card_unknown"
+        }
+    }
 
     public init(type: PaymentMethodType, description: String, token: String) {
         self.type = type
