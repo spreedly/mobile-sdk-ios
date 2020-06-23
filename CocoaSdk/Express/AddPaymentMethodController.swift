@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreSdk
+import SwiftUI
 
 class AddPaymentMethodController: UIViewController {
     @IBOutlet weak var form: SPSecureForm!
