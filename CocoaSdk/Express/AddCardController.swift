@@ -18,9 +18,8 @@ class AddCardController: AddPaymentMethodController {
         super.viewDidLoad()
 
         stackView.addBackground(color: .systemBackground)
-        for index in 0..<stackView.subviews.count - 1 {
-            let view = stackView.subviews[index]
-            view.layer.addBorder(edge: .bottom, color: .systemGray2, thickness: 1)
+        stackView.subviews.filter { $0 is UITextField }.dropFirst().forEach { view in
+            view.layer.addBorder(edge: .top, color: .systemGray2, thickness: 1)
         }
     }
 }
