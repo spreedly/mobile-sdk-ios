@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         ]
         context.didSelectPaymentMethod = { item in
             print("Payment method selected: \(item.description)")
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToViewController(self, animated: true)
         }
         let view = Spreedly.express(context: context)
         navigationController?.show(view, sender: self)

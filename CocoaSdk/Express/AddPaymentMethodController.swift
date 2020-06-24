@@ -34,7 +34,6 @@ extension AddPaymentMethodController: SPSecureFormDelegate {
             return
         }
         self.didAddPaymentMethod?(paymentMethod)
-        self.navigationController?.popViewController(animated: true)
     }
 
 }

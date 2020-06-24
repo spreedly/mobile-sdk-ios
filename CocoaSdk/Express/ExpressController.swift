@@ -43,14 +43,12 @@ class ExpressController: UIViewController {
         guard let type = method.paymentMethodType else {
             return
         }
-
-        self.items?.insert(PaymentMethodItem(
+        let item = PaymentMethodItem(
                 type: type,
                 description: method.shortDescription,
                 token: method.token ?? ""
-        ), at: 0)
-        self.paymentItems.reloadData()
-        self.paymentItems.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .top)
+        )
+        didSelectPaymentMethod?(item)
     }
 }
 
