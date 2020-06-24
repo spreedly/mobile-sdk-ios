@@ -44,7 +44,7 @@ public enum _ObjCPaymentMethodType: Int { // swiftlint:disable:this type_name
     case googlePay
     case thirdPartyToken
 
-    static func from(_ source: PaymentMethodType?) -> _ObjCPaymentMethodType {
+    public static func from(_ source: PaymentMethodType?) -> _ObjCPaymentMethodType {
         switch source {
         case .creditCard: return creditCard
         case .bankAccount: return bankAccount

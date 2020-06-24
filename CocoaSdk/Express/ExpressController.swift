@@ -12,8 +12,13 @@ import PassKit
 class ExpressController: UIViewController {
     @IBOutlet weak var paymentItems: UITableView!
 
-    var items: [PaymentMethodItem]?
-    var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+    var context: ExpressContext?
+    var items: [PaymentMethodItem]? {
+        context?.getPaymentMethods()
+    }
+    var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)? {
+        context?.didSelectPaymentMethod
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,17 +65,18 @@ extension ExpressController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
         if let item = items?[indexPath.row] {
-            cell.textLabel?.text = item.description
+            cell.textLabel?.text = item.shortDescription
             cell.imageView?.image = UIImage(named: item.imageName)
         }
         return cell
     }
 }
 
-public class PaymentMethodItem {
+@objc(SPRPaymentMethodItem)
+public class PaymentMethodItem: NSObject {
     public let type: PaymentMethodType
-    public let description: String
-    public let token: String
+    @objc public let shortDescription: String
+    @objc public let token: String
 
     var imageName: String {
         switch type {
@@ -85,7 +91,13 @@ public class PaymentMethodItem {
 
     public init(type: PaymentMethodType, description: String, token: String) {
         self.type = type
-        self.description = description
+        self.shortDescription = description
         self.token = token
+    }
+}
+
+extension PaymentMethodItem {
+    @objc(type) public var _objCType: _ObjCPaymentMethodType { // swiftlint:disable:this identifier_name
+        _ObjCPaymentMethodType.from(type)
     }
 }
