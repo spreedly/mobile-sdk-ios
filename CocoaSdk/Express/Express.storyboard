@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dRb-mz-Dv5">
-                                <rect key="frame" x="10" y="88" width="394" height="291.5"/>
+                                <rect key="frame" x="10" y="88" width="394" height="261.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4n-Sb-jdo" userLabel="Payment Methods">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="26.5"/>
@@ -97,10 +97,6 @@
                                             <segue destination="4d7-45-AKY" kind="show" id="laa-yj-IW3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKa-nA-AWC">
-                                        <rect key="frame" x="0.0" y="261.5" width="394" height="30"/>
-                                        <state key="normal" title="Apple Pay"/>
-                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="ud3-WS-cVh"/>
                             </stackView>
@@ -121,6 +117,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBankAccount" destination="dpj-jK-Sm3" id="BK1-ew-eOc"/>
+                        <outlet property="addCard" destination="CBZ-Ic-N66" id="1bf-Us-yzw"/>
                         <outlet property="paymentItems" destination="MnJ-kl-ydc" id="lEC-o5-2PB"/>
                     </connections>
                 </viewController>

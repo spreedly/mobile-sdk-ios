@@ -12,18 +12,27 @@ import PassKit
 class ExpressController: UIViewController {
     @IBOutlet weak var paymentItems: UITableView!
 
-    var context: ExpressContext?
+    @IBOutlet weak var addCard: UIButton!
+    @IBOutlet weak var addBankAccount: UIButton!
+
+    var context = ExpressContext()
     var items: [PaymentMethodItem]? {
-        context?.getPaymentMethods()
+        context.getPaymentMethods()
     }
     var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)? {
-        context?.didSelectPaymentMethod
+        context.didSelectPaymentMethod
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         paymentItems.dataSource = self
+        if !context.allowCard {
+            addCard.isHidden = true
+        }
+        if !context.allowBankAccount {
+            addBankAccount.isHidden = true
+        }
     }
 
     @IBAction func done(_ sender: Any) {
