@@ -84,6 +84,8 @@ public class ValidatedTextField: UITextField {
                         errorBorderColor.cgColor
         )
         layer.borderWidth = validState ? 0.0 : 1.0
+        let red = UIColor.red.withAlphaComponent(0.05)
+        layer.backgroundColor = red.cgColor
     }
 }
 
