@@ -37,16 +37,6 @@ class ExpressController: UIViewController {
         collectionViewDidLoad()
     }
 
-    @IBAction func done(_ sender: Any) {
-        guard let row = collectionView.indexPathsForSelectedItems?
-        guard let row = paymentItems.indexPathForSelectedRow?.row,
-              let selectedPaymentMethod = items?[row] else {
-            return
-        }
-
-        didSelectPaymentMethod?(selectedPaymentMethod)
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 

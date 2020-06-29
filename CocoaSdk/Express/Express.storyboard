@@ -90,13 +90,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lgx-Z7-Q2z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Ky-mJ-8Ab">
-                            <connections>
-                                <action selector="done:" destination="p0P-8y-uz6" id="qjM-sa-ISz"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU"/>
                     <connections>
                         <outlet property="addBankAccount" destination="dpj-jK-Sm3" id="BK1-ew-eOc"/>
                         <outlet property="addCard" destination="CBZ-Ic-N66" id="1bf-Us-yzw"/>
