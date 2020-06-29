@@ -7,16 +7,6 @@
 
 import UIKit
 
-public class DateParts: NSObject {
-    @objc let month: Int
-    @objc let year: Int
-
-    init(month: Int, year: Int) {
-        self.month = month
-        self.year = year
-    }
-}
-
 class ExpirationPickerField: ValidatedTextField {
     private lazy var doneToolbar: UIToolbar = {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
