@@ -41,15 +41,6 @@ public class SPExpirationTextField: ValidatedTextField {
         return false
     }
 
-    public func dateParts() -> (month: Int?, year: Int?)? {
-        guard let text = self.text, text.count == "MM/yy".count else {
-            return nil
-        }
-
-        let parts = text.split(separator: "/").map { Int($0) }
-        return (month: parts[0], year: 2000 + (parts[1] ?? 0))
-    }
-
     public func formatExpiration(_ string: String) -> String {
         var formattedString = String()
         let dateDigits = string.onlyNumbers()
@@ -62,5 +53,16 @@ public class SPExpirationTextField: ValidatedTextField {
         }
 
         return formattedString
+    }
+}
+
+extension SPExpirationTextField: ExpirationDateProvider {
+    public func expirationDate() -> ExpirationDate? {
+        guard let text = self.text, text.count == "MM/yy".count else {
+            return nil
+        }
+
+        let parts = text.split(separator: "/").map { Int($0) ?? 0 }
+        return ExpirationDate(month: parts[0], year: 2000 + parts[1])
     }
 }

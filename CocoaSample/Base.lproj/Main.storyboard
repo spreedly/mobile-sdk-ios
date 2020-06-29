@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-eQ-eJ2">
-                                <rect key="frame" x="0.0" y="338" width="414" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-eQ-eJ2">
+                                <rect key="frame" x="0.0" y="296" width="414" height="144"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-nV-iJb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
@@ -26,16 +26,27 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeq-bI-QfN">
-                                        <rect key="frame" x="0.0" y="30" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="414" height="30"/>
                                         <state key="normal" title="Bank Account"/>
                                         <connections>
                                             <segue destination="PPs-B4-3q4" kind="show" id="5os-L0-sow"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONe-TO-qii" userLabel="Express (nav)">
+                                        <rect key="frame" x="0.0" y="76" width="414" height="30"/>
+                                        <state key="normal" title="Express (nav)"/>
+                                        <connections>
+                                            <action selector="launchExpress:" destination="mlm-g5-HBD" eventType="primaryActionTriggered" id="eHa-gi-Wxp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-oX-VUL" userLabel="Express (present)">
+                                        <rect key="frame" x="0.0" y="114" width="414" height="30"/>
+                                        <state key="normal" title="Express (present)"/>
+                                        <connections>
+                                            <action selector="expressWithPresent:" destination="mlm-g5-HBD" eventType="primaryActionTriggered" id="kE1-Of-yno"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="7An-By-zHj"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -130,6 +141,7 @@
                             <outlet property="creditCardNumber" destination="piH-B3-ODf" id="sal-d6-Trt"/>
                             <outlet property="creditCardVerificationNumber" destination="TrW-GT-cYd" id="yAx-BZ-ZAz"/>
                             <outlet property="expirationDate" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
+                            <outlet property="expirationDateProvider" destination="4g4-yu-ATf" id="f9D-41-uW6"/>
                             <outlet property="fullName" destination="06g-Dm-y2y" id="uRX-sf-QQx"/>
                         </connections>
                     </view>
