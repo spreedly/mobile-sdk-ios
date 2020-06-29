@@ -57,12 +57,12 @@ public class SPExpirationTextField: ValidatedTextField {
 }
 
 extension SPExpirationTextField: ExpirationDateProvider {
-    public func dateParts() -> DateParts? {
+    public func expirationDate() -> ExpirationDate? {
         guard let text = self.text, text.count == "MM/yy".count else {
             return nil
         }
 
         let parts = text.split(separator: "/").map { Int($0) ?? 0 }
-        return DateParts(month: parts[0], year: 2000 + parts[1])
+        return ExpirationDate(month: parts[0], year: 2000 + parts[1])
     }
 }

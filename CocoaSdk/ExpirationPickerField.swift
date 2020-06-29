@@ -94,11 +94,11 @@ extension ExpirationPickerField: UIPickerViewDelegate {
 }
 
 extension ExpirationPickerField: ExpirationDateProvider {
-    func dateParts() -> DateParts? {
+    func expirationDate() -> ExpirationDate? {
         guard let month = Int(selectedItems[0]),
               let year = Int(selectedItems[2]) else {
             return nil
         }
-        return DateParts(month: month, year: year)
+        return ExpirationDate(month: month, year: year)
     }
 }

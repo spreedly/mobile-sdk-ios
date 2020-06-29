@@ -3,11 +3,11 @@
 //
 
 @objc(SPRExpirationDateProvider) public protocol ExpirationDateProvider: class {
-    func dateParts() -> DateParts?
+    func expirationDate() -> ExpirationDate?
 }
 
-@objc(SPRDateParts)
-public class DateParts: NSObject {
+@objc(SPRExpirationDate)
+public class ExpirationDate: NSObject {
     @objc let month: Int
     @objc let year: Int
 

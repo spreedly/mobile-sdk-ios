@@ -199,9 +199,9 @@ extension SPSecureForm {
         // Always get number and verification from this form
         info.number = creditCardNumber?.secureText()
         info.verificationValue = creditCardVerificationNumber?.secureText()
-        if let dateParts = expirationDateProvider?.dateParts() {
-            info.month = dateParts.month
-            info.year = dateParts.year
+        if let date = expirationDateProvider?.expirationDate() {
+            info.month = date.month
+            info.year = date.year
         }
 
         info.unlessNil(set: \.fullName, to: fullName?.text)
