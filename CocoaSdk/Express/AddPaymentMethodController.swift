@@ -35,5 +35,4 @@ extension AddPaymentMethodController: SPSecureFormDelegate {
         }
         self.didAddPaymentMethod?(paymentMethod)
     }
-
 }
