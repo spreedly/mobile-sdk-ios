@@ -33,9 +33,12 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 
     private func addBrandImage() {
         addSubview(image)
+
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        image.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
+        NSLayoutConstraint.activate([
+            image.centerYAnchor.constraint(equalTo: centerYAnchor),
+            image.trailingAnchor.constraint(equalTo: statusIcon.leadingAnchor, constant: -7)
+        ])
     }
 
     func updateCardBrandImage(brand: CardBrand) {

@@ -89,7 +89,7 @@ extension ExpirationPickerField: UIPickerViewDelegate {
         selectedItems[0] = items[0][monthRow]
         selectedItems[2] = items[2][yearRow]
         text = "\(selectedItems[0])/\(selectedItems[2])"
-        unsetError()
+        clearValidation()
     }
 }
 
