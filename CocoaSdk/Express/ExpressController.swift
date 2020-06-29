@@ -11,7 +11,6 @@ import PassKit
 
 class ExpressController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-
     @IBOutlet weak var addCard: UIButton!
     @IBOutlet weak var addBankAccount: UIButton!
 
@@ -26,14 +25,17 @@ class ExpressController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        hideDisallowedMethods()
+        collectionViewDidLoad()
+    }
+
+    func hideDisallowedMethods() {
         if !context.allowCard {
             addCard.isHidden = true
         }
         if !context.allowBankAccount {
             addBankAccount.isHidden = true
         }
-
-        collectionViewDidLoad()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
