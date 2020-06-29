@@ -59,21 +59,6 @@ class ExpressController: UIViewController {
     }
 }
 
-extension ExpressController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        if let item = items?[indexPath.row] {
-            cell.textLabel?.text = item.shortDescription
-            cell.imageView?.image = UIImage(named: item.imageName)
-        }
-        return cell
-    }
-}
-
 extension ExpressController: UICollectionViewDataSource {
     func collectionViewDidLoad() {
         self.collectionView.dataSource = self
