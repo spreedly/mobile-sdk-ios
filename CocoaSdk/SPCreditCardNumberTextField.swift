@@ -89,9 +89,8 @@ extension SPCreditCardNumberTextField {
         applyMask()
     }
 
-    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         removeMask()
-        return true
     }
 
     func generateMasked(from string: String) -> String {

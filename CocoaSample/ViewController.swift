@@ -18,7 +18,9 @@ class ViewController: UIViewController {
         let context = ExpressContext()
         context.allowBankAccount = true
         context.paymentMethods = [
-            PaymentMethodItem(type: .creditCard, description: "Visa 1111", token: "abc456")
+            PaymentMethodItem(type: .creditCard, description: "Visa 1111", token: "abc456"),
+            PaymentMethodItem(type: .creditCard, description: "Mastercard 1111", token: "abc456"),
+            PaymentMethodItem(type: .creditCard, description: "Amex 1111", token: "abc456")
         ]
         context.didSelectPaymentMethod = { item in
             print("Payment method selected: \(item.shortDescription)")
