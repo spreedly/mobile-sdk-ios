@@ -8,7 +8,6 @@
 import UIKit
 import CoreSdk
 import PassKit
-import SwiftUI
 
 class ExpressController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
