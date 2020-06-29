@@ -115,42 +115,76 @@ extension PaymentMethodItem {
 }
 
 class PaymentMethodCell: UICollectionViewCell {
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var textLabel: UILabel!
+    let padding: CGFloat = 8.0
+
+    var imageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    var textLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
+
+    var container: UIView = {
+        let container = UIView(frame: .zero)
+        container.backgroundColor = .white
+        container.layer.cornerRadius = 15
+        return container
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.contentView.layer.cornerRadius = 10
+        setup()
+    }
+
+    func addShadow(view: UIView) {
+        view.layer.shadowOpacity = 0.15
+        view.layer.shadowRadius = 5
+        view.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+    }
+
+    func setup() {
+        layer.backgroundColor = UIColor.clear.cgColor
+        addShadow(view: contentView)
+
+        contentView.addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            container.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+        ])
+
+        container.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: container.topAnchor, constant: padding),
+            imageView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: padding),
+            imageView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -padding),
+            imageView.heightAnchor.constraint(equalToConstant: 80)
+        ])
+
+        container.addSubview(textLabel)
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            textLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding),
+            textLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: padding),
+            textLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -padding)
+        ])
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+
+        fatalError("not supported")
     }
-
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        let textLabel = UILabel(frame: .zero)
-//        textLabel.translatesAutoresizingMaskIntoConstraints = false
-//        self.contentView.addSubview(textLabel)
-//        NSLayoutConstraint.activate([
-//            textLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-//            textLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-//            textLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-//            textLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-//        ])
-//        self.textLabel = textLabel
-//
-//        self.contentView.backgroundColor = .lightGray
-//        self.textLabel.textAlignment = .center
-//    }
-
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//
-//        fatalError("not supported")
-//    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -162,9 +196,10 @@ class PaymentMethodCell: UICollectionViewCell {
 
 extension ExpressController: UICollectionViewDataSource {
     func collectionViewDidLoad() {
-        self.collectionView.backgroundColor = .white
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+
+        self.collectionView.register(PaymentMethodCell.self, forCellWithReuseIdentifier: "PaymentMethod")
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -175,12 +210,12 @@ extension ExpressController: UICollectionViewDataSource {
             _ collectionView: UICollectionView,
             cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let protoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "pm2", for: indexPath)
+        let protoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PaymentMethod", for: indexPath)
         guard let cell = protoCell as? PaymentMethodCell,
               let item = items?[indexPath.row] else {
-            return protoCell
+            fatalError("couldn't find the cell")
         }
-        
+
         cell.imageView.image = UIImage(named: item.imageName)
         cell.textLabel.text = item.shortDescription
         return cell
@@ -193,11 +228,5 @@ extension ExpressController: UICollectionViewDelegate {
             return
         }
         didSelectPaymentMethod?(item)
-    }
-}
-
-struct ExpressController_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
