@@ -77,6 +77,7 @@
 		F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */; };
 		F076C5168326BA6146E7048D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB8C9D4B8CE905B35F73 /* Helpers.swift */; };
 		F076C57D7A6335766809B69B /* ObjCTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C700B61D855C3AE1D093 /* ObjCTransactionTests.swift */; };
+		F076C5D9B309F944810DF95B /* ExpirationDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */; };
 		F076C6B29F5A045DBFD1A290 /* PaymentMethodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */; };
 		F076C7DFCF2FE7F3F459D67D /* CardRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C01B32752F1BF35F1FDA /* CardRanges.swift */; };
 		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
@@ -291,6 +292,7 @@
 		F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextField.swift; sourceTree = "<group>"; };
 		F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorsTests.swift; sourceTree = "<group>"; };
 		F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
+		F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationDateProvider.swift; sourceTree = "<group>"; };
 		F0E51F7017C6B8322253CD08 /* Pods-CocoaSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSample.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSample/Pods-CocoaSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -491,6 +493,7 @@
 				3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */,
 				3C9420F124A1294200D2B5E1 /* Spreedly.swift */,
 				3CD0F3C024A2684800F1103F /* Assets.xcassets */,
+				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
 			);
 			path = CocoaSdk;
 			sourceTree = "<group>";
@@ -1153,6 +1156,7 @@
 				3CD0F3C424A2BD1000F1103F /* AddBankAccountController.swift in Sources */,
 				F076CA3FC00AAC96DEDB95AF /* PaymentMethodCell.swift in Sources */,
 				F076C6B29F5A045DBFD1A290 /* PaymentMethodItem.swift in Sources */,
+				F076C5D9B309F944810DF95B /* ExpirationDateProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
