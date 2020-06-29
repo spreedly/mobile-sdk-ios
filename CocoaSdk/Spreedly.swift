@@ -18,8 +18,8 @@ public class Spreedly: NSObject {
         if present {
             let navController = storyboard.instantiateViewController(
                     withIdentifier: "NavigationController"
-            ) as! UINavigationController
-            express = navController.visibleViewController as! ExpressController
+            ) as! UINavigationController // swiftlint:disable:this force_cast
+            express = navController.visibleViewController as! ExpressController // swiftlint:disable:this force_cast
             view = navController
         } else {
             express = storyboard.instantiateInitialViewController()! as ExpressController
@@ -37,18 +37,6 @@ public class ExpressContext: NSObject {
     @objc public var allowBankAccount = false
     @objc public var allowApplePay = true
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
-
-    var applePayEnabled: Bool {
-        PKPaymentAuthorizationViewController.canMakePayments()
-                && PKPaymentAuthorizationController.canMakePayments(
-                usingNetworks: [
-                    .visa,
-                    .masterCard,
-                    .discover,
-                    .amex
-                ]
-        )
-    }
 
     func getPaymentMethods() -> [PaymentMethodItem] {
         var items = paymentMethods ?? []
