@@ -18,22 +18,12 @@ public class ValidatedTextField: UITextField {
     }()
 
     public required init?(coder: NSCoder) {
-        self.defaultColor = UIColor.label
-        self.errorColor = UIColor.red
-        self.defaultBorderColor = UIColor.clear
-        self.errorBorderColor = UIColor.red
-
         super.init(coder: coder)
 
         setup()
     }
 
     public override init(frame: CGRect) {
-        self.defaultColor = UIColor.label
-        self.errorColor = UIColor.red
-        self.defaultBorderColor = UIColor.clear
-        self.errorBorderColor = UIColor.red
-
         super.init(frame: frame)
 
         setup()
@@ -49,34 +39,6 @@ public class ValidatedTextField: UITextField {
         statusIcon.translatesAutoresizingMaskIntoConstraints = false
         statusIcon.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         statusIcon.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
-    }
-
-    @IBInspectable
-    public var defaultColor: UIColor {
-        didSet {
-            updateDisplay()
-        }
-    }
-
-    @IBInspectable
-    public var errorColor: UIColor {
-        didSet {
-            updateDisplay()
-        }
-    }
-
-    @IBInspectable
-    public var defaultBorderColor: UIColor {
-        didSet {
-            updateDisplay()
-        }
-    }
-
-    @IBInspectable
-    public var errorBorderColor: UIColor {
-        didSet {
-            updateDisplay()
-        }
     }
 
     public private(set) var validationState: ValidationState = .none
