@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 import PassKit
 
+@objc(SPRSpreedly)
 public class Spreedly: NSObject {
-    public static func express(context: ExpressContext, present: Bool = false) -> UIViewController {
+    @objc public static func express(context: ExpressContext, present: Bool = false) -> UIViewController {
         let bundle = Bundle(for: self)
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
         let view: UIViewController
