@@ -40,7 +40,7 @@ class ExpressController: UIViewController {
         super.prepare(for: segue, sender: sender)
 
         if let viewController = segue.destination as? AddPaymentMethodController {
-            viewController.didAddPaymentMethod = self.onPaymentMethodAdded
+            viewController.didAddPaymentMethod = onPaymentMethodAdded
             return
         }
     }
@@ -60,10 +60,10 @@ class ExpressController: UIViewController {
 
 extension ExpressController: UICollectionViewDataSource {
     func collectionViewDidLoad() {
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
 
-        self.collectionView.register(PaymentMethodCell.self, forCellWithReuseIdentifier: "PaymentMethod")
+        collectionView.register(PaymentMethodCell.self, forCellWithReuseIdentifier: "PaymentMethod")
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -79,7 +79,7 @@ class PaymentMethodCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        self.textLabel.text = nil
-        self.imageView.image = nil
+        textLabel.text = nil
+        imageView.image = nil
     }
 }
