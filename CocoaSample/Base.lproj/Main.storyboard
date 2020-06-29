@@ -141,6 +141,7 @@
                             <outlet property="creditCardNumber" destination="piH-B3-ODf" id="sal-d6-Trt"/>
                             <outlet property="creditCardVerificationNumber" destination="TrW-GT-cYd" id="yAx-BZ-ZAz"/>
                             <outlet property="expirationDate" destination="4g4-yu-ATf" id="FLd-l7-Ovk"/>
+                            <outlet property="expirationDateProvider" destination="4g4-yu-ATf" id="f9D-41-uW6"/>
                             <outlet property="fullName" destination="06g-Dm-y2y" id="uRX-sf-QQx"/>
                         </connections>
                     </view>
