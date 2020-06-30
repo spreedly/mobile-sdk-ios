@@ -13,12 +13,15 @@ Lint | ![Lint](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=
 
 ## Targets
 
-* Sdk - The core library.
-* SdkTests - the tests for the core library.
+* CoreSdk - The core library. Includes the Spreedly client and all APIs necessary for a custom integration.
+* CocoaSdk - UI specific library. Includes custom controls and the Express iOS controllers.
+* SdkTests - Unit tests for CoreSdk and CocoaSdk.
+* SdkIntegrationTests - Integration tests making API calls to Spreedly.
+* CocoaSample - The sample app demonstrating the custom controls and Express features.
 
-## Github CI
+## Cirrus CI
 
-This repository is setup to run github actions that will build Sdk, run SdkTests, and lint check Sdk.
+This repository is setup to run builds, tests, and linting using [Cirrus CI](https://cirrus-ci.org/). 
 
 ## Lint
 
