@@ -111,21 +111,30 @@ public class SPSecureForm: UIView {
     @IBOutlet public weak var shippingCountry: UITextField?
     @IBOutlet public weak var shippingPhoneNumber: UITextField?
 
-    private func notifyFieldsOf(errors: [SpreedlyError]) {
+    private func notifyFieldsOfValidation(fields: [ValidatedTextField?], errors: [SpreedlyError]) {
+        var errorFields = [ValidatedTextField]()
         for err in errors {
-            let field = findField(with: err.attribute)
-            field?.setError(because: err.message)
+            guard let field = findField(with: err.attribute) else {
+                continue
+            }
+            field.setError(because: err.message)
+            errorFields.append(field)
+        }
+
+        let validFields = Set<ValidatedTextField?>(fields).symmetricDifference(errorFields)
+        for field in validFields {
+            field?.setValid()
         }
     }
 
-    private func unsetErrorFor(_ fields: [ValidatedTextField?]) {
+    private func clearValidationFor(_ fields: [ValidatedTextField?]) {
         for field in fields {
-            field?.unsetError()
+            field?.clearValidation()
         }
     }
 
     private func findField(with key: String?) -> ValidatedTextField? {
-        switch (key) {
+        switch key {
         case "number":
             return creditCardNumber
         case "verification_value":
@@ -171,7 +180,7 @@ public class SPSecureForm: UIView {
 // MARK: - Creating cards
 extension SPSecureForm {
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
-        unsetErrorFor(creditCardFields)
+        clearValidationFor(creditCardFields)
 
         let client = getClientOrDieTrying()
 
@@ -183,7 +192,7 @@ extension SPSecureForm {
         _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
-                    self.notifyFieldsOf(errors: errors)
+                    self.notifyFieldsOfValidation(fields: self.creditCardFields, errors: errors)
                 } else {
                     self.delegate?.spreedly(secureForm: self, success: transaction)
                 }
@@ -214,7 +223,7 @@ extension SPSecureForm {
 // MARK: - Creating bank accounts
 extension SPSecureForm {
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
-        unsetErrorFor(bankAccountFields)
+        clearValidationFor(bankAccountFields)
 
         let client = getClientOrDieTrying()
 
@@ -226,7 +235,7 @@ extension SPSecureForm {
         _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 if let errors = transaction.errors, errors.count > 0 {
-                    self.notifyFieldsOf(errors: errors)
+                    self.notifyFieldsOfValidation(fields: self.bankAccountFields, errors: errors)
                 } else {
                     self.delegate?.spreedly(secureForm: self, success: transaction)
                 }
