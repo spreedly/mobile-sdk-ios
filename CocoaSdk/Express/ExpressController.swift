@@ -27,6 +27,31 @@ class ExpressController: UIViewController {
 
         hideDisallowedMethods()
         collectionViewDidLoad()
+        styleNavButtons()
+    }
+
+    func styleNavButtons() {
+        styleNavButton(button: addCard)
+
+        if context.allowCard && context.allowBankAccount {
+            // if both buttons appear on the screen, add a border between them
+            addCard.layer.addBorder(edge: .bottom, color: .systemGray2, thickness: 1)
+        }
+
+        styleNavButton(button: addBankAccount)
+    }
+
+    func styleNavButton(button: UIButton) {
+        button.contentHorizontalAlignment = .leading
+
+        let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        button.addSubview(imageView)
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+            imageView.trailingAnchor.constraint(equalTo: button.trailingAnchor)
+        ])
     }
 
     func hideDisallowedMethods() {
