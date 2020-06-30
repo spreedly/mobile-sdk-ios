@@ -39,6 +39,9 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Select Payment Method"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iz3-fY-hod">
                                         <rect key="frame" x="0.0" y="26.5" width="394" height="156"/>
@@ -59,6 +62,9 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Add Payment Method"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBZ-Ic-N66">
                                         <rect key="frame" x="0.0" y="209" width="394" height="40"/>
@@ -66,6 +72,9 @@
                                             <constraint firstAttribute="height" constant="40" id="f1c-G1-COb"/>
                                         </constraints>
                                         <state key="normal" title="Credit or Debit Card"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Credit or Debit Card"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="Q1G-fJ-uL3" kind="show" id="A8S-NU-tvw"/>
                                         </connections>
@@ -76,6 +85,9 @@
                                             <constraint firstAttribute="height" constant="40" id="RtR-tD-UNm"/>
                                         </constraints>
                                         <state key="normal" title="Bank Account"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Bank Account"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="4d7-45-AKY" kind="show" id="laa-yj-IW3"/>
                                         </connections>
@@ -96,7 +108,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lgx-Z7-Q2z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU"/>
+                    <navigationItem key="navigationItem" title="Payment Selection" id="tWb-FJ-qsU">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Payment Selection"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="addBankAccount" destination="dpj-jK-Sm3" id="BK1-ew-eOc"/>
                         <outlet property="addCard" destination="CBZ-Ic-N66" id="1bf-Us-yzw"/>
@@ -125,14 +141,20 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account holder name"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Accout number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
                                         <rect key="frame" x="12" y="48" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="rK9-bi-llP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account number"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
                                         <rect key="frame" x="12" y="88" width="390" height="40"/>
@@ -141,6 +163,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Routing number"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-Qj-yaf">
                                         <rect key="frame" x="12" y="128" width="390" height="30"/>
@@ -150,6 +175,9 @@
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Account type"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <constraints>
@@ -162,6 +190,9 @@
                                             <segment title="Checking"/>
                                             <segment title="Savings"/>
                                         </segments>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKeys" value="Checking,Savings"/>
+                                        </userDefinedRuntimeAttributes>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Sw3-sd-M2w">
                                         <rect key="frame" x="12" y="189" width="390" height="30"/>
@@ -171,6 +202,9 @@
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Account holder type"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <constraints>
@@ -183,6 +217,9 @@
                                             <segment title="Personal"/>
                                             <segment title="Business"/>
                                         </segments>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKeys" value="Personal,Business"/>
+                                        </userDefinedRuntimeAttributes>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBS-eO-7bu" userLabel="Spacer 20">
                                         <rect key="frame" x="12" y="250" width="390" height="20"/>
@@ -213,6 +250,7 @@
                                             <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
                                                 <size key="value" width="0.0" height="1"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Pay Now"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="createBankAccountPaymentMethodWithSender:" destination="Xbx-bk-ami" eventType="primaryActionTriggered" id="Qhv-pG-7wr"/>
@@ -244,7 +282,11 @@
                             <outlet property="fullName" destination="Aef-TA-RK3" id="ata-j4-FYu"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Bank Payment" id="Z6g-Oe-FCG"/>
+                    <navigationItem key="navigationItem" title="Bank Payment" id="Z6g-Oe-FCG">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Bank Payment"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="form" destination="Xbx-bk-ami" id="0tf-ZV-bFU"/>
                         <outlet property="stackView" destination="ied-2e-A3f" id="64I-PQ-bv0"/>
@@ -272,6 +314,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Cardholder name"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Cardholder name"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-ce-b7P" customClass="SPCreditCardNumberTextField" customModule="CocoaSdk" customModuleProvider="target">
                                         <rect key="frame" x="12" y="48" width="390" height="40"/>
@@ -280,6 +326,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Card number"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Card number"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
                                         <rect key="frame" x="12" y="88" width="390" height="40"/>
@@ -288,6 +338,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Security code"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Security code"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXg-7O-dSn" customClass="ExpirationPickerField" customModule="CocoaSdk" customModuleProvider="target">
                                         <rect key="frame" x="12" y="128" width="390" height="40"/>
@@ -296,6 +350,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="MM/YYYY"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="MM/YYYY"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="pickerTriggered:" destination="Q1G-fJ-uL3" eventType="primaryActionTriggered" id="P2N-gA-yeC"/>
                                         </connections>
@@ -329,6 +387,7 @@
                                             <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
                                                 <size key="value" width="0.0" height="1"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Pay Now"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="createCreditCardPaymentMethodWithSender:" destination="hg5-AU-gKT" eventType="primaryActionTriggered" id="fBW-ru-iB9"/>
@@ -360,7 +419,11 @@
                             <outlet property="fullName" destination="gce-E2-zr7" id="cIP-IY-3jw"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Card Payment" id="U5G-Iv-ke6"/>
+                    <navigationItem key="navigationItem" title="Card Payment" id="U5G-Iv-ke6">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Card Payment"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="expirationDate" destination="PXg-7O-dSn" id="IRA-ft-8O0"/>
                         <outlet property="form" destination="hg5-AU-gKT" id="agN-uq-7bw"/>
