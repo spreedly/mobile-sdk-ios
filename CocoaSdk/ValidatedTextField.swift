@@ -37,8 +37,10 @@ public class ValidatedTextField: UITextField {
     private func addStatusIcon() {
         addSubview(statusIcon)
         statusIcon.translatesAutoresizingMaskIntoConstraints = false
-        statusIcon.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        statusIcon.trailingAnchor.anchorWithOffset(to: trailingAnchor).constraint(equalToConstant: 7).isActive = true
+        NSLayoutConstraint.activate([
+            statusIcon.centerYAnchor.constraint(equalTo: centerYAnchor),
+            statusIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7)
+        ])
     }
 
     public private(set) var validationState: ValidationState = .none
