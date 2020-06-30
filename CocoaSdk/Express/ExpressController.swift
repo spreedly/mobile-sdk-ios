@@ -16,7 +16,7 @@ class ExpressController: UIViewController {
 
     var context = ExpressContext()
     var items: [PaymentMethodItem]? {
-        context.getPaymentMethods()
+        context.paymentMethods
     }
     var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)? {
         context.didSelectPaymentMethod
