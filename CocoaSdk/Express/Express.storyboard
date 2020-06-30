@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dRb-mz-Dv5">
-                                <rect key="frame" x="10" y="96" width="394" height="269"/>
+                                <rect key="frame" x="10" y="96" width="394" height="289"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4n-Sb-jdo" userLabel="Payment Methods">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="26.5"/>
@@ -61,14 +61,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBZ-Ic-N66">
-                                        <rect key="frame" x="0.0" y="209" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="209" width="394" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="f1c-G1-COb"/>
+                                        </constraints>
                                         <state key="normal" title="Credit or Debit Card"/>
                                         <connections>
                                             <segue destination="Q1G-fJ-uL3" kind="show" id="A8S-NU-tvw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpj-jK-Sm3">
-                                        <rect key="frame" x="0.0" y="239" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="249" width="394" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="RtR-tD-UNm"/>
+                                        </constraints>
                                         <state key="normal" title="Bank Account"/>
                                         <connections>
                                             <segue destination="4d7-45-AKY" kind="show" id="laa-yj-IW3"/>
