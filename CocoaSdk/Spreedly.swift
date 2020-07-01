@@ -38,23 +38,23 @@ public class ExpressBuilder: NSObject {
     public func buildViewController() -> UIViewController {
         let bundle = Bundle(for: type(of: self))
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
-        let view: UIViewController
-        let express: ExpressController
+        let initial: UIViewController
+        let express: ExpressViewController
 
         switch presentationStyle {
         case .withinNavigationView:
-            express = storyboard.instantiateInitialViewController()! as ExpressController
-            view = express
+            express = storyboard.instantiateInitialViewController()! as ExpressViewController
+            initial = express
         case .asModal:
             let navController = storyboard.instantiateViewController(
-                    withIdentifier: "NavigationController"
+                    withIdentifier: "Navigation"
             ) as! UINavigationController // swiftlint:disable:this force_cast
-            express = navController.visibleViewController as! ExpressController // swiftlint:disable:this force_cast
-            view = navController
+            express = navController.visibleViewController as! ExpressViewController // swiftlint:disable:this force_cast
+            initial = navController
         }
 
         express.context = buildContext()
-        return view
+        return initial
     }
 
     func buildContext() -> ExpressContext {

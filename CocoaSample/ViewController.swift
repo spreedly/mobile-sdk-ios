@@ -26,8 +26,8 @@ class ViewController: UIViewController {
             print("Payment method selected: \(item.shortDescription)")
             self.navigationController?.popToViewController(self, animated: true)
         }
-        let view = builder.buildViewController()
-        navigationController?.show(view, sender: self)
+        let viewController = builder.buildViewController()
+        navigationController?.show(viewController, sender: self)
     }
 
     @IBAction func expressWithPresent(_ sender: Any) {
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             self.dismiss(animated: true)
         }
         builder.presentationStyle = .asModal
-        let view = builder.buildViewController()
-        present(view, animated: true)
+        let viewController = builder.buildViewController()
+        present(viewController, animated: true)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import CoreSdk
 import PassKit
 
-class ExpressController: UIViewController {
+class ExpressViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addCard: UIButton!
     @IBOutlet weak var addBankAccount: UIButton!
@@ -85,7 +85,7 @@ class ExpressController: UIViewController {
     }
 }
 
-extension ExpressController: UICollectionViewDataSource {
+extension ExpressViewController: UICollectionViewDataSource {
     func collectionViewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -113,7 +113,7 @@ extension ExpressController: UICollectionViewDataSource {
     }
 }
 
-extension ExpressController: UICollectionViewDelegate {
+extension ExpressViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = items?[indexPath.item] else {
             return
@@ -121,4 +121,3 @@ extension ExpressController: UICollectionViewDelegate {
         didSelectPaymentMethod?(item)
     }
 }
-
