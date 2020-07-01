@@ -2,6 +2,10 @@
 
 This is the Spreedly mobile SDK for iOS.
 
+## Integration
+Be sure to add `CocoaSdk/Localizable.strings` to the *Copy Bundle Resources* section of your app's *Build Phases* 
+so that you get translated strings.
+
 ## Check Status
 
 |  |  |
