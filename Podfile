@@ -11,12 +11,6 @@ target 'CoreSdk' do
   pod 'RxCocoa', '~> 5'
 end
 
-target 'Sample' do
-  use_frameworks!
-  pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
-end
-
 target 'CocoaSdk' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
@@ -44,4 +38,3 @@ target 'SdkIntegrationTests' do
   pod 'RxTest', '~> 5'
   pod 'RxBlocking', '~> 5'
 end
-
