@@ -7,7 +7,7 @@ build_task:
 
 build_sample_task:
   name: 'Build Sdk Sample'
-  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Sample -destination 'name=iPhone 11'
+  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme CocoaSample -destination 'name=iPhone 11'
 
 test_task_template: &TEST
   env:
