@@ -93,6 +93,7 @@
 		F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA9E54CC1E288449091E /* String+Additions.swift */; };
 		F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */; };
 		F076CA3FC00AAC96DEDB95AF /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */; };
+		F076CA42E55BE576578B2C7C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */; };
 		F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */; };
 		F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */; };
 		F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
@@ -281,6 +282,7 @@
 		F076C700B61D855C3AE1D093 /* ObjCTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCTransactionTests.swift; sourceTree = "<group>"; };
 		F076C72ED9EC2828C97959FD /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
+		F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076C8000037AE096B5E0E09 /* CardBrandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 		F076C8101E3C373825B4F415 /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */,
 				F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */,
 				F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */,
+				F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */,
 			);
 			path = Express;
 			sourceTree = "<group>";
@@ -1169,6 +1172,7 @@
 				F076C6B29F5A045DBFD1A290 /* PaymentMethodItem.swift in Sources */,
 				F076C5D9B309F944810DF95B /* ExpirationDateProvider.swift in Sources */,
 				F076C281F9866EC140E3E53D /* Localizable.swift in Sources */,
+				F076CA42E55BE576578B2C7C /* SpinnerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

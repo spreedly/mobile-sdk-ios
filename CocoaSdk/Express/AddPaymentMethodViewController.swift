@@ -12,6 +12,8 @@ import CoreSdk
 class AddPaymentMethodViewController: UIViewController {
     @IBOutlet weak var form: SPSecureForm!
 
+    lazy var spinnerViewController = SpinnerViewController()
+
     var didAddPaymentMethod: ((PaymentMethodResultBase) -> Void)?
 
     override func viewDidLoad() {
@@ -34,5 +36,13 @@ extension AddPaymentMethodViewController: SPSecureFormDelegate {
             return
         }
         self.didAddPaymentMethod?(paymentMethod)
+    }
+
+    public func willCallSpreedly(secureForm: SPSecureForm) {
+        spinnerViewController.overlaySpinner(on: self)
+    }
+
+    public func didCallSpreedly(secureForm: SPSecureForm) {
+        spinnerViewController.removeSpinner()
     }
 }
