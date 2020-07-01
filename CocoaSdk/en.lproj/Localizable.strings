@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  SpreedlySdk
+
+  Created by Eli Thompson on 6/30/20.
+  
+*/
+
+// Express Controller
+"Payment Selection" = "Payment Selection"; // express controller title
+"Select Payment Method" = "Select Payment Method"; // express controller header
+"Add Payment Method" = "Add Payment Method"; // express controller header
+"Credit or Debit Card" = "Credit or Debit Card"; // button title
+"Bank Account" = "Bank Account"; // button title
+
+// Add Payment Method Shared
+"Pay Now" = "Pay Now"; // add payment method button title
+
+// Add Card Controller
+"Card Payment" = "Card Payment"; // add card navigation title
+"Cardholder name" = "Cardholder name"; // placeholder text
+"Card number" = "Card number"; // placeholder text
+"Security code" = "Security code"; // placeholder text
+"MM/YYYY" = "MM/YYYY"; // placeholder text
+
+// Add Bank Controller
+"Bank Payment" = "Bank Payment"; // add bank navigation title
+"Account holder name" = "Account holder name"; // placeholder
+"Account number" = "Account number"; // placeholder
+"Routing number" = "Routing number"; // placeholder
+"Account type" = "Account type"; // label
+"Checking" = "Checking"; // segment option
+"Savings" = "Savings"; // segment option
+"Account holder type" = "Account holder type"; // label
+"Personal" = "Personal"; // segment option
+"Business" = "Business"; // segment option
