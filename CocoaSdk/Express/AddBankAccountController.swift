@@ -8,7 +8,7 @@
 import UIKit
 import CoreSdk
 
-class AddBankAccountController: AddPaymentMethodController {
+class AddBankAccountController: AddPaymentMethodViewController {
     @IBOutlet weak var stackView: UIStackView!
 
     override func viewDidLoad() {
