@@ -11,8 +11,9 @@ class SpinnerViewController: UIViewController {
         return view
     }()
 
-    override func loadView() {
-        view = UIView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.7)
 
         spinner.translatesAutoresizingMaskIntoConstraints = false
