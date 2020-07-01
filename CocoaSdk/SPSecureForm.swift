@@ -10,6 +10,10 @@ import RxSwift
 public protocol SPSecureFormDelegate {
     // TODO: make these methods optionally implementable
     func spreedly<TResult>(secureForm form: SPSecureForm, success: Transaction<TResult>) where TResult: PaymentMethodResultBase
+
+    func willCallSpreedly(secureForm: SPSecureForm)
+
+    func didCallSpreedly(secureForm: SPSecureForm)
 }
 
 public enum SPSecureClientError: Error {
@@ -180,6 +184,8 @@ public class SPSecureForm: UIView {
 // MARK: - Creating cards
 extension SPSecureForm {
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
+        delegate?.willCallSpreedly(secureForm: self)
+
         clearValidationFor(creditCardFields)
 
         let client = getClientOrDieTrying()
@@ -191,6 +197,7 @@ extension SPSecureForm {
 
         _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
+                self.delegate?.didCallSpreedly(secureForm: self)
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOfValidation(fields: self.creditCardFields, errors: errors)
                 } else {
@@ -223,6 +230,8 @@ extension SPSecureForm {
 // MARK: - Creating bank accounts
 extension SPSecureForm {
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
+        delegate?.willCallSpreedly(secureForm: self)
+
         clearValidationFor(bankAccountFields)
 
         let client = getClientOrDieTrying()
@@ -234,6 +243,7 @@ extension SPSecureForm {
 
         _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
+                self.delegate?.didCallSpreedly(secureForm: self)
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOfValidation(fields: self.bankAccountFields, errors: errors)
                 } else {
