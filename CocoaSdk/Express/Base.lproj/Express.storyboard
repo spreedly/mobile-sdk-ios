@@ -299,7 +299,7 @@
         <!--Add Card-->
         <scene sceneID="6Md-2p-DKp">
             <objects>
-                <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardViewController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SPSecureForm" customModule="CocoaSdk" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +425,7 @@
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
-                        <outlet property="expirationDate" destination="PXg-7O-dSn" id="IRA-ft-8O0"/>
+                        <outlet property="expirationDatePicker" destination="PXg-7O-dSn" id="IRA-ft-8O0"/>
                         <outlet property="form" destination="hg5-AU-gKT" id="agN-uq-7bw"/>
                         <outlet property="stackView" destination="7nF-kv-Pdn" id="ufQ-pS-0k3"/>
                     </connections>

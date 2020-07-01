@@ -66,7 +66,7 @@ class ExpressViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
-        if let viewController = segue.destination as? AddPaymentMethodController {
+        if let viewController = segue.destination as? AddPaymentMethodViewController {
             viewController.didAddPaymentMethod = onPaymentMethodAdded
             return
         }

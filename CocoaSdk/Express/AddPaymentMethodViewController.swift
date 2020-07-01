@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreSdk
 
-class AddPaymentMethodController: UIViewController {
+class AddPaymentMethodViewController: UIViewController {
     @IBOutlet weak var form: SPSecureForm!
 
     var didAddPaymentMethod: ((PaymentMethodResultBase) -> Void)?
@@ -25,7 +25,7 @@ class AddPaymentMethodController: UIViewController {
     }
 }
 
-extension AddPaymentMethodController: SPSecureFormDelegate {
+extension AddPaymentMethodViewController: SPSecureFormDelegate {
     func spreedly<TResult>(
             secureForm form: SPSecureForm,
             success transaction: Transaction<TResult>
