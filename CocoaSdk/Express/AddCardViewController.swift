@@ -17,9 +17,9 @@ class AddCardViewController: AddPaymentMethodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        stackView.addBackground(color: .systemBackground)
+        stackView.addBackground(color: .tertiarySystemBackground)
         stackView.subviews.filter { $0 is UITextField }.dropFirst().forEach { view in
-            view.layer.addBorder(edge: .top, color: .systemGray2, thickness: 1)
+            view.layer.addBorder(edge: .top, color: .separator, thickness: 1)
         }
     }
 }
