@@ -22,7 +22,7 @@ class PaymentMethodCell: UICollectionViewCell {
 
     var container: UIView = {
         let container = UIView(frame: .zero)
-        container.backgroundColor = .white
+        container.backgroundColor = .tertiarySystemBackground
         container.layer.cornerRadius = 15
         return container
     }()

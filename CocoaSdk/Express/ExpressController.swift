@@ -35,7 +35,7 @@ class ExpressController: UIViewController {
 
         if context.allowCard && context.allowBankAccount {
             // if both buttons appear on the screen, add a border between them
-            addCard.layer.addBorder(edge: .bottom, color: .systemGray2, thickness: 1)
+            addCard.layer.addBorder(edge: .bottom, color: .separator, thickness: 1)
         }
 
         styleNavButton(button: addBankAccount)
