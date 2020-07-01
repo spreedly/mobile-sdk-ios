@@ -6,12 +6,12 @@ import Foundation
 import UIKit
 import CoreSdk
 
-class AddCardController: AddPaymentMethodController {
-    @IBOutlet weak var expirationDate: ExpirationPickerField!
+class AddCardViewController: AddPaymentMethodViewController {
+    @IBOutlet weak var expirationDatePicker: ExpirationPickerField!
     @IBOutlet weak var stackView: UIStackView!
 
     @IBAction func pickerTriggered(_ sender: Any) {
-        expirationDate?.showPicker()
+        expirationDatePicker?.showPicker()
     }
 
     override func viewDidLoad() {

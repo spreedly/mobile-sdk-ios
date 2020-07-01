@@ -10,7 +10,7 @@
         <!--Navigation Controller-->
         <scene sceneID="B5q-08-JsM">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" id="cZt-VL-gFr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation" id="cZt-VL-gFr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PP8-xJ-QpB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-649" y="127"/>
         </scene>
-        <!--ExpressController-->
+        <!--ExpressViewController-->
         <scene sceneID="wAw-Hf-ioB">
             <objects>
-                <viewController title="ExpressController" id="p0P-8y-uz6" customClass="ExpressController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ExpressViewController" id="p0P-8y-uz6" customClass="ExpressViewController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocx-fO-Vzh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +299,7 @@
         <!--Add Card-->
         <scene sceneID="6Md-2p-DKp">
             <objects>
-                <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardViewController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SPSecureForm" customModule="CocoaSdk" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +425,7 @@
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
-                        <outlet property="expirationDate" destination="PXg-7O-dSn" id="IRA-ft-8O0"/>
+                        <outlet property="expirationDatePicker" destination="PXg-7O-dSn" id="IRA-ft-8O0"/>
                         <outlet property="form" destination="hg5-AU-gKT" id="agN-uq-7bw"/>
                         <outlet property="stackView" destination="7nF-kv-Pdn" id="ufQ-pS-0k3"/>
                     </connections>
