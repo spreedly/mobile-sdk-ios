@@ -315,7 +315,6 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Cardholder name"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Cardholder name"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -327,7 +326,6 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Card number"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Card number"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -339,7 +337,6 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Security code"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Security code"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -351,7 +348,6 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="MM/YYYY"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="MM/YYYY"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>

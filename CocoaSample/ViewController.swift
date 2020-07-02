@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreSdk
 import CocoaSdk
 
 class ViewController: UIViewController {
@@ -40,7 +41,21 @@ class ViewController: UIViewController {
             print("Payment method selected: \(item.shortDescription)")
             self.dismiss(animated: true)
         }
+        builder.defaultCreditCardInfo = {
+            let info = CreditCardInfo()
+            info.fullName = "Full Name"
+            return info
+        }()
+        builder.defaultBankAccountInfo = {
+            let info = BankAccountInfo()
+            info.firstName = "Firstname"
+            info.lastName = "Lastname"
+            info.bankAccountHolderType = .business
+            info.bankAccountType = .savings
+            return info
+        }()
         builder.presentationStyle = .asModal
+
         let viewController = builder.buildViewController()
         present(viewController, animated: true)
     }

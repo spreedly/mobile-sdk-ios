@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import PassKit
+import CoreSdk
 
 @objc(SPRSpreedly)
 public class Spreedly: NSObject {
@@ -32,6 +33,22 @@ public class ExpressBuilder: NSObject {
     @objc public var allowApplePay = true
     @objc public var paymentMethods: [PaymentMethodItem]?
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+
+    /// Set this to provide a full name on the payment method creation forms and to provide
+    /// name, company, email, address, shipping address, and metadata information to Spreedly
+    /// when a payment method is created. Values in this property will be used when creating a credit card
+    /// or bank account payment method.
+    @objc public var defaultPaymentMethodInfo: PaymentMethodRequestBase?
+
+    /// Set this to provide a full name on the form and to provide
+    /// name, company, email, address, shipping address, and metadata information to Spreedly when the payment method
+    /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
+    @objc public var defaultCreditCardInfo: CreditCardInfo?
+
+    /// Set this to provide a full name, bank account type, and bank account holder type on the form and to provide
+    /// name, company, email, address, shipping address, and metadata information to Spreedly when the payment method
+    /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
+    @objc public var defaultBankAccountInfo: BankAccountInfo?
 
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
 
@@ -64,6 +81,9 @@ public class ExpressBuilder: NSObject {
         context.allowApplePay = allowApplePay
         context.paymentMethods = getPaymentMethods()
         context.didSelectPaymentMethod = didSelectPaymentMethod
+        context.paymentMethodDefaults = defaultPaymentMethodInfo
+        context.creditCardDefaults = CreditCardInfo(fromCard: defaultCreditCardInfo)
+        context.bankAccountDefaults = BankAccountInfo(fromBankAccount: defaultBankAccountInfo)
         return context
     }
 
@@ -83,4 +103,27 @@ public class ExpressContext: NSObject {
     @objc public var allowBankAccount = false
     @objc public var allowApplePay = true
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+    @objc public var paymentMethodDefaults: PaymentMethodRequestBase?
+    @objc public var creditCardDefaults: CreditCardInfo?
+    @objc public var bankAccountDefaults: BankAccountInfo?
+
+    private func fullName(from info: PaymentMethodRequestBase?) -> String? {
+        guard let first = info?.firstName,
+              let last = info?.lastName else {
+            return nil
+        }
+        return "\(first) \(last)"
+    }
+
+    @objc public var fullNamePaymentMethod: String? {
+        paymentMethodDefaults?.fullName ?? fullName(from: paymentMethodDefaults)
+    }
+
+    @objc public var fullNameCreditCard: String? {
+        creditCardDefaults?.fullName ?? fullName(from: creditCardDefaults) ?? fullNamePaymentMethod
+    }
+
+    @objc public var fullNameBankAccount: String? {
+        bankAccountDefaults?.fullName ?? fullName(from: bankAccountDefaults) ?? fullNamePaymentMethod
+    }
 }

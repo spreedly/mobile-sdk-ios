@@ -69,7 +69,7 @@ class CreditCardInfoTests: XCTestCase {
         source.address.address1 = "123 Fake St"
         source.shippingAddress.address1 = "321 Wall St"
 
-        let sink = CreditCardInfo.init(from: source)
+        let sink = CreditCardInfo(fromCard: source)
 
         XCTAssertEqual(sink.fullName, source.fullName)
         XCTAssertEqual(sink.firstName, source.firstName)

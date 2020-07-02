@@ -70,6 +70,7 @@ public class SPSecureForm: UIView {
 
     public var creditCardDefaults: CreditCardInfo?
     public var bankAccountDefaults: BankAccountInfo?
+    public var paymentMethodDefaults: PaymentMethodRequestBase?
 
     // Shared fields
     @IBOutlet public weak var fullName: ValidatedTextField?
@@ -188,13 +189,12 @@ extension SPSecureForm {
 
         clearValidationFor(creditCardFields)
 
-        let client = getClientOrDieTrying()
-
-        let info = CreditCardInfo(from: creditCardDefaults)
+        let info = creditCardDefaults ?? CreditCardInfo(fromInfo: paymentMethodDefaults)
         maybeSetCardFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
 
+        let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 self.delegate?.didCallSpreedly(secureForm: self)
@@ -234,13 +234,12 @@ extension SPSecureForm {
 
         clearValidationFor(bankAccountFields)
 
-        let client = getClientOrDieTrying()
-
-        let info = BankAccountInfo(from: bankAccountDefaults)
+        let info = bankAccountDefaults ?? BankAccountInfo(fromInfo: paymentMethodDefaults)
         maybeSetBankAccountFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
 
+        let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 self.delegate?.didCallSpreedly(secureForm: self)
@@ -253,29 +252,49 @@ extension SPSecureForm {
         })
     }
 
-    private var selectedHolderType: BankAccountHolderType? {
-        guard let index = bankAccountHolderType?.selectedSegmentIndex else {
-            return nil
-        }
+    public var selectedHolderType: BankAccountHolderType? {
+        get {
+            guard let index = bankAccountHolderType?.selectedSegmentIndex else {
+                return nil
+            }
 
-        switch index {
-        case 0:
-            return .personal
-        default:
-            return .business
+            switch index {
+            case 0:
+                return .personal
+            default:
+                return .business
+            }
+        }
+        set {
+            switch newValue ?? .unknown {
+            case .personal, .unknown:
+                bankAccountHolderType?.selectedSegmentIndex = 0
+            case .business:
+                bankAccountHolderType?.selectedSegmentIndex = 1
+            }
         }
     }
 
-    private var selectedAccountType: BankAccountType? {
-        guard let index = bankAccountType?.selectedSegmentIndex else {
-            return nil
-        }
+    public var selectedAccountType: BankAccountType? {
+        get {
+            guard let index = bankAccountType?.selectedSegmentIndex else {
+                return nil
+            }
 
-        switch index {
-        case 0:
-            return .checking
-        default:
-            return .savings
+            switch index {
+            case 0:
+                return .checking
+            default:
+                return .savings
+            }
+        }
+        set {
+            switch newValue ?? .unknown {
+            case .checking, .unknown:
+                bankAccountType?.selectedSegmentIndex = 0
+            case .savings:
+                bankAccountType?.selectedSegmentIndex = 1
+            }
         }
     }
 
