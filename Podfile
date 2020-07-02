@@ -5,13 +5,13 @@ platform :ios, '9.0'
 
 pod 'SwiftLint'
 
-target 'CoreSdk' do
+target 'Spreedly' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
 end
 
-target 'CocoaSdk' do
+target 'SpreedlyCocoa' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
@@ -23,7 +23,7 @@ target 'CocoaSample' do
   pod 'RxCocoa', '~> 5'
 end
 
-target 'SdkTests' do
+target 'UnitTests' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
@@ -31,7 +31,7 @@ target 'SdkTests' do
   pod 'RxBlocking', '~> 5'
 end
 
-target 'SdkIntegrationTests' do
+target 'IntegrationTests' do
   use_frameworks!
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'

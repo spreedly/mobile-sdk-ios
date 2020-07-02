@@ -3,24 +3,24 @@
 This is the Spreedly mobile SDK for iOS.
 
 ## Integration
-Be sure to add `CocoaSdk/Localizable.strings` to the *Copy Bundle Resources* section of your app's *Build Phases* 
+Be sure to add `Spreedly/Localizable.strings` to the *Copy Bundle Resources* section of your app's *Build Phases* 
 so that you get translated strings.
 
 ## Check Status
 
 |  |  |
 | -----:| --- | 
-Core Sdk Build | ![Build](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Build%20Libraries&branch=master)
-Core Sdk Tests | ![Tests](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Run%20Tests&branch=master)
+Spreedly Build | ![Build](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Build%20Libraries&branch=master)
+Spreedly Tests | ![Tests](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Run%20Tests&branch=master)
 Sample App Build | ![Sample](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Build%20Sdk%20Sample&branch=master)
 Lint | ![Lint](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=Lint%20check%20sources&branch=master)
 
 ## Targets
 
-* CoreSdk - The core library. Includes the Spreedly client and all APIs necessary for a custom integration.
-* CocoaSdk - UI specific library. Includes custom controls and the Express iOS controllers.
-* SdkTests - Unit tests for CoreSdk and CocoaSdk.
-* SdkIntegrationTests - Integration tests making API calls to Spreedly.
+* Spreedly - The core library. Includes the Spreedly client and all APIs necessary for a custom integration.
+* SpreedlyCocoa - UI specific library. Includes custom controls and the Express iOS controllers.
+* UnitTests - Unit tests for Spreedly and SpreedlyCocoa.
+* IntegrationTests - Integration tests making API calls to Spreedly.
 * CocoaSample - The sample app demonstrating the custom controls and Express features.
 
 ## Cirrus CI

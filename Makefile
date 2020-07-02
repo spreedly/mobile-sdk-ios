@@ -1,10 +1,10 @@
 .PHONY: test coverage bundle
 
 test:
-	xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme CoreSdk -destination 'name=iPhone 11' -enableCodeCoverage YES
+	xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Spreedly -destination 'name=iPhone 11' -enableCodeCoverage YES
 
 coverage: bundle test
-	bundle exec slather coverage --html --scheme CoreSdk --workspace SpreedlySdk.xcworkspace --output-directory slather-html SpreedlySdk.xcodeproj
+	bundle exec slather coverage --html --scheme Spreedly --workspace SpreedlySdk.xcworkspace --output-directory slather-html SpreedlySdk.xcodeproj
 
 # Install dependencies for test coverage
 bundle:
