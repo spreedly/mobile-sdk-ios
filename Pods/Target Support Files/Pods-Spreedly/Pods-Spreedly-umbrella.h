@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CoreSdkVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CoreSdkVersionString[];
+FOUNDATION_EXPORT double Pods_SpreedlyVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_SpreedlyVersionString[];
 

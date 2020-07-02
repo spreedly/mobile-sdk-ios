@@ -1,6 +1,0 @@
-framework module Pods_CoreSdk {
-  umbrella header "Pods-CoreSdk-umbrella.h"
-
-  export *
-  module * { export * }
-}
