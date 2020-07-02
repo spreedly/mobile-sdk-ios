@@ -70,8 +70,8 @@ public class ExpressBuilder: NSObject {
         context.paymentMethods = getPaymentMethods()
         context.didSelectPaymentMethod = didSelectPaymentMethod
         context.paymentMethodDefaults = defaultPaymentMethodInfo
-        context.creditCardDefaults = defaultCreditCardInfo
-        context.bankAccountDefaults = defaultBankAccountInfo
+        context.creditCardDefaults = CreditCardInfo(fromCard: defaultCreditCardInfo)
+        context.bankAccountDefaults = BankAccountInfo(fromBankAccount: defaultBankAccountInfo)
         return context
     }
 
@@ -95,7 +95,7 @@ public class ExpressContext: NSObject {
     @objc public var creditCardDefaults: CreditCardInfo?
     @objc public var bankAccountDefaults: BankAccountInfo?
 
-    func fullName(from info: PaymentMethodRequestBase?) -> String? {
+    private func fullName(from info: PaymentMethodRequestBase?) -> String? {
         guard let first = info?.firstName,
               let last = info?.lastName else {
             return nil
@@ -103,11 +103,15 @@ public class ExpressContext: NSObject {
         return "\(first) \(last)"
     }
 
+    @objc public var fullNamePaymentMethod: String? {
+        paymentMethodDefaults?.fullName ?? fullName(from: paymentMethodDefaults)
+    }
+
     @objc public var fullNameCreditCard: String? {
-        creditCardDefaults?.fullName ?? fullName(from: creditCardDefaults)
+        creditCardDefaults?.fullName ?? fullName(from: creditCardDefaults) ?? fullNamePaymentMethod
     }
 
     @objc public var fullNameBankAccount: String? {
-        bankAccountDefaults?.fullName ?? fullName(from: bankAccountDefaults)
+        bankAccountDefaults?.fullName ?? fullName(from: bankAccountDefaults) ?? fullNamePaymentMethod
     }
 }
