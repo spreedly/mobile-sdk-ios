@@ -161,10 +161,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F69036F4DFF0C5632656DB1 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		122C5B24DD663A4EDE043002 /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E4A588229F2C8EE51DB5D7B /* Pods-SdkIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2B768D18AC34FBC5B2056860 /* Pods-CocoaSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSdk.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSdk/Pods-CocoaSdk.debug.xcconfig"; sourceTree = "<group>"; };
 		32609A19B5B1FF30B778304D /* Pods-IntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C0553D724ABF6DF00F31DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Express.storyboard; sourceTree = "<group>"; };
 		3C0553E224ABFDFD00F31DA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -181,7 +178,6 @@
 		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
 		3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextFieldTests.swift; sourceTree = "<group>"; };
-		3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		419B256B7052CB16E3131835 /* Pods-SpreedlyCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.release.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.release.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
@@ -215,23 +211,15 @@
 		442A2EA4177990821F65EA06 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreedlyCocoa.h; sourceTree = "<group>"; };
 		442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImpl.swift; sourceTree = "<group>"; };
-		55AD13C8198E0010B13EDC69 /* Pods-SdkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.release.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.release.xcconfig"; sourceTree = "<group>"; };
 		5AA2BAE78AD453E4457D01A1 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
-		6C0114BB5B145CC375A03E6E /* Pods-CoreSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreSdk.release.xcconfig"; path = "Target Support Files/Pods-CoreSdk/Pods-CoreSdk.release.xcconfig"; sourceTree = "<group>"; };
-		6D8D3B1AF07CE61C9FDE34F0 /* Pods-CocoaSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSdk.release.xcconfig"; path = "Target Support Files/Pods-CocoaSdk/Pods-CocoaSdk.release.xcconfig"; sourceTree = "<group>"; };
 		762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.debug.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.debug.xcconfig"; sourceTree = "<group>"; };
-		7C08A3DA3FB9E7E0B7A9E899 /* Pods-CoreSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreSdk.debug.xcconfig"; path = "Target Support Files/Pods-CoreSdk/Pods-CoreSdk.debug.xcconfig"; sourceTree = "<group>"; };
-		84CE641520B34BDB7CB4CE4C /* Pods-Sdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sdk.debug.xcconfig"; path = "Target Support Files/Pods-Sdk/Pods-Sdk.debug.xcconfig"; sourceTree = "<group>"; };
 		894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF1D2BFCA64275E2BAF79F6 /* Pods-Spreedly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spreedly.debug.xcconfig"; path = "Target Support Files/Pods-Spreedly/Pods-Spreedly.debug.xcconfig"; sourceTree = "<group>"; };
-		D8FE084C040118C3CA93C21E /* Pods-Sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sdk.release.xcconfig"; path = "Target Support Files/Pods-Sdk/Pods-Sdk.release.xcconfig"; sourceTree = "<group>"; };
 		E0D70D97D7634E9195905812 /* Pods-CocoaSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSample.release.xcconfig"; path = "Target Support Files/Pods-CocoaSample/Pods-CocoaSample.release.xcconfig"; sourceTree = "<group>"; };
-		E95F36D0E701A410AF69F972 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
-		EE3BD7D4482E90A94A2E77CF /* Pods-SdkIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SdkIntegrationTests/Pods-SdkIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		F076C01B32752F1BF35F1FDA /* CardRanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardRanges.swift; sourceTree = "<group>"; };
 		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodItem.swift; sourceTree = "<group>"; };
@@ -475,20 +463,8 @@
 		8FAC8BD86AB9E8CAD63A5EF0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				84CE641520B34BDB7CB4CE4C /* Pods-Sdk.debug.xcconfig */,
-				D8FE084C040118C3CA93C21E /* Pods-Sdk.release.xcconfig */,
-				3EF790C2006E9AE28A1B58CD /* Pods-SdkTests.debug.xcconfig */,
-				55AD13C8198E0010B13EDC69 /* Pods-SdkTests.release.xcconfig */,
-				1E4A588229F2C8EE51DB5D7B /* Pods-SdkIntegrationTests.debug.xcconfig */,
-				EE3BD7D4482E90A94A2E77CF /* Pods-SdkIntegrationTests.release.xcconfig */,
-				0F69036F4DFF0C5632656DB1 /* Pods-Sample.debug.xcconfig */,
-				E95F36D0E701A410AF69F972 /* Pods-Sample.release.xcconfig */,
 				F0E51F7017C6B8322253CD08 /* Pods-CocoaSample.debug.xcconfig */,
 				E0D70D97D7634E9195905812 /* Pods-CocoaSample.release.xcconfig */,
-				2B768D18AC34FBC5B2056860 /* Pods-CocoaSdk.debug.xcconfig */,
-				6D8D3B1AF07CE61C9FDE34F0 /* Pods-CocoaSdk.release.xcconfig */,
-				7C08A3DA3FB9E7E0B7A9E899 /* Pods-CoreSdk.debug.xcconfig */,
-				6C0114BB5B145CC375A03E6E /* Pods-CoreSdk.release.xcconfig */,
 				894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */,
 				32609A19B5B1FF30B778304D /* Pods-IntegrationTests.release.xcconfig */,
 				794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */,
