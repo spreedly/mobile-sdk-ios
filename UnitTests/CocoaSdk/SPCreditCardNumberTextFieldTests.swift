@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import CocoaSdk
+@testable import SpreedlyCocoa
 
 class SPCreditCardNumberTextFieldTests: XCTestCase {
     let number19Digits = "4111 1111 1111 1111 111"

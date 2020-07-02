@@ -4,7 +4,7 @@
 
 import Foundation
 import XCTest
-@testable import CocoaSdk
+@testable import SpreedlyCocoa
 
 class StringAdditionsTests: XCTestCase {
     func testOnlyNumbers() {
