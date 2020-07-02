@@ -27,7 +27,7 @@
 		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
 		3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */; };
 		3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */; };
-		442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
 		442A2220D9FAB271C19F4113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A256D65BCB8A22D966F8D /* LaunchScreen.storyboard */; };
 		442A223DF312ED234B929ECF /* Sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2CBF8AF46C83956B7796 /* Sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,7 +38,7 @@
 		442A24BD208E1F48D39262F3 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A276DA1794F23A3DFCC13 /* Results.swift */; };
 		442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2022B280AC093C1962B8 /* BankAccountTests.swift */; };
 		442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CB4AB12299CD8D31516 /* TestExtensions.swift */; };
-		442A25C735D1FD60A87FDD36 /* CocoaSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2F11C1E2D8471A4F0D8A /* CocoaSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		442A25C735D1FD60A87FDD36 /* SpreedlyCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A63301FADA969609EC0 /* ClientTests.swift */; };
 		442A26114E3DD843A2220A8E /* CreditCardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A96557532017197368D /* CreditCardFormViewController.swift */; };
 		442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2D420CB95244D5FBD864 /* Transaction.swift */; };
@@ -53,7 +53,7 @@
 		442A2E09E5707DA5C0EC5A6D /* SPSecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		442A2E7FE53A19BC8DDDBFE5 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* Requests.swift */; };
-		442A2FAC57F6FBC681333736 /* CocoaSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */; };
+		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
 		6F6FBFE2A95E5B4A6EFBD4E3 /* Pods_CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EF6193CBD3FB35CAADF722 /* Pods_CoreSdk.framework */; };
 		A6FEA50F247557FF004B1D9D /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
 		A6FEA510247557FF004B1D9D /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -142,7 +142,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */,
-				442A21648BB1EC0625E9A0BE /* CocoaSdk.framework in Embed Frameworks */,
+				442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,7 +192,7 @@
 		442A21C9FEFB33DBF150C0BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		442A23842C40C21674DFD979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2585881CEB33C09F2B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,7 +212,7 @@
 		442A2E383CD75A0FC593AE72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecacheTests.swift; sourceTree = "<group>"; };
 		442A2EA4177990821F65EA06 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		442A2F11C1E2D8471A4F0D8A /* CocoaSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaSdk.h; sourceTree = "<group>"; };
+		442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreedlyCocoa.h; sourceTree = "<group>"; };
 		442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImpl.swift; sourceTree = "<group>"; };
 		55AD13C8198E0010B13EDC69 /* Pods-SdkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SdkTests.release.xcconfig"; path = "Target Support Files/Pods-SdkTests/Pods-SdkTests.release.xcconfig"; sourceTree = "<group>"; };
 		6C0114BB5B145CC375A03E6E /* Pods-CoreSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreSdk.release.xcconfig"; path = "Target Support Files/Pods-CoreSdk/Pods-CoreSdk.release.xcconfig"; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 			files = (
 				3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */,
 				3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */,
-				442A2FAC57F6FBC681333736 /* CocoaSdk.framework in Frameworks */,
+				442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +353,7 @@
 				442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */,
 				F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */,
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
-				442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */,
+				442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,12 +406,12 @@
 			path = CoreSdk;
 			sourceTree = "<group>";
 		};
-		442A24E87711E3F9A59FB7B9 /* CocoaSdk */ = {
+		442A24E87711E3F9A59FB7B9 /* SpreedlyCocoa */ = {
 			isa = PBXGroup;
 			children = (
 				3C9420EC249C0CA500D2B5E1 /* Express */,
 				442A2832CB4FF8C0D4094949 /* Info.plist */,
-				442A2F11C1E2D8471A4F0D8A /* CocoaSdk.h */,
+				442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */,
 				442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */,
 				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
 				F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */,
@@ -425,7 +425,7 @@
 				3C0553E024ABF8FC00F31DA3 /* Localizable.strings */,
 				F076C0EA0D590AED272261A9 /* Localizable.swift */,
 			);
-			path = CocoaSdk;
+			path = SpreedlyCocoa;
 			sourceTree = "<group>";
 		};
 		442A2676F741069CFE144943 /* Internal */ = {
@@ -460,7 +460,7 @@
 				AC0C8852183151056EC70EB9 /* Frameworks */,
 				F076C1956F58D46CD96B24BB /* IntegrationTests */,
 				442A222574418E0D3C31BD01 /* CocoaSample */,
-				442A24E87711E3F9A59FB7B9 /* CocoaSdk */,
+				442A24E87711E3F9A59FB7B9 /* SpreedlyCocoa */,
 			);
 			sourceTree = "<group>";
 		};
@@ -530,7 +530,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442A25C735D1FD60A87FDD36 /* CocoaSdk.h in Headers */,
+				442A25C735D1FD60A87FDD36 /* SpreedlyCocoa.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,9 +607,9 @@
 			productReference = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */ = {
+		442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 442A28F75727EB0E8ED85EAC /* Build configuration list for PBXNativeTarget "CocoaSdk" */;
+			buildConfigurationList = 442A28F75727EB0E8ED85EAC /* Build configuration list for PBXNativeTarget "SpreedlyCocoa" */;
 			buildPhases = (
 				930AEB6E5556461AB7FB0865 /* [CP] Check Pods Manifest.lock */,
 				442A249123D109C1412F8664 /* Headers */,
@@ -623,9 +623,9 @@
 			dependencies = (
 				A6FEA512247557FF004B1D9D /* PBXTargetDependency */,
 			);
-			name = CocoaSdk;
+			name = SpreedlyCocoa;
 			productName = CocoaSdk;
-			productReference = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */;
+			productReference = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F076CF9042A128DEBCC6BDA2 /* IntegrationTests */ = {
@@ -688,7 +688,7 @@
 				442A245F082E0723AA955F94 /* UnitTests */,
 				F076CF9042A128DEBCC6BDA2 /* IntegrationTests */,
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
-				442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */,
+				442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */,
 			);
 		};
 /* End PBXProject section */
@@ -1030,7 +1030,7 @@
 		};
 		3CFE89D72497F559005E64B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */;
+			target = 442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */;
 			targetProxy = 3CFE89D62497F559005E64B4 /* PBXContainerItemProxy */;
 		};
 		442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */ = {
@@ -1040,7 +1040,7 @@
 		};
 		442A24A88DD17E0AFA320CF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */;
+			target = 442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */;
 			targetProxy = 442A25DEE2FE4712EA1D3FAB /* PBXContainerItemProxy */;
 		};
 		A6FEA512247557FF004B1D9D /* PBXTargetDependency */ = {
@@ -1142,13 +1142,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CocoaSdk/Info.plist;
+				INFOPLIST_FILE = SpreedlyCocoa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.CocoaSdk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.SpreedlyCocoa;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1288,14 +1288,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CocoaSdk/Info.plist;
+				INFOPLIST_FILE = SpreedlyCocoa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.CocoaSdk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.SpreedlyCocoa;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1802,7 +1802,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		442A28F75727EB0E8ED85EAC /* Build configuration list for PBXNativeTarget "CocoaSdk" */ = {
+		442A28F75727EB0E8ED85EAC /* Build configuration list for PBXNativeTarget "SpreedlyCocoa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				442A23BB30FB0DB9AADCC2F7 /* Debug */,

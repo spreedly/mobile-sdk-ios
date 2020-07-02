@@ -2,6 +2,7 @@
 // Created by Eli Thompson on 6/29/20.
 //
 
+import Foundation
 import CoreSdk
 
 @objc(SPRPaymentMethodItem)
