@@ -1,6 +1,6 @@
 //
 //  ClientFactory.swift
-//  CoreSdk
+//  Spreedly
 //
 //  Created by Eli Thompson on 6/10/20.
 //
