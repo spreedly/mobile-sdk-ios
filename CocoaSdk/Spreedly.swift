@@ -34,8 +34,20 @@ public class ExpressBuilder: NSObject {
     @objc public var paymentMethods: [PaymentMethodItem]?
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
 
+    /// Set this to provide a full name on the payment method creation forms and to provide
+    /// name, company, email, address, shipping address, and metadata information to Spreedly
+    /// when a payment method is created. Values in this property will be used when creating a credit card
+    /// or bank account payment method.
     @objc public var defaultPaymentMethodInfo: PaymentMethodRequestBase?
+
+    /// Set this to provide a full name on the form and to provide
+    /// name, company, email, address, shipping address, and metadata information to Spreedly when the payment method
+    /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultCreditCardInfo: CreditCardInfo?
+
+    /// Set this to provide a full name, bank account type, and bank account holder type on the form and to provide
+    /// name, company, email, address, shipping address, and metadata information to Spreedly when the payment method
+    /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultBankAccountInfo: BankAccountInfo?
 
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
