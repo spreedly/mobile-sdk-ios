@@ -6,7 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <CoreSdk/CoreSdk-Swift.h>
+#import <Spreedly/Spreedly-Swift.h>
 #import "IntegrationTests-Swift.h"
 
 @interface CreditCardCompatibilityTests : XCTestCase
