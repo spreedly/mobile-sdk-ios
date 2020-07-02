@@ -87,7 +87,7 @@ class CreditCardTests: XCTestCase {
 extension CreditCardTests {
     // MARK: - Credit card specific asserts
 
-    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodRequestBase, type paymentMethodType: PaymentMethodType) {
+    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodInfo, type paymentMethodType: PaymentMethodType) {
         XCTAssertNotNil(result.token)
         XCTAssertEqual(result.storageState, StorageState.cached)
         XCTAssertEqual(result.test, true)

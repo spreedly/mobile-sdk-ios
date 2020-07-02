@@ -4,7 +4,7 @@ import PassKit
 /// Values are limited to 500 characters and cannot contain compounding data types.
 public typealias Metadata = [String: Any]
 
-public class PaymentMethodRequestBase: NSObject {
+public class PaymentMethodInfo: NSObject {
     @objc public var email: String?
     @objc public var metadata: Metadata?
 
@@ -29,7 +29,7 @@ public class PaymentMethodRequestBase: NSObject {
         self.shippingAddress = Address()
     }
 
-    public init(from info: PaymentMethodRequestBase?) {
+    public init(from info: PaymentMethodInfo?) {
         fullName = info?.fullName
         firstName = info?.firstName
         lastName = info?.lastName
@@ -69,7 +69,7 @@ public class PaymentMethodRequestBase: NSObject {
     }
 }
 
-public class CreditCardInfo: PaymentMethodRequestBase {
+public class CreditCardInfo: PaymentMethodInfo {
     @objc public var number: SpreedlySecureOpaqueString?
     @objc public var verificationValue: SpreedlySecureOpaqueString?
     public var year: Int?
@@ -109,7 +109,7 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
     }
 
-    public init(fromInfo info: PaymentMethodRequestBase?) {
+    public init(fromInfo info: PaymentMethodInfo?) {
         super.init(from: info)
     }
 
@@ -210,7 +210,7 @@ extension CreditCardInfo {
     }
 }
 
-public class BankAccountInfo: PaymentMethodRequestBase {
+public class BankAccountInfo: PaymentMethodInfo {
     @objc public var bankRoutingNumber: String?
     @objc public var bankAccountNumber: SpreedlySecureOpaqueString?
     @objc public var bankAccountType: BankAccountType = .unknown
@@ -249,7 +249,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
     }
 
-    public init(fromInfo info: PaymentMethodRequestBase?) {
+    public init(fromInfo info: PaymentMethodInfo?) {
         super.init(from: info)
     }
 
@@ -290,7 +290,7 @@ public class BankAccountInfo: PaymentMethodRequestBase {
     }
 }
 
-public class ApplePayInfo: PaymentMethodRequestBase {
+public class ApplePayInfo: PaymentMethodInfo {
     let paymentToken: Data
     @objc public var testCardNumber: String?
 
