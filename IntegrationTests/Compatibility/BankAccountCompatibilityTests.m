@@ -7,7 +7,7 @@
 
 #import <XCTest/XCTest.h>
 #import <CoreSdk/CoreSdk-Swift.h>
-#import "SdkIntegrationTests-Swift.h"
+#import "IntegrationTests-Swift.h"
 
 @interface BankAccountCompatibilityTests : XCTestCase
 

@@ -239,7 +239,7 @@
 		F076C72ED9EC2828C97959FD /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
-		F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076C8000037AE096B5E0E09 /* CardBrandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 		F076C8101E3C373825B4F415 /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 		F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 			children = (
 				442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */,
 				442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */,
-				F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */,
+				F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */,
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
 				442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */,
 			);
@@ -458,7 +458,7 @@
 				442A240EC140D34D76A3C73E /* UnitTests */,
 				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
 				AC0C8852183151056EC70EB9 /* Frameworks */,
-				F076C1956F58D46CD96B24BB /* SdkIntegrationTests */,
+				F076C1956F58D46CD96B24BB /* IntegrationTests */,
 				442A222574418E0D3C31BD01 /* CocoaSample */,
 				442A24E87711E3F9A59FB7B9 /* CocoaSdk */,
 			);
@@ -498,7 +498,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F076C1956F58D46CD96B24BB /* SdkIntegrationTests */ = {
+		F076C1956F58D46CD96B24BB /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
 				3CFE89C724913820005E64B4 /* Compatibility */,
@@ -506,7 +506,7 @@
 				F076C9783EA29205F1021D9A /* Internal */,
 				442A21244C58460DB48ED6B3 /* Secrets.swift */,
 			);
-			path = SdkIntegrationTests;
+			path = IntegrationTests;
 			sourceTree = "<group>";
 		};
 		F076C9783EA29205F1021D9A /* Internal */ = {
@@ -628,9 +628,9 @@
 			productReference = 442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F076CF9042A128DEBCC6BDA2 /* SdkIntegrationTests */ = {
+		F076CF9042A128DEBCC6BDA2 /* IntegrationTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F076CB5759897D1A7F8925AC /* Build configuration list for PBXNativeTarget "SdkIntegrationTests" */;
+			buildConfigurationList = F076CB5759897D1A7F8925AC /* Build configuration list for PBXNativeTarget "IntegrationTests" */;
 			buildPhases = (
 				11ACFF8058D8BBEDA3AE150A /* [CP] Check Pods Manifest.lock */,
 				F076CFF997D6ACD474239B76 /* Sources */,
@@ -643,9 +643,9 @@
 			dependencies = (
 				F076C82917A686595CA2F8F2 /* PBXTargetDependency */,
 			);
-			name = SdkIntegrationTests;
+			name = IntegrationTests;
 			productName = SdkIntegrationTests;
-			productReference = F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */;
+			productReference = F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -686,7 +686,7 @@
 			targets = (
 				442A2CD52CC6A2C10B2623E8 /* CoreSdk */,
 				442A245F082E0723AA955F94 /* UnitTests */,
-				F076CF9042A128DEBCC6BDA2 /* SdkIntegrationTests */,
+				F076CF9042A128DEBCC6BDA2 /* IntegrationTests */,
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
 				442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */,
 			);
@@ -1720,13 +1720,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = SdkIntegrationTests/Info.plist;
+				INFOPLIST_FILE = IntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.SdkIntegrationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.IntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1784,12 +1784,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = SdkIntegrationTests/Info.plist;
+				INFOPLIST_FILE = IntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.SdkIntegrationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.IntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1847,7 +1847,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F076CB5759897D1A7F8925AC /* Build configuration list for PBXNativeTarget "SdkIntegrationTests" */ = {
+		F076CB5759897D1A7F8925AC /* Build configuration list for PBXNativeTarget "IntegrationTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F076C73062F1B837C0F1E91D /* Debug */,

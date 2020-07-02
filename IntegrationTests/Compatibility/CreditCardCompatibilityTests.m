@@ -1,44 +1,43 @@
 //
-//  ApplePAyCompatibilityTests.m
+//  CreditCardTests.m
 //  SdkIntegrationTests
 //
-//  Created by Eli Thompson on 6/11/20.
+//  Created by Eli Thompson on 6/10/20.
 //
 
 #import <XCTest/XCTest.h>
 #import <CoreSdk/CoreSdk-Swift.h>
-#import "SdkIntegrationTests-Swift.h"
+#import "IntegrationTests-Swift.h"
 
-@interface ApplePayCompatibilityTests : XCTestCase
+@interface CreditCardCompatibilityTests : XCTestCase
 
 @end
 
-@implementation ApplePayCompatibilityTests
+@implementation CreditCardCompatibilityTests
 
-- (void)testCanCreateApplePay {
-    ApplePayInfo *info = [[ApplePayInfo alloc]
+- (void)testCanCreateCreditCard {
+    CreditCardInfo *info = [[CreditCardInfo alloc]
             initWithFirstName:@"Dolly"
                      lastName:@"Dog"
-             paymentTokenData:SPRHelpers.paymentTokenData
-
+                       number:SPRHelpers.secureTestCardNumber
+            verificationValue:SPRHelpers.secureVerificationValue
+                         year:2030
+                        month:12
     ];
-    info.testCardNumber = SPRHelpers.testCardNumber;
-    info.company = @"LSGD Partners";
+    info.company = @"Growlers LLC";
 
     Address *address = [[Address alloc] init];
     address.address1 = @"123 Fake St";
-    address.address2 = @"Suite #200";
-    address.city = @"Springfield";
-    address.state = @"OR";
-    address.zip = @"97475";
+    address.address2 = @"Suite 9874";
+    address.city = @"Seattle";
+    address.state = @"WA";
+    address.zip = @"98121";
     address.country = @"US";
-    address.phoneNumber = @"541-555-2222";
-    info.address = address;
+    address.phoneNumber = @"206-555-1234";
 
+    info.address = address;
     info.shippingAddress = [[Address alloc] initFrom:address];
     info.shippingAddress.address1 = @"321 Wall St";
-
-    info.email = @"doll@dog.com";
 
     id <SPRClient> client = [SPRHelpers createClient];
     SPRSingleTransaction *transaction = [client createPaymentMethodFrom:info];
@@ -47,18 +46,18 @@
     [transaction subscribeOnSuccess:^(SPRTransaction *t) {
         XCTAssertNotNil(t.token);
 
-        SPRCreditCardResult *result = t.applePay;
+        SPRCreditCardResult *result = t.creditCard;
         XCTAssertNotNil(result.token);
-        XCTAssertEqual(result.paymentMethodType, SPRPaymentMethodTypeApplePay);
+        XCTAssertEqual(result.paymentMethodType, SPRPaymentMethodTypeCreditCard);
         XCTAssertEqual(result.storageState, SPRStorageStateCached);
-        XCTAssertEqualObjects(result.firstName, info.firstName);
-        XCTAssertEqualObjects(result.lastName, info.lastName);
-        XCTAssertEqualObjects(result.company, info.company);
-
+        XCTAssertEqualObjects(result.firstName, @"Dolly");
+        XCTAssertEqualObjects(result.lastName, @"Dog");
+        XCTAssertEqualObjects(result.company, @"Growlers LLC");
+        
         XCTAssertEqualObjects(result.lastFourDigits, @"1111");
         XCTAssertEqualObjects(result.firstSixDigits, @"411111");
-        XCTAssertEqual(result.year, 2022);
-        XCTAssertEqual(result.month, 3);
+        XCTAssertEqual(result.year, 2030);
+        XCTAssertEqual(result.month, 12);
         XCTAssertEqualObjects(result.cardType, @"visa");
 
         XCTAssertEqualObjects(result.address, info.address);
