@@ -70,6 +70,7 @@ public class SPSecureForm: UIView {
 
     public var creditCardDefaults: CreditCardInfo?
     public var bankAccountDefaults: BankAccountInfo?
+    public var paymentMethodDefaults: PaymentMethodRequestBase?
 
     // Shared fields
     @IBOutlet public weak var fullName: ValidatedTextField?
@@ -188,13 +189,12 @@ extension SPSecureForm {
 
         clearValidationFor(creditCardFields)
 
-        let client = getClientOrDieTrying()
-
-        let info = CreditCardInfo(from: creditCardDefaults)
+        let info = buildCreditCardInfo()
         maybeSetCardFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
 
+        let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 self.delegate?.didCallSpreedly(secureForm: self)
@@ -205,6 +205,16 @@ extension SPSecureForm {
                 }
             }
         })
+    }
+
+    private func buildCreditCardInfo() -> CreditCardInfo {
+        if let info = creditCardDefaults {
+            return info
+        } else if let info = paymentMethodDefaults {
+            return CreditCardInfo(fromInfo: info)
+        } else {
+            return CreditCardInfo()
+        }
     }
 
     /// When a form field exists with a non-nil value, assign it to
@@ -234,13 +244,12 @@ extension SPSecureForm {
 
         clearValidationFor(bankAccountFields)
 
-        let client = getClientOrDieTrying()
-
-        let info = BankAccountInfo(from: bankAccountDefaults)
+        let info = buildBankAccountInfo()
         maybeSetBankAccountFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
 
+        let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 self.delegate?.didCallSpreedly(secureForm: self)
@@ -251,6 +260,16 @@ extension SPSecureForm {
                 }
             }
         })
+    }
+
+    private func buildBankAccountInfo() -> BankAccountInfo {
+        if let info = bankAccountDefaults {
+            return info
+        } else if let info = paymentMethodDefaults {
+            return BankAccountInfo(fromInfo: info)
+        } else {
+            return BankAccountInfo()
+        }
     }
 
     private var selectedHolderType: BankAccountHolderType? {

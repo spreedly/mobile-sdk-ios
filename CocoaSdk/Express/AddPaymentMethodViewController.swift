@@ -16,10 +16,16 @@ class AddPaymentMethodViewController: UIViewController {
 
     var didAddPaymentMethod: ((PaymentMethodResultBase) -> Void)?
 
+    var context: ExpressContext?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureDelegates()
+
+        form.paymentMethodDefaults = context?.paymentMethodDefaults
+        form.creditCardDefaults = context?.creditCardDefaults
+        form.bankAccountDefaults = context?.bankAccountDefaults
     }
 
     func configureDelegates() {

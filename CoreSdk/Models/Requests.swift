@@ -29,6 +29,28 @@ public class PaymentMethodRequestBase: NSObject {
         self.shippingAddress = Address()
     }
 
+    public init(from info: PaymentMethodRequestBase?) {
+        fullName = info?.fullName
+        firstName = info?.firstName
+        lastName = info?.lastName
+        company = info?.company
+
+        email = info?.email
+        metadata = info?.metadata
+
+        if let address = info?.address {
+            self.address = Address(from: address)
+        } else {
+            self.address = Address()
+        }
+
+        if let shippingAddress = info?.shippingAddress {
+            self.shippingAddress = Address(from: shippingAddress)
+        } else {
+            self.shippingAddress = Address()
+        }
+    }
+
     internal func toJson() throws -> [String: Any] {
         var result = [String: Any]()
         result.maybeSet("full_name", fullName)
@@ -87,21 +109,18 @@ public class CreditCardInfo: PaymentMethodRequestBase {
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
     }
 
+    public init(fromInfo info: PaymentMethodRequestBase?) {
+        super.init(from: info)
+    }
+
     /// Copies values from another CreditCardInfo instance
     /// including fullName, firstName, lastName, address,
-    /// shippingAddress, and company.
+    /// shippingAddress, company, email, and metadata.
     ///
     /// Card data is not copied.
     /// - Parameter info: The source of the values.
-    public init(from info: CreditCardInfo?) {
-        super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
-        if let address = info?.address {
-            self.address = Address(from: address)
-        }
-        if let shippingAddress = info?.shippingAddress {
-            self.shippingAddress = Address(from: shippingAddress)
-        }
-        company = info?.company
+    public convenience init(fromCard info: CreditCardInfo?) {
+        self.init(fromInfo: info)
     }
 
     override func toJson() throws -> [String: Any] {
@@ -230,22 +249,20 @@ public class BankAccountInfo: PaymentMethodRequestBase {
         super.init(fullName: nil, firstName: firstName, lastName: lastName)
     }
 
+    public init(fromInfo info: PaymentMethodRequestBase?) {
+        super.init(from: info)
+    }
+
     /// Copies values from another BankAccountInfo instance
     /// including fullName, firstName, lastName, address,
-    /// shippingAddress, company, bankAccountType, and
-    /// bankAccountHolderType.
+    /// shippingAddress, company, email, metadata,
+    /// bankAccountType, and bankAccountHolderType.
     ///
     /// Account data is not copied.
     /// - Parameter info: The source of the values.
-    public init(from info: BankAccountInfo?) {
-        super.init(fullName: info?.fullName, firstName: info?.firstName, lastName: info?.lastName)
-        if let address = info?.address {
-            self.address = Address(from: address)
-        }
-        if let shippingAddress = info?.shippingAddress {
-            self.shippingAddress = Address(from: shippingAddress)
-        }
-        company = info?.company
+    public convenience init(fromBankAccount info: BankAccountInfo?) {
+        self.init(fromInfo: info)
+
         bankAccountType = info?.bankAccountType ?? BankAccountType.unknown
         bankAccountHolderType = info?.bankAccountHolderType ?? BankAccountHolderType.unknown
     }

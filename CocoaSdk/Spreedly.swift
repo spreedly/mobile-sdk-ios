@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import PassKit
+import CoreSdk
 
 @objc(SPRSpreedly)
 public class Spreedly: NSObject {
@@ -32,6 +33,10 @@ public class ExpressBuilder: NSObject {
     @objc public var allowApplePay = true
     @objc public var paymentMethods: [PaymentMethodItem]?
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+
+    @objc public var defaultPaymentMethodInfo: PaymentMethodRequestBase?
+    @objc public var defaultCreditCardInfo: CreditCardInfo?
+    @objc public var defaultBankAccountInfo: BankAccountInfo?
 
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
 
@@ -64,6 +69,9 @@ public class ExpressBuilder: NSObject {
         context.allowApplePay = allowApplePay
         context.paymentMethods = getPaymentMethods()
         context.didSelectPaymentMethod = didSelectPaymentMethod
+        context.paymentMethodDefaults = defaultPaymentMethodInfo
+        context.creditCardDefaults = defaultCreditCardInfo
+        context.bankAccountDefaults = defaultBankAccountInfo
         return context
     }
 
@@ -83,4 +91,23 @@ public class ExpressContext: NSObject {
     @objc public var allowBankAccount = false
     @objc public var allowApplePay = true
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+    @objc public var paymentMethodDefaults: PaymentMethodRequestBase?
+    @objc public var creditCardDefaults: CreditCardInfo?
+    @objc public var bankAccountDefaults: BankAccountInfo?
+
+    func fullName(from info: PaymentMethodRequestBase?) -> String? {
+        guard let first = info?.firstName,
+              let last = info?.lastName else {
+            return nil
+        }
+        return "\(first) \(last)"
+    }
+
+    @objc public var fullNameCreditCard: String? {
+        creditCardDefaults?.fullName ?? fullName(from: creditCardDefaults)
+    }
+
+    @objc public var fullNameBankAccount: String? {
+        bankAccountDefaults?.fullName ?? fullName(from: bankAccountDefaults)
+    }
 }

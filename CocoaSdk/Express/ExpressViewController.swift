@@ -68,6 +68,7 @@ class ExpressViewController: UIViewController {
 
         if let viewController = segue.destination as? AddPaymentMethodViewController {
             viewController.didAddPaymentMethod = onPaymentMethodAdded
+            viewController.context = context
             return
         }
     }
