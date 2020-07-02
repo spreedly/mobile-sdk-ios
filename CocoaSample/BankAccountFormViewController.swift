@@ -4,7 +4,7 @@
 
 import Foundation
 import UIKit
-import CocoaSdk
+import SpreedlyCocoa
 import CoreSdk
 import RxSwift
 

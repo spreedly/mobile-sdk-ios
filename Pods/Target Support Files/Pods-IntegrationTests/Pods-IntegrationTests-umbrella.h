@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CocoaSdkVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CocoaSdkVersionString[];
+FOUNDATION_EXPORT double Pods_IntegrationTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_IntegrationTestsVersionString[];
 

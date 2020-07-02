@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreSdk
-import CocoaSdk
+import SpreedlyCocoa
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
