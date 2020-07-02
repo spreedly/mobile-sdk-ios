@@ -19,7 +19,7 @@ Lint | ![Lint](https://api.cirrus-ci.com/github/ergonlabs/spreedly-ios.svg?test=
 
 * CoreSdk - The core library. Includes the Spreedly client and all APIs necessary for a custom integration.
 * CocoaSdk - UI specific library. Includes custom controls and the Express iOS controllers.
-* SdkTests - Unit tests for CoreSdk and CocoaSdk.
+* UnitTests - Unit tests for CoreSdk and CocoaSdk.
 * SdkIntegrationTests - Integration tests making API calls to Spreedly.
 * CocoaSample - The sample app demonstrating the custom controls and Express features.
 

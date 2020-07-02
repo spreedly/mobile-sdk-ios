@@ -43,8 +43,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "442A245F082E0723AA955F94"
-               BuildableName = "SdkTests.xctest"
-               BlueprintName = "SdkTests"
+               BuildableName = "UnitTests.xctest"
+               BlueprintName = "UnitTests"
                ReferencedContainer = "container:SpreedlySdk.xcodeproj">
             </BuildableReference>
          </TestableReference>

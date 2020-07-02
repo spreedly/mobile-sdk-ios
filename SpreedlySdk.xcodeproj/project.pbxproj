@@ -191,7 +191,7 @@
 		442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A21C9FEFB33DBF150C0BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		442A23842C40C21674DFD979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		442A23A1FD67CFE29666D2C6 /* SdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2585881CEB33C09F2B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */,
-				442A23A1FD67CFE29666D2C6 /* SdkTests.xctest */,
+				442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */,
 				F076C7F4D5E58736FA088192 /* SdkIntegrationTests.xctest */,
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
 				442A2501917CBBD6FA6A9CF4 /* CocoaSdk.framework */,
@@ -375,7 +375,7 @@
 			path = CocoaSample;
 			sourceTree = "<group>";
 		};
-		442A240EC140D34D76A3C73E /* SdkTests */ = {
+		442A240EC140D34D76A3C73E /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				3CFE89D024943A3C005E64B4 /* CocoaSdk */,
@@ -389,7 +389,7 @@
 				F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */,
 				F076CDFC7C32CD92DC2821F3 /* AddressTests.swift */,
 			);
-			path = SdkTests;
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
 		442A2456FEF1D80927880FEB /* CoreSdk */ = {
@@ -455,7 +455,7 @@
 			children = (
 				442A2206D806C97B75A00795 /* Products */,
 				442A2456FEF1D80927880FEB /* CoreSdk */,
-				442A240EC140D34D76A3C73E /* SdkTests */,
+				442A240EC140D34D76A3C73E /* UnitTests */,
 				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
 				AC0C8852183151056EC70EB9 /* Frameworks */,
 				F076C1956F58D46CD96B24BB /* SdkIntegrationTests */,
@@ -545,9 +545,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		442A245F082E0723AA955F94 /* SdkTests */ = {
+		442A245F082E0723AA955F94 /* UnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 442A2A58998EEC7E4874B1B6 /* Build configuration list for PBXNativeTarget "SdkTests" */;
+			buildConfigurationList = 442A2A58998EEC7E4874B1B6 /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
 				48CECBACD34719A8B19BE1EA /* [CP] Check Pods Manifest.lock */,
 				442A2B28B1CE6BDB9FB6A6AC /* Sources */,
@@ -561,9 +561,9 @@
 				3CFE89D72497F559005E64B4 /* PBXTargetDependency */,
 				442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */,
 			);
-			name = SdkTests;
+			name = UnitTests;
 			productName = SdkTests;
-			productReference = 442A23A1FD67CFE29666D2C6 /* SdkTests.xctest */;
+			productReference = 442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		442A266B984463F40F3FE1D6 /* CocoaSample */ = {
@@ -685,7 +685,7 @@
 			projectRoot = "";
 			targets = (
 				442A2CD52CC6A2C10B2623E8 /* CoreSdk */,
-				442A245F082E0723AA955F94 /* SdkTests */,
+				442A245F082E0723AA955F94 /* UnitTests */,
 				F076CF9042A128DEBCC6BDA2 /* SdkIntegrationTests */,
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
 				442A2CE4EFF32CF9B02D6A78 /* CocoaSdk */,
@@ -1582,13 +1582,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = SdkTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.SdkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1651,12 +1651,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = SdkTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.SdkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1811,7 +1811,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		442A2A58998EEC7E4874B1B6 /* Build configuration list for PBXNativeTarget "SdkTests" */ = {
+		442A2A58998EEC7E4874B1B6 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				442A29F4BD05970BAB9D7793 /* Debug */,
