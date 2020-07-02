@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import PassKit
-import CoreSdk
+import Spreedly
 
 @objc(SPRSpreedly)
 public class Spreedly: NSObject {

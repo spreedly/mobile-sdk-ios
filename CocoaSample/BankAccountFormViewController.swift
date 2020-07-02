@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 import SpreedlyCocoa
-import CoreSdk
+import Spreedly
 import RxSwift
 
 class BankAccountFormViewController: UIViewController, UITextFieldDelegate {

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import CoreSdk
+import Spreedly
 
 class AddPaymentMethodViewController: UIViewController {
     @IBOutlet weak var form: SPSecureForm!

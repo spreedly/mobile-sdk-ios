@@ -4,7 +4,7 @@
 
 import Foundation
 import XCTest
-import CoreSdk
+import Spreedly
 
 class ApplePayTests: XCTestCase {
     func testCanCreateMinimalApplePay() throws {

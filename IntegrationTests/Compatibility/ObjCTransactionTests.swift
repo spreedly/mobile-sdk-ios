@@ -4,7 +4,7 @@
 
 import Foundation
 import XCTest
-@testable import CoreSdk
+@testable import Spreedly
 
 class ObjCTransactionTests: XCTestCase {
     func testInitWhenNoPaymentMethodGivenShouldHaveNilPaymentMethod() {

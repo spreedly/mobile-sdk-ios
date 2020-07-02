@@ -5,7 +5,7 @@
 import Foundation
 import PassKit
 import XCTest
-@testable import CoreSdk
+@testable import Spreedly
 
 class ApplePayInfoTests: XCTestCase {
     class TokenStub: PKPaymentToken {

@@ -4,7 +4,7 @@
 
 import Foundation
 import UIKit
-import CoreSdk
+import Spreedly
 
 public protocol SPCreditCardNumberTextFieldDelegate {
     func cardBrandDetermined(brand: CardBrand)

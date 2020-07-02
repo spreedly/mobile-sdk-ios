@@ -4,7 +4,7 @@
 
 import Foundation
 import UIKit
-import CoreSdk
+import Spreedly
 import RxSwift
 
 public protocol SPSecureFormDelegate {

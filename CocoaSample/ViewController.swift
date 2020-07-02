@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreSdk
+import Spreedly
 import SpreedlyCocoa
 
 class ViewController: UIViewController {

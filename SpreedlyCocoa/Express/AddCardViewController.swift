@@ -4,7 +4,7 @@
 
 import Foundation
 import UIKit
-import CoreSdk
+import Spreedly
 
 class AddCardViewController: AddPaymentMethodViewController {
     @IBOutlet weak var expirationDatePicker: ExpirationPickerField!

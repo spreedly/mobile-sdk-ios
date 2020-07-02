@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import CoreSdk
+import Spreedly
 
 @objc(SPRPaymentMethodItem)
 public class PaymentMethodItem: NSObject {

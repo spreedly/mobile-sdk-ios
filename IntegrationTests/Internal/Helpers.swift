@@ -3,7 +3,7 @@
 //
 
 import RxSwift
-import CoreSdk
+import Spreedly
 
 @objc(SPRHelpers)
 public class Helpers: NSObject {

@@ -10,8 +10,8 @@
 		3C0553D624ABF6DF00F31DA3 /* Express.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553D824ABF6DF00F31DA3 /* Express.storyboard */; };
 		3C0553DE24ABF8FC00F31DA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553E024ABF8FC00F31DA3 /* Localizable.strings */; };
 		3C0553E124ABFCB000F31DA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553E024ABF8FC00F31DA3 /* Localizable.strings */; };
-		3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
-		3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C31533C24770C9C00C86272 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
+		3C31533D24770C9C00C86272 /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */; };
 		3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */; };
@@ -29,7 +29,7 @@
 		442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
 		442A2220D9FAB271C19F4113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A256D65BCB8A22D966F8D /* LaunchScreen.storyboard */; };
-		442A223DF312ED234B929ECF /* Sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2CBF8AF46C83956B7796 /* Sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		442A223DF312ED234B929ECF /* Spreedly.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2CBF8AF46C83956B7796 /* Spreedly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		442A22C1757101EA61236CBF /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2EA4177990821F65EA06 /* Address.swift */; };
 		442A22D6A2723C5D328CA8A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A28C146C848A440AEF7A1 /* Main.storyboard */; };
 		442A23C356600951EC1503B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2C1ADA08DBE29D72B986 /* ViewController.swift */; };
@@ -43,7 +43,7 @@
 		442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2D420CB95244D5FBD864 /* Transaction.swift */; };
 		442A2759E4BC22B35E134335 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2662BE68ED0552C5BE46 /* Client.swift */; };
 		442A277CCCDFEA291756EBA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E2977597945A0D9CA78 /* SceneDelegate.swift */; };
-		442A27963A108ADEB2607311 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
+		442A27963A108ADEB2607311 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
 		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
@@ -55,8 +55,8 @@
 		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
 		5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */; };
 		6F6FBFE2A95E5B4A6EFBD4E3 /* Pods_CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EF6193CBD3FB35CAADF722 /* Pods_CoreSdk.framework */; };
-		A6FEA50F247557FF004B1D9D /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
-		A6FEA510247557FF004B1D9D /* CoreSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A6FEA50F247557FF004B1D9D /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
+		A6FEA510247557FF004B1D9D /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2CEA1127B40DA767537FD03 /* Pods_SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */; };
 		F076C12BA6F3E33F83E1FB90 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8000037AE096B5E0E09 /* CardBrandTests.swift */; };
 		F076C1694FD1264F4FBC16E5 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8101E3C373825B4F415 /* CardBrand.swift */; };
@@ -83,7 +83,7 @@
 		F076CA42E55BE576578B2C7C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */; };
 		F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */; };
 		F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */; };
-		F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */; };
+		F076CC40AA0952D6E52623F9 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		F076CC51543D226BF5DFB723 /* SPSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */; };
 		F076CC54EF17C14CC2CE0AC0 /* UIStackView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */; };
 		F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */; };
@@ -141,7 +141,7 @@
 			buildActionMask = 0;
 			dstSubfolderSpec = 10;
 			files = (
-				3C31533D24770C9C00C86272 /* CoreSdk.framework in Embed Frameworks */,
+				3C31533D24770C9C00C86272 /* Spreedly.framework in Embed Frameworks */,
 				442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -153,7 +153,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A6FEA510247557FF004B1D9D /* CoreSdk.framework in Embed Frameworks */,
+				A6FEA510247557FF004B1D9D /* Spreedly.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +196,7 @@
 		442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2585881CEB33C09F2B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2662BE68ED0552C5BE46 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		442A276DA1794F23A3DFCC13 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		442A2832CB4FF8C0D4094949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSecureForm.swift; sourceTree = "<group>"; };
 		442A2C1ADA08DBE29D72B986 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		442A2CB4AB12299CD8D31516 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
-		442A2CBF8AF46C83956B7796 /* Sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sdk.h; sourceTree = "<group>"; };
+		442A2CBF8AF46C83956B7796 /* Spreedly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spreedly.h; sourceTree = "<group>"; };
 		442A2D420CB95244D5FBD864 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		442A2DE45EA6692771D3B109 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		442A2E2977597945A0D9CA78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */,
-				3C31533C24770C9C00C86272 /* CoreSdk.framework in Frameworks */,
+				3C31533C24770C9C00C86272 /* Spreedly.framework in Frameworks */,
 				442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,7 +281,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442A27963A108ADEB2607311 /* CoreSdk.framework in Frameworks */,
+				442A27963A108ADEB2607311 /* Spreedly.framework in Frameworks */,
 				4181D7259F8C7D598366B24E /* Pods_UnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6FEA50F247557FF004B1D9D /* CoreSdk.framework in Frameworks */,
+				A6FEA50F247557FF004B1D9D /* Spreedly.framework in Frameworks */,
 				D2CEA1127B40DA767537FD03 /* Pods_SpreedlyCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F076CC40AA0952D6E52623F9 /* CoreSdk.framework in Frameworks */,
+				F076CC40AA0952D6E52623F9 /* Spreedly.framework in Frameworks */,
 				5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,7 +355,7 @@
 		442A2206D806C97B75A00795 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */,
+				442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */,
 				442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */,
 				F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */,
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
@@ -398,18 +398,18 @@
 			path = UnitTests;
 			sourceTree = "<group>";
 		};
-		442A2456FEF1D80927880FEB /* CoreSdk */ = {
+		442A2456FEF1D80927880FEB /* Spreedly */ = {
 			isa = PBXGroup;
 			children = (
 				442A2E383CD75A0FC593AE72 /* Info.plist */,
-				442A2CBF8AF46C83956B7796 /* Sdk.h */,
+				442A2CBF8AF46C83956B7796 /* Spreedly.h */,
 				442A2662BE68ED0552C5BE46 /* Client.swift */,
 				442A2676F741069CFE144943 /* Internal */,
 				442A28F5BF2E3FC3A953C5B2 /* Models */,
 				F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */,
 				3CFE89CC2491E045005E64B4 /* ClientFactory.swift */,
 			);
-			path = CoreSdk;
+			path = Spreedly;
 			sourceTree = "<group>";
 		};
 		442A24E87711E3F9A59FB7B9 /* SpreedlyCocoa */ = {
@@ -460,7 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				442A2206D806C97B75A00795 /* Products */,
-				442A2456FEF1D80927880FEB /* CoreSdk */,
+				442A2456FEF1D80927880FEB /* Spreedly */,
 				442A240EC140D34D76A3C73E /* UnitTests */,
 				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
 				AC0C8852183151056EC70EB9 /* Frameworks */,
@@ -550,7 +550,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442A223DF312ED234B929ECF /* Sdk.h in Headers */,
+				442A223DF312ED234B929ECF /* Spreedly.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,9 +600,9 @@
 			productReference = 442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		442A2CD52CC6A2C10B2623E8 /* CoreSdk */ = {
+		442A2CD52CC6A2C10B2623E8 /* Spreedly */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 442A2E77FE11EB3DCF565A60 /* Build configuration list for PBXNativeTarget "CoreSdk" */;
+			buildConfigurationList = 442A2E77FE11EB3DCF565A60 /* Build configuration list for PBXNativeTarget "Spreedly" */;
 			buildPhases = (
 				C2C23B61232A610909CEBA4A /* [CP] Check Pods Manifest.lock */,
 				442A24EBD75D36D55E8CAEEE /* Headers */,
@@ -614,9 +614,9 @@
 			);
 			dependencies = (
 			);
-			name = CoreSdk;
+			name = Spreedly;
 			productName = Sdk;
-			productReference = 442A2615E8F5BEB94C0DD4C8 /* CoreSdk.framework */;
+			productReference = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */ = {
@@ -696,7 +696,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				442A2CD52CC6A2C10B2623E8 /* CoreSdk */,
+				442A2CD52CC6A2C10B2623E8 /* Spreedly */,
 				442A245F082E0723AA955F94 /* UnitTests */,
 				F076CF9042A128DEBCC6BDA2 /* IntegrationTests */,
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
@@ -1037,7 +1037,7 @@
 /* Begin PBXTargetDependency section */
 		3C31533F24770C9C00C86272 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
+			target = 442A2CD52CC6A2C10B2623E8 /* Spreedly */;
 			targetProxy = 3C31533E24770C9C00C86272 /* PBXContainerItemProxy */;
 		};
 		3CFE89D72497F559005E64B4 /* PBXTargetDependency */ = {
@@ -1047,7 +1047,7 @@
 		};
 		442A22C4BAA265B7E065C6B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
+			target = 442A2CD52CC6A2C10B2623E8 /* Spreedly */;
 			targetProxy = 442A2B9CDA6349D5BDD0847D /* PBXContainerItemProxy */;
 		};
 		442A24A88DD17E0AFA320CF5 /* PBXTargetDependency */ = {
@@ -1057,12 +1057,12 @@
 		};
 		A6FEA512247557FF004B1D9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
+			target = 442A2CD52CC6A2C10B2623E8 /* Spreedly */;
 			targetProxy = A6FEA511247557FF004B1D9D /* PBXContainerItemProxy */;
 		};
 		F076C82917A686595CA2F8F2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442A2CD52CC6A2C10B2623E8 /* CoreSdk */;
+			target = 442A2CD52CC6A2C10B2623E8 /* Spreedly */;
 			targetProxy = F076CFD25CD276C855076715 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1224,13 +1224,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CoreSdk/Info.plist;
+				INFOPLIST_FILE = Spreedly/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.Sdk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.Spreedly;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1449,14 +1449,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CoreSdk/Info.plist;
+				INFOPLIST_FILE = Spreedly/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.Sdk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.Spreedly;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1841,7 +1841,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		442A2E77FE11EB3DCF565A60 /* Build configuration list for PBXNativeTarget "CoreSdk" */ = {
+		442A2E77FE11EB3DCF565A60 /* Build configuration list for PBXNativeTarget "Spreedly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				442A24C655492DBEBD24B71E /* Debug */,

@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import CoreSdk
+@testable import Spreedly
 
 class CardBrandTests: XCTestCase {
     func testWhenValidNumberShouldDetermineBrand() {

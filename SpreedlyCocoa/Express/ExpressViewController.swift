@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreSdk
+import Spreedly
 import PassKit
 
 class ExpressViewController: UIViewController {

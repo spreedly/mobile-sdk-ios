@@ -2,7 +2,7 @@
 // Created by Eli Thompson on 5/29/20.
 //
 
-import CoreSdk
+import Spreedly
 
 public class SPSecureTextField: ValidatedTextField {
     /// Returns the text value of this field as a SpreedlySecureOpaqueString.

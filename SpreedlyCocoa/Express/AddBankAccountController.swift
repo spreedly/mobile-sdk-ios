@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreSdk
+import Spreedly
 
 class AddBankAccountController: AddPaymentMethodViewController {
     @IBOutlet weak var stackView: UIStackView!

@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import CoreSdk
+@testable import Spreedly
 
 class CreditCardInfoTests: XCTestCase {
     func testCanEncode() throws {

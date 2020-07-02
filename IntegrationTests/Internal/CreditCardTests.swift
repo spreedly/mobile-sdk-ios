@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import CoreSdk
+import Spreedly
 
 class CreditCardTests: XCTestCase {
     func testCanCreateMinimalCreditCard() throws {

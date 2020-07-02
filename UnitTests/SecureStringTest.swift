@@ -5,7 +5,7 @@
 import Foundation
 import XCTest
 import RxSwift
-@testable import CoreSdk
+@testable import Spreedly
 
 class SecureStringTest: XCTestCase {
     func testCreate() {

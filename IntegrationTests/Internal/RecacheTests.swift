@@ -4,7 +4,7 @@
 
 import XCTest
 import RxSwift
-import CoreSdk
+import Spreedly
 
 class RecacheTests: XCTestCase {
     func testCanRecache() throws {

@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import CoreSdk
+import Spreedly
 import XCTest
 
 class AddressTests: XCTestCase {
