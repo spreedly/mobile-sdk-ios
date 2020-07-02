@@ -43,13 +43,15 @@ class ViewController: UIViewController {
         }
         builder.defaultCreditCardInfo = {
             let info = CreditCardInfo()
-            info.fullName = "Card Fullname"
+            info.fullName = "Full Name"
             return info
         }()
         builder.defaultBankAccountInfo = {
             let info = BankAccountInfo()
-            info.firstName = "Bank"
+            info.firstName = "Firstname"
             info.lastName = "Lastname"
+            info.bankAccountHolderType = .business
+            info.bankAccountType = .savings
             return info
         }()
         builder.presentationStyle = .asModal
