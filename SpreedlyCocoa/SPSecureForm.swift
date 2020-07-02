@@ -7,9 +7,11 @@ import UIKit
 import Spreedly
 import RxSwift
 
-public protocol SPSecureFormDelegate {
-    // TODO: make these methods optionally implementable
-    func spreedly<TResult>(secureForm form: SPSecureForm, success: Transaction<TResult>) where TResult: PaymentMethodResultBase
+public protocol SPSecureFormDelegate: class {
+    func spreedly<TResult>(
+            secureForm form: SPSecureForm,
+            success: Transaction<TResult>
+    ) where TResult: PaymentMethodResultBase
 
     func willCallSpreedly(secureForm: SPSecureForm)
 
@@ -21,9 +23,11 @@ public enum SPSecureClientError: Error {
 }
 
 public class SPSecureForm: UIView {
-    public var delegate: SPSecureFormDelegate?
+    public weak var delegate: SPSecureFormDelegate?
 
-    private func getCredentials() throws -> (envKey: String, envSecret: String, test: Bool) {
+    private func getCredentials() throws -> ( // swiftlint:disable:this large_tuple
+            envKey: String, envSecret: String, test: Bool
+    ) {
         guard let path = Bundle.main.path(forResource: "Spreedly-env", ofType: "plist"),
               let config = NSDictionary(contentsOfFile: path) as? [String: Any],
               let envKey = config["ENV_KEY"] as? String,
@@ -147,7 +151,7 @@ public class SPSecureForm: UIView {
         case "year", "month":
             return expirationDate
         case "first_name", "last_name", "full_name":
-            return fullName // TODO: What attribute does Spreedly say is in error when any combination of these three fields is invalid?
+            return fullName
         case "account_number":
             return bankAccountNumber
         case "routing_number":
