@@ -83,7 +83,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     func createPaymentMethod<T: PaymentMethodResultBase>(
-            from info: PaymentMethodRequestBase
+            from info: PaymentMethodInfo
     ) -> Single<Transaction<T>> {
         Single.deferred {
             let authenticated = info.retained ?? false
@@ -132,7 +132,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
 extension SpreedlyClientImpl: _ObjCClient {
     @objc(createPaymentMethodFrom:)
-    func _objCCreatePaymentMethod(from info: PaymentMethodRequestBase) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
+    func _objCCreatePaymentMethod(from info: PaymentMethodInfo) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
         let url: URL
         let authenticated: Bool
         if info.retained ?? false {

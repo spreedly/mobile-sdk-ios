@@ -70,7 +70,7 @@ public class SPSecureForm: UIView {
 
     public var creditCardDefaults: CreditCardInfo?
     public var bankAccountDefaults: BankAccountInfo?
-    public var paymentMethodDefaults: PaymentMethodRequestBase?
+    public var paymentMethodDefaults: PaymentMethodInfo?
 
     // Shared fields
     @IBOutlet public weak var fullName: ValidatedTextField?
