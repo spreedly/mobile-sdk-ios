@@ -189,7 +189,7 @@ extension SPSecureForm {
 
         clearValidationFor(creditCardFields)
 
-        let info = buildCreditCardInfo()
+        let info = creditCardDefaults ?? CreditCardInfo(fromInfo: paymentMethodDefaults)
         maybeSetCardFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
@@ -205,16 +205,6 @@ extension SPSecureForm {
                 }
             }
         })
-    }
-
-    private func buildCreditCardInfo() -> CreditCardInfo {
-        if let info = creditCardDefaults {
-            return info
-        } else if let info = paymentMethodDefaults {
-            return CreditCardInfo(fromInfo: info)
-        } else {
-            return CreditCardInfo()
-        }
     }
 
     /// When a form field exists with a non-nil value, assign it to
@@ -244,7 +234,7 @@ extension SPSecureForm {
 
         clearValidationFor(bankAccountFields)
 
-        let info = buildBankAccountInfo()
+        let info = bankAccountDefaults ?? BankAccountInfo(fromInfo: paymentMethodDefaults)
         maybeSetBankAccountFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress)
@@ -260,16 +250,6 @@ extension SPSecureForm {
                 }
             }
         })
-    }
-
-    private func buildBankAccountInfo() -> BankAccountInfo {
-        if let info = bankAccountDefaults {
-            return info
-        } else if let info = paymentMethodDefaults {
-            return BankAccountInfo(fromInfo: info)
-        } else {
-            return BankAccountInfo()
-        }
     }
 
     private var selectedHolderType: BankAccountHolderType? {
