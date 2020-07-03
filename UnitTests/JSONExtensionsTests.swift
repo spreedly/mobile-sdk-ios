@@ -1,6 +1,7 @@
 //
 // Created by Eli Thompson on 5/8/20.
 //
+// swiftlint:disable force_try
 
 import Foundation
 import XCTest
