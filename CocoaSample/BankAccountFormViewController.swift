@@ -28,7 +28,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
         fullName.text = "Dolly Dog"
 
         let defaults = BankAccountInfo()
-        var billing = Address()
+        let billing = Address()
         billing.address1 = "123 Bark St"
         billing.city = "Canine"
         billing.state = "WA"
@@ -68,7 +68,10 @@ extension BankAccountFormViewController: SPSecureFormDelegate {
         // intentionally blank
     }
 
-    func spreedly<TResult>(secureForm form: SPSecureForm, success transaction: Transaction<TResult>) where TResult: PaymentMethodResultBase {
+    func spreedly<TResult>(
+            secureForm form: SPSecureForm,
+            success transaction: Transaction<TResult>
+    ) where TResult: PaymentMethodResultBase {
         let token = transaction.paymentMethod?.token ?? "empty"
         print("My payment token is \(token)")
 
