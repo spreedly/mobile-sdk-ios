@@ -51,7 +51,10 @@ extension CreditCardFormViewController: SPSecureFormDelegate {
         // intentionally blank
     }
 
-    func spreedly<TResult>(secureForm form: SPSecureForm, success transaction: Transaction<TResult>) where TResult: PaymentMethodResultBase {
+    func spreedly<TResult>(
+            secureForm form: SPSecureForm,
+            success transaction: Transaction<TResult>
+    ) where TResult: PaymentMethodResultBase {
         let token = transaction.paymentMethod?.token ?? "empty"
         print("My payment token is \(token)")
 
