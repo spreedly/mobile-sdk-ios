@@ -24,10 +24,11 @@ class ClientTests: XCTestCase {
 
         XCTAssertFalse(trans.succeeded)
         XCTAssertEqual(trans.errors?.count, 1)
-        let message = """
-                      Unable to authenticate using the given environment_key and access_token.
-                        Please check your credentials.
-                      """
+        let message = [
+            "Unable to authenticate using the given environment_key and access_token.",
+            "  Please check your credentials."
+        ].joined(separator: "")
+
         XCTAssertEqual(trans.errors?[0].message, message)
         XCTAssertEqual(trans.message, message)
     }
