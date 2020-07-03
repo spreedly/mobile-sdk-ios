@@ -449,14 +449,14 @@
 		442A2C9E2579470C94B1F3F0 = {
 			isa = PBXGroup;
 			children = (
-				442A2206D806C97B75A00795 /* Products */,
 				442A2456FEF1D80927880FEB /* Spreedly */,
-				442A240EC140D34D76A3C73E /* UnitTests */,
-				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
-				AC0C8852183151056EC70EB9 /* Frameworks */,
-				F076C1956F58D46CD96B24BB /* IntegrationTests */,
-				442A222574418E0D3C31BD01 /* CocoaSample */,
 				442A24E87711E3F9A59FB7B9 /* SpreedlyCocoa */,
+				442A222574418E0D3C31BD01 /* CocoaSample */,
+				442A240EC140D34D76A3C73E /* UnitTests */,
+				F076C1956F58D46CD96B24BB /* IntegrationTests */,
+				442A2206D806C97B75A00795 /* Products */,
+				AC0C8852183151056EC70EB9 /* Frameworks */,
+				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
