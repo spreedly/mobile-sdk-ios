@@ -6,7 +6,11 @@ import Foundation
 import UIKit
 
 public class SPExpirationTextField: ValidatedTextField {
-    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public override func textField(
+            _ textField: UITextField,
+            shouldChangeCharactersIn range: NSRange,
+            replacementString string: String
+    ) -> Bool {
         if !super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
             return false
         }

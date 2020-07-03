@@ -11,7 +11,6 @@ struct BrandParameters {
     let spreedlyType: String
     let detect: BrandDetector
 
-
     init(max: Int, spreedlyType: String, detect: @escaping BrandDetector) {
         self.maxLength = max
         self.spreedlyType = spreedlyType

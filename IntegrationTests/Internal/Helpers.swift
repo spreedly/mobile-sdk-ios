@@ -55,11 +55,12 @@ public class Helpers: NSObject {
 
 extension Helpers {
     @objc(createClient)
-    public static func _objCCreateClient() -> _ObjCClient {
+    public static func _objCCreateClient() -> _ObjCClient { // swiftlint:disable:this identifier_name
         ClientFactory._objCCreate(envKey: key, envSecret: secret, test: true)
     }
 }
 
+// swiftlint:disable line_length
 extension Helpers {
     @objc public static let paymentTokenData = #"""
                            {
@@ -74,3 +75,4 @@ extension Helpers {
                            }
                            """#.data(using: .utf8)!
 }
+// swiftlint:enable line_length

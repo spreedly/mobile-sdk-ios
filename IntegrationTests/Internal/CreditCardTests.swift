@@ -36,24 +36,10 @@ class CreditCardTests: XCTestCase {
                 month: 1
         )
 
-        var billing = Address()
-        billing.address1 = "123 Fake St"
-        billing.address2 = "Suite #200"
-        billing.city = "Springfield"
-        billing.state = "OR"
-        billing.zip = "97475"
-        billing.country = "US"
-        billing.phoneNumber = "541-555-2222"
+        let billing = buildAddress()
         info.address = billing
 
-        var shipping = Address()
-        shipping.address1 = "321 Wall St"
-        shipping.address2 = "Suite #4100"
-        shipping.city = "Seattle"
-        shipping.state = "WA"
-        shipping.zip = "98121"
-        shipping.country = "US"
-        shipping.phoneNumber = "206-555-2222"
+        let shipping = buildShippingAddress()
         info.shippingAddress = shipping
 
         info.email = "dolly@dog.com"
@@ -82,12 +68,40 @@ class CreditCardTests: XCTestCase {
         XCTAssertEqual(result.metadata?["doubleKey"] as? Double, 3.14)
         XCTAssertEqual(result.metadata?["boolKey"] as? Bool, false)
     }
+
+    func buildAddress() -> Address {
+        let address = Address()
+        address.address1 = "123 Fake St"
+        address.address2 = "Suite #200"
+        address.city = "Springfield"
+        address.state = "OR"
+        address.zip = "97475"
+        address.country = "US"
+        address.phoneNumber = "541-555-2222"
+        return address
+    }
+
+    func buildShippingAddress() -> Address {
+        let address = Address()
+        address.address1 = "321 Wall St"
+        address.address2 = "Suite #4100"
+        address.city = "Seattle"
+        address.state = "WA"
+        address.zip = "98121"
+        address.country = "US"
+        address.phoneNumber = "206-555-2222"
+        return address
+    }
 }
 
 extension CreditCardTests {
     // MARK: - Credit card specific asserts
 
-    static func assertPaymentMethodFieldsPopulate(result: PaymentMethodResultBase, info: PaymentMethodInfo, type paymentMethodType: PaymentMethodType) {
+    static func assertPaymentMethodFieldsPopulate(
+            result: PaymentMethodResultBase,
+            info: PaymentMethodInfo,
+            type paymentMethodType: PaymentMethodType
+    ) {
         XCTAssertNotNil(result.token)
         XCTAssertEqual(result.storageState, StorageState.cached)
         XCTAssertEqual(result.test, true)

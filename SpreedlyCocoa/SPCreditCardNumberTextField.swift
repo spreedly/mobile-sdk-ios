@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 import Spreedly
 
-public protocol SPCreditCardNumberTextFieldDelegate {
+public protocol SPCreditCardNumberTextFieldDelegate: class {
     func cardBrandDetermined(brand: CardBrand)
 }
 
@@ -14,7 +14,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
     @IBInspectable public var maskCharacter: String = "*"
 
-    public var cardNumberTextFieldDelegate: SPCreditCardNumberTextFieldDelegate?
+    public weak var cardNumberTextFieldDelegate: SPCreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
     private var masked: Bool = false
     private let image = UIImageView(image: UIImage(named: SPCreditCardNumberTextField.unknownCard))
@@ -145,7 +145,11 @@ extension SPCreditCardNumberTextField {
         return requested
     }
 
-    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public override func textField(
+            _ textField: UITextField,
+            shouldChangeCharactersIn range: NSRange,
+            replacementString string: String
+    ) -> Bool {
         guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
             return false
         }
