@@ -52,5 +52,4 @@ test_master_task:
 lint_task:
   name: 'Lint check sources'
   script:
-    - cd Spreedly
-    - ../Pods/SwiftLint/swiftlint
+    - ./lint.sh
