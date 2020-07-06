@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExpirationPickerField: ValidatedTextField {
+public class ExpirationPickerField: ValidatedTextField {
     private lazy var doneToolbar: UIToolbar = {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
 
@@ -43,12 +43,12 @@ class ExpirationPickerField: ValidatedTextField {
 
     private var selectedItems = ["", "", ""]
 
-    init() {
+    public init() {
         super.init(frame: .zero)
         setupView()
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
     }
@@ -63,27 +63,27 @@ class ExpirationPickerField: ValidatedTextField {
         resignFirstResponder()
     }
 
-    func showPicker() {
+    public func showPicker() {
         becomeFirstResponder()
     }
 }
 
 extension ExpirationPickerField: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         items.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         items[component].count
     }
 }
 
 extension ExpirationPickerField: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         items[component][row]
     }
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let monthRow = pickerView.selectedRow(inComponent: 0)
         let yearRow = pickerView.selectedRow(inComponent: 2)
         selectedItems[0] = items[0][monthRow]
@@ -94,7 +94,7 @@ extension ExpirationPickerField: UIPickerViewDelegate {
 }
 
 extension ExpirationPickerField: ExpirationDateProvider {
-    func expirationDate() -> ExpirationDate? {
+    public func expirationDate() -> ExpirationDate? {
         guard let month = Int(selectedItems[0]),
               let year = Int(selectedItems[2]) else {
             return nil
