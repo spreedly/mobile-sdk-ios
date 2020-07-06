@@ -52,6 +52,12 @@ public class ExpressBuilder: NSObject {
 
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
 
+    @objc public var paymentSelectionHeader: UIView?
+    @objc public var paymentSelectionHeaderHeight: CGFloat = 0
+
+    @objc public var paymentSelectionFooter: UIView?
+    @objc public var paymentSelectionFooterHeight: CGFloat = 0
+
     public func buildViewController() -> UIViewController {
         let bundle = Bundle(for: type(of: self))
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
@@ -79,11 +85,20 @@ public class ExpressBuilder: NSObject {
         context.allowCard = allowCard
         context.allowBankAccount = allowBankAccount
         context.allowApplePay = allowApplePay
+
         context.paymentMethods = getPaymentMethods()
+
         context.didSelectPaymentMethod = didSelectPaymentMethod
+
         context.paymentMethodDefaults = defaultPaymentMethodInfo
         context.creditCardDefaults = CreditCardInfo(fromCard: defaultCreditCardInfo)
         context.bankAccountDefaults = BankAccountInfo(fromBankAccount: defaultBankAccountInfo)
+
+        context.paymentSelectionHeader = paymentSelectionHeader
+        context.paymentSelectionHeaderHeight = paymentSelectionHeaderHeight
+        context.paymentSelectionFooter = paymentSelectionFooter
+        context.paymentSelectionFooterHeight = paymentSelectionFooterHeight
+
         return context
     }
 
@@ -99,13 +114,22 @@ public class ExpressBuilder: NSObject {
 @objc(SPRExpressContext)
 public class ExpressContext: NSObject {
     @objc public var paymentMethods: [PaymentMethodItem]?
+
     @objc public var allowCard = true
     @objc public var allowBankAccount = false
     @objc public var allowApplePay = true
+
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+
     @objc public var paymentMethodDefaults: PaymentMethodInfo?
     @objc public var creditCardDefaults: CreditCardInfo?
     @objc public var bankAccountDefaults: BankAccountInfo?
+
+    @objc public var paymentSelectionHeader: UIView?
+    @objc public var paymentSelectionHeaderHeight: CGFloat = 0
+
+    @objc public var paymentSelectionFooter: UIView?
+    @objc public var paymentSelectionFooterHeight: CGFloat = 0
 
     private func fullName(from info: PaymentMethodInfo?) -> String? {
         guard let first = info?.firstName,

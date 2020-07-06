@@ -26,7 +26,7 @@
         <!--ExpressViewController-->
         <scene sceneID="wAw-Hf-ioB">
             <objects>
-                <viewController title="ExpressViewController" id="p0P-8y-uz6" customClass="ExpressViewController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ExpressViewController" id="p0P-8y-uz6" customClass="ExpressViewController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocx-fO-Vzh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,6 +117,7 @@
                         <outlet property="addBankAccount" destination="dpj-jK-Sm3" id="BK1-ew-eOc"/>
                         <outlet property="addCard" destination="CBZ-Ic-N66" id="1bf-Us-yzw"/>
                         <outlet property="collectionView" destination="iz3-fY-hod" id="IcI-EN-ZWX"/>
+                        <outlet property="stackView" destination="dRb-mz-Dv5" id="JNt-OU-XV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJj-F9-YPS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -126,15 +127,15 @@
         <!--Add a Bank Account-->
         <scene sceneID="PNW-YQ-Myg">
             <objects>
-                <viewController title="Add a Bank Account" id="4d7-45-AKY" customClass="AddBankAccountController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SPSecureForm" customModule="CocoaSdk" customModuleProvider="target">
+                <viewController title="Add a Bank Account" id="4d7-45-AKY" customClass="AddBankAccountController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SPSecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ied-2e-A3f">
                                 <rect key="frame" x="0.0" y="88" width="414" height="338"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account holder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-TA-RK3" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account holder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-TA-RK3" customClass="ValidatedTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="8" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZkL-lh-iig"/>
@@ -145,7 +146,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account holder name"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="48" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="rK9-bi-llP"/>
@@ -156,7 +157,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account number"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="ValidatedTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="88" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="mip-gK-Qtc"/>
@@ -299,15 +300,15 @@
         <!--Add Card-->
         <scene sceneID="6Md-2p-DKp">
             <objects>
-                <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardViewController" customModule="CocoaSdk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SPSecureForm" customModule="CocoaSdk" customModuleProvider="target">
+                <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardViewController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SPSecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7nF-kv-Pdn">
                                 <rect key="frame" x="0.0" y="88" width="414" height="256"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gce-E2-zr7" userLabel="Cardholder name" customClass="ValidatedTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gce-E2-zr7" userLabel="Cardholder name" customClass="ValidatedTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="8" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="1Lu-4e-Fqz"/>
@@ -318,7 +319,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Cardholder name"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-ce-b7P" customClass="SPCreditCardNumberTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-ce-b7P" customClass="SPCreditCardNumberTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="48" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="uo4-va-Fvg"/>
@@ -329,7 +330,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Card number"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SPSecureTextField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SPSecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="88" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="jVu-AS-D57"/>
@@ -340,7 +341,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Security code"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXg-7O-dSn" customClass="ExpirationPickerField" customModule="CocoaSdk" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXg-7O-dSn" customClass="ExpirationPickerField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="128" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="pfj-wo-R4a"/>
@@ -371,6 +372,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Pay Now" image="lock.fill" catalog="system"/>
                                         <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Pay Now"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>

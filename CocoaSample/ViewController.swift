@@ -27,6 +27,56 @@ class ViewController: UIViewController {
             print("Payment method selected: \(item.shortDescription)")
             self.navigationController?.popToViewController(self, animated: true)
         }
+
+        builder.paymentSelectionHeaderHeight = 100
+        builder.paymentSelectionHeader = {
+            let label = UILabel(frame: .zero)
+            label.font = UIFont.preferredFont(forTextStyle: .title1)
+            label.textAlignment = .center
+            label.text = "🎶 Sousa's Phones 📱"
+            return label
+        }()
+
+        builder.paymentSelectionFooterHeight = 100
+        builder.paymentSelectionFooter = {
+            let container = UIView(frame: .zero)
+
+            let price = UILabel(frame: .zero)
+            price.font = UIFont.preferredFont(forTextStyle: .title1)
+            price.textColor = .systemBlue
+            price.textAlignment = .center
+            price.text = "$354.62"
+
+            let description = UILabel(frame: .zero)
+            description.font = UIFont.preferredFont(forTextStyle: .body)
+            description.textAlignment = .center
+            description.numberOfLines = 2
+            description.text = [
+                "Sax oPhone SE (2020)",
+                "128GB, Polished Brass"
+            ].joined(separator: "\n")
+
+            container.addSubview(price)
+            price.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                price.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+                price.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+                price.topAnchor.constraint(equalTo: container.topAnchor),
+                price.heightAnchor.constraint(equalToConstant: 50)
+            ])
+
+            container.addSubview(description)
+            description.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                description.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+                description.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+                description.topAnchor.constraint(equalTo: price.bottomAnchor),
+                description.heightAnchor.constraint(equalToConstant: 50)
+            ])
+
+            return container
+        }()
+
         let viewController = builder.buildViewController()
         navigationController?.show(viewController, sender: self)
     }
