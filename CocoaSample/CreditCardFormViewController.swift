@@ -9,8 +9,8 @@ import Spreedly
 import RxSwift
 
 class CreditCardFormViewController: UIViewController {
-
-    @IBOutlet var form: SPSecureForm?
+    @IBOutlet weak var form: SPSecureForm!
+    @IBOutlet weak var expirationDatePicker: ExpirationPickerField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,10 @@ class CreditCardFormViewController: UIViewController {
     /// Set defaults here for values like name
     /// or address information.
     func setDefaults() {
-        form?.fullName?.text = "Dolly Dog"
+        form.fullName?.text = "Dolly Dog"
 
         let defaults = CreditCardInfo()
-        var billing = Address()
+        let billing = Address()
         billing.address1 = "123 Bark St"
         billing.city = "Canine"
         billing.state = "WA"
@@ -34,11 +34,15 @@ class CreditCardFormViewController: UIViewController {
         billing.phoneNumber = "206-555-2275"
         defaults.address = billing
 
-        form?.creditCardDefaults = defaults
+        form.creditCardDefaults = defaults
     }
 
     func configureDelegates() {
-        form?.delegate = self
+        form.delegate = self
+    }
+
+    @IBAction func pickerTriggered(_ sender: Any) {
+        expirationDatePicker.showPicker()
     }
 }
 
