@@ -10,7 +10,9 @@ import Spreedly
 import PassKit
 
 class ExpressViewController: UIViewController {
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var addCard: UIButton!
     @IBOutlet weak var addBankAccount: UIButton!
 
@@ -28,6 +30,16 @@ class ExpressViewController: UIViewController {
         hideDisallowedMethods()
         collectionViewDidLoad()
         styleNavButtons()
+        insertArrangedSubview(
+                view: context.paymentSelectionHeader,
+                height: context.paymentSelectionHeaderHeight,
+                at: 0
+        )
+        insertArrangedSubview(
+                view: context.paymentSelectionFooter,
+                height: context.paymentSelectionFooterHeight,
+                at: stackView.arrangedSubviews.count
+        )
     }
 
     func styleNavButtons() {
@@ -83,6 +95,21 @@ class ExpressViewController: UIViewController {
                 token: method.token ?? ""
         )
         didSelectPaymentMethod?(item)
+    }
+
+    func insertArrangedSubview(view: UIView?, height: CGFloat, at index: Int) {
+        guard let view = view,
+              height > 0 else {
+            return
+        }
+
+        stackView.insertArrangedSubview(view, at: index)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            view.heightAnchor.constraint(equalToConstant: height)
+        ])
     }
 }
 
