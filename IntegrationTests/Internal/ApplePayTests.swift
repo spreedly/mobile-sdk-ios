@@ -15,7 +15,7 @@ class ApplePayTests: XCTestCase {
         let promise = client.createPaymentMethodFrom(applePay: info)
 
         let transaction = try promise.assertResult(self)
-        let result = transaction.paymentMethod!
+        let result = transaction.applePay!
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .applePay)
         self.assertCardFieldsPopulate(result: result, info: info)
@@ -27,7 +27,7 @@ class ApplePayTests: XCTestCase {
         info.testCardNumber = Helpers.testCardNumber
         info.company = "LSGD Partners"
 
-        var billing = Address()
+        let billing = Address()
         billing.address1 = "123 Fake St"
         billing.address2 = "Suite #200"
         billing.city = "Springfield"
@@ -37,7 +37,7 @@ class ApplePayTests: XCTestCase {
         billing.phoneNumber = "541-555-2222"
         info.address = billing
 
-        var shipping = Address()
+        let shipping = Address()
         shipping.address1 = "321 Wall St"
         shipping.address2 = "Suite #4100"
         shipping.city = "Seattle"
@@ -52,7 +52,7 @@ class ApplePayTests: XCTestCase {
         let promise = client.createPaymentMethodFrom(applePay: info)
 
         let transaction = try promise.assertResult(self)
-        let result = transaction.paymentMethod!
+        let result = transaction.applePay!
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .applePay)
         self.assertCardFieldsPopulate(result: result, info: info)

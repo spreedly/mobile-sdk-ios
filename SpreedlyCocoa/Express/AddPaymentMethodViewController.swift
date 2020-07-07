@@ -34,10 +34,10 @@ class AddPaymentMethodViewController: UIViewController {
 }
 
 extension AddPaymentMethodViewController: SPSecureFormDelegate {
-    func spreedly<TResult>(
+    func spreedly(
             secureForm form: SPSecureForm,
-            success transaction: Transaction<TResult>
-    ) where TResult: PaymentMethodResultBase {
+            success transaction: Transaction
+    ) {
         guard let paymentMethod = transaction.paymentMethod else {
             return
         }

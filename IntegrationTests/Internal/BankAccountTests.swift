@@ -20,7 +20,7 @@ class BankAccountTests: XCTestCase {
         let promise = client.createPaymentMethodFrom(bankAccount: info)
 
         let transaction = try promise.assertResult(self)
-        let bankAccount = transaction.paymentMethod!
+        let bankAccount = transaction.bankAccount!
 
         XCTAssertNotNil(bankAccount.token)
         XCTAssertNil(bankAccount.bankName)

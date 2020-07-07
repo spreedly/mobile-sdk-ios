@@ -34,20 +34,40 @@ public class TransactionBase: NSObject {
     }
 }
 
-public class Transaction<TPaymentMethod>: TransactionBase where TPaymentMethod: PaymentMethodResultBase {
-    public let paymentMethod: TPaymentMethod?
+public class Transaction: TransactionBase {
+    public let paymentMethod: PaymentMethodResultBase?
+
+    public var creditCard: CreditCardResult? {
+        paymentMethod?.paymentMethodType == PaymentMethodType.creditCard ? paymentMethod as? CreditCardResult : nil
+    }
+    public var bankAccount: BankAccountResult? {
+        paymentMethod?.paymentMethodType == PaymentMethodType.bankAccount ? paymentMethod as? BankAccountResult : nil
+    }
+    public var applePay: ApplePayResult? {
+        paymentMethod?.paymentMethodType == PaymentMethodType.applePay ? paymentMethod as? ApplePayResult : nil
+    }
 
     override init(from json: [String: Any]) {
         if let paymentMethodJson = json.object(optional: "payment_method") {
-            paymentMethod = TPaymentMethod(from: paymentMethodJson)
+            paymentMethod = Transaction.initPaymentMethod(from: paymentMethodJson)
         } else {
             paymentMethod = nil
         }
-
         super.init(from: json)
     }
 
-    static func unwrapFrom(data: Data) throws -> Transaction<TPaymentMethod> {
+    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
+        let paymentMethodType = json.string(optional: "payment_method_type")
+
+        switch paymentMethodType {
+        case CreditCardResult.paymentMethodType: return CreditCardResult(from: json)
+        case BankAccountResult.paymentMethodType: return BankAccountResult(from: json)
+        case ApplePayResult.paymentMethodType: return ApplePayResult(from: json)
+        default: return nil
+        }
+    }
+
+    static func unwrapFrom(data: Data) throws -> Transaction {
         let json = try data.decodeJson()
         if json.keys.contains("transaction") {
             return Transaction(from: try json.object(for: "transaction"))

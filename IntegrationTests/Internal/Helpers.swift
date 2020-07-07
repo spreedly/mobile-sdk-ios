@@ -36,7 +36,7 @@ public class Helpers: NSObject {
         ClientFactory.create(envKey: key, envSecret: secret, test: true)
     }
 
-    static func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction<CreditCardResult>> {
+    static func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction> {
         let client = createClient()
         let creditCard = CreditCardInfo(
                 firstName: "Dolly",
