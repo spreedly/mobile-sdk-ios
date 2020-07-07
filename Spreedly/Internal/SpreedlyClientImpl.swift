@@ -77,7 +77,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             urlRequest.httpBody = try request.encodeJson()
 
             return self.process(request: urlRequest).map { data -> Transaction in
-                try Transaction.unwrapFrom(data: data)
+                try Transaction.unwrap(from: data)
             }
         }
     }
@@ -106,7 +106,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                     request: urlRequest,
                     authenticated: authenticated
             ).map { data -> Transaction in
-                try Transaction.unwrapFrom(data: data)
+                try Transaction.unwrap(from: data)
             }
         }
     }
@@ -153,7 +153,7 @@ extension SpreedlyClientImpl: _ObjCClient {
             urlRequest.httpBody = try request.encodeJson()
 
             return self.process(request: urlRequest, authenticated: authenticated).map { data -> Transaction in
-                try Transaction.unwrapFrom(data: data)
+                try Transaction.unwrap(from: data)
             }
         }
 

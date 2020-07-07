@@ -68,7 +68,7 @@ public class Transaction: TransactionBase {
         }
     }
 
-    static func unwrapFrom(data: Data) throws -> Transaction {
+    static func unwrap(from data: Data) throws -> Transaction {
         let json = try data.decodeJson()
         if json.keys.contains("transaction") {
             return Transaction(from: try json.object(for: "transaction"))
