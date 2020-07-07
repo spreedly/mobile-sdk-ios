@@ -50,6 +50,8 @@ public class ExpressBuilder: NSObject {
     /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultBankAccountInfo: BankAccountInfo?
 
+    @objc public var paymentRequest: PKPaymentRequest?
+
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
 
     @objc public var paymentSelectionHeader: UIView?
@@ -94,6 +96,8 @@ public class ExpressBuilder: NSObject {
         context.creditCardDefaults = CreditCardInfo(fromCard: defaultCreditCardInfo)
         context.bankAccountDefaults = BankAccountInfo(fromBankAccount: defaultBankAccountInfo)
 
+        context.paymentRequest = paymentRequest
+
         context.paymentSelectionHeader = paymentSelectionHeader
         context.paymentSelectionHeaderHeight = paymentSelectionHeaderHeight
         context.paymentSelectionFooter = paymentSelectionFooter
@@ -124,6 +128,8 @@ public class ExpressContext: NSObject {
     @objc public var paymentMethodDefaults: PaymentMethodInfo?
     @objc public var creditCardDefaults: CreditCardInfo?
     @objc public var bankAccountDefaults: BankAccountInfo?
+
+    @objc public var paymentRequest: PKPaymentRequest?
 
     @objc public var paymentSelectionHeader: UIView?
     @objc public var paymentSelectionHeaderHeight: CGFloat = 0

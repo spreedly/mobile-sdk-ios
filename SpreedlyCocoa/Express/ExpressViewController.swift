@@ -149,3 +149,23 @@ extension ExpressViewController: UICollectionViewDelegate {
         didSelectPaymentMethod?(item)
     }
 }
+
+/* MARK: - Apple Pay */
+extension ExpressViewController {
+    func startApplePay() {
+        let client = ClientFactory.create(envKey: "", envSecret: "", test: true)
+        let handler = ApplePayHandler(client: client)
+
+        guard let request = context.paymentRequest else {
+            fatalError("A PKPaymentRequest must be set on the ExpressBuilder object to initiate the Apple Pay workflow")
+        }
+
+        handler.startPayment(request: request) { paymentSuccessful in
+            if paymentSuccessful {
+                print("Apple Pay success!")
+            } else {
+                print("Apple Pay failed :(")
+            }
+        }
+    }
+}

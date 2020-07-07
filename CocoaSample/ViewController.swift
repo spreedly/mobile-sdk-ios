@@ -6,6 +6,7 @@
 //
 //
 
+import PassKit
 import UIKit
 import Spreedly
 import SpreedlyCocoa
@@ -29,56 +30,93 @@ class ViewController: UIViewController {
         }
 
         builder.paymentSelectionHeaderHeight = 100
-        builder.paymentSelectionHeader = {
-            let label = UILabel(frame: .zero)
-            label.font = UIFont.preferredFont(forTextStyle: .title1)
-            label.textAlignment = .center
-            label.text = "🎶 Sousa's Phones 📱"
-            return label
-        }()
+        builder.paymentSelectionHeader = buildHeader()
 
         builder.paymentSelectionFooterHeight = 100
-        builder.paymentSelectionFooter = {
-            let container = UIView(frame: .zero)
+        builder.paymentSelectionFooter = buildFooter()
 
-            let price = UILabel(frame: .zero)
-            price.font = UIFont.preferredFont(forTextStyle: .title1)
-            price.textColor = .systemBlue
-            price.textAlignment = .center
-            price.text = "$354.62"
-
-            let description = UILabel(frame: .zero)
-            description.font = UIFont.preferredFont(forTextStyle: .body)
-            description.textAlignment = .center
-            description.numberOfLines = 2
-            description.text = [
-                "Sax oPhone SE (2020)",
-                "128GB, Polished Brass"
-            ].joined(separator: "\n")
-
-            container.addSubview(price)
-            price.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                price.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-                price.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-                price.topAnchor.constraint(equalTo: container.topAnchor),
-                price.heightAnchor.constraint(equalToConstant: 50)
-            ])
-
-            container.addSubview(description)
-            description.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                description.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-                description.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-                description.topAnchor.constraint(equalTo: price.bottomAnchor),
-                description.heightAnchor.constraint(equalToConstant: 50)
-            ])
-
-            return container
-        }()
+        builder.paymentRequest = buildPaymentRequest()
 
         let viewController = builder.buildViewController()
         navigationController?.show(viewController, sender: self)
+    }
+
+    private func buildHeader() -> UIView {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.textAlignment = .center
+        label.text = "🎶 Sousa's Phones 📱"
+        return label
+    }
+
+    private func buildFooter() -> UIView {
+        let container = UIView(frame: .zero)
+
+        let price = UILabel(frame: .zero)
+        price.font = UIFont.preferredFont(forTextStyle: .title1)
+        price.textColor = .systemBlue
+        price.textAlignment = .center
+        price.text = "$354.62"
+
+        let description = UILabel(frame: .zero)
+        description.font = UIFont.preferredFont(forTextStyle: .body)
+        description.textAlignment = .center
+        description.numberOfLines = 2
+        description.text = [
+            "Sax oPhone SE (2020)",
+            "128GB, Polished Brass"
+        ].joined(separator: "\n")
+
+        container.addSubview(price)
+        price.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            price.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            price.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            price.topAnchor.constraint(equalTo: container.topAnchor),
+            price.heightAnchor.constraint(equalToConstant: 50)
+        ])
+
+        container.addSubview(description)
+        description.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            description.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            description.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            description.topAnchor.constraint(equalTo: price.bottomAnchor),
+            description.heightAnchor.constraint(equalToConstant: 50)
+        ])
+
+        return container
+    }
+
+    private func buildPaymentRequest() -> PKPaymentRequest {
+        let request = PKPaymentRequest()
+        request.merchantIdentifier = "merchant.com.ergonlabs.sample"
+        request.merchantCapabilities = [
+            .capabilityCredit,
+            .capabilityDebit,
+            .capability3DS
+        ]
+        request.countryCode = "US"
+        request.currencyCode = "USD"
+        request.supportedNetworks = [
+            .amex,
+            .discover,
+            .masterCard,
+            .maestro,
+            .elo,
+            .cartesBancaires,
+            .chinaUnionPay,
+            .electron,
+            .JCB,
+            .visa
+        ]
+        request.requiredBillingContactFields = [PKContactField.name]
+        request.paymentSummaryItems = [
+            PKPaymentSummaryItem(label: "Amount", amount: NSDecimalNumber(string: "322.38"), type: .final),
+            PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(string: "32.24"), type: .final),
+            PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(string: "354.62"), type: .final)
+        ]
+        return request
     }
 
     @IBAction func expressWithPresent(_ sender: Any) {
