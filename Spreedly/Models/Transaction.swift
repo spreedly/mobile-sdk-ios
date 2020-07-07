@@ -34,16 +34,17 @@ public class TransactionBase: NSObject {
     }
 }
 
+@objc(SPRTransaction)
 public class Transaction: TransactionBase {
-    public let paymentMethod: PaymentMethodResultBase?
+    @objc public let paymentMethod: PaymentMethodResultBase?
 
-    public var creditCard: CreditCardResult? {
+    @objc public var creditCard: CreditCardResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.creditCard ? paymentMethod as? CreditCardResult : nil
     }
-    public var bankAccount: BankAccountResult? {
+    @objc public var bankAccount: BankAccountResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.bankAccount ? paymentMethod as? BankAccountResult : nil
     }
-    public var applePay: ApplePayResult? {
+    @objc public var applePay: ApplePayResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.applePay ? paymentMethod as? ApplePayResult : nil
     }
 
@@ -77,60 +78,15 @@ public class Transaction: TransactionBase {
     }
 }
 
-@objc(SPRTransaction)
-public class _ObjCTransaction: TransactionBase { // swiftlint:disable:this type_name
-    @objc public var paymentMethod: PaymentMethodResultBase?
-
-    @objc public var creditCard: CreditCardResult? {
-        paymentMethod as? CreditCardResult
-    }
-    @objc public var bankAccount: BankAccountResult? {
-        paymentMethod as? BankAccountResult
-    }
-    @objc public var applePay: ApplePayResult? {
-        paymentMethod as? ApplePayResult
-    }
-
-    override init(from json: [String: Any]) {
-        if let paymentMethodJson = json.object(optional: "payment_method") {
-            paymentMethod = _ObjCTransaction.initPaymentMethod(from: paymentMethodJson)
-        } else {
-            paymentMethod = nil
-        }
-        super.init(from: json)
-    }
-
-    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
-        let paymentMethodType = json.string(optional: "payment_method_type")
-
-        switch paymentMethodType {
-        case CreditCardResult.paymentMethodType: return CreditCardResult(from: json)
-        case BankAccountResult.paymentMethodType: return BankAccountResult(from: json)
-        case ApplePayResult.paymentMethodType: return ApplePayResult(from: json)
-        default: return nil
-        }
-    }
-
-    static func unwrap(from data: Data) throws -> _ObjCTransaction {
-        let json = try data.decodeJson()
-        if json.keys.contains("transaction") {
-            return _ObjCTransaction(from: try json.object(for: "transaction"))
-        }
-
-        return _ObjCTransaction(from: json)
-    }
-}
-
 @objc(SPRSingleTransaction)
 public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
-    private var observable: Single<_ObjCTransaction>
+    private var observable: Single<Transaction>
 
-    init(observable: Single<_ObjCTransaction>) {
+    init(observable: Single<Transaction>) {
         self.observable = observable
     }
 
-    @objc
-    public func subscribe(onSuccess: ((_ObjCTransaction) -> Void)?, onError: ((Error) -> Void)?) {
+    @objc public func subscribe(onSuccess: ((Transaction) -> Void)?, onError: ((Error) -> Void)?) {
         _ = observable.subscribe(onSuccess: onSuccess, onError: onError)
     }
 }

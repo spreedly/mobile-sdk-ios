@@ -13,7 +13,7 @@ class ObjCTransactionTests: XCTestCase {
             "succeeded": false
         ]
 
-        let transaction = _ObjCTransaction(from: transactionResponse)
+        let transaction = Transaction(from: transactionResponse)
 
         XCTAssertFalse(transaction.succeeded)
         XCTAssertNil(transaction.paymentMethod)

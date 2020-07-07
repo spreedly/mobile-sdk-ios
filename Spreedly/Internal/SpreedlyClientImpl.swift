@@ -143,7 +143,7 @@ extension SpreedlyClientImpl: _ObjCClient {
             url = unauthenticatedPaymentMethodUrl
         }
 
-        let single = Single<_ObjCTransaction>.deferred {
+        let single = Single<Transaction>.deferred {
             var request = try info.toRequestJson()
             if !authenticated {
                 request["environment_key"] = self.envKey
@@ -152,8 +152,8 @@ extension SpreedlyClientImpl: _ObjCClient {
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return self.process(request: urlRequest, authenticated: authenticated).map { data -> _ObjCTransaction in
-                try _ObjCTransaction.unwrap(from: data)
+            return self.process(request: urlRequest, authenticated: authenticated).map { data -> Transaction in
+                try Transaction.unwrapFrom(data: data)
             }
         }
 
