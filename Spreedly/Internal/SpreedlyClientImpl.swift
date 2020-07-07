@@ -42,22 +42,22 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         return userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
     }
 
-    func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> Single<Transaction<CreditCardResult>> {
+    func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> Single<Transaction> {
         createPaymentMethod(from: info)
     }
 
-    func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> Single<Transaction<BankAccountResult>> {
+    func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> Single<Transaction> {
         createPaymentMethod(from: info)
     }
 
-    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction<ApplePayResult>> {
+    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction> {
         createPaymentMethod(from: info)
     }
 
     func recache(
             token: String,
             verificationValue: SpreedlySecureOpaqueString
-    ) -> Single<Transaction<CreditCardResult>> {
+    ) -> Single<Transaction> {
         let url = SpreedlyClientImpl.baseUrl.appendingPathComponent(
                 "/payment_methods/\(token)/recache.json", isDirectory: false
         )
@@ -76,15 +76,15 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return self.process(request: urlRequest).map { data -> Transaction<CreditCardResult> in
-                try Transaction<CreditCardResult>.unwrapFrom(data: data)
+            return self.process(request: urlRequest).map { data -> Transaction in
+                try Transaction.unwrap(from: data)
             }
         }
     }
 
-    func createPaymentMethod<T: PaymentMethodResultBase>(
+    func createPaymentMethod(
             from info: PaymentMethodInfo
-    ) -> Single<Transaction<T>> {
+    ) -> Single<Transaction> {
         Single.deferred {
             let authenticated = info.retained ?? false
 
@@ -105,8 +105,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             return self.process(
                     request: urlRequest,
                     authenticated: authenticated
-            ).map { data -> Transaction<T> in
-                try Transaction<T>.unwrapFrom(data: data)
+            ).map { data -> Transaction in
+                try Transaction.unwrap(from: data)
             }
         }
     }
@@ -143,7 +143,7 @@ extension SpreedlyClientImpl: _ObjCClient {
             url = unauthenticatedPaymentMethodUrl
         }
 
-        let single = Single<_ObjCTransaction>.deferred {
+        let single = Single<Transaction>.deferred {
             var request = try info.toRequestJson()
             if !authenticated {
                 request["environment_key"] = self.envKey
@@ -152,8 +152,8 @@ extension SpreedlyClientImpl: _ObjCClient {
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try request.encodeJson()
 
-            return self.process(request: urlRequest, authenticated: authenticated).map { data -> _ObjCTransaction in
-                try _ObjCTransaction.unwrap(from: data)
+            return self.process(request: urlRequest, authenticated: authenticated).map { data -> Transaction in
+                try Transaction.unwrap(from: data)
             }
         }
 
