@@ -19,7 +19,7 @@ class CreditCardTests: XCTestCase {
 
         let promise = client.createPaymentMethodFrom(creditCard: info)
         let transaction = try promise.assertResult(self)
-        let result = transaction.paymentMethod!
+        let result = transaction.creditCard!
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
         CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
@@ -53,7 +53,7 @@ class CreditCardTests: XCTestCase {
 
         let promise = client.createPaymentMethodFrom(creditCard: info)
         let transaction = try promise.assertResult(self)
-        let result = transaction.paymentMethod!
+        let result = transaction.creditCard!
 
         CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
         CreditCardTests.assertCardFieldsPopulate(result: result, info: info)

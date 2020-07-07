@@ -8,10 +8,10 @@ import Spreedly
 import RxSwift
 
 public protocol SPSecureFormDelegate: class {
-    func spreedly<TResult>(
+    func spreedly(
             secureForm form: SPSecureForm,
-            success: Transaction<TResult>
-    ) where TResult: PaymentMethodResultBase
+            success: Transaction
+    )
 
     func willCallSpreedly(secureForm: SPSecureForm)
 

@@ -10,7 +10,7 @@ class RecacheTests: XCTestCase {
     func testCanRecache() throws {
         let creditCardPromise = try Helpers.createCreditCard(retained: true)
 
-        let transaction = try creditCardPromise.flatMap { transaction -> Single<Transaction<CreditCardResult>> in
+        let transaction = try creditCardPromise.flatMap { transaction -> Single<Transaction> in
             let creditCard = transaction.paymentMethod
             guard let token = creditCard?.token else {
                 return Single.error(TestError.invalidResponse(
