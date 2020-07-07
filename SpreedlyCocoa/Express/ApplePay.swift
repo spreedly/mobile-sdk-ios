@@ -5,7 +5,7 @@
 import PassKit
 import Spreedly
 
-public typealias PaymentCompletionHandler = (Bool) -> Void
+public typealias PaymentCompletionHandler = (Bool, Transaction?) -> Void
 
 @objc(SPRApplePayHandler)
 public class ApplePayHandler: NSObject {
@@ -14,6 +14,9 @@ public class ApplePayHandler: NSObject {
     private var completionHandler: PaymentCompletionHandler?
     private var client: SpreedlyClient?
     private var objcClient: _ObjCClient?
+    private var error: String?
+    private var token: String?
+    private var transaction: Transaction?
 
     public init(client: SpreedlyClient) {
         self.client = client
@@ -33,7 +36,8 @@ public class ApplePayHandler: NSObject {
                 NSLog("Presented payment controller")
             } else {
                 NSLog("Failed to present payment controller")
-                self.completionHandler?(false)
+                self.paymentController?.dismiss()
+                self.completionHandler?(false, nil)
             }
         })
     }
@@ -45,18 +49,20 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
             didAuthorizePayment payment: PKPayment,
             completion: @escaping (PKPaymentAuthorizationStatus) -> Void
     ) {
+        NSLog("paymentAuthorizationController:didAuthorizePayment")
         // Perform some very basic validation on the provided contact information
 //        if payment.shippingContact?.emailAddress == nil || payment.shippingContact?.phoneNumber == nil {
-        if payment.shippingContact?.name == nil {
+        if false { // payment.shippingContact?.name == nil {
 //            NSLog("Shipping contact email or phone number were missing")
             NSLog("Name is missing")
             paymentStatus = .failure
             completion(.failure)
         } else {
+            NSLog("Going to call Spreedly")
             let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", payment: payment)
             info.testCardNumber = "4111111111111111"
 
-            _ = client.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
+            _ = client?.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
                 let result = transaction.paymentMethod!
                 guard result.errors.count == 0 else {
                     self.error = result.errors[0].message
@@ -78,15 +84,14 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
     }
 
     public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
+        NSLog("paymentAuthorizationControllerDidFinish")
         controller.dismiss {
             DispatchQueue.main.async {
-                if self.paymentStatus == .success {
-                    self.completionHandler?(true)
-                } else {
-                    self.completionHandler?(false)
-                }
+                self.completionHandler?(
+                        self.paymentStatus == .success,
+                        self.transaction
+                )
             }
         }
-
     }
 }

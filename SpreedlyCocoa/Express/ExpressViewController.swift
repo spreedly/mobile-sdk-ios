@@ -12,7 +12,7 @@ import PassKit
 class ExpressViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     @IBOutlet weak var addCard: UIButton!
     @IBOutlet weak var addBankAccount: UIButton!
 
@@ -146,6 +146,11 @@ extension ExpressViewController: UICollectionViewDelegate {
         guard let item = items?[indexPath.item] else {
             return
         }
+        if item.type == .applePay {
+            startApplePay()
+            return
+        }
+
         didSelectPaymentMethod?(item)
     }
 }
@@ -153,16 +158,29 @@ extension ExpressViewController: UICollectionViewDelegate {
 /* MARK: - Apple Pay */
 extension ExpressViewController {
     func startApplePay() {
-        let client = ClientFactory.create(envKey: "", envSecret: "", test: true)
+        let credentials: Credentials
+        do {
+            credentials = try Credentials.getCredentials()
+        } catch {
+            fatalError("\(error)")
+        }
+
+        let client = ClientFactory.create(credentials: credentials)
         let handler = ApplePayHandler(client: client)
 
         guard let request = context.paymentRequest else {
             fatalError("A PKPaymentRequest must be set on the ExpressBuilder object to initiate the Apple Pay workflow")
         }
 
-        handler.startPayment(request: request) { paymentSuccessful in
-            if paymentSuccessful {
+        handler.startPayment(request: request) { success, transaction in
+            if success {
                 print("Apple Pay success!")
+                let item = PaymentMethodItem(
+                        type: .applePay,
+                        description: "Apple Pay",
+                        token: transaction?.paymentMethod?.token ?? ""
+                )
+                self.didSelectPaymentMethod?(item)
             } else {
                 print("Apple Pay failed :(")
             }

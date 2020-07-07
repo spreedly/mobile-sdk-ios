@@ -18,30 +18,8 @@ public protocol SPSecureFormDelegate: class {
     func didCallSpreedly(secureForm: SPSecureForm)
 }
 
-public enum SPSecureClientError: Error {
-    case noSpreedlyCredentials
-}
-
 public class SPSecureForm: UIView {
     public weak var delegate: SPSecureFormDelegate?
-
-    private func getCredentials() throws -> ( // swiftlint:disable:this large_tuple
-            envKey: String, envSecret: String, test: Bool
-    ) {
-        guard let path = Bundle.main.path(forResource: "Spreedly-env", ofType: "plist"),
-              let config = NSDictionary(contentsOfFile: path) as? [String: Any],
-              let envKey = config["ENV_KEY"] as? String,
-              let envSecret = config["ENV_SECRET"] as? String,
-              envKey.count > 0 && envSecret.count > 0 else {
-            throw SPSecureClientError.noSpreedlyCredentials
-        }
-
-        return (
-                envKey: envKey,
-                envSecret: envSecret,
-                test: config["TEST"] as? Bool ?? false
-        )
-    }
 
     private var _client: SpreedlyClient?
 
@@ -50,12 +28,9 @@ public class SPSecureForm: UIView {
             return client
         }
 
-        let credentials = try getCredentials()
-        let client = ClientFactory.create(
-                envKey: credentials.envKey,
-                envSecret: credentials.envSecret,
-                test: credentials.test
-        )
+        let credentials = try Credentials.getCredentials()
+        let client = ClientFactory.create(credentials: credentials)
+
         _client = client
         return client
     }
@@ -64,7 +39,7 @@ public class SPSecureForm: UIView {
         let client: SpreedlyClient
         do {
             client = try getClient()
-        } catch SPSecureClientError.noSpreedlyCredentials {
+        } catch ClientError.noSpreedlyCredentials {
             fatalError("No credentials were specified.")
         } catch {
             fatalError("Error: \(error)")

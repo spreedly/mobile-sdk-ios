@@ -99,18 +99,19 @@ class ViewController: UIViewController {
         request.countryCode = "US"
         request.currencyCode = "USD"
         request.supportedNetworks = [
-            .amex,
-            .discover,
+//            .amex,
+//            .discover,
             .masterCard,
-            .maestro,
-            .elo,
-            .cartesBancaires,
-            .chinaUnionPay,
-            .electron,
-            .JCB,
+//            .maestro,
+//            .elo,
+//            .cartesBancaires,
+//            .chinaUnionPay,
+//            .electron,
+//            .JCB,
             .visa
         ]
-        request.requiredBillingContactFields = [PKContactField.name]
+        // request.requiredBillingContactFields = [PKContactField.name]
+//        request.requiredShippingContactFields = [PKContactField.name]
         request.paymentSummaryItems = [
             PKPaymentSummaryItem(label: "Amount", amount: NSDecimalNumber(string: "322.38"), type: .final),
             PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(string: "32.24"), type: .final),
