@@ -5,8 +5,8 @@
 import Foundation
 import RxSwift
 
-@objc(SPRTransactionBase)
-public class TransactionBase: NSObject {
+@objc(SPRTransaction)
+public class Transaction: NSObject {
     @objc public let token: String?
     @objc public let createdAt: Date?
     @objc public let updatedAt: Date?
@@ -17,25 +17,6 @@ public class TransactionBase: NSObject {
     @objc public let messageKey: String
     @objc public let message: String
     @objc public let errors: [SpreedlyError]?
-
-    init(from json: [String: Any]) {
-        let errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) })
-        self.errors = errors
-        messageKey = json.string(optional: "messageKey") ?? errors?[0].key ?? "unknown"
-        message = json.string(optional: "message") ?? errors?[0].message ?? "Unknown Error"
-
-        token = json.string(optional: "token")
-        createdAt = json.date(optional: "created_at")
-        updatedAt = json.date(optional: "updated_at")
-        succeeded = json.bool(optional: "succeeded") ?? false
-        transactionType = json.string(optional: "transaction_type")
-        retained = json.bool(optional: "retained") ?? false
-        state = json.string(optional: "state")
-    }
-}
-
-@objc(SPRTransaction)
-public class Transaction: TransactionBase {
     @objc public let paymentMethod: PaymentMethodResultBase?
 
     @objc public var creditCard: CreditCardResult? {
@@ -48,13 +29,25 @@ public class Transaction: TransactionBase {
         paymentMethod?.paymentMethodType == PaymentMethodType.applePay ? paymentMethod as? ApplePayResult : nil
     }
 
-    override init(from json: [String: Any]) {
+    init(from json: [String: Any]) {
         if let paymentMethodJson = json.object(optional: "payment_method") {
             paymentMethod = Transaction.initPaymentMethod(from: paymentMethodJson)
         } else {
             paymentMethod = nil
         }
-        super.init(from: json)
+
+        let errors = json.objectList(optional: "errors", { json in try SpreedlyError(from: json) })
+        self.errors = errors
+        messageKey = json.string(optional: "messageKey") ?? errors?[0].key ?? "unknown"
+        message = json.string(optional: "message") ?? errors?[0].message ?? "Unknown Error"
+
+        token = json.string(optional: "token")
+        createdAt = json.date(optional: "created_at")
+        updatedAt = json.date(optional: "updated_at")
+        succeeded = json.bool(optional: "succeeded") ?? false
+        transactionType = json.string(optional: "transaction_type")
+        retained = json.bool(optional: "retained") ?? false
+        state = json.string(optional: "state")
     }
 
     private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
