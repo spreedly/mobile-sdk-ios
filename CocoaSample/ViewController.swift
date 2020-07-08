@@ -111,10 +111,6 @@ class ViewController: UIViewController {
             .visa
         ]
 
-        // Attempt to collect the payer's name. Though Apple Pay will say this is required, the payer can still
-        // authorize payment without providing the name. Spreedly will create the Apple Pay method without a name.
-        request.requiredShippingContactFields = [PKContactField.name]
-
         request.paymentSummaryItems = [
             PKPaymentSummaryItem(label: "Amount", amount: NSDecimalNumber(string: "322.38"), type: .final),
             PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(string: "32.24"), type: .final),
@@ -146,7 +142,20 @@ class ViewController: UIViewController {
             info.bankAccountType = .savings
             return info
         }()
+        builder.defaultApplePayInfo = {
+            let info = PaymentMethodInfo()
+            info.fullName = "Applepay Customer"
+            info.address.address1 = "1 Infinite Loop"
+            info.address.city = "Cupertino"
+            info.address.state = "CA"
+            info.address.zip = "95014"
+            info.address.country = "US"
+            info.address.phoneNumber = "8002752273"
+            return info
+        }()
         builder.presentationStyle = .asModal
+
+        builder.paymentRequest = buildPaymentRequest()
 
         let viewController = builder.buildViewController()
         present(viewController, animated: true)

@@ -50,6 +50,8 @@ public class ExpressBuilder: NSObject {
     /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultBankAccountInfo: BankAccountInfo?
 
+    @objc public var defaultApplePayInfo: PaymentMethodInfo?
+
     @objc public var paymentRequest: PKPaymentRequest?
 
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
@@ -95,6 +97,7 @@ public class ExpressBuilder: NSObject {
         context.paymentMethodDefaults = defaultPaymentMethodInfo
         context.creditCardDefaults = CreditCardInfo(fromCard: defaultCreditCardInfo)
         context.bankAccountDefaults = BankAccountInfo(fromBankAccount: defaultBankAccountInfo)
+        context.applePayDefaults = defaultApplePayInfo
 
         context.paymentRequest = paymentRequest
 
@@ -128,6 +131,7 @@ public class ExpressContext: NSObject {
     @objc public var paymentMethodDefaults: PaymentMethodInfo?
     @objc public var creditCardDefaults: CreditCardInfo?
     @objc public var bankAccountDefaults: BankAccountInfo?
+    @objc public var applePayDefaults: PaymentMethodInfo?
 
     @objc public var paymentRequest: PKPaymentRequest?
 
@@ -155,5 +159,9 @@ public class ExpressContext: NSObject {
 
     @objc public var fullNameBankAccount: String? {
         bankAccountDefaults?.fullName ?? fullName(from: bankAccountDefaults) ?? fullNamePaymentMethod
+    }
+
+    @objc public var fullNameApplePay: String? {
+        applePayDefaults?.fullName ?? fullName(from: applePayDefaults) ?? fullNamePaymentMethod
     }
 }

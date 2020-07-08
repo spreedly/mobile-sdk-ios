@@ -172,7 +172,10 @@ extension ExpressViewController {
         }
 
         let client = ClientFactory.create(with: credentials)
-        handler = ApplePayHandler(client: client)
+        handler = ApplePayHandler(
+                client: client,
+                defaults: context.applePayDefaults ?? context.paymentMethodDefaults
+        )
         handler?.startPayment(request: request) { success, transaction in
             if success {
                 let item = PaymentMethodItem(

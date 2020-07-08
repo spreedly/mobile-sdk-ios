@@ -17,9 +17,11 @@ public class ApplePayHandler: NSObject {
     private var error: String?
     private var token: String?
     private var transaction: Transaction?
+    private var defaults: PaymentMethodInfo?
 
-    public init(client: SpreedlyClient) {
+    public init(client: SpreedlyClient, defaults: PaymentMethodInfo? = nil) {
         self.client = client
+        self.defaults = defaults
     }
 
     @objc public init(client: _ObjCClient) {
@@ -49,15 +51,7 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
             didAuthorizePayment payment: PKPayment,
             completion: @escaping (PKPaymentAuthorizationStatus) -> Void
     ) {
-        guard let firstName = payment.shippingContact?.name?.givenName,
-                let lastName = payment.shippingContact?.name?.familyName else {
-            NSLog("Name is missing")
-            paymentStatus = .failure
-            completion(.failure)
-            return
-        }
-
-        let info = ApplePayInfo(firstName: firstName, lastName: lastName, payment: payment)
+        let info = ApplePayInfo(fromInfo: defaults, payment: payment)
         _ = client?.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
             let result = transaction.paymentMethod!
             guard result.errors.count == 0 else {
@@ -75,7 +69,6 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
             self.paymentStatus = .failure
             completion(.failure)
         })
-
     }
 
     public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
