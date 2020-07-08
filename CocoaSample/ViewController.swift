@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             PaymentMethodItem(type: .creditCard, description: "Amex 1111", token: "abc456")
         ]
         builder.didSelectPaymentMethod = { item in
-            print("Payment method selected: \(item.shortDescription)")
+            print("Payment method selected: \(item.shortDescription) Token: \(item.token)")
             self.navigationController?.popToViewController(self, animated: true)
         }
 
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
             PaymentMethodItem(type: .creditCard, description: "MC 4444", token: "abc456")
         ]
         builder.didSelectPaymentMethod = { item in
-            print("Payment method selected: \(item.shortDescription)")
+            print("Payment method selected: \(item.shortDescription) Token: \(item.token)")
             self.dismiss(animated: true)
         }
         builder.defaultCreditCardInfo = {

@@ -67,8 +67,7 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
                 return
             }
 
-            self.token = result.token!
-            NSLog("Got payment method token: \(result.token!)")
+            self.transaction = transaction
             self.paymentStatus = .success
             completion(.success)
         }, onError: { error in
@@ -80,7 +79,6 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
     }
 
     public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
-        NSLog("paymentAuthorizationControllerDidFinish")
         controller.dismiss {
             DispatchQueue.main.async {
                 self.completionHandler?(
