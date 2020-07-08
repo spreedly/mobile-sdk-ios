@@ -9,56 +9,41 @@ import Foundation
 
 @objc(SPRClientFactory)
 public class ClientFactory: NSObject {
-    public static func create(
-            envKey: String,
-            envSecret: String,
-            test: Bool = false,
-            testCardNumber: String? = nil
-    ) -> SpreedlyClient {
-        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test, testCardNumber: testCardNumber)
+    public static func create(with config: ClientConfiguration) -> SpreedlyClient {
+        SpreedlyClientImpl(with: config)
     }
 
-    public static func create(credentials: Credentials) -> SpreedlyClient {
-        ClientFactory.create(
-                envKey: credentials.envKey,
-                envSecret: credentials.envSecret,
-                test: credentials.test,
-                testCardNumber: credentials.testCardNumber
-        )
-    }
-
-    @objc(createWithEnvKey:envSecret:test:)
-    public static func _objCCreate(envKey: String, envSecret: String, test: Bool) -> _ObjCClient { // swiftlint:disable:this identifier_name line_length
-        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
+    @objc(createWithConfig:)
+    public static func _objCCreate(with config: ClientConfiguration) -> _ObjCClient { // swiftlint:disable:this identifier_name line_length
+        SpreedlyClientImpl(with: config)
     }
 }
 
-@objc(SPRCredentials)
-public class Credentials: NSObject {
+@objc(SPRClientConfiguration)
+public class ClientConfiguration: NSObject {
     @objc public let envKey: String
-    @objc public let envSecret: String
-    @objc public let test: Bool
-    @objc public let testCardNumber: String?
+    @objc public var envSecret: String?
+    @objc public var test: Bool = false
+    @objc public var testCardNumber: String?
 
-    init(envKey: String, envSecret: String, test: Bool, testCardNumber: String?) {
+    @objc public init(envKey: String, envSecret: String? = nil, test: Bool = false, testCardNumber: String? = nil) {
         self.envKey = envKey
         self.envSecret = envSecret
         self.test = test
         self.testCardNumber = testCardNumber
     }
 
-    @objc public static func getCredentials() throws -> Credentials {
+    @objc public static func getConfiguration() throws -> ClientConfiguration {
         guard let path = Bundle.main.path(forResource: "Spreedly-env", ofType: "plist"),
               let config = NSDictionary(contentsOfFile: path) as? [String: Any],
               let envKey = config["ENV_KEY"] as? String,
-              let envSecret = config["ENV_SECRET"] as? String,
-              envKey.count > 0 && envSecret.count > 0 else {
+              !envKey.isEmpty else {
             throw ClientError.noSpreedlyCredentials
         }
 
-        return Credentials(
+        return ClientConfiguration(
                 envKey: envKey,
-                envSecret: envSecret,
+                envSecret: config["ENV_SECRET"] as? String,
                 test: config["TEST"] as? Bool ?? false,
                 testCardNumber: config["TEST_CARD_NUMBER"] as? String
         )

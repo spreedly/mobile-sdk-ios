@@ -7,10 +7,7 @@ import RxSwift
 import RxCocoa
 
 class SpreedlyClientImpl: NSObject, SpreedlyClient {
-    let envKey: String
-    let envSecret: String
-    let test: Bool
-    let testCardNumber: String?
+    let config: ClientConfiguration
     static let baseUrl = URL(string: "https://core.spreedly.com/v1")!
     let authenticatedPaymentMethodUrl = SpreedlyClientImpl.baseUrl.appendingPathComponent(
             "/payment_methods.json", isDirectory: false
@@ -19,11 +16,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             "/payment_methods/restricted.json", isDirectory: false
     )
 
-    init(envKey: String, envSecret: String, test: Bool, testCardNumber: String? = nil) {
-        self.envKey = envKey
-        self.envSecret = envSecret
-        self.test = test
-        self.testCardNumber = testCardNumber
+    init(with config: ClientConfiguration) {
+        self.config = config
         super.init()
     }
 
@@ -39,7 +33,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     private var encodedCredentials: String {
-        let userPasswordString = "\(envKey):\(envSecret)"
+        let userPasswordString = "\(config.envKey):\(config.envSecret ?? "")"
         let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
         return userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
     }
@@ -53,8 +47,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction> {
-        if test {
-            info.testCardNumber = testCardNumber
+        if config.test {
+            info.testCardNumber = config.testCardNumber
         }
         return createPaymentMethod(from: info)
     }
@@ -71,7 +65,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             var creditCardJson = [String: Any]()
             try creditCardJson.setOpaqueString("verification_value", verificationValue)
             let request: [String: Any] = [
-                "environment_key": self.envKey,
+                "environment_key": self.config.envKey,
                 "payment_method": [
                     "credit_card": creditCardJson
                 ]
@@ -100,7 +94,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 url = self.authenticatedPaymentMethodUrl
             } else {
                 url = self.unauthenticatedPaymentMethodUrl
-                request["environment_key"] = self.envKey
+                request["environment_key"] = self.config.envKey
             }
 
             var urlRequest = URLRequest(url: url)
@@ -151,7 +145,7 @@ extension SpreedlyClientImpl: _ObjCClient {
         let single = Single<Transaction>.deferred {
             var request = try info.toRequestJson()
             if !authenticated {
-                request["environment_key"] = self.envKey
+                request["environment_key"] = self.config.envKey
             }
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"

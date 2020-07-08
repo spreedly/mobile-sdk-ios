@@ -160,14 +160,14 @@ extension ExpressViewController: UICollectionViewDelegate {
 /* MARK: - Apple Pay */
 extension ExpressViewController {
     func startApplePay() {
-        let credentials: Credentials
+        let credentials: ClientConfiguration
         do {
-            credentials = try Credentials.getCredentials()
+            credentials = try ClientConfiguration.getConfiguration()
         } catch {
             fatalError("\(error)")
         }
 
-        let client = ClientFactory.create(credentials: credentials)
+        let client = ClientFactory.create(with: credentials)
         handler = ApplePayHandler(client: client)
 
         guard let request = context.paymentRequest else {

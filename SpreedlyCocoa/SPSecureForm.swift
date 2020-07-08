@@ -28,8 +28,8 @@ public class SPSecureForm: UIView {
             return client
         }
 
-        let credentials = try Credentials.getCredentials()
-        let client = ClientFactory.create(credentials: credentials)
+        let credentials = try ClientConfiguration.getConfiguration()
+        let client = ClientFactory.create(with: credentials)
 
         _client = client
         return client
