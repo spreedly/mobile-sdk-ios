@@ -15,6 +15,8 @@ class ExpressViewController: UIViewController {
 
     @IBOutlet weak var addCard: UIButton!
     @IBOutlet weak var addBankAccount: UIButton!
+    
+    private var handler: ApplePayHandler?
 
     var context = ExpressContext()
     var items: [PaymentMethodItem]? {
@@ -166,13 +168,13 @@ extension ExpressViewController {
         }
 
         let client = ClientFactory.create(credentials: credentials)
-        let handler = ApplePayHandler(client: client)
+        handler = ApplePayHandler(client: client)
 
         guard let request = context.paymentRequest else {
             fatalError("A PKPaymentRequest must be set on the ExpressBuilder object to initiate the Apple Pay workflow")
         }
 
-        handler.startPayment(request: request) { success, transaction in
+        handler?.startPayment(request: request) { success, transaction in
             if success {
                 print("Apple Pay success!")
                 let item = PaymentMethodItem(
