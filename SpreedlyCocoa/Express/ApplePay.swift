@@ -49,38 +49,34 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
             didAuthorizePayment payment: PKPayment,
             completion: @escaping (PKPaymentAuthorizationStatus) -> Void
     ) {
-        NSLog("paymentAuthorizationController:didAuthorizePayment")
-        // Perform some very basic validation on the provided contact information
-//        if payment.shippingContact?.emailAddress == nil || payment.shippingContact?.phoneNumber == nil {
-        if false { // payment.shippingContact?.name == nil {
-//            NSLog("Shipping contact email or phone number were missing")
+        guard let firstName = payment.shippingContact?.name?.givenName,
+                let lastName = payment.shippingContact?.name?.familyName else {
             NSLog("Name is missing")
             paymentStatus = .failure
             completion(.failure)
-        } else {
-            NSLog("Going to call Spreedly")
-            let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", payment: payment)
-            info.testCardNumber = "4111111111111111"
+            return
+        }
 
-            _ = client?.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
-                let result = transaction.paymentMethod!
-                guard result.errors.count == 0 else {
-                    self.error = result.errors[0].message
-                    self.paymentStatus = .failure
-                    completion(.failure)
-                    return
-                }
-
-                self.token = result.token!
-                NSLog("Got payment method token: \(result.token!)")
-                self.paymentStatus = .success
-                completion(.success)
-            }, onError: { error in
-                self.error = "\(error)"
+        let info = ApplePayInfo(firstName: firstName, lastName: lastName, payment: payment)
+        _ = client?.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
+            let result = transaction.paymentMethod!
+            guard result.errors.count == 0 else {
+                self.error = result.errors[0].message
                 self.paymentStatus = .failure
                 completion(.failure)
-            })
-        }
+                return
+            }
+
+            self.token = result.token!
+            NSLog("Got payment method token: \(result.token!)")
+            self.paymentStatus = .success
+            completion(.success)
+        }, onError: { error in
+            self.error = "\(error)"
+            self.paymentStatus = .failure
+            completion(.failure)
+        })
+
     }
 
     public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {

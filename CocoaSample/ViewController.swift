@@ -99,19 +99,22 @@ class ViewController: UIViewController {
         request.countryCode = "US"
         request.currencyCode = "USD"
         request.supportedNetworks = [
-//            .amex,
-//            .discover,
+            .amex,
+            .discover,
             .masterCard,
-//            .maestro,
-//            .elo,
-//            .cartesBancaires,
-//            .chinaUnionPay,
-//            .electron,
-//            .JCB,
+            .maestro,
+            .elo,
+            .cartesBancaires,
+            .chinaUnionPay,
+            .electron,
+            .JCB,
             .visa
         ]
-        // request.requiredBillingContactFields = [PKContactField.name]
-//        request.requiredShippingContactFields = [PKContactField.name]
+
+        // Attempt to collect the payer's name. Though Apple Pay will say this is required, the payer can still
+        // authorize payment without providing the name. Spreedly will create the Apple Pay method without a name.
+        request.requiredShippingContactFields = [PKContactField.name]
+
         request.paymentSummaryItems = [
             PKPaymentSummaryItem(label: "Amount", amount: NSDecimalNumber(string: "322.38"), type: .final),
             PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(string: "32.24"), type: .final),

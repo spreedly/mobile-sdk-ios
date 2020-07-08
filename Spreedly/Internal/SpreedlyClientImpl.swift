@@ -10,6 +10,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     let envKey: String
     let envSecret: String
     let test: Bool
+    let testCardNumber: String?
     static let baseUrl = URL(string: "https://core.spreedly.com/v1")!
     let authenticatedPaymentMethodUrl = SpreedlyClientImpl.baseUrl.appendingPathComponent(
             "/payment_methods.json", isDirectory: false
@@ -18,10 +19,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             "/payment_methods/restricted.json", isDirectory: false
     )
 
-    init(envKey: String, envSecret: String, test: Bool) {
+    init(envKey: String, envSecret: String, test: Bool, testCardNumber: String? = nil) {
         self.envKey = envKey
         self.envSecret = envSecret
         self.test = test
+        self.testCardNumber = testCardNumber
         super.init()
     }
 
@@ -51,7 +53,10 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     }
 
     func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction> {
-        createPaymentMethod(from: info)
+        if test {
+            info.testCardNumber = testCardNumber
+        }
+        return createPaymentMethod(from: info)
     }
 
     func recache(

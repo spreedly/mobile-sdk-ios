@@ -9,12 +9,22 @@ import Foundation
 
 @objc(SPRClientFactory)
 public class ClientFactory: NSObject {
-    public static func create(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
-        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
+    public static func create(
+            envKey: String,
+            envSecret: String,
+            test: Bool = false,
+            testCardNumber: String? = nil
+    ) -> SpreedlyClient {
+        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test, testCardNumber: testCardNumber)
     }
 
     public static func create(credentials: Credentials) -> SpreedlyClient {
-        ClientFactory.create(envKey: credentials.envKey, envSecret: credentials.envSecret, test: credentials.test)
+        ClientFactory.create(
+                envKey: credentials.envKey,
+                envSecret: credentials.envSecret,
+                test: credentials.test,
+                testCardNumber: credentials.testCardNumber
+        )
     }
 
     @objc(createWithEnvKey:envSecret:test:)
@@ -28,11 +38,13 @@ public class Credentials: NSObject {
     @objc public let envKey: String
     @objc public let envSecret: String
     @objc public let test: Bool
+    @objc public let testCardNumber: String?
 
-    init(envKey: String, envSecret: String, test: Bool) {
+    init(envKey: String, envSecret: String, test: Bool, testCardNumber: String?) {
         self.envKey = envKey
         self.envSecret = envSecret
         self.test = test
+        self.testCardNumber = testCardNumber
     }
 
     @objc public static func getCredentials() throws -> Credentials {
@@ -47,7 +59,8 @@ public class Credentials: NSObject {
         return Credentials(
                 envKey: envKey,
                 envSecret: envSecret,
-                test: config["TEST"] as? Bool ?? false
+                test: config["TEST"] as? Bool ?? false,
+                testCardNumber: config["TEST_CARD_NUMBER"] as? String
         )
     }
 }
