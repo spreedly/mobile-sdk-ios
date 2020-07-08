@@ -15,7 +15,7 @@ class ExpressViewController: UIViewController {
 
     @IBOutlet weak var addCard: UIButton!
     @IBOutlet weak var addBankAccount: UIButton!
-    
+
     private var handler: ApplePayHandler?
 
     var context = ExpressContext()
@@ -160,6 +160,10 @@ extension ExpressViewController: UICollectionViewDelegate {
 /* MARK: - Apple Pay */
 extension ExpressViewController {
     func startApplePay() {
+        guard let request = context.paymentRequest else {
+            fatalError("A PKPaymentRequest must be set on the ExpressBuilder object to initiate the Apple Pay workflow")
+        }
+
         let credentials: ClientConfiguration
         do {
             credentials = try ClientConfiguration.getConfiguration()
@@ -169,22 +173,14 @@ extension ExpressViewController {
 
         let client = ClientFactory.create(with: credentials)
         handler = ApplePayHandler(client: client)
-
-        guard let request = context.paymentRequest else {
-            fatalError("A PKPaymentRequest must be set on the ExpressBuilder object to initiate the Apple Pay workflow")
-        }
-
         handler?.startPayment(request: request) { success, transaction in
             if success {
-                print("Apple Pay success!")
                 let item = PaymentMethodItem(
                         type: .applePay,
                         description: "Apple Pay",
                         token: transaction?.paymentMethod?.token ?? ""
                 )
                 self.didSelectPaymentMethod?(item)
-            } else {
-                print("Apple Pay failed :(")
             }
         }
     }
