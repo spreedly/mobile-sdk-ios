@@ -6,18 +6,18 @@ import Foundation
 import UIKit
 import Spreedly
 
-public protocol SPCreditCardNumberTextFieldDelegate: class {
+public protocol CreditCardNumberTextFieldDelegate: class {
     func cardBrandDetermined(brand: CardBrand)
 }
 
-public class SPCreditCardNumberTextField: SPSecureTextField {
+public class CreditCardNumberTextField: SecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
     @IBInspectable public var maskCharacter: String = "*"
 
-    public weak var cardNumberTextFieldDelegate: SPCreditCardNumberTextFieldDelegate?
+    public weak var cardNumberTextFieldDelegate: CreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
     private var masked: Bool = false
-    private let image = UIImageView(image: UIImage(named: SPCreditCardNumberTextField.unknownCard))
+    private let image = UIImageView(image: UIImage(named: CreditCardNumberTextField.unknownCard))
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
     }
 
     func updateCardBrandImage(brand: CardBrand) {
-        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: SPCreditCardNumberTextField.unknownCard)
+        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: CreditCardNumberTextField.unknownCard)
         self.image.image = image
     }
 
@@ -74,7 +74,7 @@ public class SPCreditCardNumberTextField: SPSecureTextField {
 }
 
 // MARK: - UITextFieldDelegate methods
-extension SPCreditCardNumberTextField {
+extension CreditCardNumberTextField {
     @discardableResult
     func determineCardBrand(_ number: String) -> CardBrand {
         let cardBrand = CardBrand.from(number)
