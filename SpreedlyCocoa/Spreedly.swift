@@ -50,6 +50,8 @@ public class ExpressBuilder: NSObject {
     /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultBankAccountInfo: BankAccountInfo?
 
+    /// Set this to provide a name, company, email, address, shipping address, and metadata information to Spreedly
+    /// when the payment method is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultApplePayInfo: PaymentMethodInfo?
 
     @objc public var paymentRequest: PKPaymentRequest?
