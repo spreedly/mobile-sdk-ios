@@ -79,7 +79,7 @@
 		F076C9176B8B2E5F678C28B2 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C72ED9EC2828C97959FD /* AddCardViewController.swift */; };
 		F076C940E8FECFAFF9199419 /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */; };
 		F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA9E54CC1E288449091E /* String+Additions.swift */; };
-		F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */; };
+		F076CA19BBA902D8E7D94F53 /* CreditCardNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE37F8EF9EF3E950C0AC /* CreditCardNumberTextField.swift */; };
 		F076CA3FC00AAC96DEDB95AF /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */; };
 		F076CA42E55BE576578B2C7C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */; };
 		F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */; };
@@ -250,7 +250,7 @@
 		F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueString.swift; sourceTree = "<group>"; };
 		F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Additions.swift"; sourceTree = "<group>"; };
 		F076CDFC7C32CD92DC2821F3 /* AddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
-		F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextField.swift; sourceTree = "<group>"; };
+		F076CE37F8EF9EF3E950C0AC /* CreditCardNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardNumberTextField.swift; sourceTree = "<group>"; };
 		F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorsTests.swift; sourceTree = "<group>"; };
 		F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
 		F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationDateProvider.swift; sourceTree = "<group>"; };
@@ -418,7 +418,7 @@
 				442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */,
 				442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */,
 				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
-				F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */,
+				F076CE37F8EF9EF3E950C0AC /* CreditCardNumberTextField.swift */,
 				F076CA9E54CC1E288449091E /* String+Additions.swift */,
 				F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */,
 				3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */,
@@ -983,7 +983,7 @@
 				442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */,
 				F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */,
 				3C9420F624A16EB600D2B5E1 /* AddPaymentMethodViewController.swift in Sources */,
-				F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */,
+				F076CA19BBA902D8E7D94F53 /* CreditCardNumberTextField.swift in Sources */,
 				3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */,
 				F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */,
 				3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */,
