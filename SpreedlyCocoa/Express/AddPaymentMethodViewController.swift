@@ -33,7 +33,7 @@ class AddPaymentMethodViewController: UIViewController {
     }
 }
 
-extension AddPaymentMethodViewController: SPSecureFormDelegate {
+extension AddPaymentMethodViewController: SecureFormDelegate {
     func spreedly(
             secureForm form: SecureForm,
             success transaction: Transaction

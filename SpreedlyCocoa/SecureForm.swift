@@ -7,7 +7,7 @@ import UIKit
 import Spreedly
 import RxSwift
 
-public protocol SPSecureFormDelegate: class {
+public protocol SecureFormDelegate: class {
     func spreedly(
             secureForm form: SecureForm,
             success: Transaction
@@ -19,7 +19,7 @@ public protocol SPSecureFormDelegate: class {
 }
 
 public class SecureForm: UIView {
-    public weak var delegate: SPSecureFormDelegate?
+    public weak var delegate: SecureFormDelegate?
 
     private var _client: SpreedlyClient?
 

@@ -59,7 +59,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension BankAccountFormViewController: SPSecureFormDelegate {
+extension BankAccountFormViewController: SecureFormDelegate {
     func willCallSpreedly(secureForm: SecureForm) {
         // intentionally blank
     }

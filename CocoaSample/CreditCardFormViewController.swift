@@ -46,7 +46,7 @@ class CreditCardFormViewController: UIViewController {
     }
 }
 
-extension CreditCardFormViewController: SPSecureFormDelegate {
+extension CreditCardFormViewController: SecureFormDelegate {
     func willCallSpreedly(secureForm: SecureForm) {
         // intentionally blank
     }
