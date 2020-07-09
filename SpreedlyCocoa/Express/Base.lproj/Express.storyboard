@@ -12,7 +12,6 @@
             <objects>
                 <navigationController storyboardIdentifier="Navigation" id="cZt-VL-gFr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PP8-xJ-QpB">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -128,7 +127,7 @@
         <scene sceneID="PNW-YQ-Myg">
             <objects>
                 <viewController title="Add a Bank Account" id="4d7-45-AKY" customClass="AddBankAccountController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SPSecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -301,7 +300,7 @@
         <scene sceneID="6Md-2p-DKp">
             <objects>
                 <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardViewController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SPSecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

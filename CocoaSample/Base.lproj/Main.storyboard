@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YUx-rV-FgK">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,7 +11,7 @@
             <objects>
                 <viewController title="Spreedly Cocoa Sample" id="mlm-g5-HBD" customClass="ViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kLk-OI-wjM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-eQ-eJ2">
@@ -67,8 +66,8 @@
         <scene sceneID="Cbq-53-p9g">
             <objects>
                 <viewController id="lf6-cm-I24" customClass="CreditCardFormViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dpo-s2-wSB" userLabel="Secure Form" customClass="SPSecureForm" customModule="SpreedlyCocoa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <view key="view" contentMode="scaleToFill" id="Dpo-s2-wSB" userLabel="Secure Form" customClass="SecureForm" customModule="SpreedlyCocoa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-pS-FNr">
@@ -177,8 +176,8 @@
         <scene sceneID="RgU-9V-UB2">
             <objects>
                 <viewController id="PPs-B4-3q4" customClass="BankAccountFormViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5c7-Hk-Iwi" customClass="SPSecureForm" customModule="SpreedlyCocoa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <view key="view" contentMode="scaleToFill" id="5c7-Hk-Iwi" customClass="SecureForm" customModule="SpreedlyCocoa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hiu-Sg-jvd">
