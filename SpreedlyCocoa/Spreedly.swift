@@ -50,6 +50,12 @@ public class ExpressBuilder: NSObject {
     /// is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
     @objc public var defaultBankAccountInfo: BankAccountInfo?
 
+    /// Set this to provide a name, company, email, address, shipping address, and metadata information to Spreedly
+    /// when the payment method is created. When this property is set, `defaultPaymentMethodInfo` will be ignored.
+    @objc public var defaultApplePayInfo: PaymentMethodInfo?
+
+    @objc public var paymentRequest: PKPaymentRequest?
+
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
 
     @objc public var paymentSelectionHeader: UIView?
@@ -93,6 +99,9 @@ public class ExpressBuilder: NSObject {
         context.paymentMethodDefaults = defaultPaymentMethodInfo
         context.creditCardDefaults = CreditCardInfo(fromCard: defaultCreditCardInfo)
         context.bankAccountDefaults = BankAccountInfo(fromBankAccount: defaultBankAccountInfo)
+        context.applePayDefaults = defaultApplePayInfo
+
+        context.paymentRequest = paymentRequest
 
         context.paymentSelectionHeader = paymentSelectionHeader
         context.paymentSelectionHeaderHeight = paymentSelectionHeaderHeight
@@ -124,6 +133,9 @@ public class ExpressContext: NSObject {
     @objc public var paymentMethodDefaults: PaymentMethodInfo?
     @objc public var creditCardDefaults: CreditCardInfo?
     @objc public var bankAccountDefaults: BankAccountInfo?
+    @objc public var applePayDefaults: PaymentMethodInfo?
+
+    @objc public var paymentRequest: PKPaymentRequest?
 
     @objc public var paymentSelectionHeader: UIView?
     @objc public var paymentSelectionHeaderHeight: CGFloat = 0
@@ -149,5 +161,9 @@ public class ExpressContext: NSObject {
 
     @objc public var fullNameBankAccount: String? {
         bankAccountDefaults?.fullName ?? fullName(from: bankAccountDefaults) ?? fullNamePaymentMethod
+    }
+
+    @objc public var fullNameApplePay: String? {
+        applePayDefaults?.fullName ?? fullName(from: applePayDefaults) ?? fullNamePaymentMethod
     }
 }

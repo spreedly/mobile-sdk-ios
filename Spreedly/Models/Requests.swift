@@ -29,6 +29,10 @@ public class PaymentMethodInfo: NSObject {
         self.shippingAddress = Address()
     }
 
+    public override convenience init() {
+        self.init(fullName: nil, firstName: nil, lastName: nil)
+    }
+
     public init(from info: PaymentMethodInfo?) {
         fullName = info?.fullName
         firstName = info?.firstName
@@ -313,6 +317,11 @@ public class ApplePayInfo: PaymentMethodInfo {
     private init(fullName: String?, firstName: String?, lastName: String?, paymentTokenData: Data) {
         self.paymentToken = paymentTokenData
         super.init(fullName: fullName, firstName: firstName, lastName: lastName)
+    }
+
+    public init(fromInfo info: PaymentMethodInfo?, payment: PKPayment) {
+        paymentToken = payment.token.paymentData
+        super.init(from: info)
     }
 
     internal override func toJson() throws -> [String: Any] {

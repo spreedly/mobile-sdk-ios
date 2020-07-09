@@ -9,12 +9,12 @@ import Foundation
 
 @objc(SPRClientFactory)
 public class ClientFactory: NSObject {
-    public static func create(envKey: String, envSecret: String, test: Bool = false) -> SpreedlyClient {
-        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
+    public static func create(with config: ClientConfiguration) -> SpreedlyClient {
+        SpreedlyClientImpl(with: config)
     }
 
-    @objc(createWithEnvKey:envSecret:test:)
-    public static func _objCCreate(envKey: String, envSecret: String, test: Bool) -> _ObjCClient { // swiftlint:disable:this identifier_name line_length
-        SpreedlyClientImpl(envKey: envKey, envSecret: envSecret, test: test)
+    @objc(createWithConfig:)
+    public static func _objCCreate(with config: ClientConfiguration) -> _ObjCClient { // swiftlint:disable:this identifier_name line_length
+        SpreedlyClientImpl(with: config)
     }
 }
