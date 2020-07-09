@@ -6,5 +6,9 @@
 	<string></string>
 	<key>ENV_SECRET</key>
 	<string></string>
+	<key>TEST</key>
+	<true/>
+	<key>TEST_CARD_NUMBER</key>
+	<string></string>
 </dict>
 </plist>
