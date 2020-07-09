@@ -7,3 +7,5 @@ trash
 xcuserdata/
 vendor/
 slather-html/
+/.build/documentation/
+/swiftdoc/

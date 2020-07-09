@@ -56,6 +56,11 @@ test_task_template: &TEST
 
 documentation_task:
   name: 'Install Swift Doc'
+  swiftdoc_cache:
+    folder: swiftdoc
+    fingerprint_script:
+      - echo $CIRRUS_OS
+    populate_script:
+      - make swiftdoc
   script:
-    - brew install swiftdocorg/formulae/swift-doc
-    - swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html
+    - make swiftdoc-generate
