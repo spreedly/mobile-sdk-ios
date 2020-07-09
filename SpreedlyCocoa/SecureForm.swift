@@ -58,7 +58,7 @@ public class SecureForm: UIView {
     @IBOutlet public weak var email: UITextField?
 
     // Credit card fields
-    @IBOutlet public weak var creditCardNumber: SPCreditCardNumberTextField?
+    @IBOutlet public weak var creditCardNumber: CreditCardNumberTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
     @IBOutlet public weak var expirationDate: ValidatedTextField?
     @IBOutlet public weak var expirationDateProvider: ExpirationDateProvider?
