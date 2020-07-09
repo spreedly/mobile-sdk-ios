@@ -1,13 +1,13 @@
 osx_instance:
   image: catalina-xcode
 
-build_task:
-  name: 'Build Libraries'
-  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Spreedly -destination 'name=iPhone 11'
-
-build_sample_task:
-  name: 'Build Sdk Sample'
-  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme CocoaSample -destination 'name=iPhone 11'
+#build_task:
+#  name: 'Build Libraries'
+#  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme Spreedly -destination 'name=iPhone 11'
+#
+#build_sample_task:
+#  name: 'Build Sdk Sample'
+#  script: xcodebuild build -workspace SpreedlySdk.xcworkspace -scheme CocoaSample -destination 'name=iPhone 11'
 
 test_task_template: &TEST
   env:
@@ -35,21 +35,27 @@ test_task_template: &TEST
     - git add .
     - git commit -m "reports for swift" && git push || echo "No code coverage changes"
 
-test_task:
-  name: 'Run Tests'
-  only_if: $CIRRUS_BRANCH != 'master'
-  env:
-    TARGET: 'pr'
-  <<: *TEST
+#test_task:
+#  name: 'Run Tests'
+#  only_if: $CIRRUS_BRANCH != 'master'
+#  env:
+#    TARGET: 'pr'
+#  <<: *TEST
+#
+#test_master_task:
+#  name: 'Run Tests'
+#  only_if: $CIRRUS_BRANCH == 'master'
+#  env:
+#    TARGET: 'master'
+#  <<: *TEST
+#
+#lint_task:
+#  name: 'Lint check sources'
+#  script:
+#    - ./lint.sh
 
-test_master_task:
-  name: 'Run Tests'
-  only_if: $CIRRUS_BRANCH == 'master'
-  env:
-    TARGET: 'master'
-  <<: *TEST
-
-lint_task:
-  name: 'Lint check sources'
+documentation_task:
+  name: 'Install Swift Doc'
   script:
-    - ./lint.sh
+    - brew install swiftdocorg/formulae/swift-doc
+    - swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html
