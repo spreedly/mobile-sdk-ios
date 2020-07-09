@@ -9,7 +9,7 @@ import Spreedly
 import RxSwift
 
 class CreditCardFormViewController: UIViewController {
-    @IBOutlet weak var form: SPSecureForm!
+    @IBOutlet weak var form: SecureForm!
     @IBOutlet weak var expirationDatePicker: ExpirationPickerField!
 
     override func viewDidLoad() {
@@ -46,17 +46,17 @@ class CreditCardFormViewController: UIViewController {
     }
 }
 
-extension CreditCardFormViewController: SPSecureFormDelegate {
-    func willCallSpreedly(secureForm: SPSecureForm) {
+extension CreditCardFormViewController: SecureFormDelegate {
+    func willCallSpreedly(secureForm: SecureForm) {
         // intentionally blank
     }
 
-    func didCallSpreedly(secureForm: SPSecureForm) {
+    func didCallSpreedly(secureForm: SecureForm) {
         // intentionally blank
     }
 
     func spreedly(
-            secureForm form: SPSecureForm,
+            secureForm form: SecureForm,
             success transaction: Transaction
     ) {
         let token = transaction.paymentMethod?.token ?? "empty"

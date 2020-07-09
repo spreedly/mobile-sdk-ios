@@ -49,7 +49,7 @@
 		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */; };
-		442A2E09E5707DA5C0EC5A6D /* SPSecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */; };
+		442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		442A2E7FE53A19BC8DDDBFE5 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* Requests.swift */; };
 		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
@@ -83,7 +83,6 @@
 		F076CA3FC00AAC96DEDB95AF /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */; };
 		F076CA42E55BE576578B2C7C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */; };
 		F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */; };
-		F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */; };
 		F076CC40AA0952D6E52623F9 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		F076CC51543D226BF5DFB723 /* SPSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */; };
 		F076CC54EF17C14CC2CE0AC0 /* UIStackView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */; };
@@ -203,7 +202,7 @@
 		442A2A63301FADA969609EC0 /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		442A2A96557532017197368D /* CreditCardFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardFormViewController.swift; sourceTree = "<group>"; };
-		442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSecureForm.swift; sourceTree = "<group>"; };
+		442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureForm.swift; sourceTree = "<group>"; };
 		442A2C1ADA08DBE29D72B986 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		442A2CB4AB12299CD8D31516 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		442A2CBF8AF46C83956B7796 /* Spreedly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spreedly.h; sourceTree = "<group>"; };
@@ -232,7 +231,6 @@
 		F076C2EB71479F8B5C3F5C7D /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountFormViewController.swift; sourceTree = "<group>"; };
 		F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSecureTextField.swift; sourceTree = "<group>"; };
-		F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPExpirationTextField.swift; sourceTree = "<group>"; };
 		F076C700B61D855C3AE1D093 /* ObjCTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCTransactionTests.swift; sourceTree = "<group>"; };
 		F076C72ED9EC2828C97959FD /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		F076C7C99365328F2BCA318A /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
@@ -418,10 +416,9 @@
 				3C9420EC249C0CA500D2B5E1 /* Express */,
 				442A2832CB4FF8C0D4094949 /* Info.plist */,
 				442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */,
-				442A2BB20D7CBBCE9E4DD568 /* SPSecureForm.swift */,
+				442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */,
 				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
 				F076CE37F8EF9EF3E950C0AC /* SPCreditCardNumberTextField.swift */,
-				F076C6F970202CAC10CED297 /* SPExpirationTextField.swift */,
 				F076CA9E54CC1E288449091E /* String+Additions.swift */,
 				F076C58667A224FDD77BACA4 /* SPSecureTextField.swift */,
 				3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */,
@@ -983,12 +980,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442A2E09E5707DA5C0EC5A6D /* SPSecureForm.swift in Sources */,
+				442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */,
 				F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */,
 				3C9420F624A16EB600D2B5E1 /* AddPaymentMethodViewController.swift in Sources */,
 				F076CA19BBA902D8E7D94F53 /* SPCreditCardNumberTextField.swift in Sources */,
 				3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */,
-				F076CC33E5EC51B96368D292 /* SPExpirationTextField.swift in Sources */,
 				F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */,
 				3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */,
 				3C9420F224A1294200D2B5E1 /* Spreedly.swift in Sources */,

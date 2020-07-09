@@ -10,7 +10,7 @@ import RxSwift
 
 class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var form: SPSecureForm!
+    @IBOutlet weak var form: SecureForm!
     @IBOutlet weak var fullName: ValidatedTextField!
     @IBOutlet weak var accountNumber: SPSecureTextField!
     @IBOutlet weak var routingNumber: ValidatedTextField!
@@ -59,17 +59,17 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension BankAccountFormViewController: SPSecureFormDelegate {
-    func willCallSpreedly(secureForm: SPSecureForm) {
+extension BankAccountFormViewController: SecureFormDelegate {
+    func willCallSpreedly(secureForm: SecureForm) {
         // intentionally blank
     }
 
-    func didCallSpreedly(secureForm: SPSecureForm) {
+    func didCallSpreedly(secureForm: SecureForm) {
         // intentionally blank
     }
 
     func spreedly(
-            secureForm form: SPSecureForm,
+            secureForm form: SecureForm,
             success transaction: Transaction
     ) {
         let token = transaction.paymentMethod?.token ?? "empty"

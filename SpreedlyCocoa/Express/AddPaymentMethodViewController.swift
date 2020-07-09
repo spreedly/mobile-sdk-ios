@@ -10,7 +10,7 @@ import UIKit
 import Spreedly
 
 class AddPaymentMethodViewController: UIViewController {
-    @IBOutlet weak var form: SPSecureForm!
+    @IBOutlet weak var form: SecureForm!
 
     lazy var spinnerViewController = SpinnerViewController()
 
@@ -33,9 +33,9 @@ class AddPaymentMethodViewController: UIViewController {
     }
 }
 
-extension AddPaymentMethodViewController: SPSecureFormDelegate {
+extension AddPaymentMethodViewController: SecureFormDelegate {
     func spreedly(
-            secureForm form: SPSecureForm,
+            secureForm form: SecureForm,
             success transaction: Transaction
     ) {
         guard let paymentMethod = transaction.paymentMethod else {
@@ -44,11 +44,11 @@ extension AddPaymentMethodViewController: SPSecureFormDelegate {
         self.didAddPaymentMethod?(paymentMethod)
     }
 
-    public func willCallSpreedly(secureForm: SPSecureForm) {
+    public func willCallSpreedly(secureForm: SecureForm) {
         spinnerViewController.overlaySpinner(on: self)
     }
 
-    public func didCallSpreedly(secureForm: SPSecureForm) {
+    public func didCallSpreedly(secureForm: SecureForm) {
         spinnerViewController.removeSpinner()
     }
 }

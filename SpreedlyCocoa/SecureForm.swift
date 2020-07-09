@@ -7,19 +7,19 @@ import UIKit
 import Spreedly
 import RxSwift
 
-public protocol SPSecureFormDelegate: class {
+public protocol SecureFormDelegate: class {
     func spreedly(
-            secureForm form: SPSecureForm,
+            secureForm form: SecureForm,
             success: Transaction
     )
 
-    func willCallSpreedly(secureForm: SPSecureForm)
+    func willCallSpreedly(secureForm: SecureForm)
 
-    func didCallSpreedly(secureForm: SPSecureForm)
+    func didCallSpreedly(secureForm: SecureForm)
 }
 
-public class SPSecureForm: UIView {
-    public weak var delegate: SPSecureFormDelegate?
+public class SecureForm: UIView {
+    public weak var delegate: SecureFormDelegate?
 
     private var _client: SpreedlyClient?
 
@@ -162,7 +162,7 @@ public class SPSecureForm: UIView {
 }
 
 // MARK: - Creating cards
-extension SPSecureForm {
+extension SecureForm {
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly(secureForm: self)
 
@@ -207,7 +207,7 @@ extension SPSecureForm {
 }
 
 // MARK: - Creating bank accounts
-extension SPSecureForm {
+extension SecureForm {
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly(secureForm: self)
 
