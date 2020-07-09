@@ -14,7 +14,7 @@ class SPCreditCardNumberTextFieldTests: XCTestCase {
     let number16Digits = "5454 5454 5454 5454"
 
     func testFormatCardNumber() {
-        let field = SPCreditCardNumberTextField()
+        let field = CreditCardNumberTextField()
         XCTAssertEqual(field.formatCardNumber(""), "")
         XCTAssertEqual(field.formatCardNumber("4"), "4")
         XCTAssertEqual(field.formatCardNumber("4111"), "4111")
@@ -37,12 +37,12 @@ class SPCreditCardNumberTextFieldTests: XCTestCase {
     }
 
     func clean(_ current: String, _ range: NSRange, _ replacement: String) -> String? {
-        let field = SPCreditCardNumberTextField()
+        let field = CreditCardNumberTextField()
         return field.cleanAndReplace(current: current, range: range, replacementString: replacement)
     }
 
     func testGenerateMasked() {
-        let field = SPCreditCardNumberTextField()
+        let field = CreditCardNumberTextField()
         XCTAssertEqual(field.generateMasked(from: ""), "")
         XCTAssertEqual(field.generateMasked(from: "4"), "4")
         XCTAssertEqual(field.generateMasked(from: "41"), "41")
