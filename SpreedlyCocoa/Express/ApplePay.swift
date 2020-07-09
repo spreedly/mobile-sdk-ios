@@ -15,7 +15,6 @@ public class ApplePayHandler: NSObject {
     private var client: SpreedlyClient?
     private var objcClient: _ObjCClient?
     private var error: String?
-    private var token: String?
     private var transaction: Transaction?
     private var defaults: PaymentMethodInfo?
 
@@ -34,10 +33,8 @@ public class ApplePayHandler: NSObject {
         paymentController = PKPaymentAuthorizationController(paymentRequest: request)
         paymentController?.delegate = self
         paymentController?.present(completion: { (presented: Bool) in
-            if presented {
-                NSLog("Presented payment controller")
-            } else {
-                NSLog("Failed to present payment controller")
+            if !presented {
+                self.error = "Unable to present PKPaymentAuthorizationController"
                 self.paymentController?.dismiss()
                 self.completionHandler?(false, nil)
             }
@@ -51,8 +48,7 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
             didAuthorizePayment payment: PKPayment,
             completion: @escaping (PKPaymentAuthorizationStatus) -> Void
     ) {
-        let info = ApplePayInfo(fromInfo: defaults, payment: payment)
-        _ = client?.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: { transaction in
+        let onSuccess = { (transaction: Transaction) -> Void in
             let result = transaction.paymentMethod!
             guard result.errors.count == 0 else {
                 self.error = result.errors[0].message
@@ -64,11 +60,20 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
             self.transaction = transaction
             self.paymentStatus = .success
             completion(.success)
-        }, onError: { error in
+        }
+
+        let onError = { (error: Error) -> Void in
             self.error = "\(error)"
             self.paymentStatus = .failure
             completion(.failure)
-        })
+        }
+
+        let info = ApplePayInfo(fromInfo: defaults, payment: payment)
+        if let client = client {
+            _ = client.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: onSuccess, onError: onError)
+        } else if let objcClient = objcClient {
+            objcClient._objCCreatePaymentMethod(from: info).subscribe(onSuccess: onSuccess, onError: onError)
+        }
     }
 
     public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
