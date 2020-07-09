@@ -10,7 +10,7 @@ public protocol CreditCardNumberTextFieldDelegate: class {
     func cardBrandDetermined(brand: CardBrand)
 }
 
-public class CreditCardNumberTextField: SPSecureTextField {
+public class CreditCardNumberTextField: SecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
     @IBInspectable public var maskCharacter: String = "*"
 

@@ -145,7 +145,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account holder name"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPSecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="48" width="576" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="rK9-bi-llP"/>
@@ -329,7 +329,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Card number"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SPSecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
                                         <rect key="frame" x="12" y="88" width="576" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="jVu-AS-D57"/>

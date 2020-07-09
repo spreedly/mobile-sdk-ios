@@ -4,7 +4,7 @@
 
 import Spreedly
 
-public class SPSecureTextField: ValidatedTextField {
+public class SecureTextField: ValidatedTextField {
     /// Returns the text value of this field as a SpreedlySecureOpaqueString.
     open func secureText() -> SpreedlySecureOpaqueString? {
         guard let text = self.text else {

@@ -12,7 +12,7 @@ class BankAccountFormViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var form: SecureForm!
     @IBOutlet weak var fullName: ValidatedTextField!
-    @IBOutlet weak var accountNumber: SPSecureTextField!
+    @IBOutlet weak var accountNumber: SecureTextField!
     @IBOutlet weak var routingNumber: ValidatedTextField!
 
     override func viewDidLoad() {

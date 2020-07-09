@@ -59,7 +59,7 @@ public class SecureForm: UIView {
 
     // Credit card fields
     @IBOutlet public weak var creditCardNumber: CreditCardNumberTextField?
-    @IBOutlet public weak var creditCardVerificationNumber: SPSecureTextField?
+    @IBOutlet public weak var creditCardVerificationNumber: SecureTextField?
     @IBOutlet public weak var expirationDate: ValidatedTextField?
     @IBOutlet public weak var expirationDateProvider: ExpirationDateProvider?
 
@@ -69,7 +69,7 @@ public class SecureForm: UIView {
     }
 
     // Bank account fields
-    @IBOutlet public weak var bankAccountNumber: SPSecureTextField?
+    @IBOutlet public weak var bankAccountNumber: SecureTextField?
     @IBOutlet public weak var bankAccountRoutingNumber: ValidatedTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
     @IBOutlet public weak var bankAccountHolderType: UISegmentedControl?
