@@ -59,6 +59,8 @@ documentation_task:
   #  only_if: $CIRRUS_BRANCH == 'master'
   env:
     TARGET: 'pr'
+    GITHUB_USER: ENCRYPTED[!e72bc98e2310dd38a096085d559390b95c38fa694e31dfa0f324967cdc03a505681b159e819c5a3d1ae837ec63ff0a26!]
+    GITHUB_PASSWORD: ENCRYPTED[!90eb3b7b230903c3c3a89e75517fb8927136ca5b4d98e13990d2e85b540a8ef14ed49c806ed17c2f27380adfaf665749!]
   generate_script:
     - make swiftdoc-generate
   publish_script:
