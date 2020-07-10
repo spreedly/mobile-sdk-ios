@@ -14,4 +14,4 @@ swiftdoc-install:
 	brew install swiftdocorg/formulae/swift-doc
 
 swiftdoc-generate: swiftdoc-install
-	./swiftdoc/bin/swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html
+	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html
