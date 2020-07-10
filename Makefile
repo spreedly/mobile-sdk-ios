@@ -13,5 +13,11 @@ bundle:
 swiftdoc-install:
 	brew install swiftdocorg/formulae/swift-doc
 
+# The base url used by swift-doc to reference the css file.
+baseurl ?= "/"
+
 swiftdoc-generate: swiftdoc-install
-	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html
+	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html --base-url $(baseurl)
+
+swiftdoc-server: swiftdoc-generate
+	pushd .build/documentation; python3 -m http.server; popd

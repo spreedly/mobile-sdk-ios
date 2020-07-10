@@ -62,13 +62,13 @@ documentation_task:
     GITHUB_USER: ENCRYPTED[!e72bc98e2310dd38a096085d559390b95c38fa694e31dfa0f324967cdc03a505681b159e819c5a3d1ae837ec63ff0a26!]
     GITHUB_PASSWORD: ENCRYPTED[!90eb3b7b230903c3c3a89e75517fb8927136ca5b4d98e13990d2e85b540a8ef14ed49c806ed17c2f27380adfaf665749!]
   generate_script:
-    - make swiftdoc-generate
+    - make swiftdoc-generate baseurl="/spreedly-docs/code/$TARGET/ios/"
   publish_script:
     - git config --global user.name "Cirrus CI"
     - git config --global user.email "ci@ergonlabs.com"
     - git clone https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/ergonlabs/spreedly-docs.git docs
     - mkdir -p docs/code/$TARGET/ios
-    - cp -fR .build/documentation docs/code/$TARGET/ios
+    - cp -fR .build/documentation/. docs/code/$TARGET/ios
     - cd docs/code
     - git add .
     - git commit -m "code docs for swift" && git push || echo "No doc changes"
