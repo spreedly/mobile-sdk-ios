@@ -1,4 +1,4 @@
-.PHONY: test coverage bundle
+.PHONY: test coverage bundle eli swiftdoc-install swiftdoc-generate
 
 test:
 	xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Spreedly -destination 'name=iPhone 11' -enableCodeCoverage YES
@@ -9,3 +9,15 @@ coverage: bundle test
 # Install dependencies for test coverage
 bundle:
 	bundle install
+
+swiftdoc-install:
+	brew install swiftdocorg/formulae/swift-doc
+
+# The base url used by swift-doc to reference the css file.
+baseurl ?= "/"
+
+swiftdoc-generate: swiftdoc-install
+	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --format html --base-url $(baseurl)
+
+swiftdoc-server: swiftdoc-generate
+	pushd .build/documentation; python3 -m http.server; popd
