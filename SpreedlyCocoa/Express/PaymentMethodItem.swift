@@ -5,10 +5,15 @@
 import Foundation
 import Spreedly
 
+/// Contains basic information about a payment method.
 @objc(SPRPaymentMethodItem)
 public class PaymentMethodItem: NSObject {
     public let type: PaymentMethodType
+
+    /// A very short description of the payment method displayable to the customer.
     @objc public let shortDescription: String
+
+    /// Spreedly's payment method token.
     @objc public let token: String
 
     var imageName: String {
