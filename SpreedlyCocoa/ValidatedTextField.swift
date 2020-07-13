@@ -5,25 +5,28 @@
 import Foundation
 import UIKit
 
-public enum ValidationState {
+@objc(SPRValidationState)
+public enum ValidationState: Int {
     case none
     case valid
     case error
 }
 
+/// A UITextField which is aware of its validation state and updates its appearance commensurately.
+@objc(SPRValidatedTextField)
 public class ValidatedTextField: UITextField {
     private weak var userDelegate: UITextFieldDelegate?
     lazy var statusIcon: UIImageView = {
         UIImageView(frame: .zero)
     }()
 
-    public required init?(coder: NSCoder) {
+    @objc public required init?(coder: NSCoder) {
         super.init(coder: coder)
 
         setup()
     }
 
-    public override init(frame: CGRect) {
+    @objc public override init(frame: CGRect) {
         super.init(frame: frame)
 
         setup()
@@ -43,23 +46,29 @@ public class ValidatedTextField: UITextField {
         ])
     }
 
-    public private(set) var validationState: ValidationState = .none
+    /// Gets the current validation state.
+    @objc public private(set) var validationState: ValidationState = .none
 
-    public var reason: String?
+    /// The reason this control is in error.
+    @objc public var reason: String?
 
-    public func clearValidation() {
+    /// Puts the control into an undetermined validation state.
+    @objc public func clearValidation() {
         validationState = .none
         reason = nil
         updateDisplay()
     }
 
-    public func setError(because reason: String) {
+    /// Puts the control into an error state.
+    /// - Parameter reason: A human readable reason for the error.
+    @objc public func setError(because reason: String) {
         validationState = .error
         self.reason = reason
         updateDisplay()
     }
 
-    public func setValid() {
+    /// Puts the control into a valid state.
+    @objc public func setValid() {
         validationState = .valid
         reason = nil
         updateDisplay()
@@ -83,7 +92,7 @@ public class ValidatedTextField: UITextField {
 }
 
 extension ValidatedTextField: UITextFieldDelegate {
-    public override var delegate: UITextFieldDelegate? {
+    @objc public override var delegate: UITextFieldDelegate? {
         get {
             userDelegate
         }
@@ -92,7 +101,8 @@ extension ValidatedTextField: UITextFieldDelegate {
         }
     }
 
-    public func textField(
+    /// Any time the user causes the text to change, reset the validation state.
+    @objc public func textField(
             _ textField: UITextField,
             shouldChangeCharactersIn range: NSRange,
             replacementString string: String
