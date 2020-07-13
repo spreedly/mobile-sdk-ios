@@ -42,14 +42,14 @@ public class ExpressBuilder: NSObject {
     }
 
     /// Default: true. Allow the user to add new card payment methods.
-    @objc public var allowCard = true
+    @objc public var allowCard: Bool = true
 
     /// Default: false. Allow the user to add new bank account payment methods.
-    @objc public var allowBankAccount = false
+    @objc public var allowBankAccount: Bool = false
 
     /// Default: true. Allow users to select the Apple Pay payment method. When true, the `paymentRequest` property
     /// must also be set.
-    @objc public var allowApplePay = true
+    @objc public var allowApplePay: Bool = true
 
     /// A list of payment methods available for the user to select. Set if providing
     /// any previously stored payment methods.
@@ -99,7 +99,7 @@ public class ExpressBuilder: NSObject {
     /// ```
     @objc public var paymentRequest: PKPaymentRequest?
 
-    /// Default `.withinNavigationView`. When showing the Express UI within an existing `UINavigationController`,
+    /// Default: `.withinNavigationView`. When showing the Express UI within an existing `UINavigationController`,
     /// set this to `.withinNavigationView`. When it is meant to appear separately, such as within a modal,
     /// set this to `.asModal` so it will provide its own `UINavigationController`.
     @objc public var presentationStyle: PresentationStyle = .withinNavigationView
@@ -108,14 +108,14 @@ public class ExpressBuilder: NSObject {
     /// using this property.
     @objc public var paymentSelectionHeader: UIView?
 
-    /// Default zero. Set this to more than zero when using the `paymentSelectionHeader`.
+    /// Default: zero. Set this to more than zero when using the `paymentSelectionHeader`.
     @objc public var paymentSelectionHeaderHeight: CGFloat = 0
 
     /// Appears after all other controls on the payment selection screen. Also set `paymentSelectionFooterHeight` when
     /// using this property.
     @objc public var paymentSelectionFooter: UIView?
 
-    /// Default zero. Set this to more than zero when using the `paymentSelectionFooter`.
+    /// Default: zero. Set this to more than zero when using the `paymentSelectionFooter`.
     @objc public var paymentSelectionFooterHeight: CGFloat = 0
 
     /// Returns a `UIViewController` for the Express UI workflow configured with the properties from this object.
