@@ -89,6 +89,7 @@
 		F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */; };
 		F076CDA661895E1D5CAD3E73 /* ApplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB024AB173AF5A5CB915 /* ApplePay.swift */; };
 		F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */; };
+		F076CFD7B8A77BB90AE8B1FD /* ApplePayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CBC57DD5ECCA2B038003 /* ApplePayInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +247,7 @@
 		F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionsTests.swift; sourceTree = "<group>"; };
 		F076CB024AB173AF5A5CB915 /* ApplePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePay.swift; sourceTree = "<group>"; };
 		F076CB8C9D4B8CE905B35F73 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F076CBC57DD5ECCA2B038003 /* ApplePayInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayInfo.swift; sourceTree = "<group>"; };
 		F076CBDE49B90D526E5AC36E /* CALayer+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Additions.swift"; sourceTree = "<group>"; };
 		F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlySecureOpaqueString.swift; sourceTree = "<group>"; };
 		F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Additions.swift"; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				442A206A9CCC17119C549F35 /* Requests.swift */,
 				F076C8101E3C373825B4F415 /* CardBrand.swift */,
 				F076C01B32752F1BF35F1FDA /* CardRanges.swift */,
+				F076CBC57DD5ECCA2B038003 /* ApplePayInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 				F076C88F18FA0731A2A2F4F3 /* SpreedlySecureOpaqueString.swift in Sources */,
 				F076C7DFCF2FE7F3F459D67D /* CardRanges.swift in Sources */,
 				F076C5910DF278807201FE61 /* ClientConfiguration.swift in Sources */,
+				F076CFD7B8A77BB90AE8B1FD /* ApplePayInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
