@@ -72,6 +72,7 @@
 		F076C5910DF278807201FE61 /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CF76119C6C1C8A8D3795 /* ClientConfiguration.swift */; };
 		F076C5D9B309F944810DF95B /* ExpirationDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */; };
 		F076C6B29F5A045DBFD1A290 /* PaymentMethodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */; };
+		F076C6D90DB36BC555C246AC /* BankAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8B6614A2050C35C276E /* BankAccountInfo.swift */; };
 		F076C7DFCF2FE7F3F459D67D /* CardRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C01B32752F1BF35F1FDA /* CardRanges.swift */; };
 		F076C83937EF48B8921DA967 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA116CE9AA56F15ABCDF /* JSON.swift */; };
 		F076C88F18FA0731A2A2F4F3 /* SpreedlySecureOpaqueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */; };
@@ -239,6 +240,7 @@
 		F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F076C8000037AE096B5E0E09 /* CardBrandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 		F076C8101E3C373825B4F415 /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
+		F076C8B6614A2050C35C276E /* BankAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountInfo.swift; sourceTree = "<group>"; };
 		F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				F076C8101E3C373825B4F415 /* CardBrand.swift */,
 				F076C01B32752F1BF35F1FDA /* CardRanges.swift */,
 				F076CBC57DD5ECCA2B038003 /* ApplePayInfo.swift */,
+				F076C8B6614A2050C35C276E /* BankAccountInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -948,6 +951,7 @@
 				F076C7DFCF2FE7F3F459D67D /* CardRanges.swift in Sources */,
 				F076C5910DF278807201FE61 /* ClientConfiguration.swift in Sources */,
 				F076CFD7B8A77BB90AE8B1FD /* ApplePayInfo.swift in Sources */,
+				F076C6D90DB36BC555C246AC /* BankAccountInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
