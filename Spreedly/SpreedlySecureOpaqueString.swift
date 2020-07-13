@@ -4,11 +4,17 @@
 
 import Foundation
 
+/// A representation of a String where the content of that String is intentionally obscured both reminding the
+/// developer that it should be carefully handled and to limit the possibility of it being recorded in logs, dumps,
+/// or prints.
 @objc public protocol SpreedlySecureOpaqueString {
+    /// Clears the content.
     func clear()
 
+    /// Appends the given String to the content.
     func append(_ string: String)
 
+    /// Removes the last character from the content.
     func removeLastCharacter()
 }
 
