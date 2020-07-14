@@ -10,6 +10,7 @@ public protocol CreditCardNumberTextFieldDelegate: class {
     func cardBrandDetermined(brand: CardBrand)
 }
 
+@objc(SPRCreditCardNumberTextField)
 public class CreditCardNumberTextField: SecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
     @IBInspectable public var maskCharacter: String = "*"
@@ -19,13 +20,13 @@ public class CreditCardNumberTextField: SecureTextField {
     private var masked: Bool = false
     private let image = UIImageView(image: UIImage(named: CreditCardNumberTextField.unknownCard))
 
-    public override init(frame: CGRect) {
+    @objc public override init(frame: CGRect) {
         super.init(frame: frame)
 
         addBrandImage()
     }
 
-    public required init?(coder: NSCoder) {
+    @objc public required init?(coder: NSCoder) {
         super.init(coder: coder)
 
         addBrandImage()
@@ -41,7 +42,7 @@ public class CreditCardNumberTextField: SecureTextField {
         ])
     }
 
-    func updateCardBrandImage(brand: CardBrand) {
+    private func updateCardBrandImage(brand: CardBrand) {
         let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: CreditCardNumberTextField.unknownCard)
         self.image.image = image
     }
@@ -76,7 +77,7 @@ public class CreditCardNumberTextField: SecureTextField {
 // MARK: - UITextFieldDelegate methods
 extension CreditCardNumberTextField {
     @discardableResult
-    func determineCardBrand(_ number: String) -> CardBrand {
+    private func determineCardBrand(_ number: String) -> CardBrand {
         let cardBrand = CardBrand.from(number)
         self.updateCardBrandImage(brand: cardBrand)
 
@@ -87,12 +88,12 @@ extension CreditCardNumberTextField {
         return cardBrand
     }
 
-    public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
+    @objc public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         determineCardBrand(textField.text ?? "")
         applyMask()
     }
 
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    @objc public func textFieldDidBeginEditing(_ textField: UITextField) {
         removeMask()
     }
 
