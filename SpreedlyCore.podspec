@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.homepage         = "https://docs.spreedly.com/guides/mobile/ios/"
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.authors          = { "Spreedly" => "support@spreedly.com" }
-    s.source           = { :git => 'https://github.com/ergonlabs/spreedly-ios.git', :tag => 'master' }
+    s.source           = { :git => 'https://github.com/ergonlabs/spreedly-ios.git', :tag => 'podspec' }
     s.swift_version    = '5.0'
 
     s.platform         = :ios, '10.3'
