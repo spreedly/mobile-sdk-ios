@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-    s.name             = "SpreedlyCore"
+    s.name             = "SpreedlyCocoa"
     s.version          = "1.0.0"
     s.summary          = "Spreedly iOS SDK"
     s.description      = <<-DESC
@@ -14,8 +14,10 @@ Pod::Spec.new do |s|
     s.platform         = :ios, '10.3'
     s.requires_arc     = true
 
-    s.source_files     = 'Spreedly/**/*.swift', 'Spreedly/**/*.{m,h}'
+    s.source_files     = 'SpreedlyCocoa/**/*.swift', 'SpreedlyCocoa/**/*.{m,h}'
+    s.resources         = 'SpreedlyCocoa/**/*.png', 'SpreedlyCocoa/**/*.json', 'SpreedlyCocoa/**/*.strings'
 
     s.dependency 'RxSwift', '~> 5'
     s.dependency 'RxCocoa', '~> 5'
+    s.dependency 'SpreedlyCore', s.version.to_s
 end
