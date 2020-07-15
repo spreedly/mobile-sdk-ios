@@ -7,6 +7,7 @@ import UIKit
 import Spreedly
 import RxSwift
 
+@objc(SPRSecureFormDelegate)
 public protocol SecureFormDelegate: class {
     func spreedly(
             secureForm form: SecureForm,
@@ -18,12 +19,13 @@ public protocol SecureFormDelegate: class {
     func didCallSpreedly(secureForm: SecureForm)
 }
 
+@objc(SPRSecureForm)
 public class SecureForm: UIView {
-    public weak var delegate: SecureFormDelegate?
+    @objc public weak var delegate: SecureFormDelegate?
 
     private var _client: SpreedlyClient?
 
-    public func getClient() throws -> SpreedlyClient {
+    private func getClient() throws -> SpreedlyClient {
         if let client = _client {
             return client
         }
@@ -35,7 +37,7 @@ public class SecureForm: UIView {
         return client
     }
 
-    func getClientOrDieTrying() -> SpreedlyClient {
+    private func getClientOrDieTrying() -> SpreedlyClient {
         let client: SpreedlyClient
         do {
             client = try getClient()
@@ -47,9 +49,9 @@ public class SecureForm: UIView {
         return client
     }
 
-    public var creditCardDefaults: CreditCardInfo?
-    public var bankAccountDefaults: BankAccountInfo?
-    public var paymentMethodDefaults: PaymentMethodInfo?
+    @objc public var creditCardDefaults: CreditCardInfo?
+    @objc public var bankAccountDefaults: BankAccountInfo?
+    @objc public var paymentMethodDefaults: PaymentMethodInfo?
 
     // Shared fields
     @IBOutlet public weak var fullName: ValidatedTextField?
@@ -231,10 +233,10 @@ extension SecureForm {
         })
     }
 
-    public var selectedHolderType: BankAccountHolderType? {
+    public var selectedHolderType: BankAccountHolderType {
         get {
             guard let index = bankAccountHolderType?.selectedSegmentIndex else {
-                return nil
+                return .unknown
             }
 
             switch index {
@@ -245,7 +247,7 @@ extension SecureForm {
             }
         }
         set {
-            switch newValue ?? .unknown {
+            switch newValue {
             case .personal, .unknown:
                 bankAccountHolderType?.selectedSegmentIndex = 0
             case .business:
@@ -254,10 +256,10 @@ extension SecureForm {
         }
     }
 
-    public var selectedAccountType: BankAccountType? {
+    public var selectedAccountType: BankAccountType {
         get {
             guard let index = bankAccountType?.selectedSegmentIndex else {
-                return nil
+                return .unknown
             }
 
             switch index {
@@ -268,7 +270,7 @@ extension SecureForm {
             }
         }
         set {
-            switch newValue ?? .unknown {
+            switch newValue {
             case .checking, .unknown:
                 bankAccountType?.selectedSegmentIndex = 0
             case .savings:

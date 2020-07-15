@@ -56,7 +56,7 @@ public class ExpressBuilder: NSObject {
     @objc public var paymentMethods: [PaymentMethodItem]?
 
     /// Called after the user selects a payment method. When called, the controller returned from
-    /// `buildViewController` should be pop'd/dismissed.
+    /// `buildViewController` should be popped/dismissed.
     @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
 
     /// Set this to provide a full name on the payment method creation forms and to provide

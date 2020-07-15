@@ -24,7 +24,7 @@ class AddBankAccountController: AddPaymentMethodViewController {
 
     func configureDefaults() {
         form.fullName?.text = context?.fullNameBankAccount
-        form.selectedAccountType = context?.bankAccountDefaults?.bankAccountType
-        form.selectedHolderType = context?.bankAccountDefaults?.bankAccountHolderType
+        form.selectedAccountType = context?.bankAccountDefaults?.bankAccountType ?? .checking
+        form.selectedHolderType = context?.bankAccountDefaults?.bankAccountHolderType ?? .personal
     }
 }

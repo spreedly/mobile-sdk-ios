@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objc(SPRExpirationPickerField)
 public class ExpirationPickerField: ValidatedTextField {
     private lazy var doneToolbar: UIToolbar = {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -43,12 +44,12 @@ public class ExpirationPickerField: ValidatedTextField {
 
     private var selectedItems = ["", "", ""]
 
-    public init() {
+    @objc public init() {
         super.init(frame: .zero)
         setupView()
     }
 
-    public required init?(coder: NSCoder) {
+    @objc public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
     }
@@ -63,27 +64,31 @@ public class ExpirationPickerField: ValidatedTextField {
         resignFirstResponder()
     }
 
-    public func showPicker() {
+    @objc public func showPicker() {
         becomeFirstResponder()
     }
 }
 
 extension ExpirationPickerField: UIPickerViewDataSource {
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    @objc public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         items.count
     }
 
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    @objc public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         items[component].count
     }
 }
 
 extension ExpirationPickerField: UIPickerViewDelegate {
-    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    @objc public func pickerView(
+            _ pickerView: UIPickerView,
+            titleForRow row: Int,
+            forComponent component: Int
+    ) -> String? {
         items[component][row]
     }
 
-    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    @objc public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let monthRow = pickerView.selectedRow(inComponent: 0)
         let yearRow = pickerView.selectedRow(inComponent: 2)
         selectedItems[0] = items[0][monthRow]
