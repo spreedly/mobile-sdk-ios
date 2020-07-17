@@ -119,9 +119,27 @@ public class ExpressBuilder: NSObject {
     /// Default: zero. Set this to more than zero when using the `paymentSelectionFooter`.
     @objc public var paymentSelectionFooterHeight: CGFloat = 0
 
+    func getBundleForStoryboard(named name: String) -> Bundle? {
+        let bundle = Bundle(for: type(of: self))
+        if bundle.path(forResource: name, ofType: "storyboardc") != nil {
+            print("Found storyboard \(name) in primary bundle.")
+            return bundle
+        }
+        if let resourcePath = bundle.path(forResource: "SpreedlyCocoaResources", ofType: "bundle"),
+           let resourceBundle = Bundle(path: resourcePath),
+           resourceBundle.path(forResource: name, ofType: "storyboardc") != nil {
+            print("Found storyboard \(name) in resource bundle.")
+            return resourceBundle
+        }
+        print("Unable to find storyboard \(name).")
+        return nil
+    }
+
     /// Returns a `UIViewController` for the Express UI workflow configured with the properties from this object.
     public func buildViewController() -> UIViewController {
-        let bundle = Bundle(for: type(of: self))
+        guard let bundle = getBundleForStoryboard(named: "Express") else {
+            fatalError("Unable to find Express storyboard in searched bundles.")
+        }
         let storyboard = UIStoryboard(name: "Express", bundle: bundle)
         let initial: UIViewController
         let express: ExpressViewController
