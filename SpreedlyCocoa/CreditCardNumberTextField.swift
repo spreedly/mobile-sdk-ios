@@ -52,7 +52,8 @@ public class CreditCardNumberTextField: SecureTextField {
             print("Found image named \(name) in containing bundle.")
             return image
         }
-        if let resourceBundle = Bundle(path: containingBundle.resourcePath ?? "" + "/SpreedlyCocoaResources"),
+        if let resourcePath = containingBundle.path(forResource: "SpreedlyCocoaResources", ofType: "bundle"),
+           let resourceBundle = Bundle(path: resourcePath),
            let image = UIImage(named: name, in: resourceBundle, with: nil) {
             print("Found image named \(name) in resource bundle.")
             return image
