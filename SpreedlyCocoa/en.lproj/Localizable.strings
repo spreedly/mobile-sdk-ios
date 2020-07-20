@@ -14,7 +14,7 @@
 "Bank Account" = "Bank Account"; // button title
 
 // Add Payment Method Shared
-"Pay Now" = "Pay Now"; // add payment method button title
+"Pay Now" = "Pay Now!!!"; // add payment method button title
 
 // Add Card Controller
 "Card Payment" = "Card Payment"; // add card navigation title
