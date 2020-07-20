@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import PassKit
 import Spreedly
+import os
 
 @objc(SPRSpreedly)
 public class Spreedly: NSObject {
@@ -240,4 +241,24 @@ public class ExpressContext: NSObject {
     @objc public var fullNameApplePay: String? {
         applePayDefaults?.fullName ?? fullName(from: applePayDefaults) ?? fullNamePaymentMethod
     }
+}
+
+class BundleLocator {
+    static let resourceBundleName: String = "SpreedlyCocoaResources"
+
+    static var spreedly: Bundle = {
+        Bundle(for: BundleLocator.self)
+    }()
+
+    static var resources: Bundle? = {
+        if let resourcePath = spreedly.path(forResource: BundleLocator.resourceBundleName, ofType: "bundle"),
+           let resourceBundle = Bundle(path: resourcePath) {
+
+            let message: StaticString = "Found resource bundle at path "
+            os_log("Found resource bundle at path %s", resourcePath)
+            return resourceBundle
+        }
+        os_log("Unable to find resource bundle")
+        return nil
+    }()
 }
