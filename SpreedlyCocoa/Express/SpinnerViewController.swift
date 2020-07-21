@@ -6,15 +6,15 @@ import UIKit
 
 class SpinnerViewController: UIViewController {
     lazy var spinner: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .large)
-        view.color = .label
+        let view = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.largePre13)
+        view.color = UIColor.labelPre13
         return view
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.7)
+        view.backgroundColor = UIColor.systemBackgroundPre13.withAlphaComponent(0.7)
 
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
