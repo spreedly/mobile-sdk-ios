@@ -17,9 +17,20 @@ extension UIImage {
 
 extension UIStoryboard {
     static func fromResources(named name: String) -> UIStoryboard? {
-        if BundleLocator.resources?.path(forResource: name, ofType: "storyboardc") != nil {
-            return UIStoryboard(name: name, bundle: BundleLocator.resources)
+        let bundles = [BundleLocator.resources, BundleLocator.spreedly, Bundle.main]
+        guard let bundle = search(bundles: bundles, forResource: name, ofType: "storyboardc")  else {
+            return nil
         }
-        return UIStoryboard(name: name, bundle: nil)
+        return UIStoryboard(name: name, bundle: bundle)
+    }
+
+    private static func search(bundles: [Bundle?], forResource name: String, ofType ext: String) -> Bundle? {
+        bundles.compactMap { bundle -> Bundle? in
+            if bundle?.path(forResource: name, ofType: ext) != nil {
+                return bundle
+            } else {
+                return nil
+            }
+        }.first
     }
 }
