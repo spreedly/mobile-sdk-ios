@@ -42,32 +42,10 @@ public class CreditCardNumberTextField: SecureTextField {
         ])
     }
 
-    func imageFromBundle(named name: String) -> UIImage? {
-        if let image = UIImage(named: name) {
-            print("Found image named \(name) in default bundle.")
-            return image
-        }
-        let containingBundle = Bundle(for: CreditCardNumberTextField.self)
-        if let image = UIImage(named: name, in: containingBundle, with: nil) {
-            print("Found image named \(name) in containing bundle.")
-            return image
-        }
-        if let resourcePath = containingBundle.path(forResource: "SpreedlyCocoaResources", ofType: "bundle"),
-           let resourceBundle = Bundle(path: resourcePath),
-           let image = UIImage(named: name, in: resourceBundle, with: nil) {
-            print("Found image named \(name) in resource bundle.")
-            return image
-        }
-        print("Unable to find image named \(name) in bundles :(")
-        return nil
-    }
-
     private func updateCardBrandImage(brand: CardBrand) {
+        let image = UIImage.fromResources(named: "spr_card_\(brand)")
+                ?? UIImage.fromResources(named: CreditCardNumberTextField.unknownCard)
 
-        let image = self.imageFromBundle(named: "spr_card_\(brand)")
-                ?? self.imageFromBundle(named: CreditCardNumberTextField.unknownCard)
-
-//        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: CreditCardNumberTextField.unknownCard)
         self.image.image = image
     }
 
