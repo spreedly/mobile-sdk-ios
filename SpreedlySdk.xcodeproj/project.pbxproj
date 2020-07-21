@@ -66,6 +66,7 @@
 		F076C304032E65C8D9746F35 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CDFC7C32CD92DC2821F3 /* AddressTests.swift */; };
 		F076C33079FDF4532D77FBD0 /* CALayer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CBDE49B90D526E5AC36E /* CALayer+Additions.swift */; };
 		F076C345015EC5AAD59657EF /* JSONExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */; };
+		F076C35E0EAEDBF4AFCEFCA8 /* BundleLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CA78CC0B99B7D25ABD3D /* BundleLocator.swift */; };
 		F076C46652FBB0E3F194DC55 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */; };
 		F076C5168326BA6146E7048D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB8C9D4B8CE905B35F73 /* Helpers.swift */; };
 		F076C57D7A6335766809B69B /* ObjCTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C700B61D855C3AE1D093 /* ObjCTransactionTests.swift */; };
@@ -246,6 +247,7 @@
 		F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		F076CA116CE9AA56F15ABCDF /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
+		F076CA78CC0B99B7D25ABD3D /* BundleLocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleLocator.swift; sourceTree = "<group>"; };
 		F076CA9E54CC1E288449091E /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AdditionsTests.swift"; sourceTree = "<group>"; };
 		F076CAF9342C451D3DBFA227 /* JSONExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionsTests.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
 				3C0553E024ABF8FC00F31DA3 /* Localizable.strings */,
 				F076C0EA0D590AED272261A9 /* Localizable.swift */,
+				F076CA78CC0B99B7D25ABD3D /* BundleLocator.swift */,
 			);
 			path = SpreedlyCocoa;
 			sourceTree = "<group>";
@@ -1011,6 +1014,7 @@
 				F076C281F9866EC140E3E53D /* Localizable.swift in Sources */,
 				F076CA42E55BE576578B2C7C /* SpinnerViewController.swift in Sources */,
 				F076CDA661895E1D5CAD3E73 /* ApplePay.swift in Sources */,
+				F076C35E0EAEDBF4AFCEFCA8 /* BundleLocator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

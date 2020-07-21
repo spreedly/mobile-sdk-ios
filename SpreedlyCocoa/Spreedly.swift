@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import PassKit
 import Spreedly
-import os
 
 @objc(SPRSpreedly)
 public class Spreedly: NSObject {
@@ -241,37 +240,4 @@ public class ExpressContext: NSObject {
     @objc public var fullNameApplePay: String? {
         applePayDefaults?.fullName ?? fullName(from: applePayDefaults) ?? fullNamePaymentMethod
     }
-}
-
-class BundleLocator {
-    static let resourceBundleName: String = "SpreedlyCocoaResources"
-
-    static var spreedly: Bundle = {
-        Bundle(for: BundleLocator.self)
-    }()
-
-    static var resources: Bundle? = {
-        guard let resourcePath = spreedly.path(forResource: BundleLocator.resourceBundleName, ofType: "bundle"),
-              let resourceBundle = Bundle(path: resourcePath) else {
-            os_log("Unable to find resource bundle.")
-            return nil
-        }
-        os_log("Found resource bundle at path %s.", resourcePath)
-        return resourceBundle
-    }()
-
-    static var localization: Bundle = {
-        guard let resources = resources else {
-            os_log("Unable to find resource bundle. Localizations will use main.")
-            return Bundle.main
-        }
-        let firstPreferredLocalization = Bundle.main.preferredLocalizations.first ?? "n/a"
-        if resources.preferredLocalizations.first == firstPreferredLocalization {
-            os_log("Resources bundle supports %s", firstPreferredLocalization)
-            return resources
-        } else {
-            os_log("Resources bundle does not support %s", firstPreferredLocalization)
-            return Bundle.main
-        }
-    }()
 }
