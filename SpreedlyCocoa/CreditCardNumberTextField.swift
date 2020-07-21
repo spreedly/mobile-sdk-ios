@@ -43,7 +43,9 @@ public class CreditCardNumberTextField: SecureTextField {
     }
 
     private func updateCardBrandImage(brand: CardBrand) {
-        let image = UIImage(named: "spr_card_\(brand)") ?? UIImage(named: CreditCardNumberTextField.unknownCard)
+        let image = UIImage.fromResources(named: "spr_card_\(brand)")
+                ?? UIImage.fromResources(named: CreditCardNumberTextField.unknownCard)
+
         self.image.image = image
     }
 

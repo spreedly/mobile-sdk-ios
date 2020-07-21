@@ -21,3 +21,11 @@ swiftdoc-generate: swiftdoc-install
 
 swiftdoc-server: swiftdoc-generate
 	pushd .build/documentation; python3 -m http.server; popd
+
+.PHONY: push-spreedly-pod
+push-spreedly-pod:
+	pod repo push spreedly-spec-demo Spreedly.podspec --verbose
+
+.PHONY: push-spreedlycocoa-pod
+push-spreedlycocoa-pod:
+	pod repo push spreedly-spec-demo SpreedlyCocoa.podspec --verbose

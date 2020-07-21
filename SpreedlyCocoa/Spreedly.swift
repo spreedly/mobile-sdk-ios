@@ -121,8 +121,9 @@ public class ExpressBuilder: NSObject {
 
     /// Returns a `UIViewController` for the Express UI workflow configured with the properties from this object.
     public func buildViewController() -> UIViewController {
-        let bundle = Bundle(for: type(of: self))
-        let storyboard = UIStoryboard(name: "Express", bundle: bundle)
+        guard let storyboard = UIStoryboard.fromResources(named: "Express") else {
+            fatalError("Unable to find Express storyboard in searched bundles.")
+        }
         let initial: UIViewController
         let express: ExpressViewController
 
