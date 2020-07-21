@@ -14,3 +14,12 @@ extension UIImage {
         UIImage(named: name, in: BundleLocator.resources, with: nil) ?? UIImage(named: name)
     }
 }
+
+extension UIStoryboard {
+    static func fromResources(named name: String) -> UIStoryboard? {
+        if BundleLocator.resources?.path(forResource: name, ofType: "storyboardc") != nil {
+            return UIStoryboard(name: name, bundle: BundleLocator.resources)
+        }
+        return UIStoryboard(name: name, bundle: nil)
+    }
+}
