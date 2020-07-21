@@ -251,14 +251,27 @@ class BundleLocator {
     }()
 
     static var resources: Bundle? = {
-        if let resourcePath = spreedly.path(forResource: BundleLocator.resourceBundleName, ofType: "bundle"),
-           let resourceBundle = Bundle(path: resourcePath) {
-
-            let message: StaticString = "Found resource bundle at path "
-            os_log("Found resource bundle at path %s", resourcePath)
-            return resourceBundle
+        guard let resourcePath = spreedly.path(forResource: BundleLocator.resourceBundleName, ofType: "bundle"),
+              let resourceBundle = Bundle(path: resourcePath) else {
+            os_log("Unable to find resource bundle.")
+            return nil
         }
-        os_log("Unable to find resource bundle")
-        return nil
+        os_log("Found resource bundle at path %s.", resourcePath)
+        return resourceBundle
+    }()
+
+    static var localization: Bundle = {
+        guard let resources = resources else {
+            os_log("Unable to find resource bundle. Localizations will use main.")
+            return Bundle.main
+        }
+        let firstPreferredLocalization = Bundle.main.preferredLocalizations.first ?? "n/a"
+        if resources.preferredLocalizations.first == firstPreferredLocalization {
+            os_log("Resources bundle supports %s", firstPreferredLocalization)
+            return resources
+        } else {
+            os_log("Resources bundle does not support %s", firstPreferredLocalization)
+            return Bundle.main
+        }
     }()
 }

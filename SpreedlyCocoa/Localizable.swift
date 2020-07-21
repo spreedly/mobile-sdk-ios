@@ -10,7 +10,7 @@ protocol Localizable {
 
 extension String: Localizable {
     var localized: String {
-        NSLocalizedString(self, bundle: BundleLocator.resources ?? Bundle.main, comment: "")
+        NSLocalizedString(self, bundle: BundleLocator.localization, comment: "")
     }
 }
 
