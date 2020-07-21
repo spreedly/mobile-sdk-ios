@@ -129,7 +129,7 @@ public class ExpressBuilder: NSObject {
 
         switch presentationStyle {
         case .withinNavigationView:
-            express = storyboard.instantiateInitialViewController()! as ExpressViewController
+            express = storyboard.instantiateViewController(withIdentifier: "PaymentSelection") as! ExpressViewController // swiftlint:disable:this force_cast line_length
             initial = express
         case .asModal:
             let navController = storyboard.instantiateViewController(
