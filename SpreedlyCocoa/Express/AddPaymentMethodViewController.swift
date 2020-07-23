@@ -11,6 +11,7 @@ import Spreedly
 
 class AddPaymentMethodViewController: UIViewController {
     @IBOutlet weak var form: SecureForm!
+    @IBOutlet weak var submit: UIButton!
 
     lazy var spinnerViewController = SpinnerViewController()
 
@@ -22,14 +23,23 @@ class AddPaymentMethodViewController: UIViewController {
         super.viewDidLoad()
 
         configureDelegates()
-
-        form.paymentMethodDefaults = context?.paymentMethodDefaults
-        form.creditCardDefaults = context?.creditCardDefaults
-        form.bankAccountDefaults = context?.bankAccountDefaults
+        configureSubmit()
+        configureDefaults()
     }
 
     func configureDelegates() {
         form.delegate = self
+    }
+    
+    func configureSubmit() {
+        let image = UIImage.initPre13(systemName: "lock.fill", fallbackEmoji: "🔒")
+        submit.setImage(image, for: .normal)
+    }
+    
+    func configureDefaults() {
+        form.paymentMethodDefaults = context?.paymentMethodDefaults
+        form.creditCardDefaults = context?.creditCardDefaults
+        form.bankAccountDefaults = context?.bankAccountDefaults
     }
 }
 

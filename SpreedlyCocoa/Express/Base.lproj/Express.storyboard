@@ -292,6 +292,7 @@
                     <connections>
                         <outlet property="form" destination="Xbx-bk-ami" id="0tf-ZV-bFU"/>
                         <outlet property="stackView" destination="ied-2e-A3f" id="64I-PQ-bv0"/>
+                        <outlet property="submit" destination="mNr-nU-Q9m" id="9RZ-Ga-qi4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o97-hs-Jxv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -427,6 +428,7 @@
                         <outlet property="expirationDatePicker" destination="PXg-7O-dSn" id="IRA-ft-8O0"/>
                         <outlet property="form" destination="hg5-AU-gKT" id="agN-uq-7bw"/>
                         <outlet property="stackView" destination="7nF-kv-Pdn" id="ufQ-pS-0k3"/>
+                        <outlet property="submit" destination="2Ec-XO-Hmx" id="6Vb-jd-NPz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sb0-a8-Pvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

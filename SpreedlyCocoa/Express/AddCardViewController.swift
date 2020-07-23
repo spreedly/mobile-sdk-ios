@@ -21,11 +21,10 @@ class AddCardViewController: AddPaymentMethodViewController {
         stackView.subviews.filter { $0 is UITextField }.dropFirst().forEach { view in
             view.layer.addBorder(edge: .top, color: UIColor.separatorPre13, thickness: 1)
         }
-
-        configureDefaults()
     }
 
-    func configureDefaults() {
+    override func configureDefaults() {
+        super.configureDefaults()
         form.fullName?.text = context?.fullNameCreditCard
     }
 }
