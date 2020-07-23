@@ -44,8 +44,17 @@ extension UIColor {
         if #available(iOS 13.0, *) {
             return UIColor.separator
         } else {
-            return UIColor(red: 60.0, green: 60.0, blue: 67.0, alpha: 0.29)
+            return UIColor.lightGray
         }
     }()
+}
 
+extension UIImage {
+    static func initPre13(systemName name: String, fallbackEmoji: String, fontSize: CGFloat = 20) -> UIImage? {
+        if #available(iOS 13.0, *) {
+            return UIImage(systemName: name)
+        } else {
+            return fallbackEmoji.image(fontSize: fontSize)
+        }
+    }
 }

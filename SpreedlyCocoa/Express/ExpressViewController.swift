@@ -58,7 +58,8 @@ class ExpressViewController: UIViewController {
     func styleNavButton(button: UIButton) {
         button.contentHorizontalAlignment = .leading
 
-        let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        let image = UIImage.initPre13(systemName: "chevron.right", fallbackEmoji: "〉")
+        let imageView = UIImageView(image: image)
         button.addSubview(imageView)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
