@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/ergonlabs/spreedly-ios.git', :tag => "podspec_#{s.version}" }
     s.swift_version    = '5.0'
 
-    s.platform         = :ios, '13.0'
+    s.platform         = :ios, '12.2'
     s.requires_arc     = true
 
     s.source_files     = 'SpreedlyCocoa/**/*.swift', 'SpreedlyCocoa/**/*.{m,h}'
