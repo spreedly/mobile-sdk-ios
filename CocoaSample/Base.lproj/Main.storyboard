@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YUx-rV-FgK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YUx-rV-FgK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,35 +13,35 @@
             <objects>
                 <viewController title="Spreedly Cocoa Sample" id="mlm-g5-HBD" customClass="ViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kLk-OI-wjM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-eQ-eJ2">
-                                <rect key="frame" x="0.0" y="228" width="600" height="144"/>
+                                <rect key="frame" x="0.0" y="376" width="414" height="144"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-nV-iJb">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
                                         <state key="normal" title="Credit Card"/>
                                         <connections>
                                             <segue destination="lf6-cm-I24" kind="show" id="ywR-99-5VO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeq-bI-QfN">
-                                        <rect key="frame" x="0.0" y="38" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="414" height="30"/>
                                         <state key="normal" title="Bank Account"/>
                                         <connections>
                                             <segue destination="PPs-B4-3q4" kind="show" id="5os-L0-sow"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONe-TO-qii" userLabel="Express (nav)">
-                                        <rect key="frame" x="0.0" y="76" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="76" width="414" height="30"/>
                                         <state key="normal" title="Express (nav)"/>
                                         <connections>
                                             <action selector="launchExpress:" destination="mlm-g5-HBD" eventType="primaryActionTriggered" id="eHa-gi-Wxp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-oX-VUL" userLabel="Express (present)">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="114" width="414" height="30"/>
                                         <state key="normal" title="Express (present)"/>
                                         <connections>
                                             <action selector="expressWithPresent:" destination="mlm-g5-HBD" eventType="primaryActionTriggered" id="kE1-Of-yno"/>
@@ -66,43 +68,43 @@
         <scene sceneID="Cbq-53-p9g">
             <objects>
                 <viewController id="lf6-cm-I24" customClass="CreditCardFormViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dpo-s2-wSB" userLabel="Secure Form" customClass="SecureForm" customModule="SpreedlyCocoa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="Dpo-s2-wSB" userLabel="Secure Form" customClass="SPRSecureForm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-pS-FNr">
-                                <rect key="frame" x="10" y="44" width="580" height="306"/>
+                                <rect key="frame" x="10" y="88" width="394" height="306"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cardholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdT-Vh-uqU">
-                                        <rect key="frame" x="0.0" y="0.0" width="580" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cardholder Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="06g-Dm-y2y" customClass="ValidatedTextField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="34" width="580" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cardholder Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="06g-Dm-y2y" customClass="SPRValidatedTextField">
+                                        <rect key="frame" x="0.0" y="34" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-yJ-Q5x">
-                                        <rect key="frame" x="0.0" y="68" width="580" height="34"/>
+                                        <rect key="frame" x="0.0" y="68" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Number" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="piH-B3-ODf" customClass="CreditCardNumberTextField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="102" width="580" height="34"/>
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Number" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="piH-B3-ODf" customClass="SPRCreditCardNumberTextField">
+                                        <rect key="frame" x="0.0" y="102" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaL-9z-8DD">
-                                        <rect key="frame" x="0.0" y="136" width="580" height="34"/>
+                                        <rect key="frame" x="0.0" y="136" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-yu-ATf" customClass="ExpirationPickerField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="170" width="580" height="34"/>
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-yu-ATf" customClass="SPRExpirationPickerField">
+                                        <rect key="frame" x="0.0" y="170" width="394" height="34"/>
                                         <accessibility key="accessibilityConfiguration" hint="Expiration Year"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
@@ -110,19 +112,19 @@
                                             <action selector="pickerTriggered:" destination="lf6-cm-I24" eventType="primaryActionTriggered" id="kdO-74-a6b"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CVV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-kf-van">
-                                        <rect key="frame" x="0.0" y="204" width="580" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-kf-van">
+                                        <rect key="frame" x="0.0" y="204" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-GT-cYd" customClass="SecureTextField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="238" width="580" height="34"/>
+                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Verification Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrW-GT-cYd" customClass="SPRSecureTextField">
+                                        <rect key="frame" x="0.0" y="238" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jH8-AF-mFH">
-                                        <rect key="frame" x="0.0" y="272" width="580" height="34"/>
+                                        <rect key="frame" x="0.0" y="272" width="394" height="34"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="createCreditCardPaymentMethodWithSender:" destination="Dpo-s2-wSB" eventType="primaryActionTriggered" id="RRq-qW-hUI"/>
@@ -161,7 +163,7 @@
             <objects>
                 <navigationController id="YUx-rV-FgK" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aZ8-5j-Lc7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -176,74 +178,74 @@
         <scene sceneID="RgU-9V-UB2">
             <objects>
                 <viewController id="PPs-B4-3q4" customClass="BankAccountFormViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5c7-Hk-Iwi" customClass="SecureForm" customModule="SpreedlyCocoa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="5c7-Hk-Iwi" customClass="SPRSecureForm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hiu-Sg-jvd">
-                                <rect key="frame" x="10" y="54" width="580" height="296.5"/>
+                                <rect key="frame" x="10" y="98" width="394" height="296.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accountholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXe-i8-Wdc">
-                                        <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u81-z0-r9G" customClass="ValidatedTextField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="20.5" width="580" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u81-z0-r9G" customClass="SPRValidatedTextField">
+                                        <rect key="frame" x="0.0" y="20.5" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmx-WR-zX0">
-                                        <rect key="frame" x="0.0" y="54.5" width="580" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="54.5" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhG-B3-xr6" customClass="SecureTextField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="75" width="580" height="34"/>
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhG-B3-xr6" customClass="SPRSecureTextField">
+                                        <rect key="frame" x="0.0" y="75" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routing Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScQ-z0-QyF">
-                                        <rect key="frame" x="0.0" y="109" width="580" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="109" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Routing Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SEC-Fl-4Vn" customClass="ValidatedTextField" customModule="SpreedlyCocoa">
-                                        <rect key="frame" x="0.0" y="129.5" width="580" height="34"/>
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Routing Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SEC-Fl-4Vn" customClass="SPRValidatedTextField">
+                                        <rect key="frame" x="0.0" y="129.5" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHp-0e-ciy">
-                                        <rect key="frame" x="0.0" y="163.5" width="580" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="163.5" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="w7n-dX-Pii">
-                                        <rect key="frame" x="0.0" y="184" width="580" height="32"/>
+                                        <rect key="frame" x="0.0" y="184" width="394" height="32"/>
                                         <segments>
                                             <segment title="Checking"/>
                                             <segment title="Savings"/>
                                         </segments>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZ1-OU-Hxj">
-                                        <rect key="frame" x="0.0" y="215" width="580" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="215" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IsE-yW-0mT">
-                                        <rect key="frame" x="0.0" y="235.5" width="580" height="32"/>
+                                        <rect key="frame" x="0.0" y="235.5" width="394" height="32"/>
                                         <segments>
                                             <segment title="Personal"/>
                                             <segment title="Business"/>
                                         </segments>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IV1-CJ-WZy">
-                                        <rect key="frame" x="0.0" y="266.5" width="580" height="30"/>
+                                        <rect key="frame" x="0.0" y="266.5" width="394" height="30"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="createBankAccountPaymentMethodWithSender:" destination="5c7-Hk-Iwi" eventType="primaryActionTriggered" id="hFT-Ke-aXD"/>
