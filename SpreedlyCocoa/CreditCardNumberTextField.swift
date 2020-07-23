@@ -18,7 +18,11 @@ public class CreditCardNumberTextField: SecureTextField {
     public weak var cardNumberTextFieldDelegate: CreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
     private var masked: Bool = false
-    private let image = UIImageView(image: UIImage(named: CreditCardNumberTextField.unknownCard))
+    private let image: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: CreditCardNumberTextField.unknownCard))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 
     @objc public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +42,8 @@ public class CreditCardNumberTextField: SecureTextField {
         image.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             image.centerYAnchor.constraint(equalTo: centerYAnchor),
-            image.trailingAnchor.constraint(equalTo: statusIcon.leadingAnchor, constant: -7)
+            image.trailingAnchor.constraint(equalTo: statusIcon.leadingAnchor, constant: -7),
+            image.widthAnchor.constraint(equalToConstant: 42)
         ])
     }
 
