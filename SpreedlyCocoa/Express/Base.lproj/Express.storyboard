@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p0P-8y-uz6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p0P-8y-uz6">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +13,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Navigation" id="cZt-VL-gFr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PP8-xJ-QpB">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -25,16 +27,16 @@
         <!--ExpressViewController-->
         <scene sceneID="wAw-Hf-ioB">
             <objects>
-                <viewController title="ExpressViewController" id="p0P-8y-uz6" customClass="ExpressViewController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentSelection" title="ExpressViewController" id="p0P-8y-uz6" customClass="ExpressViewController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocx-fO-Vzh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dRb-mz-Dv5">
-                                <rect key="frame" x="10" y="52" width="580" height="289"/>
+                                <rect key="frame" x="10" y="96" width="394" height="289"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4n-Sb-jdo" userLabel="Payment Methods">
-                                        <rect key="frame" x="0.0" y="0.0" width="580" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="26.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -43,7 +45,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iz3-fY-hod">
-                                        <rect key="frame" x="0.0" y="26.5" width="580" height="156"/>
+                                        <rect key="frame" x="0.0" y="26.5" width="394" height="156"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="156" id="3rF-EY-juh"/>
@@ -57,7 +59,7 @@
                                         <cells/>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgi-jv-eTk">
-                                        <rect key="frame" x="0.0" y="182.5" width="580" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="182.5" width="394" height="26.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -66,7 +68,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBZ-Ic-N66">
-                                        <rect key="frame" x="0.0" y="209" width="580" height="40"/>
+                                        <rect key="frame" x="0.0" y="209" width="394" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="f1c-G1-COb"/>
                                         </constraints>
@@ -79,7 +81,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpj-jK-Sm3">
-                                        <rect key="frame" x="0.0" y="249" width="580" height="40"/>
+                                        <rect key="frame" x="0.0" y="249" width="394" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="RtR-tD-UNm"/>
                                         </constraints>
@@ -127,15 +129,15 @@
         <scene sceneID="PNW-YQ-Myg">
             <objects>
                 <viewController title="Add a Bank Account" id="4d7-45-AKY" customClass="AddBankAccountController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="Xbx-bk-ami" customClass="SPRSecureForm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ied-2e-A3f">
-                                <rect key="frame" x="0.0" y="44" width="600" height="338"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="338"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account holder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-TA-RK3" customClass="ValidatedTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="8" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account holder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-TA-RK3" customClass="SPRValidatedTextField">
+                                        <rect key="frame" x="12" y="8" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZkL-lh-iig"/>
                                         </constraints>
@@ -145,8 +147,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account holder name"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="48" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-yp-xrV" customClass="SPRSecureTextField">
+                                        <rect key="frame" x="12" y="48" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="rK9-bi-llP"/>
                                         </constraints>
@@ -156,8 +158,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Account number"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="ValidatedTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="88" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Routing number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-Gn-wt7" customClass="SPRValidatedTextField">
+                                        <rect key="frame" x="12" y="88" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="mip-gK-Qtc"/>
                                         </constraints>
@@ -168,10 +170,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-Qj-yaf">
-                                        <rect key="frame" x="12" y="128" width="576" height="30"/>
+                                        <rect key="frame" x="12" y="128" width="390" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj4-Cf-gz3">
-                                                <rect key="frame" x="0.0" y="12" width="576" height="18"/>
+                                                <rect key="frame" x="0.0" y="12" width="390" height="18"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -185,7 +187,7 @@
                                         </constraints>
                                     </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="khP-qg-l90">
-                                        <rect key="frame" x="12" y="158" width="576" height="32"/>
+                                        <rect key="frame" x="12" y="158" width="390" height="32"/>
                                         <segments>
                                             <segment title="Checking"/>
                                             <segment title="Savings"/>
@@ -195,10 +197,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Sw3-sd-M2w">
-                                        <rect key="frame" x="12" y="189" width="576" height="30"/>
+                                        <rect key="frame" x="12" y="189" width="390" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account holder type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBB-aW-m9d">
-                                                <rect key="frame" x="0.0" y="12" width="576" height="18"/>
+                                                <rect key="frame" x="0.0" y="12" width="390" height="18"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -212,7 +214,7 @@
                                         </constraints>
                                     </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PqR-CL-I5v">
-                                        <rect key="frame" x="12" y="219" width="576" height="32"/>
+                                        <rect key="frame" x="12" y="219" width="390" height="32"/>
                                         <segments>
                                             <segment title="Personal"/>
                                             <segment title="Business"/>
@@ -222,14 +224,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBS-eO-7bu" userLabel="Spacer 20">
-                                        <rect key="frame" x="12" y="250" width="576" height="20"/>
+                                        <rect key="frame" x="12" y="250" width="390" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="hBn-Qk-ksz"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNr-nU-Q9m">
-                                        <rect key="frame" x="12" y="270" width="576" height="40"/>
+                                        <rect key="frame" x="12" y="270" width="390" height="40"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="8Yg-iF-Q4E"/>
@@ -257,7 +259,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19l-1a-rYB" userLabel="Spacer 20">
-                                        <rect key="frame" x="12" y="310" width="576" height="20"/>
+                                        <rect key="frame" x="12" y="310" width="390" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="ejS-j9-VF2"/>
@@ -300,15 +302,15 @@
         <scene sceneID="6Md-2p-DKp">
             <objects>
                 <viewController title="Add Card" id="Q1G-fJ-uL3" customClass="AddCardViewController" customModule="SpreedlyCocoa" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SecureForm" customModule="SpreedlyCocoa" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="hg5-AU-gKT" customClass="SPRSecureForm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7nF-kv-Pdn">
-                                <rect key="frame" x="0.0" y="44" width="600" height="256"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="256"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gce-E2-zr7" userLabel="Cardholder name" customClass="ValidatedTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="8" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cardholder name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gce-E2-zr7" userLabel="Cardholder name" customClass="SPRValidatedTextField">
+                                        <rect key="frame" x="12" y="8" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="1Lu-4e-Fqz"/>
                                         </constraints>
@@ -318,8 +320,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Cardholder name"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-ce-b7P" customClass="CreditCardNumberTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="48" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-ce-b7P" customClass="SPRCreditCardNumberTextField">
+                                        <rect key="frame" x="12" y="48" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="uo4-va-Fvg"/>
                                         </constraints>
@@ -329,8 +331,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Card number"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SecureTextField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="88" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-Cq-eJX" customClass="SPRSecureTextField">
+                                        <rect key="frame" x="12" y="88" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="jVu-AS-D57"/>
                                         </constraints>
@@ -340,8 +342,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholderLocKey" value="Security code"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXg-7O-dSn" customClass="ExpirationPickerField" customModule="SpreedlyCocoa" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="128" width="576" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXg-7O-dSn" customClass="SPRExpirationPickerField">
+                                        <rect key="frame" x="12" y="128" width="390" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="pfj-wo-R4a"/>
                                         </constraints>
@@ -355,14 +357,14 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-W3-8Xi" userLabel="Spacer 20">
-                                        <rect key="frame" x="12" y="168" width="576" height="20"/>
+                                        <rect key="frame" x="12" y="168" width="390" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="rYr-8y-ccE"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ec-XO-Hmx">
-                                        <rect key="frame" x="12" y="188" width="576" height="40"/>
+                                        <rect key="frame" x="12" y="188" width="390" height="40"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="cib-8H-ubg"/>
@@ -391,7 +393,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-2T-EGY" userLabel="Spacer 20">
-                                        <rect key="frame" x="12" y="228" width="576" height="20"/>
+                                        <rect key="frame" x="12" y="228" width="390" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="dG2-NO-qdp"/>
