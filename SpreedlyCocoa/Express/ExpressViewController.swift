@@ -49,7 +49,7 @@ class ExpressViewController: UIViewController {
 
         if context.allowCard && context.allowBankAccount {
             // if both buttons appear on the screen, add a border between them
-            addCard.layer.addBorder(edge: .bottom, color: .separator, thickness: 1)
+            addCard.layer.addBorder(edge: .bottom, color: UIColor.separatorPre13, thickness: 1)
         }
 
         styleNavButton(button: addBankAccount)
@@ -58,7 +58,8 @@ class ExpressViewController: UIViewController {
     func styleNavButton(button: UIButton) {
         button.contentHorizontalAlignment = .leading
 
-        let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        let image = UIImage.initPre13(systemName: "chevron.right", fallbackEmoji: "〉")
+        let imageView = UIImageView(image: image)
         button.addSubview(imageView)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false

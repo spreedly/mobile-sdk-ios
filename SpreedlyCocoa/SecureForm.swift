@@ -161,10 +161,8 @@ public class SecureForm: UIView {
         address.unlessNil(set: \.country, to: shippingCountry?.text)
         address.unlessNil(set: \.phoneNumber, to: shippingPhoneNumber?.text)
     }
-}
 
 // MARK: - Creating cards
-extension SecureForm {
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly(secureForm: self)
 
@@ -206,10 +204,10 @@ extension SecureForm {
         info.unlessNil(set: \.lastName, to: lastName?.text)
         info.unlessNil(set: \.company, to: company?.text)
     }
-}
+
 
 // MARK: - Creating bank accounts
-extension SecureForm {
+
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly(secureForm: self)
 

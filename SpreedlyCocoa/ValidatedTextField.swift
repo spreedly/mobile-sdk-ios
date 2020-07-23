@@ -81,11 +81,11 @@ public class ValidatedTextField: UITextField {
             statusIcon.image = nil
         case .valid:
             backgroundColor = UIColor.clear
-            statusIcon.image = UIImage(systemName: "checkmark.circle")
+            statusIcon.image = UIImage.initPre13(systemName: "checkmark.circle", fallbackEmoji: "✅")
             statusIcon.tintColor = UIColor.systemGreen
         case .error:
             backgroundColor = UIColor.systemRed.withAlphaComponent(0.15)
-            statusIcon.image = UIImage(systemName: "exclamationmark.circle")
+            statusIcon.image = UIImage.initPre13(systemName: "exclamationmark.circle", fallbackEmoji: "⛔")
             statusIcon.tintColor = UIColor.systemRed
         }
     }

@@ -14,15 +14,15 @@ class AddBankAccountController: AddPaymentMethodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        stackView.addBackground(color: .tertiarySystemBackground)
+        stackView.addBackground(color: UIColor.tertiarySystemBackgroundPre13)
         stackView.subviews.filter { $0 is UITextField }.dropFirst().forEach { view in
-            view.layer.addBorder(edge: .top, color: .separator, thickness: 1)
+            view.layer.addBorder(edge: .top, color: UIColor.separatorPre13, thickness: 1)
         }
-
-        configureDefaults()
     }
 
-    func configureDefaults() {
+    override func configureDefaults() {
+        super.configureDefaults()
+        
         form.fullName?.text = context?.fullNameBankAccount
         form.selectedAccountType = context?.bankAccountDefaults?.bankAccountType ?? .checking
         form.selectedHolderType = context?.bankAccountDefaults?.bankAccountHolderType ?? .personal

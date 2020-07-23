@@ -11,7 +11,7 @@ extension UIImage {
     /// - Parameter name: The name of the image.
     /// - Returns: The appropriate image if found, otherwise nil.
     static func fromResources(named name: String) -> UIImage? {
-        UIImage(named: name, in: BundleLocator.resources, with: nil) ?? UIImage(named: name)
+        UIImage(named: name, in: BundleLocator.resources, compatibleWith: nil) ?? UIImage(named: name)
     }
 }
 
