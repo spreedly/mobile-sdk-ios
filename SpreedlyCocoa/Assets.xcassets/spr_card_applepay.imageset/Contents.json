@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "spr_card_applepay.png",
+      "filename" : "spr_card_applepay@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

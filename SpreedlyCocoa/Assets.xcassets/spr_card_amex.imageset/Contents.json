@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "spr_card_amex.png",
+      "filename" : "spr_card_amex@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
