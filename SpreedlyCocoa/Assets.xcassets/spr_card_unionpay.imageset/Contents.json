@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "spr_card_unionpay.png",
+      "filename" : "spr_card_unionpay@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "spr_card_discover.png",
+      "filename" : "spr_card_discover@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
