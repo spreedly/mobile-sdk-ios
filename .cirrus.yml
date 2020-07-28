@@ -52,7 +52,7 @@ test_master_task:
 lint_task:
   name: 'Lint check sources'
   script:
-    - ./lint.sh
+    - make lint
 
 documentation_task:
   name: 'Make docs'

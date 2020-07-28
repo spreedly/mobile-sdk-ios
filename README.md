@@ -6,7 +6,7 @@ The Spreedly mobile SDK for iOS simplifies your mobile application's integration
 
 ## Installation
 
-We recommend using CocoaPods to integrate the Spreedly SDK with your project.
+We recommend using CocoaPods to integrate the Spreedly SDK with your project. The `Spreedly` pod provides basic, low-level APIs for custom integrations. The `SpreedlyCocoa` pod provides custom controls and the Spreedly Express workflow, a prebuild UI for collecting and selecting payment methods.
 
 ### CocoaPods
 ```ruby
@@ -16,12 +16,6 @@ pod 'Spreedly'
 # Express prebuilt UIs and controls
 pod 'SpreedlyCocoa' 
 ```
-
-### Bundle Resources
-Add `Spreedly/Localizable.strings` to the *Copy Bundle Resources* section of your app's *Build Phases* 
-so that you get translated strings.
-
-Add `Assets.xcassets` from `SpreedlyCocoa` to the *Copy Bundle Resources* section  of your app's *Build Phases* to get images used in the Express prebuilt UIs and controls.
 
 ### Spreedly-env.plist
 Add a file named `Spreedly-env.plist` to your app. An empty version of this file is available in `CocoaSample/Spreedly-env.plist`. The file supports the following settings:
@@ -82,5 +76,5 @@ A coverage report is regularly posted:
 * [latest branch](https://ergonlabs.github.io/spreedly-docs/coverage/pr/core-sdk/ios/index.html)
 
 ## Linting
-Run `./lint.sh` to do a lint check locally using [SwiftLint](https://github.com/realm/SwiftLint).
+Run `make lint` to do a lint check locally using [SwiftLint](https://github.com/realm/SwiftLint).
 
