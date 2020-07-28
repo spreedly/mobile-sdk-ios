@@ -132,30 +132,12 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 extension SpreedlyClientImpl: _ObjCClient {
     @objc(createPaymentMethodFrom:)
     func _objCCreatePaymentMethod(from info: PaymentMethodInfo) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
-        let url: URL
-        let authenticated: Bool
-        if info.retained ?? false {
-            authenticated = true
-            url = authenticatedPaymentMethodUrl
-        } else {
-            authenticated = false
-            url = unauthenticatedPaymentMethodUrl
-        }
+        let observable = createPaymentMethod(from: info)
+        return _ObjCSingleTransaction(observable: observable)
+    }
 
-        let single = Single<Transaction>.deferred {
-            var request = try info.toRequestJson()
-            if !authenticated {
-                request["environment_key"] = self.config.envKey
-            }
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "POST"
-            urlRequest.httpBody = try request.encodeJson()
-
-            return self.process(request: urlRequest, authenticated: authenticated).map { data -> Transaction in
-                try Transaction.unwrap(from: data)
-            }
-        }
-
-        return _ObjCSingleTransaction(observable: single)
+    func _objCRecache(token: String, verificationValue: SpreedlySecureOpaqueString) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
+        let observable = recache(token: token, verificationValue: verificationValue)
+        return _ObjCSingleTransaction(observable: observable)
     }
 }

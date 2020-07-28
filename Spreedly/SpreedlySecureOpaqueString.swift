@@ -7,7 +7,8 @@ import Foundation
 /// A representation of a String where the content of that String is intentionally obscured both reminding the
 /// developer that it should be carefully handled and to limit the possibility of it being recorded in logs, dumps,
 /// or prints.
-@objc public protocol SpreedlySecureOpaqueString {
+@objc(SPRSecureOpaqueString)
+public protocol SpreedlySecureOpaqueString {
     /// Clears the content.
     func clear()
 
@@ -56,6 +57,7 @@ extension SpreedlySecureOpaqueStringImpl: Encodable {
     }
 }
 
+@objc(SPRSecureOpaqueStringBuilder)
 public class SpreedlySecureOpaqueStringBuilder: NSObject {
     @objc public static func build(from string: String?) -> SpreedlySecureOpaqueString {
         guard let string = string else {
