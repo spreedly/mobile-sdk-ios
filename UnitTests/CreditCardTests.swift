@@ -7,16 +7,15 @@ import XCTest
 
 class CreditCardInfoTests: XCTestCase {
     func testCanEncode() throws {
-        let creditCard = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
-                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: "919"),
-                year: 2029,
-                month: 12
-        )
+        let info = CreditCardInfo()
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
+        info.number = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        info.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "919")
+        info.year = 2029
+        info.month = 12
 
-        let json = try creditCard.toJson()
+        let json = try info.toJson()
 
         let expected = try """
                            {

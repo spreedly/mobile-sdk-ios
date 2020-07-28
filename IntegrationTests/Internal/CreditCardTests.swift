@@ -8,14 +8,13 @@ import Spreedly
 class CreditCardTests: XCTestCase {
     func testCanCreateMinimalCreditCard() throws {
         let client = Helpers.createClient()
-        let info = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                number: Helpers.secureTestCardNumber,
-                verificationValue: Helpers.secureVerificationValue,
-                year: 2029,
-                month: 1
-        )
+        let info = CreditCardInfo()
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
+        info.number = Helpers.secureTestCardNumber
+        info.verificationValue = Helpers.secureVerificationValue
+        info.year = 2029
+        info.month = 1
 
         let promise = client.createPaymentMethodFrom(creditCard: info)
         let transaction = try promise.assertResult(self)
@@ -27,14 +26,13 @@ class CreditCardTests: XCTestCase {
 
     func testCanCreateFullCreditCard() throws {
         let client = Helpers.createClient()
-        let info = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                number: Helpers.secureTestCardNumber,
-                verificationValue: Helpers.secureVerificationValue,
-                year: 2029,
-                month: 1
-        )
+        let info = CreditCardInfo()
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
+        info.number = Helpers.secureTestCardNumber
+        info.verificationValue = Helpers.secureVerificationValue
+        info.year = 2029
+        info.month = 1
 
         let billing = buildAddress()
         info.address = billing

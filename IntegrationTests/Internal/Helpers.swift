@@ -39,18 +39,17 @@ public class Helpers: NSObject {
 
     static func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction> {
         let client = createClient()
-        let creditCard = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                number: secureTestCardNumber,
-                verificationValue: secureVerificationValue,
-                year: 2029,
-                month: 1
-        )
-        creditCard.retained = retained
-        creditCard.email = "dolly@dog.com"
+        let info = CreditCardInfo()
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
+        info.number = secureTestCardNumber
+        info.verificationValue = secureVerificationValue
+        info.year = 2029
+        info.month = 1
+        info.retained = retained
+        info.email = "dolly@dog.com"
 
-        return client.createPaymentMethodFrom(creditCard: creditCard)
+        return client.createPaymentMethodFrom(creditCard: info)
     }
 }
 

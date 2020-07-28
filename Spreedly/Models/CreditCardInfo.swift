@@ -19,22 +19,6 @@ public class CreditCardInfo: PaymentMethodInfo {
         super.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
-    @objc
-    public init(
-            firstName: String,
-            lastName: String,
-            number: SpreedlySecureOpaqueString,
-            verificationValue: SpreedlySecureOpaqueString,
-            year: Int,
-            month: Int
-    ) {
-        self.number = number
-        self.verificationValue = verificationValue
-        self.year = year
-        self.month = month
-        super.init(fullName: nil, firstName: firstName, lastName: lastName)
-    }
-
     /// Copies values from the given PaymentMethodInfo onto a new CreditCardInfo.
     public init(fromInfo info: PaymentMethodInfo?) {
         super.init(from: info)
