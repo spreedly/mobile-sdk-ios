@@ -11,14 +11,7 @@ class ClientTests: XCTestCase {
     func testEmptyKeyAndSecret() throws {
         let config = ClientConfiguration(envKey: "", envSecret: "")
         let client = ClientFactory.create(with: config)
-        let info = CreditCardInfo()
-        info.firstName = "Dolly"
-        info.lastName = "Dog"
-        info.number = Helpers.secureTestCardNumber
-        info.verificationValue = Helpers.secureVerificationValue
-        info.year = 2029
-        info.month = 1
-
+        let info = Helpers.initCreditCard()
         info.retained = true
         let resp = client.createPaymentMethodFrom(creditCard: info)
         let trans = try resp.assertResult(self)
