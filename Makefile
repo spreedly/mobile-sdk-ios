@@ -1,4 +1,4 @@
-.PHONY: test coverage bundle eli swiftdoc-install swiftdoc-generate
+.PHONY: test coverage bundle eli swiftdoc-install swiftdoc-generate swiftdoc-server push-spreedly-pod push-spreedlycocoa-pod lint
 
 test:
 	xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Spreedly -destination 'name=iPhone 11' -enableCodeCoverage YES
@@ -22,10 +22,11 @@ swiftdoc-generate: swiftdoc-install
 swiftdoc-server: swiftdoc-generate
 	pushd .build/documentation; python3 -m http.server; popd
 
-.PHONY: push-spreedly-pod
 push-spreedly-pod:
 	pod repo push spreedly-spec-demo Spreedly.podspec --verbose
 
-.PHONY: push-spreedlycocoa-pod
 push-spreedlycocoa-pod:
 	pod repo push spreedly-spec-demo SpreedlyCocoa.podspec --verbose
+
+lint:
+	./Pods/SwiftLint/swiftlint --config .swiftlint.yml
