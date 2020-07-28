@@ -59,6 +59,12 @@ extension Helpers {
     public static func _objCCreateClient() -> _ObjCClient { // swiftlint:disable:this identifier_name
         ClientFactory._objCCreate(with: createClientConfiguration())
     }
+
+    @objc(createCardWithRetained:error:)
+    public static func _objCCreateCreditCard(retained: Bool = false) throws -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
+        let observable = try createCreditCard(retained: retained)
+        return _ObjCSingleTransaction(observable: observable)
+    }
 }
 
 // swiftlint:disable line_length

@@ -75,7 +75,7 @@ public class Transaction: NSObject {
 public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
     private var observable: Single<Transaction>
 
-    init(observable: Single<Transaction>) {
+    public init(observable: Single<Transaction>) {
         self.observable = observable
     }
 

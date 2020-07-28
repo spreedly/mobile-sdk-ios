@@ -23,4 +23,7 @@ public enum SpreedlySecurityError: Error {
 public protocol _ObjCClient {
     @objc(createPaymentMethodFrom:)
     func _objCCreatePaymentMethod(from: PaymentMethodInfo) -> _ObjCSingleTransaction // swiftlint:disable:this identifier_name line_length
+
+    @objc(recacheWithToken:verificationValue:)
+    func _objCRecache(token: String, verificationValue: SpreedlySecureOpaqueString) -> _ObjCSingleTransaction // swiftlint:disable:this identifier_name line_length
 }
