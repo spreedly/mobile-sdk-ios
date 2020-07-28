@@ -136,6 +136,7 @@ extension SpreedlyClientImpl: _ObjCClient {
         return _ObjCSingleTransaction(observable: observable)
     }
 
+    @objc(recacheWithToken:verificationValue:)
     func _objCRecache(token: String, verificationValue: SpreedlySecureOpaqueString) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
         let observable = recache(token: token, verificationValue: verificationValue)
         return _ObjCSingleTransaction(observable: observable)
