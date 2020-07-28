@@ -33,13 +33,12 @@ class CreditCardInfoTests: XCTestCase {
     }
 
     func testCanEncodeWithFullName() throws {
-        let creditCard = CreditCardInfo(
-                fullName: "Dolly Dog",
-                number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
-                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: "919"),
-                year: 2029,
-                month: 12
-        )
+        let creditCard = CreditCardInfo()
+        creditCard.fullName = "Dolly Dog"
+        creditCard.number = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        creditCard.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "919")
+        creditCard.year = 2029
+        creditCard.month = 12
 
         let json = try creditCard.toJson()
 

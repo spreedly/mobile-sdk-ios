@@ -19,20 +19,6 @@ public class CreditCardInfo: PaymentMethodInfo {
         super.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
-    public init(
-            fullName: String,
-            number: SpreedlySecureOpaqueString,
-            verificationValue: SpreedlySecureOpaqueString,
-            year: Int,
-            month: Int
-    ) {
-        self.number = number
-        self.verificationValue = verificationValue
-        self.year = year
-        self.month = month
-        super.init(fullName: fullName, firstName: nil, lastName: nil)
-    }
-
     @objc
     public init(
             firstName: String,
