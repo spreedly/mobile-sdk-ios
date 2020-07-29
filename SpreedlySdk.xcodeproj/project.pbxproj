@@ -92,6 +92,7 @@
 		F076CC54EF17C14CC2CE0AC0 /* UIStackView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */; };
 		F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CAA31CBFB8F937338FA1 /* String+AdditionsTests.swift */; };
 		F076CCE40AF5366802515D06 /* RecacheCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F076CE0CB2B067AF7D00CAA3 /* RecacheCompatibilityTests.m */; };
+		F076CD21AF632EB34BD27FED /* SelectedPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C59DAE2D1784A8614BD3 /* SelectedPaymentMethod.swift */; };
 		F076CD7FF9E8D8C63D808B1A /* CreditCardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C7A6B1776F667E8CDA9B /* CreditCardInfo.swift */; };
 		F076CDA661895E1D5CAD3E73 /* ApplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB024AB173AF5A5CB915 /* ApplePay.swift */; };
 		F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */; };
@@ -238,6 +239,7 @@
 		F076C2EB71479F8B5C3F5C7D /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountFormViewController.swift; sourceTree = "<group>"; };
 		F076C58667A224FDD77BACA4 /* SecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		F076C59DAE2D1784A8614BD3 /* SelectedPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedPaymentMethod.swift; sourceTree = "<group>"; };
 		F076C684D007137772993AFA /* Compatibility+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Compatibility+Additions.swift"; sourceTree = "<group>"; };
 		F076C700B61D855C3AE1D093 /* ObjCTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCTransactionTests.swift; sourceTree = "<group>"; };
 		F076C72ED9EC2828C97959FD /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */,
 				F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */,
 				F076CB024AB173AF5A5CB915 /* ApplePay.swift */,
+				F076C59DAE2D1784A8614BD3 /* SelectedPaymentMethod.swift */,
 			);
 			path = Express;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				F076C35E0EAEDBF4AFCEFCA8 /* BundleLocator.swift in Sources */,
 				F076C1FEC23222D1A8BFF753 /* Resources+Additions.swift in Sources */,
 				F076C721524D59BDAADE7659 /* Compatibility+Additions.swift in Sources */,
+				F076CD21AF632EB34BD27FED /* SelectedPaymentMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
