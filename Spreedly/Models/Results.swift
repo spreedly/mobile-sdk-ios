@@ -4,7 +4,7 @@
 
 import Foundation
 
-public enum StorageState: String, Codable {
+public enum StorageState: String {
     case cached
     case retained
     case redacted
@@ -27,7 +27,7 @@ public enum _ObjCStorageState: Int { // swiftlint:disable:this type_name
     }
 }
 
-public enum PaymentMethodType: String, Codable {
+public enum PaymentMethodType: String {
     case creditCard = "credit_card"
     case bankAccount = "bank_account"
     case applePay = "apple_pay"
