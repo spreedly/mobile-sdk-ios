@@ -8,8 +8,8 @@ import Spreedly
 class ClientTests: XCTestCase {
     /// The API responds with a 401 and a valid JSON response, the client should return the decoded JSON response.
     /// If trans.message is null, then the client should populate it with the first error message from trans.errors
-    func testEmptyKeyAndSecret() throws {
-        let config = ClientConfiguration(envKey: "", envSecret: "")
+    func testEmptyKey() throws {
+        let config = ClientConfiguration(envKey: "")
         let client = ClientFactory.create(with: config)
         let info = Helpers.initCreditCard()
         info.retained = true
