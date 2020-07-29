@@ -22,7 +22,7 @@ class ExpressViewController: UIViewController {
     var items: [PaymentMethodItem]? {
         context.paymentMethods
     }
-    var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)? {
+    var didSelectPaymentMethod: ((SelectedPaymentMethod) -> Void)? {
         context.didSelectPaymentMethod
     }
 
@@ -92,12 +92,9 @@ class ExpressViewController: UIViewController {
         guard let type = method.paymentMethodType else {
             return
         }
-        let item = PaymentMethodItem(
-                type: type,
-                description: method.shortDescription,
-                token: method.token ?? ""
-        )
-        didSelectPaymentMethod?(item)
+
+        let paymentMethod = SelectedPaymentMethod(token: method.token ?? "", type: type)
+        didSelectPaymentMethod?(paymentMethod)
     }
 
     func insertArrangedSubview(view: UIView?, height: CGFloat, at index: Int) {
@@ -154,7 +151,8 @@ extension ExpressViewController: UICollectionViewDelegate {
             return
         }
 
-        didSelectPaymentMethod?(item)
+        let paymentMethod = SelectedPaymentMethod(token: item.token, type: item.type)
+        didSelectPaymentMethod?(paymentMethod)
     }
 }
 
@@ -179,12 +177,11 @@ extension ExpressViewController {
         )
         handler?.startPayment(request: request) { success, transaction in
             if success {
-                let item = PaymentMethodItem(
-                        type: .applePay,
-                        description: "Apple Pay",
-                        token: transaction?.paymentMethod?.token ?? ""
+                let paymentMethod = SelectedPaymentMethod(
+                        token: transaction?.paymentMethod?.token ?? "",
+                        type: .applePay
                 )
-                self.didSelectPaymentMethod?(item)
+                self.didSelectPaymentMethod?(paymentMethod)
             }
         }
     }

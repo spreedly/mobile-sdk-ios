@@ -62,7 +62,7 @@ public class ExpressBuilder: NSObject {
 
     /// Called after the user selects a payment method. When called, the controller returned from
     /// `buildViewController` should be popped/dismissed.
-    @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+    @objc public var didSelectPaymentMethod: ((SelectedPaymentMethod) -> Void)?
 
     /// Set this to provide a full name on the payment method creation forms and to provide
     /// name, company, email, address, shipping address, and metadata information to Spreedly
@@ -194,7 +194,7 @@ public class ExpressContext: NSObject {
     @objc public var allowBankAccount = false
     @objc public var allowApplePay = true
 
-    @objc public var didSelectPaymentMethod: ((PaymentMethodItem) -> Void)?
+    @objc public var didSelectPaymentMethod: ((SelectedPaymentMethod) -> Void)?
 
     @objc public var paymentMethodDefaults: PaymentMethodInfo?
     @objc public var creditCardDefaults: CreditCardInfo?
