@@ -19,7 +19,7 @@ public class ApplePayInfo: PaymentMethodInfo {
 
     @objc public init(paymentTokenData: Data) {
         self.paymentToken = paymentTokenData
-        super.init(fullName: nil, firstName: nil, lastName: nil)
+        super.init()
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new instance.

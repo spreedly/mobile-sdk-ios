@@ -15,8 +15,8 @@ public class CreditCardInfo: PaymentMethodInfo {
     /// Expiration month.
     public var month: Int?
 
-    @objc public init() {
-        super.init(fullName: nil, firstName: nil, lastName: nil)
+    @objc public override init() {
+        super.init()
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new CreditCardInfo.

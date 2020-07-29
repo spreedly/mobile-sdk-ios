@@ -57,8 +57,8 @@ public class BankAccountInfo: PaymentMethodInfo {
     /// Default: .unknown
     @objc public var bankAccountHolderType: BankAccountHolderType = .unknown
 
-    @objc public init() {
-        super.init(fullName: nil, firstName: nil, lastName: nil)
+    @objc public override init() {
+        super.init()
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new BankAccountInfo.
