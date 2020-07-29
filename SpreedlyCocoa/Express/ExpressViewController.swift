@@ -93,8 +93,9 @@ class ExpressViewController: UIViewController {
             return
         }
 
-        let paymentMethod = SelectedPaymentMethod(token: method.token ?? "", type: type)
-        didSelectPaymentMethod?(paymentMethod)
+        let selected = SelectedPaymentMethod(token: method.token ?? "", type: type)
+        selected.paymentMethod = method
+        didSelectPaymentMethod?(selected)
     }
 
     func insertArrangedSubview(view: UIView?, height: CGFloat, at index: Int) {
@@ -177,11 +178,12 @@ extension ExpressViewController {
         )
         handler?.startPayment(request: request) { success, transaction in
             if success {
-                let paymentMethod = SelectedPaymentMethod(
+                let selected = SelectedPaymentMethod(
                         token: transaction?.paymentMethod?.token ?? "",
                         type: .applePay
                 )
-                self.didSelectPaymentMethod?(paymentMethod)
+                selected.paymentMethod = transaction?.paymentMethod
+                self.didSelectPaymentMethod?(selected)
             }
         }
     }
