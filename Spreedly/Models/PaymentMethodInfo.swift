@@ -27,17 +27,9 @@ public class PaymentMethodInfo: NSObject {
     /// environment key and secret.
     public var retained: Bool?
 
-    init(fullName: String?, firstName: String?, lastName: String?) {
-        self.fullName = fullName
-        self.firstName = firstName
-        self.lastName = lastName
-
+    @objc public override init() {
         self.address = Address()
         self.shippingAddress = Address()
-    }
-
-    public override convenience init() {
-        self.init(fullName: nil, firstName: nil, lastName: nil)
     }
 
     /// Copies values from the given PaymentMethodInfo into a new instance.

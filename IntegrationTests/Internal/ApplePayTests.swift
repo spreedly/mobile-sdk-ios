@@ -9,7 +9,9 @@ import Spreedly
 class ApplePayTests: XCTestCase {
     func testCanCreateMinimalApplePay() throws {
         let client = Helpers.createClient()
-        let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: Helpers.paymentTokenData)
+        let info = ApplePayInfo(paymentTokenData: Helpers.paymentTokenData)
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
         info.testCardNumber = Helpers.testCardNumber
 
         let promise = client.createPaymentMethodFrom(applePay: info)
@@ -23,7 +25,9 @@ class ApplePayTests: XCTestCase {
 
     func testCanCreateFullApplePay() throws {
         let client = Helpers.createClient()
-        let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: Helpers.paymentTokenData)
+        let info = ApplePayInfo(paymentTokenData: Helpers.paymentTokenData)
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
         info.testCardNumber = Helpers.testCardNumber
         info.company = "LSGD Partners"
 

@@ -6,17 +6,21 @@ import XCTest
 @testable import Spreedly
 
 class CreditCardInfoTests: XCTestCase {
-    func testCanEncode() throws {
-        let creditCard = CreditCardInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
-                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: "919"),
-                year: 2029,
-                month: 12
-        )
+    func initCreditCard() -> CreditCardInfo {
+        let info = CreditCardInfo()
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
+        info.number = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        info.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "919")
+        info.year = 2029
+        info.month = 12
+        return info
+    }
 
-        let json = try creditCard.toJson()
+    func testCanEncode() throws {
+        let info = initCreditCard()
+
+        let json = try info.toJson()
 
         let expected = try """
                            {
@@ -33,13 +37,10 @@ class CreditCardInfoTests: XCTestCase {
     }
 
     func testCanEncodeWithFullName() throws {
-        let creditCard = CreditCardInfo(
-                fullName: "Dolly Dog",
-                number: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
-                verificationValue: SpreedlySecureOpaqueStringBuilder.build(from: "919"),
-                year: 2029,
-                month: 12
-        )
+        let creditCard = initCreditCard()
+        creditCard.firstName = nil
+        creditCard.lastName = nil
+        creditCard.fullName = "Dolly Dog"
 
         let json = try creditCard.toJson()
 
@@ -57,13 +58,9 @@ class CreditCardInfoTests: XCTestCase {
     }
 
     func testFromShouldClone() {
-        let source = CreditCardInfo()
+        let source = initCreditCard()
         source.fullName = "Dolly Dog"
-        source.firstName = "Dolly"
-        source.lastName = "Dog"
 
-        source.number = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
-        source.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "123")
         source.company = "Border LLC"
 
         source.address.address1 = "123 Fake St"

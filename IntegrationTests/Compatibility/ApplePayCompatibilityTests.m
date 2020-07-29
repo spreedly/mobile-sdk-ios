@@ -16,12 +16,9 @@
 @implementation ApplePayCompatibilityTests
 
 - (void)testCanCreateApplePay {
-    ApplePayInfo *info = [[ApplePayInfo alloc]
-            initWithFirstName:@"Dolly"
-                     lastName:@"Dog"
-             paymentTokenData:SPRHelpers.paymentTokenData
-
-    ];
+    ApplePayInfo *info = [[ApplePayInfo alloc] initWithPaymentTokenData:SPRHelpers.paymentTokenData];
+    info.firstName = @"Dolly";
+    info.lastName = @"Dog";
     info.testCardNumber = SPRHelpers.testCardNumber;
     info.company = @"LSGD Partners";
 

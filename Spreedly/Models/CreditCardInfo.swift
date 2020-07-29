@@ -15,38 +15,8 @@ public class CreditCardInfo: PaymentMethodInfo {
     /// Expiration month.
     public var month: Int?
 
-    @objc public init() {
-        super.init(fullName: nil, firstName: nil, lastName: nil)
-    }
-
-    public init(
-            fullName: String,
-            number: SpreedlySecureOpaqueString,
-            verificationValue: SpreedlySecureOpaqueString,
-            year: Int,
-            month: Int
-    ) {
-        self.number = number
-        self.verificationValue = verificationValue
-        self.year = year
-        self.month = month
-        super.init(fullName: fullName, firstName: nil, lastName: nil)
-    }
-
-    @objc
-    public init(
-            firstName: String,
-            lastName: String,
-            number: SpreedlySecureOpaqueString,
-            verificationValue: SpreedlySecureOpaqueString,
-            year: Int,
-            month: Int
-    ) {
-        self.number = number
-        self.verificationValue = verificationValue
-        self.year = year
-        self.month = month
-        super.init(fullName: nil, firstName: firstName, lastName: lastName)
+    @objc public override init() {
+        super.init()
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new CreditCardInfo.

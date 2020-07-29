@@ -16,14 +16,7 @@
 @implementation CreditCardCompatibilityTests
 
 - (void)testCanCreateCreditCard {
-    CreditCardInfo *info = [[CreditCardInfo alloc]
-            initWithFirstName:@"Dolly"
-                     lastName:@"Dog"
-                       number:SPRHelpers.secureTestCardNumber
-            verificationValue:SPRHelpers.secureVerificationValue
-                         year:2030
-                        month:12
-    ];
+    CreditCardInfo *info = [SPRHelpers initCreditCard];
     info.company = @"Growlers LLC";
 
     Address *address = [[Address alloc] init];
@@ -53,11 +46,11 @@
         XCTAssertEqualObjects(result.firstName, @"Dolly");
         XCTAssertEqualObjects(result.lastName, @"Dog");
         XCTAssertEqualObjects(result.company, @"Growlers LLC");
-        
+
         XCTAssertEqualObjects(result.lastFourDigits, @"1111");
         XCTAssertEqualObjects(result.firstSixDigits, @"411111");
-        XCTAssertEqual(result.year, 2030);
-        XCTAssertEqual(result.month, 12);
+        XCTAssertEqual(result.year, 2029);
+        XCTAssertEqual(result.month, 1);
         XCTAssertEqualObjects(result.cardType, @"visa");
 
         XCTAssertEqualObjects(result.address, info.address);

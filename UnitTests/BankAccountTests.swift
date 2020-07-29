@@ -6,16 +6,15 @@ import XCTest
 
 class BankAccountInfoTests: XCTestCase {
     func testCanEncode() throws {
-        let creditCard = BankAccountInfo(
-                firstName: "Dolly",
-                lastName: "Dog",
-                bankRoutingNumber: "123456",
-                bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
-                bankAccountType: .checking,
-                bankAccountHolderType: .personal
-        )
+        let info = BankAccountInfo()
+        info.firstName = "Dolly"
+        info.lastName = "Dog"
+        info.bankRoutingNumber = "123456"
+        info.bankAccountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        info.bankAccountType = .checking
+        info.bankAccountHolderType = .personal
 
-        let json = try creditCard.toJson()
+        let json = try info.toJson()
 
         let expected = try """
                            {
@@ -32,15 +31,14 @@ class BankAccountInfoTests: XCTestCase {
     }
 
     func testCanEncodeWithFullName() throws {
-        let creditCard = BankAccountInfo(
-                fullName: "Dolly Dog",
-                bankRoutingNumber: "123456",
-                bankAccountNumber: SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111"),
-                bankAccountType: .checking,
-                bankAccountHolderType: .personal
-        )
+        let info = BankAccountInfo()
+        info.fullName = "Dolly Dog"
+        info.bankRoutingNumber = "123456"
+        info.bankAccountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        info.bankAccountType = .checking
+        info.bankAccountHolderType = .personal
 
-        let json = try creditCard.toJson()
+        let json = try info.toJson()
 
         let expected = try """
                            {

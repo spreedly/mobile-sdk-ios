@@ -8,14 +8,13 @@ import Spreedly
 class BankAccountTests: XCTestCase {
     func testCanCreateBankAccount() throws {
         let client = Helpers.createClient()
-        let info = BankAccountInfo(
-                firstName: "Asha",
-                lastName: "Dog",
-                bankRoutingNumber: Helpers.testBankRoutingNumber,
-                bankAccountNumber: Helpers.secureBankAccountNumber,
-                bankAccountType: .checking,
-                bankAccountHolderType: .personal
-        )
+        let info = BankAccountInfo()
+        info.firstName = "Asha"
+        info.lastName = "Dog"
+        info.bankRoutingNumber = Helpers.testBankRoutingNumber
+        info.bankAccountNumber = Helpers.secureBankAccountNumber
+        info.bankAccountType = .checking
+        info.bankAccountHolderType = .personal
 
         let promise = client.createPaymentMethodFrom(bankAccount: info)
 

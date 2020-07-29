@@ -13,25 +13,13 @@ public class ApplePayInfo: PaymentMethodInfo {
     /// testing Apple Pay.
     @objc public var testCardNumber: String?
 
-    @objc public convenience init(firstName: String, lastName: String, paymentTokenData: Data) {
-        self.init(fullName: nil, firstName: firstName, lastName: lastName, paymentTokenData: paymentTokenData)
+    @objc public convenience init(payment: PKPayment) {
+        self.init(paymentTokenData: payment.token.paymentData)
     }
 
-    @objc public convenience init(firstName: String, lastName: String, payment: PKPayment) {
-        self.init(firstName: firstName, lastName: lastName, paymentTokenData: payment.token.paymentData)
-    }
-
-    @objc public convenience init(fullName: String, paymentTokenData: Data) {
-        self.init(fullName: fullName, firstName: nil, lastName: nil, paymentTokenData: paymentTokenData)
-    }
-
-    @objc public convenience init(fullName: String, payment: PKPayment) {
-        self.init(fullName: fullName, paymentTokenData: payment.token.paymentData)
-    }
-
-    private init(fullName: String?, firstName: String?, lastName: String?, paymentTokenData: Data) {
+    @objc public init(paymentTokenData: Data) {
         self.paymentToken = paymentTokenData
-        super.init(fullName: fullName, firstName: firstName, lastName: lastName)
+        super.init()
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new instance.

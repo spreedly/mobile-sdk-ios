@@ -57,37 +57,8 @@ public class BankAccountInfo: PaymentMethodInfo {
     /// Default: .unknown
     @objc public var bankAccountHolderType: BankAccountHolderType = .unknown
 
-    @objc public init() {
-        super.init(fullName: nil, firstName: nil, lastName: nil)
-    }
-
-    public init(
-            fullName: String,
-            bankRoutingNumber: String,
-            bankAccountNumber: SpreedlySecureOpaqueString,
-            bankAccountType: BankAccountType,
-            bankAccountHolderType: BankAccountHolderType
-    ) {
-        self.bankRoutingNumber = bankRoutingNumber
-        self.bankAccountNumber = bankAccountNumber
-        self.bankAccountType = bankAccountType
-        self.bankAccountHolderType = bankAccountHolderType
-        super.init(fullName: fullName, firstName: nil, lastName: nil)
-    }
-
-    @objc public init(
-            firstName: String,
-            lastName: String,
-            bankRoutingNumber: String,
-            bankAccountNumber: SpreedlySecureOpaqueString,
-            bankAccountType: BankAccountType,
-            bankAccountHolderType: BankAccountHolderType
-    ) {
-        self.bankRoutingNumber = bankRoutingNumber
-        self.bankAccountNumber = bankAccountNumber
-        self.bankAccountType = bankAccountType
-        self.bankAccountHolderType = bankAccountHolderType
-        super.init(fullName: nil, firstName: firstName, lastName: lastName)
+    @objc public override init() {
+        super.init()
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new BankAccountInfo.
