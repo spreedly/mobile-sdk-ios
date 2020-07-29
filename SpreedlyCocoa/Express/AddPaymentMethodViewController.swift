@@ -30,12 +30,12 @@ class AddPaymentMethodViewController: UIViewController {
     func configureDelegates() {
         form.delegate = self
     }
-    
+
     func configureSubmit() {
         let image = UIImage.initPre13(systemName: "lock.fill", fallbackEmoji: "🔒")
         submit.setImage(image, for: .normal)
     }
-    
+
     func configureDefaults() {
         form.paymentMethodDefaults = context?.paymentMethodDefaults
         form.creditCardDefaults = context?.creditCardDefaults
@@ -60,5 +60,9 @@ extension AddPaymentMethodViewController: SecureFormDelegate {
 
     public func didCallSpreedly(secureForm: SecureForm) {
         spinnerViewController.removeSpinner()
+    }
+
+    public func clientConfiguration(secureForm: SecureForm) -> ClientConfiguration? {
+        context?.clientConfiguration
     }
 }
