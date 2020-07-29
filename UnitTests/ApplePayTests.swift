@@ -26,40 +26,12 @@ class ApplePayInfoTests: XCTestCase {
     func testInitWithFirstLastToken() {
         let payment = PaymentStub()
 
-        let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", payment: payment)
-
-        XCTAssertEqual(info.firstName, "Dolly")
-        XCTAssertEqual(info.lastName, "Dog")
-        XCTAssertNil(info.fullName)
+        let info = ApplePayInfo(payment: payment)
         XCTAssertEqual(info.paymentToken, payment.token.paymentData)
     }
 
     func testInitWithFirstLastData() {
-        let info = ApplePayInfo(firstName: "Dolly", lastName: "Dog", paymentTokenData: TokenStub.data)
-
-        XCTAssertEqual(info.firstName, "Dolly")
-        XCTAssertEqual(info.lastName, "Dog")
-        XCTAssertNil(info.fullName)
-        XCTAssertEqual(info.paymentToken, TokenStub.data)
-    }
-
-    func testInitWithFullNameToken() {
-        let payment = PaymentStub()
-
-        let info = ApplePayInfo(fullName: "Dolly Dog", payment: payment)
-
-        XCTAssertNil(info.firstName)
-        XCTAssertNil(info.lastName)
-        XCTAssertEqual(info.fullName, "Dolly Dog")
-        XCTAssertEqual(info.paymentToken, payment.token.paymentData)
-    }
-
-    func testInitWithFullNameData() {
-        let info = ApplePayInfo(fullName: "Dolly Dog", paymentTokenData: TokenStub.data)
-
-        XCTAssertNil(info.firstName)
-        XCTAssertNil(info.lastName)
-        XCTAssertEqual(info.fullName, "Dolly Dog")
+        let info = ApplePayInfo(paymentTokenData: TokenStub.data)
         XCTAssertEqual(info.paymentToken, TokenStub.data)
     }
 }

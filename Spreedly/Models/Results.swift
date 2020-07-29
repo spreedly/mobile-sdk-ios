@@ -200,6 +200,7 @@ public class BankAccountResult: PaymentMethodResultBase {
     }
 }
 
+@objc(SPRApplePayResult)
 public class ApplePayResult: CreditCardResult {
     class override var paymentMethodType: String {
         "apple_pay"
