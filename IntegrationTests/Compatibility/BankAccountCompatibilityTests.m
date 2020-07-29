@@ -16,14 +16,13 @@
 @implementation BankAccountCompatibilityTests
 
 - (void)testCanCreateBankAccount {
-    BankAccountInfo *info = [[BankAccountInfo alloc]
-            initWithFirstName:@"Dolly"
-                     lastName:@"Dog"
-            bankRoutingNumber:SPRHelpers.testBankRoutingNumber
-            bankAccountNumber:SPRHelpers.secureBankAccountNumber
-              bankAccountType:BankAccountTypeChecking
-        bankAccountHolderType:BankAccountHolderTypePersonal
-    ];
+    BankAccountInfo *info = [[BankAccountInfo alloc] init];
+    info.firstName = @"Dolly";
+    info.lastName = @"Dog";
+    info.bankRoutingNumber = SPRHelpers.testBankRoutingNumber;
+    info.bankAccountNumber = SPRHelpers.secureBankAccountNumber;
+    info.bankAccountType = BankAccountTypeChecking;
+    info.bankAccountHolderType = BankAccountHolderTypePersonal;
 
     id <SPRClient> client = [SPRHelpers createClient];
     SPRSingleTransaction *transaction = [client createPaymentMethodFrom:info];
