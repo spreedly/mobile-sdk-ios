@@ -7,9 +7,9 @@ import Foundation
 @objc(SPRClientConfiguration)
 public class ClientConfiguration: NSObject {
     @objc public let envKey: String
-    @objc public var envSecret: String?
-    @objc public var test: Bool = false
-    @objc public var testCardNumber: String?
+    @objc public let envSecret: String?
+    @objc public let test: Bool
+    @objc public let testCardNumber: String?
 
     @objc public init(envKey: String, envSecret: String? = nil, test: Bool = false, testCardNumber: String? = nil) {
         self.envKey = envKey
@@ -28,7 +28,6 @@ public class ClientConfiguration: NSObject {
 
         return ClientConfiguration(
                 envKey: envKey,
-                envSecret: config["ENV_SECRET"] as? String,
                 test: config["TEST"] as? Bool ?? false,
                 testCardNumber: config["TEST_CARD_NUMBER"] as? String
         )

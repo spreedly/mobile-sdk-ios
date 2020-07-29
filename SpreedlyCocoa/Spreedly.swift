@@ -41,6 +41,11 @@ public class ExpressBuilder: NSObject {
         case asModal
     }
 
+    /// A ClientConfiguration contains the environment key necessary to create payment methods with Spreedly.
+    /// This can be set explicitly. If it is not, the Express system will look for a `Spreedly-env.plist` file
+    /// in the main bundle for the environment key value under `ENV_KEY`.
+    @objc public var clientConfiguration: ClientConfiguration?
+
     /// Default: true. Allow the user to add new card payment methods.
     @objc public var allowCard: Bool = true
 
@@ -145,6 +150,8 @@ public class ExpressBuilder: NSObject {
 
     func buildContext() -> ExpressContext {
         let context = ExpressContext()
+        context.clientConfiguration = clientConfiguration
+
         context.allowCard = allowCard
         context.allowBankAccount = allowBankAccount
         context.allowApplePay = allowApplePay
@@ -179,6 +186,8 @@ public class ExpressBuilder: NSObject {
 
 @objc(SPRExpressContext)
 public class ExpressContext: NSObject {
+    @objc public var clientConfiguration: ClientConfiguration?
+
     @objc public var paymentMethods: [PaymentMethodItem]?
 
     @objc public var allowCard = true

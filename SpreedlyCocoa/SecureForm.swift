@@ -9,31 +9,46 @@ import RxSwift
 
 @objc(SPRSecureFormDelegate)
 public protocol SecureFormDelegate: class {
+    /// Called after a payment method is successfully created.
     func spreedly(
             secureForm form: SecureForm,
             success: Transaction
     )
 
-    func willCallSpreedly(secureForm: SecureForm)
+    /// Called immediately before calling Spreedly's API endpoint. Useful for starting an activity spinner.
+    @objc optional func willCallSpreedly(secureForm: SecureForm)
 
-    func didCallSpreedly(secureForm: SecureForm)
+    /// Called immediately after calling Spreedly's API endpoint. Useful for stopping an activity spinner.
+    @objc optional func didCallSpreedly(secureForm: SecureForm)
+
+    /// If this method returns a ClientConfiguration, it wil be used by the SecureForm. Otherwise
+    /// the SecureForm will attempt to read configuration values from `Spreedly-env.plist` in the
+    /// main bundle.
+    @objc optional func clientConfiguration(secureForm: SecureForm) -> ClientConfiguration?
 }
 
 @objc(SPRSecureForm)
 public class SecureForm: UIView {
     @objc public weak var delegate: SecureFormDelegate?
 
-    private var _client: SpreedlyClient?
+    private var client: SpreedlyClient?
+
+    private func getClientConfiguration() throws -> ClientConfiguration {
+        if let config = delegate?.clientConfiguration?(secureForm: self) {
+            return config
+        }
+        return try ClientConfiguration.getConfiguration()
+    }
 
     private func getClient() throws -> SpreedlyClient {
-        if let client = _client {
+        if let client = client {
             return client
         }
 
-        let credentials = try ClientConfiguration.getConfiguration()
-        let client = ClientFactory.create(with: credentials)
+        let config = try getClientConfiguration()
+        let client = ClientFactory.create(with: config)
 
-        _client = client
+        self.client = client
         return client
     }
 
@@ -164,7 +179,7 @@ public class SecureForm: UIView {
 
 // MARK: - Creating cards
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
-        delegate?.willCallSpreedly(secureForm: self)
+        delegate?.willCallSpreedly?(secureForm: self)
 
         clearValidationFor(creditCardFields)
 
@@ -176,7 +191,7 @@ public class SecureForm: UIView {
         let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
-                self.delegate?.didCallSpreedly(secureForm: self)
+                self.delegate?.didCallSpreedly?(secureForm: self)
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOfValidation(fields: self.creditCardFields, errors: errors)
                 } else {
@@ -205,11 +220,10 @@ public class SecureForm: UIView {
         info.unlessNil(set: \.company, to: company?.text)
     }
 
-
 // MARK: - Creating bank accounts
 
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
-        delegate?.willCallSpreedly(secureForm: self)
+        delegate?.willCallSpreedly?(secureForm: self)
 
         clearValidationFor(bankAccountFields)
 
@@ -221,7 +235,7 @@ public class SecureForm: UIView {
         let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
-                self.delegate?.didCallSpreedly(secureForm: self)
+                self.delegate?.didCallSpreedly?(secureForm: self)
                 if let errors = transaction.errors, errors.count > 0 {
                     self.notifyFieldsOfValidation(fields: self.bankAccountFields, errors: errors)
                 } else {
