@@ -4,18 +4,7 @@ The Spreedly mobile SDK for iOS simplifies your mobile application's integration
 
 # Getting Started
 
-## Installation
 
-We recommend using CocoaPods to integrate the Spreedly SDK with your project. The `Spreedly` pod provides basic, low-level APIs for custom integrations. The `SpreedlyCocoa` pod provides custom controls and the Spreedly Express workflow, a prebuild UI for collecting and selecting payment methods.
-
-### CocoaPods
-```ruby
-# Core SDK
-pod 'Spreedly'
-
-# Express prebuilt UIs and controls
-pod 'SpreedlyCocoa' 
-```
 
 ### Spreedly-env.plist
 Add a file named `Spreedly-env.plist` to your app. An empty version of this file is available in `CocoaSample/Spreedly-env.plist`. The file supports the following settings:
@@ -78,3 +67,68 @@ A coverage report is regularly posted:
 ## Linting
 Run `make lint` to do a lint check locally using [SwiftLint](https://github.com/realm/SwiftLint).
 
+# Integration
+Both [Express](#Express) and [Custom](#Custom) integrations require a Spreedly account and an environment key (see [Create Your API Credentials](https://docs.spreedly.com/basics/credentials/#environment-key) for details).
+
+## Installation
+We recommend using [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) to integrate the Spreedly SDK with your project. The `Spreedly` pod provides basic, low-level APIs for custom integrations. The `SpreedlyCocoa` pod provides custom controls and the Spreedly Express workflow, a prebuild UI for collecting and selecting payment methods.
+
+Add the following to your [Podfile](https://guides.cocoapods.org/syntax/podfile.html):
+```ruby
+# Core SDK
+pod 'Spreedly'
+
+# Express prebuilt UIs and controls
+pod 'SpreedlyCocoa' 
+```
+
+## Express
+Collect and select payment methods including Apple Pay with the SDK's Express tools.
+
+Use this integration if you want a ready-made UI that:
+* Accepts cards, Apple Pay, and bank accounts (where available).
+* Can display saved payment methods for reuse.
+* Supports limited customization of headers, footers, and payment methods allowed.
+* Displays full-screen view controllers to select or add payment methods.
+
+### Add `Spreedly-env.plist` to your app target
+When the `Spreedly-env.plist` file is present, it will be used to get values for the environment key and other configuration values. A template is located at `CocoaSample/Spreedly-env.plist`.
+
+
+### Set up an `ExpressBuilder` and launch the Express workflow
+To send users into the Express workflow, initialize and configure an `ExpressBuilder` instance. Be sure to set the `didSelectPaymentMethod` property to receive the payment method token and dismiss the payment selection view controller.
+
+```swift
+// When used within your NavigationController
+func showPaymentSelection() {
+    var builder = ExpressBuilder()
+    builder.didSelectPaymentMethod = { item in
+        print("User wants to use a payment method with token: \(item.token)")
+        
+        // pop all the way back to this view controller
+        self.navigationController?.popToViewController(self, animated: true) 
+    }
+    let express = builder.buildViewController()
+    
+    // present the Express workflow within the existing navigation stack
+    navigationController?.show(express, sender: self) 
+}
+
+// When shown with a modal presentation
+func showPaymentSelection() {
+    var builder = ExpressBuilder()
+    builder.didSelectPaymentMethod = { item in
+        print("User wants to use a payment method with token: \(item.token)")
+        
+        // dismiss the modal
+        self.dismiss(animated: true) 
+    }
+    builder.presentationStyle = .asModal
+    let express = builder.buildViewController()
+    
+    // present the Express workflow via modal    
+    present(express, animated: true) 
+}
+```
+
+## Custom
