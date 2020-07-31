@@ -99,7 +99,7 @@ When the `Spreedly-env.plist` file is present, it will be used to get values for
 To send users into the Express workflow, initialize and configure an `ExpressBuilder` instance. Be sure to set the `didSelectPaymentMethod` property to receive the payment method token and dismiss the payment selection view controller.
 
 ```swift
-// When used within your NavigationController
+// When used within your navigation stack
 func showPaymentSelection() {
     var builder = ExpressBuilder()
     builder.didSelectPaymentMethod = { item in
@@ -130,5 +130,23 @@ func showPaymentSelection() {
     present(express, animated: true) 
 }
 ```
+
+If you support Apple Pay for pay-ins, you must create and configure a `PKPaymentRequest` instance then set it on the `ExpressBuilder` instance.
+
+```swift
+let request = PKPaymentRequest()
+request.merchantIdentifier = "merchant.com.your_company.app"
+request.countryCode = "US"
+request.currencyCode = "USD"
+request.supportedNetworks = [.amex, .discover, .masterCard, .visa]
+request.merchantCapabilities = [.capabilityCredit, .capabilityDebit]
+request.paymentSummaryItems = [
+    PKPaymentSummaryItem(label: "Amount", amount: NSDecimalNumber(string: "322.38"), type: .final),
+    PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(string: "32.24"), type: .final),
+    PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(string: "354.62"), type: .final)
+]
+let builder = ExpressBuilder()
+builder.paymentRequest = request
+``` 
 
 ## Custom
