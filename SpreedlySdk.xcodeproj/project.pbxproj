@@ -15,7 +15,7 @@
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */; };
 		3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */; };
-		3C9420F224A1294200D2B5E1 /* Spreedly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F124A1294200D2B5E1 /* Spreedly.swift */; };
+		3C9420F224A1294200D2B5E1 /* ExpressBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */; };
 		3C9420F624A16EB600D2B5E1 /* AddPaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F524A16EB600D2B5E1 /* AddPaymentMethodViewController.swift */; };
 		3CD0F3C124A2684800F1103F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD0F3C024A2684800F1103F /* Assets.xcassets */; };
 		3CD0F3C224A26B2800F1103F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD0F3C024A2684800F1103F /* Assets.xcassets */; };
@@ -178,7 +178,7 @@
 		3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressViewController.swift; sourceTree = "<group>"; };
 		3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpirationPickerField.swift; sourceTree = "<group>"; };
-		3C9420F124A1294200D2B5E1 /* Spreedly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spreedly.swift; sourceTree = "<group>"; };
+		3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressBuilder.swift; sourceTree = "<group>"; };
 		3C9420F524A16EB600D2B5E1 /* AddPaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodViewController.swift; sourceTree = "<group>"; };
 		3CD0F3C024A2684800F1103F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankAccountController.swift; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 				F076CA9E54CC1E288449091E /* String+Additions.swift */,
 				F076C58667A224FDD77BACA4 /* SecureTextField.swift */,
 				3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */,
-				3C9420F124A1294200D2B5E1 /* Spreedly.swift */,
+				3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */,
 				3CD0F3C024A2684800F1103F /* Assets.xcassets */,
 				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
 				3C0553E024ABF8FC00F31DA3 /* Localizable.strings */,
@@ -1014,7 +1014,7 @@
 				3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */,
 				F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */,
 				3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */,
-				3C9420F224A1294200D2B5E1 /* Spreedly.swift in Sources */,
+				3C9420F224A1294200D2B5E1 /* ExpressBuilder.swift in Sources */,
 				F076CC51543D226BF5DFB723 /* SecureTextField.swift in Sources */,
 				F076C9176B8B2E5F678C28B2 /* AddCardViewController.swift in Sources */,
 				F076CC54EF17C14CC2CE0AC0 /* UIStackView+Additions.swift in Sources */,
