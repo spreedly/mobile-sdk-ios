@@ -325,6 +325,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C8A9AC424D4E598008DA4C1 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				F076CE37F8EF9EF3E950C0AC /* CreditCardNumberTextField.swift */,
+				3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */,
+				442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */,
+				F076C58667A224FDD77BACA4 /* SecureTextField.swift */,
+				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		3C9420EC249C0CA500D2B5E1 /* Express */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,15 +443,11 @@
 		442A24E87711E3F9A59FB7B9 /* SpreedlyCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				3C8A9AC424D4E598008DA4C1 /* Controls */,
 				3C9420EC249C0CA500D2B5E1 /* Express */,
 				442A2832CB4FF8C0D4094949 /* Info.plist */,
 				442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */,
-				442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */,
-				F076C94BD2B0E390706EA1B6 /* ValidatedTextField.swift */,
-				F076CE37F8EF9EF3E950C0AC /* CreditCardNumberTextField.swift */,
 				F076CA9E54CC1E288449091E /* String+Additions.swift */,
-				F076C58667A224FDD77BACA4 /* SecureTextField.swift */,
-				3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */,
 				3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */,
 				3CD0F3C024A2684800F1103F /* Assets.xcassets */,
 				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
