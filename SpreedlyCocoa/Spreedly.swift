@@ -10,13 +10,6 @@ import UIKit
 import PassKit
 import Spreedly
 
-@objc(SPRSpreedly)
-public class Spreedly: NSObject {
-    @objc public static func expressBuilder() -> ExpressBuilder {
-        ExpressBuilder()
-    }
-}
-
 /// ExpressBuilder is the entrypoint for the Express UI workflow. Create an instance of this class, optionally set
 /// properties to configure Express UI behavior, and finally call `buildViewController()` to get a `UIViewController`
 /// ready to show.

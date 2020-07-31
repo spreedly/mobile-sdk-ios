@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func launchExpress(_ sender: Any) {
-        let builder = Spreedly.expressBuilder()
+        let builder = ExpressBuilder()
         builder.allowBankAccount = true
         builder.paymentMethods = [
             PaymentMethodItem(type: .creditCard, description: "Visa 1111", token: "abc456"),
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func expressWithPresent(_ sender: Any) {
-        let builder = Spreedly.expressBuilder()
+        let builder = ExpressBuilder()
         builder.allowBankAccount = true
         builder.paymentMethods = [
             PaymentMethodItem(type: .creditCard, description: "MC 4444", token: "abc456")
