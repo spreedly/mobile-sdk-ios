@@ -340,18 +340,20 @@
 		3C9420EC249C0CA500D2B5E1 /* Express */ = {
 			isa = PBXGroup;
 			children = (
-				3C0553D824ABF6DF00F31DA3 /* Express.storyboard */,
-				3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */,
+				3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */,
 				F076C72ED9EC2828C97959FD /* AddCardViewController.swift */,
 				3C9420F524A16EB600D2B5E1 /* AddPaymentMethodViewController.swift */,
-				F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */,
+				F076CB024AB173AF5A5CB915 /* ApplePay.swift */,
 				F076CBDE49B90D526E5AC36E /* CALayer+Additions.swift */,
-				3CD0F3C324A2BD1000F1103F /* AddBankAccountController.swift */,
+				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
+				3C0553D824ABF6DF00F31DA3 /* Express.storyboard */,
+				3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */,
+				3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */,
 				F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */,
 				F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */,
-				F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */,
-				F076CB024AB173AF5A5CB915 /* ApplePay.swift */,
 				F076C59DAE2D1784A8614BD3 /* SelectedPaymentMethod.swift */,
+				F076C7D5612B5AF072FBAC69 /* SpinnerViewController.swift */,
+				F076CD8D2BD017874949BBDB /* UIStackView+Additions.swift */,
 			);
 			path = Express;
 			sourceTree = "<group>";
@@ -448,9 +450,7 @@
 				442A2832CB4FF8C0D4094949 /* Info.plist */,
 				442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */,
 				F076CA9E54CC1E288449091E /* String+Additions.swift */,
-				3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */,
 				3CD0F3C024A2684800F1103F /* Assets.xcassets */,
-				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
 				3C0553E024ABF8FC00F31DA3 /* Localizable.strings */,
 				F076C0EA0D590AED272261A9 /* Localizable.swift */,
 				F076CA78CC0B99B7D25ABD3D /* BundleLocator.swift */,
