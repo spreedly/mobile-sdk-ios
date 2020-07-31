@@ -88,7 +88,6 @@ The file supports the following settings:
 - `TEST` Yes/true if the app is non-production.
 - `TEST_CARD_NUMBER` The card number passed to Spreedly when creating an Apple Pay payment method. 
 
-
 ### Set up an `ExpressBuilder` and launch the Express workflow
 To send users into the Express workflow, initialize and configure an `ExpressBuilder` instance. Be sure to set the `didSelectPaymentMethod` property to receive the payment method token and dismiss the payment selection view controller.
 
@@ -177,4 +176,4 @@ client.createPaymentMethodFrom(creditCard: creditCard).subscribe(onSuccess: { tr
 })
 ```
 
-See the code documentation for SpreedlyClient for more information.
+See the code documentation for `SpreedlyClient` for more information.
