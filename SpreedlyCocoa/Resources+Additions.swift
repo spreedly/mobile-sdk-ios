@@ -16,6 +16,7 @@ extension UIImage {
 }
 
 extension UIStoryboard {
+    /// Searches for the `UIStoryboard` with the given name in the resources, spreedly, and main bundles in order.
     static func fromResources(named name: String) -> UIStoryboard? {
         let bundles = [BundleLocator.resources, BundleLocator.spreedly, Bundle.main]
         guard let bundle = search(bundles: bundles, forResource: name, ofType: "storyboardc")  else {
@@ -24,6 +25,7 @@ extension UIStoryboard {
         return UIStoryboard(name: name, bundle: bundle)
     }
 
+    /// Returns the first bundle containing the sought resource.
     private static func search(bundles: [Bundle?], forResource name: String, ofType ext: String) -> Bundle? {
         bundles.compactMap { bundle -> Bundle? in
             if bundle?.path(forResource: name, ofType: ext) != nil {
