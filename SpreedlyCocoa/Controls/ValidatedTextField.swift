@@ -14,7 +14,7 @@ public enum ValidationState: Int {
 
 /// A UITextField which is aware of its validation state and updates its appearance commensurately.
 @objc(SPRValidatedTextField)
-public class ValidatedTextField: UITextField {
+open class ValidatedTextField: UITextField {
     private weak var userDelegate: UITextFieldDelegate?
     lazy var statusIcon: UIImageView = {
         UIImageView(frame: .zero)
