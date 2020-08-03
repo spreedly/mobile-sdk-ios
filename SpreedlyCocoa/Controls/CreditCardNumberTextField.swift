@@ -15,10 +15,10 @@ public protocol CreditCardNumberTextFieldDelegate: class {
 /// Formats the input into number groups while the user types. Unless editing, the field's content will be masked
 /// with the `maskCharacter` showing only the last four digits.
 @objc(SPRCreditCardNumberTextField)
-public class CreditCardNumberTextField: SecureTextField {
+open class CreditCardNumberTextField: SecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
     /// Character used for masking initial numbers. Default is "*" (asterisk).
-    @IBInspectable public var maskCharacter: String = "*"
+    @IBInspectable open var maskCharacter: String = "*"
 
     public weak var cardNumberTextFieldDelegate: CreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
@@ -71,7 +71,8 @@ public class CreditCardNumberTextField: SecureTextField {
         return SpreedlySecureOpaqueStringBuilder.build(from: cardNumber)
     }
 
-    func formatCardNumber(_ string: String) -> String {
+    /// Formats the card number input 4 digit blocks separated by spaces.
+    open func formatCardNumber(_ string: String) -> String {
         var formattedString = String()
         let cardNumber = string.withoutSpaces()
         for (index, character) in cardNumber.enumerated() {
@@ -100,16 +101,17 @@ extension CreditCardNumberTextField {
         return cardBrand
     }
 
-    @objc public func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
+    @objc open func textFieldDidEndEditing(_ textField: UITextField, reason: DidEndEditingReason) {
         determineCardBrand(textField.text ?? "")
         applyMask()
     }
 
-    @objc public func textFieldDidBeginEditing(_ textField: UITextField) {
+    @objc open func textFieldDidBeginEditing(_ textField: UITextField) {
         removeMask()
     }
 
-    func generateMasked(from string: String) -> String {
+    /// Masks all digits accept the last four with `maskCharacter`.
+    open func generateMasked(from string: String) -> String {
         let cardNumber = string.onlyNumbers()
         let maskCharacterCount = max(cardNumber.count - 4, 0)
 
@@ -158,7 +160,7 @@ extension CreditCardNumberTextField {
         return requested
     }
 
-    public override func textField(
+    open override func textField(
             _ textField: UITextField,
             shouldChangeCharactersIn range: NSRange,
             replacementString string: String
