@@ -10,9 +10,14 @@ public protocol CreditCardNumberTextFieldDelegate: class {
     func cardBrandDetermined(brand: CardBrand)
 }
 
+/// Handles credit card number input from the user. Only accepts numbers. When input matches a known card brand pattern,
+/// input will be limited to the max allowable characters for that brand and shows the brand icon at the trailing edge.
+/// Formats the input into number groups while the user types. Unless editing, the field's content will be masked
+/// with the `maskCharacter` showing only the last four digits.
 @objc(SPRCreditCardNumberTextField)
 public class CreditCardNumberTextField: SecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
+    /// Character used for masking initial numbers. Default is "*" (asterisk).
     @IBInspectable public var maskCharacter: String = "*"
 
     public weak var cardNumberTextFieldDelegate: CreditCardNumberTextFieldDelegate?
