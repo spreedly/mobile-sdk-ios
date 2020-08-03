@@ -7,6 +7,8 @@ import UIKit
 import Spreedly
 
 public protocol CreditCardNumberTextFieldDelegate: class {
+    /// Called whenever the card brand is determined based on the `CreditCardNumberTextField` content. May be
+    /// called many times.
     func cardBrandDetermined(brand: CardBrand)
 }
 
@@ -19,7 +21,7 @@ open class CreditCardNumberTextField: SecureTextField {
     static private let unknownCard: String = "spr_card_unknown"
     /// Character used for masking initial numbers. Default is "*" (asterisk).
     @IBInspectable open var maskCharacter: String = "*"
-
+    /// Use the delegate to be notified whenever the card brand is determined.
     public weak var cardNumberTextFieldDelegate: CreditCardNumberTextFieldDelegate?
     private var unmaskedText: String?
     private var masked: Bool = false
@@ -71,7 +73,7 @@ open class CreditCardNumberTextField: SecureTextField {
         return SpreedlySecureOpaqueStringBuilder.build(from: cardNumber)
     }
 
-    /// Formats the card number input 4 digit blocks separated by spaces.
+    /// Formats the card number input to match the card brand's pattern.
     open func formatCardNumber(_ string: String) -> String {
         var formattedString = String()
         let cardNumber = string.withoutSpaces()
