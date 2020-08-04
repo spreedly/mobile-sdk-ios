@@ -136,7 +136,7 @@ extension ExpressViewController: UICollectionViewDataSource {
             fatalError("couldn't find the cell")
         }
 
-        cell.imageView.image = UIImage(named: item.imageName)
+        cell.imageView.image = UIImage.fromResources(named: item.imageName)
         cell.textLabel.text = item.shortDescription
         return cell
     }

@@ -26,7 +26,7 @@ open class CreditCardNumberTextField: SecureTextField {
     private var unmaskedText: String?
     private var masked: Bool = false
     private let image: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: CreditCardNumberTextField.unknownCard))
+        let imageView = UIImageView(image: UIImage.fromResources(named: CreditCardNumberTextField.unknownCard))
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
