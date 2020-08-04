@@ -11,7 +11,7 @@ bundle:
 	bundle install
 
 swiftdoc-install:
-	brew install swiftdocorg/formulae/swift-doc
+	@if ! command -v swift-doc &> /dev/null; then brew install swiftdocorg/formulae/swift-doc; fi
 
 # The base url used by swift-doc to reference the css file.
 baseurl ?= "/"
