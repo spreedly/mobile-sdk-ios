@@ -10,10 +10,7 @@ import RxSwift
 @objc(SPRSecureFormDelegate)
 public protocol SecureFormDelegate: class {
     /// Called after a payment method is successfully created.
-    func spreedly(
-            secureForm form: SecureForm,
-            success: Transaction
-    )
+    func spreedly(secureForm form: SecureForm, success: Transaction)
 
     /// Called immediately before calling Spreedly's API endpoint. Useful for starting an activity spinner.
     @objc optional func willCallSpreedly(secureForm: SecureForm)
@@ -27,6 +24,9 @@ public protocol SecureFormDelegate: class {
     @objc optional func clientConfiguration(secureForm: SecureForm) -> ClientConfiguration?
 }
 
+/// Coordinates with form controls to collect user input, manage API calls with Spreedly, and validate inputs.
+///
+/// Does not change presentation directly.
 @objc(SPRSecureForm)
 public class SecureForm: UIView {
     @objc public weak var delegate: SecureFormDelegate?
