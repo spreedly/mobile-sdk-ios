@@ -184,7 +184,12 @@ public class SecureForm: UIView {
     }
 
     // MARK: - Creating cards
-    /// Combines data from the defaults (creditCardDefaults if set otherwise payment
+
+    /// Combines data from the defaults (`creditCardDefaults` if set otherwise `paymentMethodDefaults`) with
+    /// the form's values and attempts to create a credit card payment method.
+    ///
+    /// If the create call returns any field validation errors, those fields are notified of the errors.
+    /// If successful, calls `delegate.spreedly(secureForm:success:)` with the successful `Transaction`.
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly?(secureForm: self)
 
@@ -208,10 +213,8 @@ public class SecureForm: UIView {
         })
     }
 
-    /// When a form field exists with a non-nil value, assign it to
-    /// the related CreditCardInfo property.
-    /// However, `number` and `verificationValue` will be set to nil if the field
-    /// does not exist.
+    /// When a form field exists with a non-nil value, assign it to the related CreditCardInfo property.
+    /// However, `number` and `verificationValue` will be set to nil if the field does not exist.
     private func maybeSetCardFields(on info: CreditCardInfo) {
         // Always get number and verification from this form
         info.number = creditCardNumber?.secureText()
@@ -227,8 +230,13 @@ public class SecureForm: UIView {
         info.unlessNil(set: \.company, to: company?.text)
     }
 
-// MARK: - Creating bank accounts
+    // MARK: - Creating bank accounts
 
+    /// Combines data from the defaults (`bankAccountDefaults` if set otherwise `paymentMethodDefaults`) with
+    /// the form's values and attempts to create a credit card payment method.
+    ///
+    /// If the create call returns any field validation errors, those fields are notified of the errors.
+    /// If successful, calls `delegate.spreedly(secureForm:success:)` with the successful `Transaction`.
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly?(secureForm: self)
 
@@ -298,8 +306,7 @@ public class SecureForm: UIView {
         }
     }
 
-    /// When a form field exists with a non-nil value, assign it to
-    /// the related BankAccountInfo property.
+    /// When a form field exists with a non-nil value, assign it to the related BankAccountInfo property.
     private func maybeSetBankAccountFields(on info: BankAccountInfo) {
         info.unlessNil(set: \.fullName, to: fullName?.text)
         info.unlessNil(set: \.firstName, to: firstName?.text)
