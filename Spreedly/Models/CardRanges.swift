@@ -2,13 +2,10 @@
 // Created by Eli Thompson on 6/4/20.
 //
 
+// swiftlint:disable:next line_length
+/// Number ranges come from [Active Merchant's credit card method implementation](https://github.com/activemerchant/active_merchant/blob/7c932939ad28c120f80aa44693e8c35da1db5aa7/lib/active_merchant/billing/credit_card_methods.rb).
 class CardRanges {
 
-    // Alelo provides BIN ranges by e-mailing them out periodically.
-    // The BINs beginning with the digit 4 overlap with Visa's range of valid card numbers.
-    // By placing the 'alelo' entry in CARD_COMPANY_DETECTORS below the 'visa' entry, we
-    // identify these cards as Visa. This works because transactions with such cards will
-    // run on Visa rails.
     static let alelo = [
         402588...402588, 404347...404347, 405876...405876, 405882...405882, 405884...405884,
         405886...405886, 430471...430471, 438061...438061, 438064...438064, 470063...470066,
