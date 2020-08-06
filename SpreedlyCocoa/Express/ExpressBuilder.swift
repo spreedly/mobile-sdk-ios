@@ -172,7 +172,7 @@ public class ExpressBuilder: NSObject {
     func getPaymentMethods() -> [PaymentMethodItem] {
         var items = paymentMethods ?? []
         if allowApplePay {
-            items.append(PaymentMethodItem(type: .applePay, description: "Apple Pay", token: "abc789"))
+            items.append(PaymentMethodItem(type: .applePay, description: "Apple Pay", token: ""))
         }
         return items
     }
