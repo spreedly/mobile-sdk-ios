@@ -124,21 +124,21 @@ public class ExpressBuilder: NSObject {
             fatalError("Unable to find Express storyboard in searched bundles.")
         }
         let initial: UIViewController
-        let express: ExpressViewController
+        let paymentSelection: PaymentSelectionViewController
 
         switch presentationStyle {
         case .withinNavigationView:
-            express = storyboard.instantiateViewController(withIdentifier: "PaymentSelection") as! ExpressViewController // swiftlint:disable:this force_cast line_length
-            initial = express
+            paymentSelection = storyboard.instantiateViewController(withIdentifier: "PaymentSelection") as! PaymentSelectionViewController // swiftlint:disable:this force_cast line_length
+            initial = paymentSelection
         case .asModal:
             let navController = storyboard.instantiateViewController(
                     withIdentifier: "Navigation"
             ) as! UINavigationController // swiftlint:disable:this force_cast
-            express = navController.visibleViewController as! ExpressViewController // swiftlint:disable:this force_cast
+            paymentSelection = navController.visibleViewController as! PaymentSelectionViewController // swiftlint:disable:this force_cast line_length
             initial = navController
         }
 
-        express.context = buildContext()
+        paymentSelection.context = buildContext()
         return initial
     }
 

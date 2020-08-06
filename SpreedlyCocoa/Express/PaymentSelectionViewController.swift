@@ -1,15 +1,13 @@
 //
-//  ExpressRootController.swift
-//  CocoaSdk
-//
-//  Created by Eli Thompson on 6/18/20.
+//  PaymentSelectionViewController.swift
+//  SpreedlyCocoa
 //
 
 import UIKit
 import Spreedly
 import PassKit
 
-class ExpressViewController: UIViewController {
+class PaymentSelectionViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -114,7 +112,7 @@ class ExpressViewController: UIViewController {
     }
 }
 
-extension ExpressViewController: UICollectionViewDataSource {
+extension PaymentSelectionViewController: UICollectionViewDataSource {
     func collectionViewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -142,7 +140,7 @@ extension ExpressViewController: UICollectionViewDataSource {
     }
 }
 
-extension ExpressViewController: UICollectionViewDelegate {
+extension PaymentSelectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = items?[indexPath.item] else {
             return
@@ -158,7 +156,7 @@ extension ExpressViewController: UICollectionViewDelegate {
 }
 
 /* MARK: - Apple Pay */
-extension ExpressViewController {
+extension PaymentSelectionViewController {
     func startApplePay() {
         guard let request = context.paymentRequest else {
             fatalError("A PKPaymentRequest must be set on the ExpressBuilder object to initiate the Apple Pay workflow")
