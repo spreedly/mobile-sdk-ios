@@ -7,8 +7,9 @@
 
 import UIKit
 
-/// A `UITextField` with `UIPickerView` spinners allowing the user to select a month and year. The month defaults
-/// to `01` and the year defaults to the current year.
+/// A `UITextField` with `UIPickerView` spinners allowing the user to select a month and year.
+///
+/// The month defaults to `01` and the year defaults to the current year.
 @objc(SPRExpirationPickerField)
 public class ExpirationPickerField: ValidatedTextField {
     private lazy var doneToolbar: UIToolbar = {

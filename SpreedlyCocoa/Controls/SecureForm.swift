@@ -7,26 +7,27 @@ import UIKit
 import Spreedly
 import RxSwift
 
+/// A set of methods that you use to receive successfully created payment methods from Spreedly and provide
+/// client configuration for that communication.
 @objc(SPRSecureFormDelegate)
 public protocol SecureFormDelegate: class {
-    /// Called after a payment method is successfully created.
-    func spreedly(
-            secureForm form: SecureForm,
-            success: Transaction
-    )
+    /// Tells the delegate that a payment methods was successfully created.
+    func spreedly(secureForm: SecureForm, success: Transaction)
 
-    /// Called immediately before calling Spreedly's API endpoint. Useful for starting an activity spinner.
+    /// Tells the delegate that a network call will be made. Useful for starting an activity spinner.
     @objc optional func willCallSpreedly(secureForm: SecureForm)
 
-    /// Called immediately after calling Spreedly's API endpoint. Useful for stopping an activity spinner.
+    /// Tells the delegate that a network call completed. Useful for stopping an activity spinner.
     @objc optional func didCallSpreedly(secureForm: SecureForm)
 
-    /// If this method returns a ClientConfiguration, it wil be used by the SecureForm. Otherwise
-    /// the SecureForm will attempt to read configuration values from `Spreedly-env.plist` in the
-    /// main bundle.
+    /// Returns a `ClientConfiguration` to use rather than using the values from `Spreedly-env.plist`
+    /// from the main bundle.
     @objc optional func clientConfiguration(secureForm: SecureForm) -> ClientConfiguration?
 }
 
+/// Coordinates with form controls to collect user input, manage API calls with Spreedly, and validate inputs.
+///
+/// Does not change presentation directly.
 @objc(SPRSecureForm)
 public class SecureForm: UIView {
     @objc public weak var delegate: SecureFormDelegate?
@@ -64,28 +65,33 @@ public class SecureForm: UIView {
         return client
     }
 
+    /// Provides a set of default values used to populate any credit card fields not set by the form.
+    /// When set, `SecureForm.paymentMethodDefaults` will be ignored.
     @objc public var creditCardDefaults: CreditCardInfo?
+    /// Provides a set of default values used to populate any bank account fields not set by the form.
+    /// When set, `paymentMethodDefaults` will be ignored.
     @objc public var bankAccountDefaults: BankAccountInfo?
+    /// Provides a set of default values used to populate any fields not set by the form.
     @objc public var paymentMethodDefaults: PaymentMethodInfo?
 
-    // Shared fields
+    // MARK: - Shared fields
     @IBOutlet public weak var fullName: ValidatedTextField?
     @IBOutlet public weak var firstName: ValidatedTextField?
     @IBOutlet public weak var lastName: ValidatedTextField?
     @IBOutlet public weak var email: UITextField?
+    @IBOutlet public weak var company: UITextField?
 
-    // Credit card fields
+    // MARK: - Credit card fields
     @IBOutlet public weak var creditCardNumber: CreditCardNumberTextField?
     @IBOutlet public weak var creditCardVerificationNumber: SecureTextField?
     @IBOutlet public weak var expirationDate: ValidatedTextField?
     @IBOutlet public weak var expirationDateProvider: ExpirationDateProvider?
 
-    @IBOutlet public weak var company: UITextField?
     private var creditCardFields: [ValidatedTextField?] {
         [fullName, firstName, lastName, creditCardNumber, creditCardVerificationNumber, expirationDate]
     }
 
-    // Bank account fields
+    // MARK: - Bank account fields
     @IBOutlet public weak var bankAccountNumber: SecureTextField?
     @IBOutlet public weak var bankAccountRoutingNumber: ValidatedTextField?
     @IBOutlet public weak var bankAccountType: UISegmentedControl?
@@ -94,7 +100,7 @@ public class SecureForm: UIView {
         [fullName, firstName, lastName, bankAccountNumber, bankAccountRoutingNumber]
     }
 
-    // Address fields
+    // MARK: - Address fields
     @IBOutlet public weak var address1: UITextField?
     @IBOutlet public weak var address2: UITextField?
     @IBOutlet public weak var city: UITextField?
@@ -103,7 +109,7 @@ public class SecureForm: UIView {
     @IBOutlet public weak var country: UITextField?
     @IBOutlet public weak var phoneNumber: UITextField?
 
-    // Shipping address fields
+    // MARK: - Shipping address fields
     @IBOutlet public weak var shippingAddress1: UITextField?
     @IBOutlet public weak var shippingAddress2: UITextField?
     @IBOutlet public weak var shippingCity: UITextField?
@@ -177,7 +183,13 @@ public class SecureForm: UIView {
         address.unlessNil(set: \.phoneNumber, to: shippingPhoneNumber?.text)
     }
 
-// MARK: - Creating cards
+    // MARK: - Creating cards
+
+    /// Combines data from the defaults (`creditCardDefaults` if set otherwise `paymentMethodDefaults`) with
+    /// the form's values and attempts to create a credit card payment method.
+    ///
+    /// If the create call returns any field validation errors, those fields are notified of the errors.
+    /// If successful, calls `delegate.spreedly(secureForm:success:)` with the successful `Transaction`.
     @IBAction public func createCreditCardPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly?(secureForm: self)
 
@@ -201,10 +213,8 @@ public class SecureForm: UIView {
         })
     }
 
-    /// When a form field exists with a non-nil value, assign it to
-    /// the related CreditCardInfo property.
-    /// However, `number` and `verificationValue` will be set to nil if the field
-    /// does not exist.
+    /// When a form field exists with a non-nil value, assign it to the related CreditCardInfo property.
+    /// However, `number` and `verificationValue` will be set to nil if the field does not exist.
     private func maybeSetCardFields(on info: CreditCardInfo) {
         // Always get number and verification from this form
         info.number = creditCardNumber?.secureText()
@@ -220,8 +230,13 @@ public class SecureForm: UIView {
         info.unlessNil(set: \.company, to: company?.text)
     }
 
-// MARK: - Creating bank accounts
+    // MARK: - Creating bank accounts
 
+    /// Combines data from the defaults (`bankAccountDefaults` if set otherwise `paymentMethodDefaults`) with
+    /// the form's values and attempts to create a credit card payment method.
+    ///
+    /// If the create call returns any field validation errors, those fields are notified of the errors.
+    /// If successful, calls `delegate.spreedly(secureForm:success:)` with the successful `Transaction`.
     @IBAction public func createBankAccountPaymentMethod(sender: UIView) {
         delegate?.willCallSpreedly?(secureForm: self)
 
@@ -291,8 +306,7 @@ public class SecureForm: UIView {
         }
     }
 
-    /// When a form field exists with a non-nil value, assign it to
-    /// the related BankAccountInfo property.
+    /// When a form field exists with a non-nil value, assign it to the related BankAccountInfo property.
     private func maybeSetBankAccountFields(on info: BankAccountInfo) {
         info.unlessNil(set: \.fullName, to: fullName?.text)
         info.unlessNil(set: \.firstName, to: firstName?.text)

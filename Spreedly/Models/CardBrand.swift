@@ -39,8 +39,7 @@ public enum CardBrand: String {
 
     case unknown
 
-    /// Parses the given string determining and returning the appropriate
-    /// brand, otherwise .unknown.
+    /// Parses the given string determining and returning the appropriate brand, otherwise `.unknown`.
     public static func from(_ number: String?) -> CardBrand {
         guard let number = number?.onlyNumbers() else {
             return .unknown
@@ -48,6 +47,9 @@ public enum CardBrand: String {
 
         return brandData.first(where: { (_, params) in params.detect(number) })?.key ?? .unknown
     }
+
+    /// Parses the given Spreedly-style (snake case) brand name string returning the appropriate brand, otherwise
+    /// `CardBrand.unknown`.
     public static func from(spreedlyType: String?) -> CardBrand {
         brandData.first { _, params in
             params.spreedlyType == spreedlyType
