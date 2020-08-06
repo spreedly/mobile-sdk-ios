@@ -28,6 +28,14 @@ public protocol SecureFormDelegate: class {
 /// Coordinates with form controls to collect user input, manage API calls with Spreedly, and validate inputs.
 ///
 /// Does not change presentation directly.
+///
+/// # Use with a Storyboard
+/// One way to use the `SecureForm` in a Storyboard is to set it as the custom class for your ViewController's view.
+/// Under that view, add all your form elements (e.g. card number, cardholder name, verification value, expiration date,
+/// address fields, email address, etc), then connect those elements to the `@IBOutlet` properties on the SecureForm.
+/// Finally, connect your call-to-action button to the SecureForm's create methods (either
+/// `createCreditCardPaymentMethod` or `createBankAccountPaymentMethod`) to tell the form to gather the field values
+/// and attempt payment method creation with Spreedly.
 @objc(SPRSecureForm)
 public class SecureForm: UIView {
     @objc public weak var delegate: SecureFormDelegate?

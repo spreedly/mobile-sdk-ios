@@ -10,9 +10,10 @@ import UIKit
 import PassKit
 import Spreedly
 
-/// ExpressBuilder is the entrypoint for the Express UI workflow. Create an instance of this class, optionally set
-/// properties to configure Express UI behavior, and finally call `buildViewController()` to get a `UIViewController`
-/// ready to show.
+/// ExpressBuilder is the entrypoint for the Express UI workflow.
+///
+/// Create an instance of this class, optionally set properties to configure Express UI behavior, and finally call
+/// `buildViewController()` to get a `UIViewController` ready to show.
 ///
 /// ### Example
 /// ```swift
@@ -171,7 +172,7 @@ public class ExpressBuilder: NSObject {
     func getPaymentMethods() -> [PaymentMethodItem] {
         var items = paymentMethods ?? []
         if allowApplePay {
-            items.append(PaymentMethodItem(type: .applePay, description: "Apple Pay", token: "abc789"))
+            items.append(PaymentMethodItem(type: .applePay, description: "Apple Pay", token: ""))
         }
         return items
     }
