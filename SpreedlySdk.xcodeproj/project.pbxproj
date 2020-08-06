@@ -13,7 +13,7 @@
 		3C31533C24770C9C00C86272 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		3C31533D24770C9C00C86272 /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
-		3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */; };
+		3C9420EE249C0CC700D2B5E1 /* PaymentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420ED249C0CC700D2B5E1 /* PaymentSelectionViewController.swift */; };
 		3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */; };
 		3C9420F224A1294200D2B5E1 /* ExpressBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */; };
 		3C9420F624A16EB600D2B5E1 /* AddPaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F524A16EB600D2B5E1 /* AddPaymentMethodViewController.swift */; };
@@ -176,7 +176,7 @@
 		3C0553E224ABFDFD00F31DA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C0553E524ABFE5500F31DA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Express.strings; sourceTree = "<group>"; };
 		3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressViewController.swift; sourceTree = "<group>"; };
+		3C9420ED249C0CC700D2B5E1 /* PaymentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSelectionViewController.swift; sourceTree = "<group>"; };
 		3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpirationPickerField.swift; sourceTree = "<group>"; };
 		3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressBuilder.swift; sourceTree = "<group>"; };
 		3C9420F524A16EB600D2B5E1 /* AddPaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 				F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */,
 				3C0553D824ABF6DF00F31DA3 /* Express.storyboard */,
 				3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */,
-				3C9420ED249C0CC700D2B5E1 /* ExpressViewController.swift */,
+				3C9420ED249C0CC700D2B5E1 /* PaymentSelectionViewController.swift */,
 				F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */,
 				F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */,
 				F076C59DAE2D1784A8614BD3 /* SelectedPaymentMethod.swift */,
@@ -1019,7 +1019,7 @@
 				F076CB55C8FC83764422CCB3 /* ValidatedTextField.swift in Sources */,
 				3C9420F624A16EB600D2B5E1 /* AddPaymentMethodViewController.swift in Sources */,
 				F076CA19BBA902D8E7D94F53 /* CreditCardNumberTextField.swift in Sources */,
-				3C9420EE249C0CC700D2B5E1 /* ExpressViewController.swift in Sources */,
+				3C9420EE249C0CC700D2B5E1 /* PaymentSelectionViewController.swift in Sources */,
 				F076C9D92F8DB69E4106EDD0 /* String+Additions.swift in Sources */,
 				3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */,
 				3C9420F224A1294200D2B5E1 /* ExpressBuilder.swift in Sources */,

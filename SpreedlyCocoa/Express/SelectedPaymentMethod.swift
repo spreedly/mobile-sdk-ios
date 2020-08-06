@@ -5,7 +5,7 @@
 import Foundation
 import Spreedly
 
-/// Contains data about the payment method selected by the user from the `ExpressViewController`.
+/// Contains data about the payment method selected by the user from the `PaymentSelectionViewController`.
 @objc(SPRSelectedPaymentMethod)
 public class SelectedPaymentMethod: NSObject {
     /// Spreedly's payment method token
