@@ -5,6 +5,7 @@
 import Foundation
 import RxSwift
 
+/// Contains response information and metadata pertaining to the payment method creation attempt.
 @objc(SPRTransaction)
 public class Transaction: NSObject {
     /// The token uniquely identifying this transaction (not the created payment method) at Spreedly.
@@ -21,7 +22,10 @@ public class Transaction: NSObject {
     @objc public let messageKey: String
     /// A human-readable string indicating the result of the transaction.
     @objc public let message: String
+    /// If the transaction was unsuccessful, this array will contain error information.
     @objc public let errors: [SpreedlyError]?
+    /// Non-nil when the create transaction succeeds. Use the type-specific properties (`creditCard`, `bankAccount`,
+    /// `applePay`) for richer APIs.
     @objc public let paymentMethod: PaymentMethodResultBase?
 
     /// Non-nil when the payment method created is a credit card.
@@ -79,6 +83,7 @@ public class Transaction: NSObject {
     }
 }
 
+/// Represents a push style sequence containing one `Transaction` element.
 @objc(SPRSingleTransaction)
 public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
     private var observable: Single<Transaction>
@@ -87,6 +92,7 @@ public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_n
         self.observable = observable
     }
 
+    /// Subscribes a success and error handler for this transaction.
     @objc public func subscribe(onSuccess: ((Transaction) -> Void)?, onError: ((Error) -> Void)?) {
         _ = observable.subscribe(onSuccess: onSuccess, onError: onError)
     }
