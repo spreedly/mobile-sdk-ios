@@ -4,12 +4,14 @@
 
 import Foundation
 
+/// The current state of a gateway, receiver or payment method in the Spreedly database.
 public enum StorageState: String {
     case cached
     case retained
     case redacted
 }
 
+/// The current state of a gateway, receiver or payment method in the Spreedly database.
 @objc(SPRStorageState)
 public enum _ObjCStorageState: Int { // swiftlint:disable:this type_name
     case unknown = 0
@@ -69,10 +71,16 @@ public class SpreedlyError: NSObject {
     }
 }
 
+/// Contains information returned from Spreedly after attempting to create a payment method.
+@objc(SPRPaymentMethodResultBase)
 public class PaymentMethodResultBase: NSObject {
+    /// The token identifying the newly created payment method in the Spreedly vault.
     @objc public let token: String?
+    ///	The storage state of the payment method.
     public let storageState: StorageState?
+    /// `true` if this payment method is a test payment method and cannot be used against real gateways or receivers.
     @objc public let test: Bool
+    /// The type of this payment method (e.g., `creditCard`, `bankAccount`, `applePay`).
     public let paymentMethodType: PaymentMethodType?
 
     @objc public let email: String?
@@ -83,6 +91,7 @@ public class PaymentMethodResultBase: NSObject {
 
     @objc public let address: Address?
     @objc public let shippingAddress: Address?
+    /// If the payment method is invalid (missing required fields, etc), there will be associated error messages here.
     @objc public let errors: [SpreedlyError]
     @objc public let metadata: Metadata?
 
@@ -104,6 +113,7 @@ public class PaymentMethodResultBase: NSObject {
         metadata = json.object(optional: "metadata")
     }
 
+    /// A brief description displayable to the user.
     @objc public var shortDescription: String {
         ""
     }
@@ -121,18 +131,25 @@ extension PaymentMethodResultBase {
     }
 }
 
+/// Contains information returned from Spreedly after attempting to create a credit card payment method.
 @objc(SPRCreditCardResult)
 public class CreditCardResult: PaymentMethodResultBase {
     class var paymentMethodType: String {
         "credit_card"
     }
 
+    /// The card brand, e.g., `visa`, `mastercard`.
     @objc public var cardType: String?
+    /// The expiration year.
     public var year: Int?
+    /// The expiration month.
     public var month: Int?
 
+    /// The last four digits of the credit card number. This can be displayed to the user.
     @objc public var lastFourDigits: String?
+    /// The first six digits of the credit card number. This can be displayed to the user.
     @objc public var firstSixDigits: String?
+    /// The obscured credit card number, e.g., `XXXX-XXXX-XXXX-4444`.
     @objc public var number: String?
 
     public var eligibleForCardUpdater: Bool?
@@ -169,6 +186,7 @@ public class CreditCardResult: PaymentMethodResultBase {
     }
 }
 
+/// Contains information returned from Spreedly after attempting to create a bank account payment method.
 @objc(SPRBankAccountResult)
 public class BankAccountResult: PaymentMethodResultBase {
     class var paymentMethodType: String {
@@ -176,11 +194,17 @@ public class BankAccountResult: PaymentMethodResultBase {
     }
 
     @objc public var bankName: String?
+    /// The type of account. Can be one of `checking` or `savings`.
     @objc public var accountType: BankAccountType = .unknown
+    /// The account holder type. Can be one of `business` or `personal`.
     @objc public var accountHolderType: BankAccountHolderType = .unknown
+    /// A portion of the routing number. Can be displayed to the user.
     @objc public var routingNumberDisplayDigits: String?
+    /// A portion of the account number. Can be displayed to the user.
     @objc public var accountNumberDisplayDigits: String?
+    /// The account routing number.
     @objc public var routingNumber: String?
+    /// The account number.
     @objc public var accountNumber: String?
 
     required init(from json: [String: Any]) {
@@ -196,10 +220,11 @@ public class BankAccountResult: PaymentMethodResultBase {
     }
 
     public override var shortDescription: String {
-        return "Bank Account \(accountNumber?.suffix(4) ?? "")"
+        "Bank Account \(accountNumberDisplayDigits ?? "")"
     }
 }
 
+/// Contains information returned from Spreedly after attempting to create an Apple Pay payment method.
 @objc(SPRApplePayResult)
 public class ApplePayResult: CreditCardResult {
     class override var paymentMethodType: String {
