@@ -7,24 +7,32 @@ import RxSwift
 
 @objc(SPRTransaction)
 public class Transaction: NSObject {
+    /// The token uniquely identifying this transaction (not the created payment method) at Spreedly.
     @objc public let token: String?
     @objc public let createdAt: Date?
     @objc public let updatedAt: Date?
+    /// `true` if the transaction request was successfully executed, `false` otherwise.
     @objc public let succeeded: Bool
+    /// The type of transaction.
     @objc public let transactionType: String?
+    /// If the payment method was set to be automatically retained on creation
     @objc public let retained: Bool
     @objc public let state: String?
     @objc public let messageKey: String
+    /// A human-readable string indicating the result of the transaction.
     @objc public let message: String
     @objc public let errors: [SpreedlyError]?
     @objc public let paymentMethod: PaymentMethodResultBase?
 
+    /// Non-nil when the payment method created is a credit card.
     @objc public var creditCard: CreditCardResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.creditCard ? paymentMethod as? CreditCardResult : nil
     }
+    /// Non-nil when the payment method created is a bank account.
     @objc public var bankAccount: BankAccountResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.bankAccount ? paymentMethod as? BankAccountResult : nil
     }
+    /// Non-nil when the payment method created is Apple Pay.
     @objc public var applePay: ApplePayResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.applePay ? paymentMethod as? ApplePayResult : nil
     }
