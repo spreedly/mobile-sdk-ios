@@ -18,6 +18,7 @@ struct BrandParameters {
     }
 }
 
+/// Card brands supported by Spreedly.
 public enum CardBrand: String {
     case alelo
     case amex
@@ -60,6 +61,7 @@ public enum CardBrand: String {
         brandData[self]
     }
 
+    /// The maximum count of digits allowed by the card brand.
     public var maxLength: Int {
         parameters?.maxLength ?? 19
     }
