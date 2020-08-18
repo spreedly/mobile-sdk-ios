@@ -208,7 +208,7 @@ public class SecureForm: UIView {
 
         clearValidationFor(creditCardFields)
 
-        let info = creditCardDefaults ?? CreditCardInfo(fromInfo: paymentMethodDefaults)
+        let info = CreditCardInfo(fromInfo: creditCardDefaults ?? paymentMethodDefaults)
         maybeSetCardFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress, fallbackOn: info.address)
@@ -255,7 +255,7 @@ public class SecureForm: UIView {
 
         clearValidationFor(bankAccountFields)
 
-        let info = bankAccountDefaults ?? BankAccountInfo(fromInfo: paymentMethodDefaults)
+        let info = BankAccountInfo(fromInfo: bankAccountDefaults ?? paymentMethodDefaults)
         maybeSetBankAccountFields(on: info)
         maybeSetAddress(on: &info.address)
         maybeSetShippingAddress(on: &info.shippingAddress, fallbackOn: info.address)

@@ -61,23 +61,19 @@ public class BankAccountInfo: PaymentMethodInfo {
         super.init()
     }
 
-    /// Copies values from the given PaymentMethodInfo onto a new BankAccountInfo.
-    public init(fromInfo info: PaymentMethodInfo?) {
-        super.init(from: info)
-    }
-
-    /// Copies values from the given BankAccountInfo
+    /// Copies values from the given BankAccountInfo or PaymentMethodInfo onto a new BankAccountInfo.
     /// including `fullName`, `firstName`, `lastName`, `address`,
     /// `shippingAddress`, `company`, `email`, `metadata`,
     /// `bankAccountType`, and `bankAccountHolderType`.
     ///
     /// Account data is not copied.
     /// - Parameter info: The source of the values.
-    public convenience init(fromBankAccount info: BankAccountInfo?) {
-        self.init(fromInfo: info)
-
-        bankAccountType = info?.bankAccountType ?? BankAccountType.unknown
-        bankAccountHolderType = info?.bankAccountHolderType ?? BankAccountHolderType.unknown
+    public init(fromInfo info: PaymentMethodInfo?) {
+        super.init(from: info)
+        if let ba = info as? BankAccountInfo {
+            bankAccountType = ba.bankAccountType ?? BankAccountType.unknown
+            bankAccountHolderType = ba.bankAccountHolderType ?? BankAccountHolderType.unknown
+        }
     }
 
     override func toJson() throws -> [String: Any] {
