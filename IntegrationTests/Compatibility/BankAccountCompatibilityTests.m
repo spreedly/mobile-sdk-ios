@@ -19,10 +19,10 @@
     BankAccountInfo *info = [[BankAccountInfo alloc] init];
     info.firstName = @"Dolly";
     info.lastName = @"Dog";
-    info.bankRoutingNumber = SPRHelpers.testBankRoutingNumber;
-    info.bankAccountNumber = SPRHelpers.secureBankAccountNumber;
-    info.bankAccountType = BankAccountTypeChecking;
-    info.bankAccountHolderType = BankAccountHolderTypePersonal;
+    info.routingNumber = SPRHelpers.testBankRoutingNumber;
+    info.accountNumber = SPRHelpers.secureBankAccountNumber;
+    info.accountType = BankAccountTypeChecking;
+    info.accountHolderType = BankAccountHolderTypePersonal;
 
     id <SPRClient> client = [SPRHelpers createClient];
     SPRSingleTransaction *transaction = [client createPaymentMethodFrom:info];

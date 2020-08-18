@@ -138,8 +138,8 @@ class ViewController: UIViewController {
             let info = BankAccountInfo()
             info.firstName = "Firstname"
             info.lastName = "Lastname"
-            info.bankAccountHolderType = .business
-            info.bankAccountType = .savings
+            info.accountHolderType = .business
+            info.accountType = .savings
             return info
         }()
         builder.defaultApplePayInfo = {

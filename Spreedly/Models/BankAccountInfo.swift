@@ -50,12 +50,12 @@ import Foundation
 
 /// A set of information used when creating a bank account payment method with Spreedly.
 public class BankAccountInfo: PaymentMethodInfo {
-    @objc public var bankRoutingNumber: String?
-    @objc public var bankAccountNumber: SpreedlySecureOpaqueString?
+    @objc public var routingNumber: String?
+    @objc public var accountNumber: SpreedlySecureOpaqueString?
     /// Default: .unknown
-    @objc public var bankAccountType: BankAccountType = .unknown
+    @objc public var accountType: BankAccountType = .unknown
     /// Default: .unknown
-    @objc public var bankAccountHolderType: BankAccountHolderType = .unknown
+    @objc public var accountHolderType: BankAccountHolderType = .unknown
 
     @objc public override init() {
         super.init()
@@ -71,18 +71,18 @@ public class BankAccountInfo: PaymentMethodInfo {
     public init(fromInfo info: PaymentMethodInfo?) {
         super.init(from: info)
         if let ba = info as? BankAccountInfo {
-            bankAccountType = ba.bankAccountType ?? BankAccountType.unknown
-            bankAccountHolderType = ba.bankAccountHolderType ?? BankAccountHolderType.unknown
+            accountType = ba.accountType ?? BankAccountType.unknown
+            accountHolderType = ba.accountHolderType ?? BankAccountHolderType.unknown
         }
     }
 
     override func toJson() throws -> [String: Any] {
         var result = try super.toJson()
 
-        result.maybeSet("bank_routing_number", bankRoutingNumber)
-        try result.setOpaqueString("bank_account_number", bankAccountNumber)
-        result.maybeSet("bank_account_type", bankAccountType.stringValue)
-        result.maybeSet("bank_account_holder_type", bankAccountHolderType.stringValue)
+        result.maybeSet("bank_routing_number", routingNumber)
+        try result.setOpaqueString("bank_account_number", accountNumber)
+        result.maybeSet("bank_account_type", accountType.stringValue)
+        result.maybeSet("bank_account_holder_type", accountHolderType.stringValue)
 
         return result
     }

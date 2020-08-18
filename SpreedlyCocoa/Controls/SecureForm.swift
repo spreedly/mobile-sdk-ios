@@ -325,10 +325,10 @@ public class SecureForm: UIView {
         info.unlessNil(set: \.firstName, to: firstName?.text)
         info.unlessNil(set: \.lastName, to: lastName?.text)
 
-        info.unlessNil(set: \.bankAccountNumber, to: bankAccountNumber?.secureText())
-        info.unlessNil(set: \.bankRoutingNumber, to: bankAccountRoutingNumber?.text)
-        info.unlessNil(set: \.bankAccountType, to: selectedAccountType)
-        info.unlessNil(set: \.bankAccountHolderType, to: selectedHolderType)
+        info.unlessNil(set: \.accountNumber, to: bankAccountNumber?.secureText())
+        info.unlessNil(set: \.routingNumber, to: bankAccountRoutingNumber?.text)
+        info.unlessNil(set: \.accountType, to: selectedAccountType)
+        info.unlessNil(set: \.accountHolderType, to: selectedHolderType)
     }
 }
 
