@@ -15,7 +15,7 @@ public class SelectedPaymentMethod: NSObject {
     public let type: PaymentMethodType
 
     /// If the payment method was created by the user before selection, this will contain the payment method object.
-    @objc public var paymentMethod: PaymentMethodResultBase?
+    @objc public var paymentMethod: PaymentMethodResult?
 
     public init(token: String, type: PaymentMethodType) {
         self.token = token

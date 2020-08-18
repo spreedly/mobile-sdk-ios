@@ -69,7 +69,7 @@ public class SpreedlyError: NSObject {
     }
 }
 
-public class PaymentMethodResultBase: NSObject {
+public class PaymentMethodResult: NSObject {
     @objc public let token: String?
     public let storageState: StorageState?
     @objc public let test: Bool
@@ -109,7 +109,7 @@ public class PaymentMethodResultBase: NSObject {
     }
 }
 
-extension PaymentMethodResultBase {
+extension PaymentMethodResult {
     @objc(paymentMethodType)
     public var _objCPaymentMethodType: _ObjCPaymentMethodType { // swiftlint:disable:this identifier_name
         _ObjCPaymentMethodType.from(paymentMethodType)
@@ -122,7 +122,7 @@ extension PaymentMethodResultBase {
 }
 
 @objc(SPRCreditCardResult)
-public class CreditCardResult: PaymentMethodResultBase {
+public class CreditCardResult: PaymentMethodResult {
     class var paymentMethodType: String {
         "credit_card"
     }
@@ -170,7 +170,7 @@ public class CreditCardResult: PaymentMethodResultBase {
 }
 
 @objc(SPRBankAccountResult)
-public class BankAccountResult: PaymentMethodResultBase {
+public class BankAccountResult: PaymentMethodResult {
     class var paymentMethodType: String {
         "bank_account"
     }

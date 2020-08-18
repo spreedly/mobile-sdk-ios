@@ -86,7 +86,7 @@ class PaymentSelectionViewController: UIViewController {
         }
     }
 
-    func onPaymentMethodAdded(method: PaymentMethodResultBase) {
+    func onPaymentMethodAdded(method: PaymentMethodResult) {
         guard let type = method.paymentMethodType else {
             return
         }

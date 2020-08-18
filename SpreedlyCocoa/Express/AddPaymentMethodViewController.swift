@@ -15,7 +15,7 @@ class AddPaymentMethodViewController: UIViewController {
 
     lazy var spinnerViewController = SpinnerViewController()
 
-    var didAddPaymentMethod: ((PaymentMethodResultBase) -> Void)?
+    var didAddPaymentMethod: ((PaymentMethodResult) -> Void)?
 
     var context: ExpressContext?
 

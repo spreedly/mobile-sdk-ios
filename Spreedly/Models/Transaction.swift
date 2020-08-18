@@ -17,7 +17,7 @@ public class Transaction: NSObject {
     @objc public let messageKey: String
     @objc public let message: String
     @objc public let errors: [SpreedlyError]?
-    @objc public let paymentMethod: PaymentMethodResultBase?
+    @objc public let paymentMethod: PaymentMethodResult?
 
     @objc public var creditCard: CreditCardResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.creditCard ? paymentMethod as? CreditCardResult : nil
@@ -50,7 +50,7 @@ public class Transaction: NSObject {
         state = json.string(optional: "state")
     }
 
-    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
+    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResult? {
         let paymentMethodType = json.string(optional: "payment_method_type")
 
         switch paymentMethodType {
