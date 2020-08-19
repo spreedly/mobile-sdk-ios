@@ -13,13 +13,17 @@ extension UIImage {
     static func fromResources(named name: String) -> UIImage? {
         UIImage(named: name, in: BundleLocator.resources, compatibleWith: nil) ?? UIImage(named: name)
     }
+
+    static func canLoadFromResources(named name: String) -> Bool {
+        fromResources(named: name) != nil
+    }
 }
 
 extension UIStoryboard {
     /// Searches for the `UIStoryboard` with the given name in the resources, spreedly, and main bundles in order.
     static func fromResources(named name: String) -> UIStoryboard? {
         let bundles = [BundleLocator.resources, BundleLocator.spreedly, Bundle.main]
-        guard let bundle = search(bundles: bundles, forResource: name, ofType: "storyboardc")  else {
+        guard let bundle = search(bundles: bundles, forResource: name, ofType: "storyboardc") else {
             return nil
         }
         return UIStoryboard(name: name, bundle: bundle)
