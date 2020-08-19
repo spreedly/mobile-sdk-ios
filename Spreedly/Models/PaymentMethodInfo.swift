@@ -33,7 +33,7 @@ public class PaymentMethodInfo: NSObject {
     }
 
     /// Copies values from the given PaymentMethodInfo into a new instance.
-    public init(from info: PaymentMethodInfo?) {
+    public init(copyFrom info: PaymentMethodInfo?) {
         fullName = info?.fullName
         firstName = info?.firstName
         lastName = info?.lastName

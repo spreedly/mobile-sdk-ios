@@ -26,7 +26,7 @@ public class Transaction: NSObject {
     @objc public let errors: [SpreedlyError]?
     /// Non-nil when the create transaction succeeds. Use the type-specific properties (`creditCard`, `bankAccount`,
     /// `applePay`) for richer APIs.
-    @objc public let paymentMethod: PaymentMethodResultBase?
+    @objc public let paymentMethod: PaymentMethodResult?
 
     /// Non-nil when the payment method created is a credit card.
     @objc public var creditCard: CreditCardResult? {
@@ -62,7 +62,7 @@ public class Transaction: NSObject {
         state = json.string(optional: "state")
     }
 
-    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResultBase? {
+    private static func initPaymentMethod(from json: [String: Any]) -> PaymentMethodResult? {
         let paymentMethodType = json.string(optional: "payment_method_type")
 
         switch paymentMethodType {

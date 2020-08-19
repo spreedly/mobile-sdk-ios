@@ -19,19 +19,18 @@ public class CreditCardInfo: PaymentMethodInfo {
         super.init()
     }
 
-    /// Copies values from the given PaymentMethodInfo onto a new CreditCardInfo.
-    public init(fromInfo info: PaymentMethodInfo?) {
-        super.init(from: info)
-    }
-
-    /// Copies values from another CreditCardInfo instance
+    /// Copies values from the given CreditCardInfo or PaymentMethodInfo onto a new CreditCardInfo.
     /// including `fullName`, `firstName`, `lastName`, `address`,
     /// `shippingAddress`, `company`, `email`, and `metadata`.
     ///
     /// Card data is not copied.
     /// - Parameter info: The source of the values.
-    public convenience init(fromCard info: CreditCardInfo?) {
-        self.init(fromInfo: info)
+    public override init(copyFrom info: PaymentMethodInfo?) {
+        super.init(copyFrom: info)
+        if let cci = info as? CreditCardInfo {
+            year = cci.year
+            month = cci.month
+        }
     }
 
     override func toJson() throws -> [String: Any] {

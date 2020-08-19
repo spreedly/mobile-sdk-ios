@@ -20,9 +20,9 @@ class ViewController: UIViewController {
         let builder = ExpressBuilder()
         builder.allowBankAccount = true
         builder.paymentMethods = [
-            PaymentMethodItem(type: .creditCard, description: "Visa 1111", token: "abc456"),
-            PaymentMethodItem(type: .creditCard, description: "Mastercard 1111", token: "abc456"),
-            PaymentMethodItem(type: .creditCard, description: "Amex 1111", token: "abc456")
+            PaymentMethodItem(type: .creditCard, cardBrand: .visa, description: "Visa 1111", token: "abc456"),
+            PaymentMethodItem(type: .creditCard, cardBrand: .amex, description: "Amex 1111", token: "abc456"),
+            PaymentMethodItem(type: .creditCard, description: "Mastercard 1111", token: "abc456")
         ]
         builder.didSelectPaymentMethod = { item in
             print("Payment method selected token: \(item.token)")
@@ -138,8 +138,8 @@ class ViewController: UIViewController {
             let info = BankAccountInfo()
             info.firstName = "Firstname"
             info.lastName = "Lastname"
-            info.bankAccountHolderType = .business
-            info.bankAccountType = .savings
+            info.accountHolderType = .business
+            info.accountType = .savings
             return info
         }()
         builder.defaultApplePayInfo = {

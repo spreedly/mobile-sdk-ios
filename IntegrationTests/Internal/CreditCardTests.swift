@@ -84,7 +84,7 @@ extension CreditCardTests {
     // MARK: - Credit card specific asserts
 
     static func assertPaymentMethodFieldsPopulate(
-            result: PaymentMethodResultBase,
+            result: PaymentMethodResult,
             info: PaymentMethodInfo,
             type paymentMethodType: PaymentMethodType
     ) {

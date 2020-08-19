@@ -8,10 +8,10 @@ typealias BrandDetector = (String) -> Bool
 
 struct BrandParameters {
     let maxLength: Int
-    let spreedlyType: String
+    let spreedlyType: CardBrand
     let detect: BrandDetector
 
-    init(max: Int, spreedlyType: String, detect: @escaping BrandDetector) {
+    init(max: Int, spreedlyType: CardBrand, detect: @escaping BrandDetector) {
         self.maxLength = max
         self.spreedlyType = spreedlyType
         self.detect = detect
@@ -20,23 +20,23 @@ struct BrandParameters {
 
 /// Card brands supported by Spreedly.
 public enum CardBrand: String {
-    case alelo
-    case amex
-    case cabal
-    case carnet
-    case dankort
-    case dinersClub
-    case discover
-    case elo
-    case forbrubsforeningen
-    case jcb
-    case maestro
-    case mastercard
-    case naranja
-    case sodexo
-    case unionpay
-    case visa
-    case vr // swiftlint:disable:this identifier_name
+    case alelo = "alelo"
+    case amex = "american_express"
+    case cabal = "cabal"
+    case carnet = "carnet"
+    case dankort = "dankort"
+    case dinersClub = "diners_club"
+    case discover = "discover"
+    case elo = "elo"
+    case forbrubsforeningen = "forbrubsforeningen"
+    case jcb = "jcb"
+    case maestro = "maestro"
+    case mastercard = "master"
+    case naranja = "naranja"
+    case sodexo = "sodexo"
+    case unionpay = "union_pay"
+    case visa = "visa"
+    case vr = "vr" // swiftlint:disable:this identifier_name
 
     case unknown
 
@@ -53,7 +53,7 @@ public enum CardBrand: String {
     /// `CardBrand.unknown`.
     public static func from(spreedlyType: String?) -> CardBrand {
         brandData.first { _, params in
-            params.spreedlyType == spreedlyType
+            params.spreedlyType.rawValue == spreedlyType
         }?.key ?? .unknown
     }
 
@@ -70,119 +70,119 @@ public enum CardBrand: String {
 let brandData: [CardBrand: BrandParameters] = [
     .alelo: BrandParameters(
             max: 16,
-            spreedlyType: "alelo",
+            spreedlyType: .alelo,
             detect: {
                 $0.bin(length: 6, in: CardRanges.alelo)
             }
     ),
     .amex: BrandParameters(
             max: 15,
-            spreedlyType: "american_express",
+            spreedlyType: .amex,
             detect: {
                 $0.bin(beginning: CardRanges.amex)
             }
     ),
     .cabal: BrandParameters(
             max: 16,
-            spreedlyType: "cabal",
+            spreedlyType: .cabal,
             detect: {
                 $0.bin(length: 8, in: CardRanges.cabal)
             }
     ),
     .carnet: BrandParameters(
             max: 16,
-            spreedlyType: "carnet",
+            spreedlyType: .carnet,
             detect: {
                 $0.bin(length: 6, in: CardRanges.carnet) || $0.bin(beginning: CardRanges.carnetBins)
             }
     ),
     .dankort: BrandParameters(
             max: 16,
-            spreedlyType: "dankort",
+            spreedlyType: .dankort,
             detect: {
                 $0.bin(beginning: CardRanges.dankort)
             }
     ),
     .dinersClub: BrandParameters(
             max: 19,
-            spreedlyType: "diners_club",
+            spreedlyType: .dinersClub,
             detect: {
                 $0.bin(length: 3, in: CardRanges.dinersClub)
             }
     ),
     .discover: BrandParameters(
             max: 19,
-            spreedlyType: "discover",
+            spreedlyType: .discover,
             detect: {
                 $0.bin(length: 6, in: CardRanges.discover)
             }
     ),
     .elo: BrandParameters(
             max: 16,
-            spreedlyType: "elo",
+            spreedlyType: .elo,
             detect: {
                 $0.bin(length: 6, in: CardRanges.elo)
             }
     ),
     .forbrubsforeningen: BrandParameters(
             max: 16,
-            spreedlyType: "forbrubsforeningen",
+            spreedlyType: .forbrubsforeningen,
             detect: {
                 $0.bin(beginning: CardRanges.forbrubsforeningen)
             }
     ),
     .jcb: BrandParameters(
             max: 16,
-            spreedlyType: "jcb",
+            spreedlyType: .jcb,
             detect: {
                 $0.bin(length: 4, in: CardRanges.jcb)
             }
     ),
     .maestro: BrandParameters(
             max: 19,
-            spreedlyType: "maestro",
+            spreedlyType: .maestro,
             detect: {
                 $0.bin(length: 6, in: CardRanges.maestro)
             }
     ),
     .mastercard: BrandParameters(
             max: 16,
-            spreedlyType: "master",
+            spreedlyType: .mastercard,
             detect: {
                 $0.bin(length: 6, in: CardRanges.mastercard)
             }
     ),
     .naranja: BrandParameters(
             max: 16,
-            spreedlyType: "naranja",
+            spreedlyType: .naranja,
             detect: {
                 $0.bin(length: 6, in: CardRanges.naranja)
             }
     ),
     .sodexo: BrandParameters(
             max: 16,
-            spreedlyType: "sodexo",
+            spreedlyType: .sodexo,
             detect: {
                 $0.bin(beginning: CardRanges.sodexo)
             }
     ),
     .unionpay: BrandParameters(
             max: 19,
-            spreedlyType: "union_pay",
+            spreedlyType: .unionpay,
             detect: {
                 $0.bin(length: 8, in: CardRanges.unionPay)
             }
     ),
     .visa: BrandParameters(
             max: 19,
-            spreedlyType: "visa",
+            spreedlyType: .visa,
             detect: {
                 $0.bin(beginning: CardRanges.visa)
             }
     ),
     .vr: BrandParameters(
             max: 16,
-            spreedlyType: "vr",
+            spreedlyType: .vr,
             detect: {
                 $0.bin(beginning: CardRanges.vr)
             }

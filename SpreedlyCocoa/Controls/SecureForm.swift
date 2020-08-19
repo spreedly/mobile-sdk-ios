@@ -118,6 +118,7 @@ public class SecureForm: UIView {
     @IBOutlet public weak var phoneNumber: UITextField?
 
     // MARK: - Shipping address fields
+    @IBOutlet public weak var sameAddressForShipping: UISwitch?
     @IBOutlet public weak var shippingAddress1: UITextField?
     @IBOutlet public weak var shippingAddress2: UITextField?
     @IBOutlet public weak var shippingCity: UITextField?
@@ -181,7 +182,11 @@ public class SecureForm: UIView {
 
     /// When a shippingAddress form field exists with a non-nil value, assign it to
     /// the related Address property.
-    private func maybeSetShippingAddress(on address: inout Address) {
+    private func maybeSetShippingAddress(on address: inout Address, fallbackOn billingAddress: Address) {
+        if sameAddressForShipping?.isOn ?? false {
+            address = billingAddress
+            return
+        }
         address.unlessNil(set: \.address1, to: shippingAddress1?.text)
         address.unlessNil(set: \.address2, to: shippingAddress2?.text)
         address.unlessNil(set: \.city, to: shippingCity?.text)
@@ -203,10 +208,10 @@ public class SecureForm: UIView {
 
         clearValidationFor(creditCardFields)
 
-        let info = creditCardDefaults ?? CreditCardInfo(fromInfo: paymentMethodDefaults)
+        let info = CreditCardInfo(copyFrom: creditCardDefaults ?? paymentMethodDefaults)
         maybeSetCardFields(on: info)
         maybeSetAddress(on: &info.address)
-        maybeSetShippingAddress(on: &info.shippingAddress)
+        maybeSetShippingAddress(on: &info.shippingAddress, fallbackOn: info.address)
 
         let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
@@ -250,10 +255,10 @@ public class SecureForm: UIView {
 
         clearValidationFor(bankAccountFields)
 
-        let info = bankAccountDefaults ?? BankAccountInfo(fromInfo: paymentMethodDefaults)
+        let info = BankAccountInfo(copyFrom: bankAccountDefaults ?? paymentMethodDefaults)
         maybeSetBankAccountFields(on: info)
         maybeSetAddress(on: &info.address)
-        maybeSetShippingAddress(on: &info.shippingAddress)
+        maybeSetShippingAddress(on: &info.shippingAddress, fallbackOn: info.address)
 
         let client = getClientOrDieTrying()
         _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
@@ -320,10 +325,10 @@ public class SecureForm: UIView {
         info.unlessNil(set: \.firstName, to: firstName?.text)
         info.unlessNil(set: \.lastName, to: lastName?.text)
 
-        info.unlessNil(set: \.bankAccountNumber, to: bankAccountNumber?.secureText())
-        info.unlessNil(set: \.bankRoutingNumber, to: bankAccountRoutingNumber?.text)
-        info.unlessNil(set: \.bankAccountType, to: selectedAccountType)
-        info.unlessNil(set: \.bankAccountHolderType, to: selectedHolderType)
+        info.unlessNil(set: \.accountNumber, to: bankAccountNumber?.secureText())
+        info.unlessNil(set: \.routingNumber, to: bankAccountRoutingNumber?.text)
+        info.unlessNil(set: \.accountType, to: selectedAccountType)
+        info.unlessNil(set: \.accountHolderType, to: selectedHolderType)
     }
 }
 

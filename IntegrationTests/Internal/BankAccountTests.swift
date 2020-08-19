@@ -11,10 +11,10 @@ class BankAccountTests: XCTestCase {
         let info = BankAccountInfo()
         info.firstName = "Asha"
         info.lastName = "Dog"
-        info.bankRoutingNumber = Helpers.testBankRoutingNumber
-        info.bankAccountNumber = Helpers.secureBankAccountNumber
-        info.bankAccountType = .checking
-        info.bankAccountHolderType = .personal
+        info.routingNumber = Helpers.testBankRoutingNumber
+        info.accountNumber = Helpers.secureBankAccountNumber
+        info.accountType = .checking
+        info.accountHolderType = .personal
 
         let promise = client.createPaymentMethodFrom(bankAccount: info)
 

@@ -73,7 +73,7 @@ public class SpreedlyError: NSObject {
 
 /// Contains information returned from Spreedly after attempting to create a payment method.
 @objc(SPRPaymentMethodResultBase)
-public class PaymentMethodResultBase: NSObject {
+public class PaymentMethodResult: NSObject {
     /// The token identifying the newly created payment method in the Spreedly vault.
     @objc public let token: String?
     ///	The storage state of the payment method.
@@ -119,7 +119,7 @@ public class PaymentMethodResultBase: NSObject {
     }
 }
 
-extension PaymentMethodResultBase {
+extension PaymentMethodResult {
     @objc(paymentMethodType)
     public var _objCPaymentMethodType: _ObjCPaymentMethodType { // swiftlint:disable:this identifier_name
         _ObjCPaymentMethodType.from(paymentMethodType)
@@ -133,7 +133,7 @@ extension PaymentMethodResultBase {
 
 /// Contains information returned from Spreedly after attempting to create a credit card payment method.
 @objc(SPRCreditCardResult)
-public class CreditCardResult: PaymentMethodResultBase {
+public class CreditCardResult: PaymentMethodResult {
     class var paymentMethodType: String {
         "credit_card"
     }
@@ -188,7 +188,7 @@ public class CreditCardResult: PaymentMethodResultBase {
 
 /// Contains information returned from Spreedly after attempting to create a bank account payment method.
 @objc(SPRBankAccountResult)
-public class BankAccountResult: PaymentMethodResultBase {
+public class BankAccountResult: PaymentMethodResult {
     class var paymentMethodType: String {
         "bank_account"
     }

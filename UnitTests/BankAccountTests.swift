@@ -9,10 +9,10 @@ class BankAccountInfoTests: XCTestCase {
         let info = BankAccountInfo()
         info.firstName = "Dolly"
         info.lastName = "Dog"
-        info.bankRoutingNumber = "123456"
-        info.bankAccountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
-        info.bankAccountType = .checking
-        info.bankAccountHolderType = .personal
+        info.routingNumber = "123456"
+        info.accountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        info.accountType = .checking
+        info.accountHolderType = .personal
 
         let json = try info.toJson()
 
@@ -33,10 +33,10 @@ class BankAccountInfoTests: XCTestCase {
     func testCanEncodeWithFullName() throws {
         let info = BankAccountInfo()
         info.fullName = "Dolly Dog"
-        info.bankRoutingNumber = "123456"
-        info.bankAccountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
-        info.bankAccountType = .checking
-        info.bankAccountHolderType = .personal
+        info.routingNumber = "123456"
+        info.accountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "4111111111111111")
+        info.accountType = .checking
+        info.accountHolderType = .personal
 
         let json = try info.toJson()
 
@@ -59,24 +59,24 @@ class BankAccountInfoTests: XCTestCase {
         source.firstName = "Dolly"
         source.lastName = "Dog"
 
-        source.bankAccountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "9876543210")
-        source.bankRoutingNumber = "021000021"
-        source.bankAccountType = .savings
-        source.bankAccountHolderType = .business
+        source.accountNumber = SpreedlySecureOpaqueStringBuilder.build(from: "9876543210")
+        source.routingNumber = "021000021"
+        source.accountType = .savings
+        source.accountHolderType = .business
 
         source.address.address1 = "123 Fake St"
         source.shippingAddress.address1 = "321 Wall St"
 
-        let sink = BankAccountInfo(fromBankAccount: source)
+        let sink = BankAccountInfo(copyFrom: source)
 
         XCTAssertEqual(sink.fullName, source.fullName)
         XCTAssertEqual(sink.firstName, source.firstName)
         XCTAssertEqual(sink.lastName, source.lastName)
 
-        XCTAssertNil(sink.bankAccountNumber)
-        XCTAssertNil(sink.bankRoutingNumber)
-        XCTAssertEqual(sink.bankAccountType, source.bankAccountType)
-        XCTAssertEqual(sink.bankAccountHolderType, source.bankAccountHolderType)
+        XCTAssertNil(sink.accountNumber)
+        XCTAssertNil(sink.routingNumber)
+        XCTAssertEqual(sink.accountType, source.accountType)
+        XCTAssertEqual(sink.accountHolderType, source.accountHolderType)
 
         XCTAssertEqual(sink.address, source.address)
         XCTAssertEqual(sink.shippingAddress, source.shippingAddress)
