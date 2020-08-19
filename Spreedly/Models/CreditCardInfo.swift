@@ -25,8 +25,8 @@ public class CreditCardInfo: PaymentMethodInfo {
     ///
     /// Card data is not copied.
     /// - Parameter info: The source of the values.
-    public init(fromInfo info: PaymentMethodInfo?) {
-        super.init(from: info)
+    public override init(copyFrom info: PaymentMethodInfo?) {
+        super.init(copyFrom: info)
         if let cci = info as? CreditCardInfo {
             year = cci.year
             month = cci.month

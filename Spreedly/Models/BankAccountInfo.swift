@@ -68,8 +68,8 @@ public class BankAccountInfo: PaymentMethodInfo {
     ///
     /// Account data is not copied.
     /// - Parameter info: The source of the values.
-    public init(fromInfo info: PaymentMethodInfo?) {
-        super.init(from: info)
+    public override init(copyFrom info: PaymentMethodInfo?) {
+        super.init(copyFrom: info)
         if let ba = info as? BankAccountInfo {
             accountType = ba.accountType ?? BankAccountType.unknown
             accountHolderType = ba.accountHolderType ?? BankAccountHolderType.unknown

@@ -155,8 +155,8 @@ public class ExpressBuilder: NSObject {
         context.didSelectPaymentMethod = didSelectPaymentMethod
 
         context.paymentMethodDefaults = defaultPaymentMethodInfo
-        context.creditCardDefaults = CreditCardInfo(fromInfo: defaultCreditCardInfo)
-        context.bankAccountDefaults = BankAccountInfo(fromInfo: defaultBankAccountInfo)
+        context.creditCardDefaults = CreditCardInfo(copyFrom: defaultCreditCardInfo)
+        context.bankAccountDefaults = BankAccountInfo(copyFrom: defaultBankAccountInfo)
         context.applePayDefaults = defaultApplePayInfo
 
         context.paymentRequest = paymentRequest

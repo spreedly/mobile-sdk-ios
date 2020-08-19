@@ -23,9 +23,9 @@ public class ApplePayInfo: PaymentMethodInfo {
     }
 
     /// Copies values from the given PaymentMethodInfo onto a new instance.
-    public init(fromInfo info: PaymentMethodInfo?, payment: PKPayment) {
+    public init(copyFrom info: PaymentMethodInfo?, payment: PKPayment) {
         paymentToken = payment.token.paymentData
-        super.init(from: info)
+        super.init(copyFrom: info)
     }
 
     internal override func toJson() throws -> [String: Any] {
