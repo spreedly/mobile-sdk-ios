@@ -19,7 +19,7 @@ public class PaymentMethodItem: NSObject {
 
     public var cardBrand: CardBrand?
 
-    @objc(cardBrand) var _cardBrand: String? {
+    @objc(cardBrand) var objcCardBrand: String? {
         get {
             cardBrand?.rawValue
         }

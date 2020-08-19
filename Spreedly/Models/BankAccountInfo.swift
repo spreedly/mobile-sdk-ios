@@ -70,9 +70,9 @@ public class BankAccountInfo: PaymentMethodInfo {
     /// - Parameter info: The source of the values.
     public override init(copyFrom info: PaymentMethodInfo?) {
         super.init(copyFrom: info)
-        if let ba = info as? BankAccountInfo {
-            accountType = ba.accountType ?? BankAccountType.unknown
-            accountHolderType = ba.accountHolderType ?? BankAccountHolderType.unknown
+        if let sourceBankAccount = info as? BankAccountInfo {
+            accountType = sourceBankAccount.accountType
+            accountHolderType = sourceBankAccount.accountHolderType
         }
     }
 

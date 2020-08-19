@@ -21,8 +21,8 @@ class ViewController: UIViewController {
         builder.allowBankAccount = true
         builder.paymentMethods = [
             PaymentMethodItem(type: .creditCard, cardBrand: .visa, description: "Visa 1111", token: "abc456"),
-            PaymentMethodItem(type: .creditCard, cardBrand: .mastercard, description: "Mastercard 1111", token: "abc456"),
-            PaymentMethodItem(type: .creditCard, cardBrand: .amex, description: "Amex 1111", token: "abc456")
+            PaymentMethodItem(type: .creditCard, cardBrand: .amex, description: "Amex 1111", token: "abc456"),
+            PaymentMethodItem(type: .creditCard, description: "Mastercard 1111", token: "abc456")
         ]
         builder.didSelectPaymentMethod = { item in
             print("Payment method selected token: \(item.token)")
