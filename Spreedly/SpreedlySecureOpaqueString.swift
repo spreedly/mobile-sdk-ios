@@ -59,6 +59,8 @@ extension SpreedlySecureOpaqueStringImpl: Encodable {
 
 @objc(SPRSecureOpaqueStringBuilder)
 public class SpreedlySecureOpaqueStringBuilder: NSObject {
+    /// Builds an instance of `SpreedlySecureOpaqueString` from the given string.
+    /// Returns nil if the given string was nil.
     @objc public static func build(from string: String?) -> SpreedlySecureOpaqueString {
         guard let string = string else {
             return SpreedlySecureOpaqueStringImpl()

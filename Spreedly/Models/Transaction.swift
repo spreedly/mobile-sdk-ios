@@ -5,26 +5,38 @@
 import Foundation
 import RxSwift
 
+/// Contains response information and metadata pertaining to the payment method creation attempt.
 @objc(SPRTransaction)
 public class Transaction: NSObject {
+    /// The token uniquely identifying this transaction (not the created payment method) at Spreedly.
     @objc public let token: String?
     @objc public let createdAt: Date?
     @objc public let updatedAt: Date?
+    /// `true` if the transaction request was successfully executed, `false` otherwise.
     @objc public let succeeded: Bool
+    /// The type of transaction.
     @objc public let transactionType: String?
+    /// If the payment method was set to be automatically retained on creation
     @objc public let retained: Bool
     @objc public let state: String?
     @objc public let messageKey: String
+    /// A human-readable string indicating the result of the transaction.
     @objc public let message: String
+    /// If the transaction was unsuccessful, this array will contain error information.
     @objc public let errors: [SpreedlyError]?
+    /// Non-nil when the create transaction succeeds. Use the type-specific properties (`creditCard`, `bankAccount`,
+    /// `applePay`) for richer APIs.
     @objc public let paymentMethod: PaymentMethodResult?
 
+    /// Non-nil when the payment method created is a credit card.
     @objc public var creditCard: CreditCardResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.creditCard ? paymentMethod as? CreditCardResult : nil
     }
+    /// Non-nil when the payment method created is a bank account.
     @objc public var bankAccount: BankAccountResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.bankAccount ? paymentMethod as? BankAccountResult : nil
     }
+    /// Non-nil when the payment method created is Apple Pay.
     @objc public var applePay: ApplePayResult? {
         paymentMethod?.paymentMethodType == PaymentMethodType.applePay ? paymentMethod as? ApplePayResult : nil
     }
@@ -71,6 +83,7 @@ public class Transaction: NSObject {
     }
 }
 
+/// Represents a push style sequence containing one `Transaction` element.
 @objc(SPRSingleTransaction)
 public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
     private var observable: Single<Transaction>
@@ -79,6 +92,7 @@ public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_n
         self.observable = observable
     }
 
+    /// Subscribes a success and error handler for this transaction.
     @objc public func subscribe(onSuccess: ((Transaction) -> Void)?, onError: ((Error) -> Void)?) {
         _ = observable.subscribe(onSuccess: onSuccess, onError: onError)
     }
