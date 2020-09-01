@@ -56,6 +56,15 @@ A coverage report is regularly posted:
 ## Linting
 Run `make lint` to do a lint check locally using [SwiftLint](https://github.com/realm/SwiftLint).
 
+
+## Docs
+To build docs use:
+
+    make swiftdoc-generate
+    pushd .build/documentation/; python3 -m http.server; popd
+    
+Load http://localhost:8000 in your browser to see the docs.
+    
 # Integration
 All integration options require a Spreedly account and an environment key. See [Create Your API Credentials](https://docs.spreedly.com/basics/credentials/#environment-key) for details.
 
