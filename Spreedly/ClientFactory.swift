@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Creator class for creating instances of SpreedlyClient
 @objc(SPRClientFactory)
 public class ClientFactory: NSObject {
     /// Creates a concrete instance of a `SpreedlyClient` using the given `ClientConfiguration`.
