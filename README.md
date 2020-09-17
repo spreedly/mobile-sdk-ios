@@ -80,6 +80,13 @@ pod 'Spreedly'
 pod 'SpreedlyCocoa' 
 ```
 
+### Installing the BETA
+Follow the instructions for installation, but add the following to the top of your PodFile.
+
+```ruby
+source 'https://github.com/spreedly/spreedly-ios-sdk-beta.git'
+```
+
 ## Express
 Collect and select payment methods including Apple Pay with the SDK's Express tools.
 
