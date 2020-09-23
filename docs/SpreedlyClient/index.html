@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreedly - SpreedlyClient</title>
+    <link rel="stylesheet" type="text/css" href="/spreedly-docs/code/master/ios/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/spreedly-docs/code/master/ios/">
+            <strong>
+                Spreedly
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="function"><a href="#spreedlyclient.createpaymentmethodfrom(creditcard:)">create​Payment​Method​From(credit​Card:​)</a></li><li class="function"><a href="#spreedlyclient.createpaymentmethodfrom(bankaccount:)">create​Payment​Method​From(bank​Account:​)</a></li><li class="function"><a href="#spreedlyclient.recache(token:verificationvalue:)">recache(token:​verification​Value:​)</a></li><li class="function"><a href="#spreedlyclient.createpaymentmethodfrom(applepay:)">create​Payment​Method​From(apple​Pay:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Spreedly​Client</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">SpreedlyClient</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A set of methods used to create payment methods and recache verification values.
+Returns single-element sequences of <code>Transaction</code> to be handled asynchronously.</p>
+
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="function" id="spreedlyclient.createpaymentmethodfrom(creditcard:)">
+    <h3>
+        <code>create​Payment​Method​From(credit​Card:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">createPaymentMethodFrom</span>(<span class="variable">creditCard</span>: <a href="/spreedly-docs/code/master/ios/CreditCardInfo"><span class="type">CreditCardInfo</span></a>) -&gt; <span class="type">Single</span>&lt;<a href="/spreedly-docs/code/master/ios/Transaction"><span class="type">Transaction</span></a>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Attempts to create a credit card payment method.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="spreedlyclient.createpaymentmethodfrom(bankaccount:)">
+    <h3>
+        <code>create​Payment​Method​From(bank​Account:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">createPaymentMethodFrom</span>(<span class="variable">bankAccount</span>: <a href="/spreedly-docs/code/master/ios/BankAccountInfo"><span class="type">BankAccountInfo</span></a>) -&gt; <span class="type">Single</span>&lt;<a href="/spreedly-docs/code/master/ios/Transaction"><span class="type">Transaction</span></a>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Attempts to create a bank account payment method.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="spreedlyclient.recache(token:verificationvalue:)">
+    <h3>
+        <code>recache(token:​verification​Value:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">recache</span>(<span class="variable">token</span>: <span class="type">String</span>, <span class="variable">verificationValue</span>: <a href="/spreedly-docs/code/master/ios/SpreedlySecureOpaqueString"><span class="type">SpreedlySecureOpaqueString</span></a>) -&gt; <span class="type">Single</span>&lt;<a href="/spreedly-docs/code/master/ios/Transaction"><span class="type">Transaction</span></a>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Attempts to recache the verification value for a payment method identified by the token.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="spreedlyclient.createpaymentmethodfrom(applepay:)">
+    <h3>
+        <code>create​Payment​Method​From(apple​Pay:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">createPaymentMethodFrom</span>(<span class="variable">applePay</span>: <a href="/spreedly-docs/code/master/ios/ApplePayInfo"><span class="type">ApplePayInfo</span></a>) -&gt; <span class="type">Single</span>&lt;<a href="/spreedly-docs/code/master/ios/Transaction"><span class="type">Transaction</span></a>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Attempts to create an Apple Pay payment method.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-09-17T13:35:11-0700">September 17, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.3</span>.
+</p>
+    </footer>
+</body>
+</html>
