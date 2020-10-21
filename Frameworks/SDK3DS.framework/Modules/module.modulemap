@@ -1,0 +1,11 @@
+framework module SDK3DS {
+  umbrella header "SDK3DS.h"
+
+  export *
+  module * { export * }
+}
+
+module SDK3DS.Swift {
+    header "SDK3DS-Swift.h"
+    requires objc
+}
