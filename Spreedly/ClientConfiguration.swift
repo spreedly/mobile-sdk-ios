@@ -52,4 +52,6 @@ public class ClientConfiguration: NSObject {
 @objc(SPRClientError)
 public enum ClientError: Int, Error {
     case noSpreedlyCredentials
+    case parseError
+    case invalidRequestData
 }

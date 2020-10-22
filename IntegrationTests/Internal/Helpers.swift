@@ -2,7 +2,6 @@
 // Created by Eli Thompson on 5/12/20.
 //
 
-import RxSwift
 import Spreedly
 
 @objc(SPRHelpers)
@@ -37,7 +36,7 @@ public class Helpers: NSObject {
         ClientFactory.create(with: createClientConfiguration())
     }
 
-    static func createCreditCard(retained: Bool? = nil) throws -> Single<Transaction> {
+    static func createCreditCard(retained: Bool? = nil) throws -> SingleTransaction {
         let client = createClient()
         let info = initCreditCard()
         info.retained = retained
@@ -65,9 +64,8 @@ extension Helpers {
     }
 
     @objc(createCardWithRetained:error:)
-    public static func _objCCreateCreditCard(retained: Bool = false) throws -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
-        let observable = try createCreditCard(retained: retained)
-        return _ObjCSingleTransaction(observable: observable)
+    public static func _objCCreateCreditCard(retained: Bool = false) throws -> SingleTransaction { // swiftlint:disable:this identifier_name line_length
+        try createCreditCard(retained: retained)
     }
 }
 

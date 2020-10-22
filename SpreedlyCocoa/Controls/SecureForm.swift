@@ -5,7 +5,6 @@
 import Foundation
 import UIKit
 import Spreedly
-import RxSwift
 
 /// A set of methods that you use to receive successfully created payment methods from Spreedly and provide
 /// client configuration for that communication.

@@ -3,24 +3,19 @@
 //
 
 import XCTest
-import RxSwift
 import Spreedly
 
 class RecacheTests: XCTestCase {
     func testCanRecache() throws {
         let creditCardPromise = try Helpers.createCreditCard(retained: true)
+        let creditCard = try creditCardPromise.assertResult(self).paymentMethod
+        guard let token = creditCard?.token else {
+            record(XCTIssue(type:.assertionFailure, compactDescription: "token was not found in credit card create response"))
+            return
+        }
 
-        let transaction = try creditCardPromise.flatMap { transaction -> Single<Transaction> in
-            let creditCard = transaction.paymentMethod
-            guard let token = creditCard?.token else {
-                return Single.error(TestError.invalidResponse(
-                        "token was not found in credit card create response"
-                ))
-            }
-
-            let verify = SpreedlySecureOpaqueStringBuilder.build(from: Helpers.verificationValue)
-            return Helpers.createClient().recache(token: token, verificationValue: verify)
-        }.assertResult(self)
+        let verify = SpreedlySecureOpaqueStringBuilder.build(from: Helpers.verificationValue)
+        let transaction = try Helpers.createClient().recache(token: token, verificationValue: verify).assertResult(self)
 
         XCTAssertEqual("RecacheSensitiveData", transaction.transactionType)
         XCTAssert(transaction.succeeded)

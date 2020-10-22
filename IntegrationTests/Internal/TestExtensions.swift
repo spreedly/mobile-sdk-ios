@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import RxSwift
+import Spreedly
 
 enum TestError: Error, CustomStringConvertible {
     case unreachable
@@ -19,11 +19,11 @@ enum TestError: Error, CustomStringConvertible {
     }
 }
 
-extension PrimitiveSequence where Trait == SingleTrait {
-    func assertResult(_ test: XCTestCase) throws -> Element {
-        var out: Element?
+extension SingleTransaction {
+    func assertResult(_ test: XCTestCase) throws -> Transaction {
+        var out: Transaction?
         let expectation = test.expectation(description: "call returns a result")
-        _ = self.subscribe(onSuccess: { result in
+        self.subscribe(onSuccess: { result in
             XCTAssertNotNil(result)
             out = result
             expectation.fulfill()
@@ -31,7 +31,7 @@ extension PrimitiveSequence where Trait == SingleTrait {
             XCTFail("\(error)")
             expectation.fulfill()
         })
-        test.wait(for: [expectation], timeout: 10.0)
+        test.wait(for: [expectation], timeout: 20.0)
         if let out = out {
             return out
         } else {

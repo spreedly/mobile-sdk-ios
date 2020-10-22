@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import RxSwift
 
 /// Contains response information and metadata pertaining to the payment method creation attempt.
 @objc(SPRTransaction)
@@ -83,17 +82,47 @@ public class Transaction: NSObject {
     }
 }
 
+public class SingleTransactionSource {
+    private var successHandlers: [(_ transaction: Transaction) -> ()] = []
+    private var errorHandlers: [(_ error: Error) -> ()] = []
+
+    func subscribe(onSuccess: ((Transaction) -> ())?, onError: ((Error) -> ())?) {
+        if let onSuccess = onSuccess {
+            successHandlers.append(onSuccess)
+        }
+        if let onError = onError {
+            errorHandlers.append(onError)
+        }
+    }
+
+    func handleSuccess(transaction: Transaction) {
+        for s in successHandlers {
+            DispatchQueue.main.async {
+                s(transaction)
+            }
+        }
+    }
+
+    func handleError(error: Error) {
+        for e in errorHandlers {
+            DispatchQueue.main.async {
+                e(error)
+            }
+        }
+    }
+}
+
 /// Represents a push style sequence containing one `Transaction` element.
 @objc(SPRSingleTransaction)
-public class _ObjCSingleTransaction: NSObject { // swiftlint:disable:this type_name
-    private var observable: Single<Transaction>
+public class SingleTransaction: NSObject { // swiftlint:disable:this type_name
+    private var source: SingleTransactionSource
 
-    public init(observable: Single<Transaction>) {
-        self.observable = observable
+    public init(source: SingleTransactionSource) {
+        self.source = source
     }
 
     /// Subscribes a success and error handler for this transaction.
-    @objc public func subscribe(onSuccess: ((Transaction) -> Void)?, onError: ((Error) -> Void)?) {
-        _ = observable.subscribe(onSuccess: onSuccess, onError: onError)
+    @objc public func subscribe(onSuccess: ((Transaction) -> Void)?, onError: ((Error) -> Void)? = nil) {
+        source.subscribe(onSuccess: onSuccess, onError: onError)
     }
 }

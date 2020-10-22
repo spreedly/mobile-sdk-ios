@@ -3,8 +3,6 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 
 class SpreedlyClientImpl: NSObject, SpreedlyClient {
     let config: ClientConfiguration
@@ -29,7 +27,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = headers
-        return URLSession(configuration: config)
+        let session = URLSession(configuration: config)
+        return session
     }
 
     private var encodedCredentials: String {
@@ -38,15 +37,15 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         return userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
     }
 
-    func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> Single<Transaction> {
+    func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> SingleTransaction {
         createPaymentMethod(from: info)
     }
 
-    func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> Single<Transaction> {
+    func createPaymentMethodFrom(bankAccount info: BankAccountInfo) -> SingleTransaction {
         createPaymentMethod(from: info)
     }
 
-    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> Single<Transaction> {
+    func createPaymentMethodFrom(applePay info: ApplePayInfo) -> SingleTransaction {
         if config.test {
             info.testCardNumber = config.testCardNumber
         }
@@ -56,14 +55,15 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
     func recache(
             token: String,
             verificationValue: SpreedlySecureOpaqueString
-    ) -> Single<Transaction> {
+    ) -> SingleTransaction {
         let url = SpreedlyClientImpl.baseUrl.appendingPathComponent(
                 "/payment_methods/\(token)/recache.json", isDirectory: false
         )
 
-        return Single.deferred {
+        let source = SingleTransactionSource()
+        DispatchQueue.global().async {
             var creditCardJson = [String: Any]()
-            try creditCardJson.setOpaqueString("verification_value", verificationValue)
+            try? creditCardJson.setOpaqueString("verification_value", verificationValue)
             let request: [String: Any] = [
                 "environment_key": self.config.envKey,
                 "payment_method": [
@@ -73,21 +73,27 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
-            urlRequest.httpBody = try request.encodeJson()
-
-            return self.process(request: urlRequest).map { data -> Transaction in
-                try Transaction.unwrap(from: data)
+            urlRequest.httpBody = try? request.encodeJson()
+            guard urlRequest.httpBody != nil else {
+                source.handleError(error: ClientError.invalidRequestData)
+                return
             }
+            self.process(source: source, request: urlRequest)
         }
+        return SingleTransaction(source: source)
     }
 
     func createPaymentMethod(
             from info: PaymentMethodInfo
-    ) -> Single<Transaction> {
-        Single.deferred {
+    ) -> SingleTransaction {
+        let source = SingleTransactionSource()
+        DispatchQueue.global().async {
             let authenticated = info.retained ?? false
 
-            var request = try info.toRequestJson()
+            guard var request = try? info.toRequestJson() else {
+                source.handleError(error: ClientError.invalidRequestData)
+                return
+            }
             let url: URL
 
             if authenticated {
@@ -99,46 +105,52 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
-            urlRequest.httpBody = try request.encodeJson()
+            urlRequest.httpBody = try? request.encodeJson()
+            guard urlRequest.httpBody != nil else {
+                source.handleError(error: ClientError.invalidRequestData)
+                return
+            }
 
-            return self.process(
+            self.process(
+                    source: source,
                     request: urlRequest,
                     authenticated: authenticated
-            ).map { data -> Transaction in
-                try Transaction.unwrap(from: data)
-            }
+            )
         }
+        return SingleTransaction(source: source)
     }
 
-    func process(request: URLRequest, authenticated: Bool = false) -> Single<Data> {
-        session(authenticated: authenticated).rx
-                .data(request: request)
-                .catchError { error in
-                    switch error {
-                    case RxCocoaURLError.httpRequestFailed(response: _, data: let data):
-                        return Observable.from(optional: data)
-                    default:
-                        return Observable.error(error)
-                    }
+    func process(source: SingleTransactionSource, request: URLRequest, authenticated: Bool = false) {
+        let session = self.session(authenticated: authenticated)
+        session.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
+                print("Response was\n", json)
+                let transaction = try? Transaction.unwrap(from: data)
+                if let transaction = transaction {
+                    source.handleSuccess(transaction: transaction)
+                } else {
+                    source.handleError(error: ClientError.parseError)
                 }
-                .asSingle()
-                .do(onSuccess: { data in
-                    let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
-                    print("Response was\n", json)
-                })
+                return;
+            }
+            if let error = error {
+                source.handleError(error: error)
+                return;
+            }
+            source.handleError(error: ClientError.invalidRequestData)
+        }.resume()
     }
 }
 
 extension SpreedlyClientImpl: _ObjCClient {
     @objc(createPaymentMethodFrom:)
-    func _objCCreatePaymentMethod(from info: PaymentMethodInfo) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
-        let observable = createPaymentMethod(from: info)
-        return _ObjCSingleTransaction(observable: observable)
+    func _objCCreatePaymentMethod(from info: PaymentMethodInfo) -> SingleTransaction { // swiftlint:disable:this identifier_name line_length
+        createPaymentMethod(from: info)
     }
 
     @objc(recacheWithToken:verificationValue:)
-    func _objCRecache(token: String, verificationValue: SpreedlySecureOpaqueString) -> _ObjCSingleTransaction { // swiftlint:disable:this identifier_name line_length
-        let observable = recache(token: token, verificationValue: verificationValue)
-        return _ObjCSingleTransaction(observable: observable)
+    func _objCRecache(token: String, verificationValue: SpreedlySecureOpaqueString) -> SingleTransaction { // swiftlint:disable:this identifier_name line_length
+        recache(token: token, verificationValue: verificationValue)
     }
 }

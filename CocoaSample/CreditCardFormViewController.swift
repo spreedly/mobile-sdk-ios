@@ -6,7 +6,6 @@ import Foundation
 import UIKit
 import SpreedlyCocoa
 import Spreedly
-import RxSwift
 
 class CreditCardFormViewController: UIViewController {
     @IBOutlet weak var form: SecureForm!
