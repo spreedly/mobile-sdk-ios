@@ -10,7 +10,7 @@ class RecacheTests: XCTestCase {
         let creditCardPromise = try Helpers.createCreditCard(retained: true)
         let creditCard = try creditCardPromise.assertResult(self).paymentMethod
         guard let token = creditCard?.token else {
-            record(XCTIssue(type:.assertionFailure, compactDescription: "token was not found in credit card create response"))
+            assertionFailure("token was not found in credit card create response")
             return
         }
 

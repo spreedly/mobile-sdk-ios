@@ -6,6 +6,19 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A639BCC52541F5870008DFA5 /* Frameworks */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A639BCC82541F5870008DFA5 /* Build configuration list for PBXAggregateTarget "Frameworks" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = Frameworks;
+			productName = Frameworks;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3C0553D624ABF6DF00F31DA3 /* Express.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553D824ABF6DF00F31DA3 /* Express.storyboard */; };
 		3C0553DE24ABF8FC00F31DA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553E024ABF8FC00F31DA3 /* Localizable.strings */; };
@@ -28,37 +41,47 @@
 		4181D7259F8C7D598366B24E /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */; };
 		442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
+		442A21FD64D1616717BB5CCF /* CodeResources in Resources */ = {isa = PBXBuildFile; fileRef = 442A22E770EAE1F4D61C3DF9 /* CodeResources */; };
 		442A2220D9FAB271C19F4113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A256D65BCB8A22D966F8D /* LaunchScreen.storyboard */; };
+		442A22398343DC9F0DD7CC73 /* DLRadioButton in Resources */ = {isa = PBXBuildFile; fileRef = 442A2DE99B903E7852DF9CE2 /* DLRadioButton */; };
 		442A223DF312ED234B929ECF /* Spreedly.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2CBF8AF46C83956B7796 /* Spreedly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		442A22C1757101EA61236CBF /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2EA4177990821F65EA06 /* Address.swift */; };
 		442A22D6A2723C5D328CA8A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A28C146C848A440AEF7A1 /* Main.storyboard */; };
 		442A23C356600951EC1503B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2C1ADA08DBE29D72B986 /* ViewController.swift */; };
 		442A2478A1C1936F7001E3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442A2DE45EA6692771D3B109 /* Assets.xcassets */; };
 		442A24BD208E1F48D39262F3 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A276DA1794F23A3DFCC13 /* Results.swift */; };
+		442A2508919C7F841B295883 /* SpreedlyThreeDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FA1BE681C11D520D14C /* SpreedlyThreeDS.swift */; };
 		442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2022B280AC093C1962B8 /* BankAccountTests.swift */; };
 		442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CB4AB12299CD8D31516 /* TestExtensions.swift */; };
 		442A25C735D1FD60A87FDD36 /* SpreedlyCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		442A25CDDAD80223F90E1962 /* DLRadioButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A270029BF3EB2F4D1C386 /* DLRadioButton.h */; };
 		442A25E7DB272F25834576C7 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A63301FADA969609EC0 /* ClientTests.swift */; };
 		442A26114E3DD843A2220A8E /* CreditCardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A96557532017197368D /* CreditCardFormViewController.swift */; };
 		442A2616B91C97CF1E302D87 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2D420CB95244D5FBD864 /* Transaction.swift */; };
 		442A2759E4BC22B35E134335 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2662BE68ED0552C5BE46 /* Client.swift */; };
+		442A2770C04F5387CEDAD53B /* DLRadioButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2299A575C8B64F691D1A /* DLRadioButton-umbrella.h */; };
 		442A277CCCDFEA291756EBA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E2977597945A0D9CA78 /* SceneDelegate.swift */; };
 		442A27963A108ADEB2607311 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
+		442A295DC6019F7CE4E2ED86 /* ThreeDSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A263794B35BFC7C2620B1 /* ThreeDSTests.swift */; };
 		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
-		442A2C3275564FF786BF58F5 /* SpreedlyThreeDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A27D814A0781253CBE77A /* SpreedlyThreeDS.swift */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */; };
 		442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		442A2E7FE53A19BC8DDDBFE5 /* PaymentMethodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* PaymentMethodInfo.swift */; };
+		442A2EF44D1AEC122D357547 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 442A24696C55832B1B4CB88E /* module.modulemap */; };
 		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
 		5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */; };
+		A621F00325474AB600AFBD43 /* SDK3DS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A639BBCF2540DC130008DFA5 /* SDK3DS.framework */; };
+		A621F00425474AB600AFBD43 /* SDK3DS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A639BBCF2540DC130008DFA5 /* SDK3DS.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A621F00B2547522200AFBD43 /* DLRadioButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */; };
+		A621F00C2547522200AFBD43 /* DLRadioButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A639BCF02541F8240008DFA5 /* Pods_Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */; };
 		A6FEA50F247557FF004B1D9D /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		A6FEA510247557FF004B1D9D /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2CEA1127B40DA767537FD03 /* Pods_SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */; };
-		E7CEE9E4368BD73F330F7954 /* Pods_Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */; };
 		F076C12BA6F3E33F83E1FB90 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8000037AE096B5E0E09 /* CardBrandTests.swift */; };
 		F076C1694FD1264F4FBC16E5 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8101E3C373825B4F415 /* CardBrand.swift */; };
 		F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */; };
@@ -157,6 +180,18 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A621F00525474AB600AFBD43 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A621F00C2547522200AFBD43 /* DLRadioButton.framework in Embed Frameworks */,
+				A621F00425474AB600AFBD43 /* SDK3DS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6FEA513247557FF004B1D9D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,16 +234,21 @@
 		442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStringTest.swift; sourceTree = "<group>"; };
 		442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A21C9FEFB33DBF150C0BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		442A2299A575C8B64F691D1A /* DLRadioButton-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DLRadioButton-umbrella.h"; sourceTree = "<group>"; };
+		442A22E770EAE1F4D61C3DF9 /* CodeResources */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CodeResources; sourceTree = "<group>"; };
 		442A23842C40C21674DFD979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		442A24696C55832B1B4CB88E /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A2585881CEB33C09F2B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		442A263794B35BFC7C2620B1 /* ThreeDSTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDSTests.swift; sourceTree = "<group>"; };
 		442A2662BE68ED0552C5BE46 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		442A270029BF3EB2F4D1C386 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		442A276DA1794F23A3DFCC13 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
-		442A27D814A0781253CBE77A /* SpreedlyThreeDS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyThreeDS.swift; sourceTree = "<group>"; };
 		442A2832CB4FF8C0D4094949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		442A29EAAA752B29B8DCF162 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A2A63301FADA969609EC0 /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		442A2A96557532017197368D /* CreditCardFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardFormViewController.swift; sourceTree = "<group>"; };
@@ -218,18 +258,22 @@
 		442A2CBF8AF46C83956B7796 /* Spreedly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spreedly.h; sourceTree = "<group>"; };
 		442A2D420CB95244D5FBD864 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		442A2DE45EA6692771D3B109 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		442A2DE99B903E7852DF9CE2 /* DLRadioButton */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DLRadioButton; sourceTree = "<group>"; };
 		442A2E2977597945A0D9CA78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		442A2E383CD75A0FC593AE72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecacheTests.swift; sourceTree = "<group>"; };
 		442A2EA4177990821F65EA06 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreedlyCocoa.h; sourceTree = "<group>"; };
+		442A2FA1BE681C11D520D14C /* SpreedlyThreeDS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyThreeDS.swift; sourceTree = "<group>"; };
 		442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImpl.swift; sourceTree = "<group>"; };
 		5AA2BAE78AD453E4457D01A1 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.debug.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.debug.xcconfig"; sourceTree = "<group>"; };
 		894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A621F00825474C6200AFBD43 /* DLRadioButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DLRadioButton.framework; path = Carthage/Build/iOS/DLRadioButton.framework; sourceTree = "<group>"; };
 		A639BBCF2540DC130008DFA5 /* SDK3DS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDK3DS.framework; path = Frameworks/SDK3DS.framework; sourceTree = "<group>"; };
+		A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DLRadioButton.framework; path = Frameworks/DLRadioButton.framework; sourceTree = "<group>"; };
 		B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF1D2BFCA64275E2BAF79F6 /* Pods-Spreedly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spreedly.debug.xcconfig"; path = "Target Support Files/Pods-Spreedly/Pods-Spreedly.debug.xcconfig"; sourceTree = "<group>"; };
@@ -312,7 +356,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7CEE9E4368BD73F330F7954 /* Pods_Spreedly.framework in Frameworks */,
+				A621F00B2547522200AFBD43 /* DLRadioButton.framework in Frameworks */,
+				A621F00325474AB600AFBD43 /* SDK3DS.framework in Frameworks */,
+				A639BCF02541F8240008DFA5 /* Pods_Spreedly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +436,7 @@
 				F076C7F4D5E58736FA088192 /* IntegrationTests.xctest */,
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
 				442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */,
+				442A22CCCFC3C577EA667DEE /* DLRadioButton.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -413,6 +460,19 @@
 			path = CocoaSample;
 			sourceTree = "<group>";
 		};
+		442A22CCCFC3C577EA667DEE /* DLRadioButton.framework */ = {
+			isa = PBXGroup;
+			children = (
+				442A2D6B75A5B369278AD650 /* Headers */,
+				442A2CFCFF5F204A36578972 /* Modules */,
+				442A29EAAA752B29B8DCF162 /* Info.plist */,
+				442A2DE99B903E7852DF9CE2 /* DLRadioButton */,
+				442A252333CFAC2BC4127CC0 /* _CodeSignature */,
+			);
+			name = DLRadioButton.framework;
+			path = Frameworks/DLRadioButton.framework;
+			sourceTree = "<group>";
+		};
 		442A240EC140D34D76A3C73E /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +486,7 @@
 				F076C8000037AE096B5E0E09 /* CardBrandTests.swift */,
 				F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */,
 				F076CDFC7C32CD92DC2821F3 /* AddressTests.swift */,
+				442A263794B35BFC7C2620B1 /* ThreeDSTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -441,6 +502,7 @@
 				F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */,
 				3CFE89CC2491E045005E64B4 /* ClientFactory.swift */,
 				F076CF76119C6C1C8A8D3795 /* ClientConfiguration.swift */,
+				442A2FA1BE681C11D520D14C /* SpreedlyThreeDS.swift */,
 			);
 			path = Spreedly;
 			sourceTree = "<group>";
@@ -459,9 +521,16 @@
 				F076CA78CC0B99B7D25ABD3D /* BundleLocator.swift */,
 				F076C8C1F2D7F4D05B337952 /* Resources+Additions.swift */,
 				F076C684D007137772993AFA /* Compatibility+Additions.swift */,
-				442A27D814A0781253CBE77A /* SpreedlyThreeDS.swift */,
 			);
 			path = SpreedlyCocoa;
+			sourceTree = "<group>";
+		};
+		442A252333CFAC2BC4127CC0 /* _CodeSignature */ = {
+			isa = PBXGroup;
+			children = (
+				442A22E770EAE1F4D61C3DF9 /* CodeResources */,
+			);
+			path = _CodeSignature;
 			sourceTree = "<group>";
 		};
 		442A2676F741069CFE144943 /* Internal */ = {
@@ -503,6 +572,23 @@
 			);
 			sourceTree = "<group>";
 		};
+		442A2CFCFF5F204A36578972 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				442A24696C55832B1B4CB88E /* module.modulemap */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		442A2D6B75A5B369278AD650 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				442A270029BF3EB2F4D1C386 /* DLRadioButton.h */,
+				442A2299A575C8B64F691D1A /* DLRadioButton-umbrella.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		8FAC8BD86AB9E8CAD63A5EF0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +609,8 @@
 		AC0C8852183151056EC70EB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */,
+				A621F00825474C6200AFBD43 /* DLRadioButton.framework */,
 				A639BBCF2540DC130008DFA5 /* SDK3DS.framework */,
 				122C5B24DD663A4EDE043002 /* Pods_Sample.framework */,
 				B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */,
@@ -575,6 +663,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A223DF312ED234B929ECF /* Spreedly.h in Headers */,
+				442A25CDDAD80223F90E1962 /* DLRadioButton.h in Headers */,
+				442A2770C04F5387CEDAD53B /* DLRadioButton-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +679,7 @@
 				442A2B28B1CE6BDB9FB6A6AC /* Sources */,
 				442A22734359841B673B10DF /* Frameworks */,
 				442A2BEF2DB34FFD654B47CB /* Resources */,
+				E439B3FBD99D20A1644A9989 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -610,6 +701,7 @@
 				442A20AFCDAA6C0673BA422A /* Frameworks */,
 				442A227B11366C7E9994A78D /* Resources */,
 				442A27C711772E348B3112AB /* Embed Frameworks */,
+				D4931611F958B256897BB3D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -631,6 +723,7 @@
 				442A208AED5CF87B64845ED3 /* Sources */,
 				442A26F1744BF26616669CB8 /* Frameworks */,
 				442A2EFC8E262C84F56309A3 /* Resources */,
+				A621F00525474AB600AFBD43 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -670,6 +763,7 @@
 				F076CFF997D6ACD474239B76 /* Sources */,
 				F076C82D6AA1997DB0811CFB /* Frameworks */,
 				F076C4E4A921D74A2AF9A029 /* Resources */,
+				9D163F85F8E0B9F313D62F15 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -694,6 +788,13 @@
 						LastSwiftMigration = 1150;
 					};
 					442A266B984463F40F3FE1D6 = {
+						ProvisioningStyle = Automatic;
+					};
+					442A2CD52CC6A2C10B2623E8 = {
+						DevelopmentTeam = WA43VWR7LD;
+					};
+					A639BCC52541F5870008DFA5 = {
+						CreatedOnToolsVersion = 12.0;
 						ProvisioningStyle = Automatic;
 					};
 					F076CF9042A128DEBCC6BDA2 = {
@@ -722,6 +823,7 @@
 				F076CF9042A128DEBCC6BDA2 /* IntegrationTests */,
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
 				442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */,
+				A639BCC52541F5870008DFA5 /* Frameworks */,
 			);
 		};
 /* End PBXProject section */
@@ -761,6 +863,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				442A22398343DC9F0DD7CC73 /* DLRadioButton in Resources */,
+				442A21FD64D1616717BB5CCF /* CodeResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +966,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9D163F85F8E0B9F313D62F15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C2C23B61232A610909CEBA4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -882,6 +1004,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4931611F958B256897BB3D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CocoaSample/Pods-CocoaSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CocoaSample/Pods-CocoaSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E439B3FBD99D20A1644A9989 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -906,6 +1064,8 @@
 				F076CFD7B8A77BB90AE8B1FD /* ApplePayInfo.swift in Sources */,
 				F076C6D90DB36BC555C246AC /* BankAccountInfo.swift in Sources */,
 				F076CD7FF9E8D8C63D808B1A /* CreditCardInfo.swift in Sources */,
+				442A2508919C7F841B295883 /* SpreedlyThreeDS.swift in Sources */,
+				442A2EF44D1AEC122D357547 /* module.modulemap in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +1095,7 @@
 				F076C940E8FECFAFF9199419 /* ApplePayTests.swift in Sources */,
 				F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */,
 				F076C304032E65C8D9746F35 /* AddressTests.swift in Sources */,
+				442A295DC6019F7CE4E2ED86 /* ThreeDSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,7 +1126,6 @@
 				F076C1FEC23222D1A8BFF753 /* Resources+Additions.swift in Sources */,
 				F076C721524D59BDAADE7659 /* Compatibility+Additions.swift in Sources */,
 				F076CD21AF632EB34BD27FED /* SelectedPaymentMethod.swift in Sources */,
-				442A2C3275564FF786BF58F5 /* SpreedlyThreeDS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,16 +1332,23 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
+				DEVELOPMENT_TEAM = WA43VWR7LD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1324,7 +1491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				VALID_ARCHS = "arm armv7 $(ARCHS_STANDARD) i386 x86_64 iossim";
 			};
 			name = Release;
 		};
@@ -1432,16 +1599,23 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
+				DEVELOPMENT_TEAM = WA43VWR7LD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1654,7 +1828,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				VALID_ARCHS = "arm armv7 $(ARCHS_STANDARD) i386 x86_64 iossim";
 			};
 			name = Debug;
 		};
@@ -1716,6 +1890,22 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A639BCC62541F5870008DFA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A639BCC72541F5870008DFA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1896,6 +2086,15 @@
 			buildConfigurations = (
 				442A2D17EDFC7C7324DEC900 /* Debug */,
 				442A23FA1958CC1851A18079 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A639BCC82541F5870008DFA5 /* Build configuration list for PBXAggregateTarget "Frameworks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A639BCC62541F5870008DFA5 /* Debug */,
+				A639BCC72541F5870008DFA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
