@@ -57,7 +57,7 @@ public class SpreedlyThreeDSTransactionRequest {
     public func serialize() -> [String: Any] {
         let request = transaction.getAuthenticationRequestParameters()
         return [
-            "sdk_app_id": (try? service.getSDKVersion()) ?? "unknown ios",
+            "sdk_app_id": request.getSDKAppID(),
             "sdk_enc_data": request.getDeviceData(),
             "sdk_ephem_pub_key": (try? JSONSerialization.jsonObject(with: request.sdkEphemeralPublicKey.data(using: .utf8)!, options: .allowFragments)) ?? "bad public key",
             "sdk_max_timeout": "15",

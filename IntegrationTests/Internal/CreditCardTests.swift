@@ -22,10 +22,10 @@ class CreditCardTests: XCTestCase {
         let client = Helpers.createClient()
         let info = Helpers.initCreditCard()
 
-        let billing = buildAddress()
+        let billing = Helpers.buildAddress()
         info.address = billing
 
-        let shipping = buildShippingAddress()
+        let shipping = Helpers.buildShippingAddress()
         info.shippingAddress = shipping
 
         info.email = "dolly@dog.com"
@@ -53,30 +53,6 @@ class CreditCardTests: XCTestCase {
         XCTAssertEqual(result.metadata?["intKey"] as? Int, 42)
         XCTAssertEqual(result.metadata?["doubleKey"] as? Double, 3.14)
         XCTAssertEqual(result.metadata?["boolKey"] as? Bool, false)
-    }
-
-    func buildAddress() -> Address {
-        let address = Address()
-        address.address1 = "123 Fake St"
-        address.address2 = "Suite #200"
-        address.city = "Springfield"
-        address.state = "OR"
-        address.zip = "97475"
-        address.country = "US"
-        address.phoneNumber = "541-555-2222"
-        return address
-    }
-
-    func buildShippingAddress() -> Address {
-        let address = Address()
-        address.address1 = "321 Wall St"
-        address.address2 = "Suite #4100"
-        address.city = "Seattle"
-        address.state = "WA"
-        address.zip = "98121"
-        address.country = "US"
-        address.phoneNumber = "206-555-2222"
-        return address
     }
 }
 

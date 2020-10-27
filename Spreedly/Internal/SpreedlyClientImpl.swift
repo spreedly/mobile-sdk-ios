@@ -14,6 +14,12 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             "/payment_methods/restricted.json", isDirectory: false
     )
 
+    func authenticatedPurchaseUrl(_ gateway: String) -> URL {
+        SpreedlyClientImpl.baseUrl.appendingPathComponent(
+                "/gateways/" + gateway + "/purchase.json", isDirectory: false
+        )
+    }
+
     init(with config: ClientConfiguration) {
         self.config = config
         super.init()

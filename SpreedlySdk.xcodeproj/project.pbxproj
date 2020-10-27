@@ -50,7 +50,6 @@
 		442A23C356600951EC1503B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2C1ADA08DBE29D72B986 /* ViewController.swift */; };
 		442A2478A1C1936F7001E3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442A2DE45EA6692771D3B109 /* Assets.xcassets */; };
 		442A24BD208E1F48D39262F3 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A276DA1794F23A3DFCC13 /* Results.swift */; };
-		442A2508919C7F841B295883 /* SpreedlyThreeDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FA1BE681C11D520D14C /* SpreedlyThreeDS.swift */; };
 		442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2022B280AC093C1962B8 /* BankAccountTests.swift */; };
 		442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CB4AB12299CD8D31516 /* TestExtensions.swift */; };
 		442A25C735D1FD60A87FDD36 /* SpreedlyCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,13 +63,14 @@
 		442A27963A108ADEB2607311 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
-		442A295DC6019F7CE4E2ED86 /* ThreeDSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A263794B35BFC7C2620B1 /* ThreeDSTests.swift */; };
 		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */; };
 		442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
+		442A2E6669C7C8C9496FE756 /* SpreedlyThreeDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2B452270E0E9E9A836CE /* SpreedlyThreeDS.swift */; };
 		442A2E7FE53A19BC8DDDBFE5 /* PaymentMethodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* PaymentMethodInfo.swift */; };
+		442A2ED536E0541E082AA288 /* ThreeDSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */; };
 		442A2EF44D1AEC122D357547 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 442A24696C55832B1B4CB88E /* module.modulemap */; };
 		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
 		5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */; };
@@ -228,6 +228,7 @@
 		419B256B7052CB16E3131835 /* Pods-SpreedlyCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.release.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.release.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* PaymentMethodInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodInfo.swift; sourceTree = "<group>"; };
+		442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDSTests.swift; sourceTree = "<group>"; };
 		442A21244C58460DB48ED6B3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		442A213C18A35388BDA5861C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A21723181F2D5F72F5B71 /* Spreedly-env.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "Spreedly-env.plist"; sourceTree = "<group>"; };
@@ -243,7 +244,6 @@
 		442A2585881CEB33C09F2B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		442A263794B35BFC7C2620B1 /* ThreeDSTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDSTests.swift; sourceTree = "<group>"; };
 		442A2662BE68ED0552C5BE46 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		442A270029BF3EB2F4D1C386 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		442A276DA1794F23A3DFCC13 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
@@ -252,6 +252,7 @@
 		442A2A63301FADA969609EC0 /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		442A2A96557532017197368D /* CreditCardFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardFormViewController.swift; sourceTree = "<group>"; };
+		442A2B452270E0E9E9A836CE /* SpreedlyThreeDS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyThreeDS.swift; sourceTree = "<group>"; };
 		442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureForm.swift; sourceTree = "<group>"; };
 		442A2C1ADA08DBE29D72B986 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		442A2CB4AB12299CD8D31516 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
@@ -264,14 +265,12 @@
 		442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecacheTests.swift; sourceTree = "<group>"; };
 		442A2EA4177990821F65EA06 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreedlyCocoa.h; sourceTree = "<group>"; };
-		442A2FA1BE681C11D520D14C /* SpreedlyThreeDS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyThreeDS.swift; sourceTree = "<group>"; };
 		442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImpl.swift; sourceTree = "<group>"; };
 		5AA2BAE78AD453E4457D01A1 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.debug.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.debug.xcconfig"; sourceTree = "<group>"; };
 		894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A621F00825474C6200AFBD43 /* DLRadioButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DLRadioButton.framework; path = Carthage/Build/iOS/DLRadioButton.framework; sourceTree = "<group>"; };
 		A639BBCF2540DC130008DFA5 /* SDK3DS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDK3DS.framework; path = Frameworks/SDK3DS.framework; sourceTree = "<group>"; };
 		A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DLRadioButton.framework; path = Frameworks/DLRadioButton.framework; sourceTree = "<group>"; };
 		B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -486,7 +485,6 @@
 				F076C8000037AE096B5E0E09 /* CardBrandTests.swift */,
 				F076CA2A0C33EF2465AB9A50 /* ApplePayTests.swift */,
 				F076CDFC7C32CD92DC2821F3 /* AddressTests.swift */,
-				442A263794B35BFC7C2620B1 /* ThreeDSTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -502,7 +500,7 @@
 				F076CBE3382B1748CACF6853 /* SpreedlySecureOpaqueString.swift */,
 				3CFE89CC2491E045005E64B4 /* ClientFactory.swift */,
 				F076CF76119C6C1C8A8D3795 /* ClientConfiguration.swift */,
-				442A2FA1BE681C11D520D14C /* SpreedlyThreeDS.swift */,
+				442A2B452270E0E9E9A836CE /* SpreedlyThreeDS.swift */,
 			);
 			path = Spreedly;
 			sourceTree = "<group>";
@@ -610,7 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */,
-				A621F00825474C6200AFBD43 /* DLRadioButton.framework */,
 				A639BBCF2540DC130008DFA5 /* SDK3DS.framework */,
 				122C5B24DD663A4EDE043002 /* Pods_Sample.framework */,
 				B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */,
@@ -629,6 +626,7 @@
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
 				F076C9783EA29205F1021D9A /* Internal */,
 				442A21244C58460DB48ED6B3 /* Secrets.swift */,
+				442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -1064,8 +1062,8 @@
 				F076CFD7B8A77BB90AE8B1FD /* ApplePayInfo.swift in Sources */,
 				F076C6D90DB36BC555C246AC /* BankAccountInfo.swift in Sources */,
 				F076CD7FF9E8D8C63D808B1A /* CreditCardInfo.swift in Sources */,
-				442A2508919C7F841B295883 /* SpreedlyThreeDS.swift in Sources */,
 				442A2EF44D1AEC122D357547 /* module.modulemap in Sources */,
+				442A2E6669C7C8C9496FE756 /* SpreedlyThreeDS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,7 +1093,6 @@
 				F076C940E8FECFAFF9199419 /* ApplePayTests.swift in Sources */,
 				F076CCC72E1D9F1779DDEF73 /* String+AdditionsTests.swift in Sources */,
 				F076C304032E65C8D9746F35 /* AddressTests.swift in Sources */,
-				442A295DC6019F7CE4E2ED86 /* ThreeDSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,6 +1143,7 @@
 				3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */,
 				F076C57D7A6335766809B69B /* ObjCTransactionTests.swift in Sources */,
 				F076CCE40AF5366802515D06 /* RecacheCompatibilityTests.m in Sources */,
+				442A2ED536E0541E082AA288 /* ThreeDSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
