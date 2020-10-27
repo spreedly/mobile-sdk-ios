@@ -54,9 +54,9 @@ public class SpreedlyThreeDSTransactionRequest {
         self.transaction = transaction
     }
 
-    public func serialize() -> [String: Any] {
+    public func serialize() -> String {
         let request = transaction.getAuthenticationRequestParameters()
-        return [
+        return (try? JSONSerialization.data(withJSONObject:  [
             "sdk_app_id": request.getSDKAppID(),
             "sdk_enc_data": request.getDeviceData(),
             "sdk_ephem_pub_key": (try? JSONSerialization.jsonObject(with: request.sdkEphemeralPublicKey.data(using: .utf8)!, options: .allowFragments)) ?? "bad public key",
@@ -67,11 +67,7 @@ public class SpreedlyThreeDSTransactionRequest {
                 "sdk_interface": "03",
                 "sdk_ui_type": "01"
             ]
-        ] as [String: Any]
-    }
-
-    public func serializeToJson() -> Data {
-        try! JSONSerialization.data(withJSONObject: serialize())
+        ] as [String: Any]).base64EncodedString()) ?? ""
     }
 
     public func doChallenge(threeDSServerTransactionID: String, acsTransactionID: String, acsRefNumber: String, acsSignedContent: String) {
