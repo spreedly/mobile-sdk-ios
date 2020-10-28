@@ -86,16 +86,33 @@ public class SingleTransactionSource {
     private var successHandlers: [(_ transaction: Transaction) -> ()] = []
     private var errorHandlers: [(_ error: Error) -> ()] = []
 
+    private var success: Transaction?
+
+    private var error: Error?
+
     func subscribe(onSuccess: ((Transaction) -> ())?, onError: ((Error) -> ())?) {
         if let onSuccess = onSuccess {
-            successHandlers.append(onSuccess)
+            if let success = success {
+                DispatchQueue.main.async {
+                    onSuccess(success)
+                }
+            } else {
+                successHandlers.append(onSuccess)
+            }
         }
         if let onError = onError {
-            errorHandlers.append(onError)
+            if let error = error {
+                DispatchQueue.main.async {
+                    onError(error)
+                }
+            } else {
+                errorHandlers.append(onError)
+            }
         }
     }
 
     func handleSuccess(transaction: Transaction) {
+        self.success = transaction
         for s in successHandlers {
             DispatchQueue.main.async {
                 s(transaction)
@@ -104,6 +121,7 @@ public class SingleTransactionSource {
     }
 
     func handleError(error: Error) {
+        self.error = error
         for e in errorHandlers {
             DispatchQueue.main.async {
                 e(error)

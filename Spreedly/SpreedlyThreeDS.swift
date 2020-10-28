@@ -15,7 +15,7 @@ public enum SpreedlyThreeDSError: Error {
 public class SpreedlyThreeDS {
     static let _3ds2service: ThreeDS2Service = ThreeDS2ServiceImpl.sdk
 
-    public static func initialize(uiViewController: UIViewController, locale: String?) throws {
+    public static func initialize(uiViewController: UIViewController, locale: String = "en_US") throws {
         let config = ConfigParameters()
         do {
             try _3ds2service.initialize(uiViewController: uiViewController, configParameters: config, locale: locale, uiCustomization: nil)
@@ -27,8 +27,19 @@ public class SpreedlyThreeDS {
         }
     }
 
-    public static func createTransactionRequest() throws -> SpreedlyThreeDSTransactionRequest {
-        SpreedlyThreeDSTransactionRequest(_3ds2service, try _3ds2service.createTransaction(directoryServerID: "F000000000", messageVersion: "2.1.0"))
+    static func cardTypeToDirectoryServerId(_ cardType: String) -> String {
+        switch (cardType) {
+//        case "visa":
+//            return "A000000003"
+//        case "mastercard":
+//            return "A000000004"
+        default:
+            return "F000000000"
+        }
+    }
+
+    public static func createTransactionRequest(cardType: String) throws -> SpreedlyThreeDSTransactionRequest {
+        SpreedlyThreeDSTransactionRequest(_3ds2service, try _3ds2service.createTransaction(directoryServerID: cardTypeToDirectoryServerId(cardType), messageVersion: "2.1.0"))
     }
 }
 
@@ -56,7 +67,7 @@ public class SpreedlyThreeDSTransactionRequest {
 
     public func serialize() -> String {
         let request = transaction.getAuthenticationRequestParameters()
-        return (try? JSONSerialization.data(withJSONObject:  [
+        return (try? JSONSerialization.data(withJSONObject: [
             "sdk_app_id": request.getSDKAppID(),
             "sdk_enc_data": request.getDeviceData(),
             "sdk_ephem_pub_key": (try? JSONSerialization.jsonObject(with: request.sdkEphemeralPublicKey.data(using: .utf8)!, options: .allowFragments)) ?? "bad public key",
@@ -70,17 +81,35 @@ public class SpreedlyThreeDSTransactionRequest {
         ] as [String: Any]).base64EncodedString()) ?? ""
     }
 
-    public func doChallenge(threeDSServerTransactionID: String, acsTransactionID: String, acsRefNumber: String, acsSignedContent: String) {
-        let parameters = SDK3DS.ChallengeParameters()
-        parameters.threeDSServerTransactionID = threeDSServerTransactionID
-        parameters.acsTransactionID = acsTransactionID
-        parameters.acsRefNumber = acsRefNumber
-        parameters.acsSignedContent = acsSignedContent
+    public func doChallenge(withScaAuthenticationJson auth: Data) {
         do {
-            try transaction.doChallenge(challengeParameters: parameters, challengeStatusReceiver: self, timeout: 15)
+            doChallenge(withScaAuthentication: try JSONSerialization.jsonObject(with: auth) as! [String: Any])
         } catch {
             DispatchQueue.main.async {
-                self.delegate?.error(.unknownError(error: error))
+                self.delegate?.error(.invalidInput(message: "Bad sca_authentication JSON"))
+            }
+        }
+    }
+
+    public func doChallenge(withScaAuthentication auth: [String: Any]) {
+        let parameters = SDK3DS.ChallengeParameters()
+        do {
+            parameters.threeDSServerTransactionID = try auth.string(for: "xid")
+            parameters.acsTransactionID = try auth.string(for: "acs_transaction_id")
+            parameters.acsRefNumber = try auth.string(for: "acs_reference_number")
+            parameters.acsSignedContent = try auth.string(for: "acs_signed_content")
+        } catch {
+            DispatchQueue.main.async {
+                self.delegate?.error(.invalidInput(message: "Bad sca_authentication JSON"))
+            }
+        }
+        DispatchQueue.main.async {
+            do {
+                try self.transaction.doChallenge(challengeParameters: parameters, challengeStatusReceiver: self, timeout: 15)
+            } catch {
+                DispatchQueue.main.async {
+                    self.delegate?.error(.unknownError(error: error))
+                }
             }
         }
     }
@@ -90,23 +119,33 @@ public class SpreedlyThreeDSTransactionRequest {
 extension SpreedlyThreeDSTransactionRequest: ChallengeStatusReceiver {
 
     public func completed(_ e: CompletionEvent) {
-        delegate?.success(status: e.transactionStatus)
+        DispatchQueue.main.async {
+            self.delegate?.success(status: e.transactionStatus)
+        }
     }
 
     public func cancelled() {
-        delegate?.cancelled()
+        DispatchQueue.main.async {
+            self.delegate?.cancelled()
+        }
     }
 
     public func timedout() {
-        delegate?.timeout()
+        DispatchQueue.main.async {
+            self.delegate?.timeout()
+        }
     }
 
     public func protocolError(_ e: ProtocolErrorEvent) {
-        delegate?.error(.protocolError(message: e.ErrorMsg.getErrorDescription()))
+        DispatchQueue.main.async {
+            self.delegate?.error(.protocolError(message: e.ErrorMsg.getErrorDescription()))
+        }
     }
 
     public func runtimeError(_ e: RuntimeErrorEvent) {
-        delegate?.error(.runtimeError(message: e.getErrorMessage()))
+        DispatchQueue.main.async {
+            self.delegate?.error(.runtimeError(message: e.getErrorMessage()))
+        }
     }
 }
 

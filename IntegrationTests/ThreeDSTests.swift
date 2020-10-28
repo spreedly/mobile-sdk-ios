@@ -9,12 +9,12 @@ import XCTest
 
 class ThreeDsTests: XCTestCase {
     func testInit() throws {
-        try SpreedlyThreeDS.initialize(uiViewController: UIViewController(), locale: nil)
+        try SpreedlyThreeDS.initialize(uiViewController: UIViewController())
     }
 
     func testCreate() throws {
-        try SpreedlyThreeDS.initialize(uiViewController: UIViewController(), locale: nil)
-        let trans = try SpreedlyThreeDS.createTransactionRequest()
+        try SpreedlyThreeDS.initialize(uiViewController: UIViewController())
+        let trans = try SpreedlyThreeDS.createTransactionRequest(cardType: "visa")
         let data = trans.serialize()
         print(data)
         XCTAssertNotNil(data)
@@ -23,6 +23,8 @@ class ThreeDsTests: XCTestCase {
     func testCanCreateFullCreditCard() throws {
         let client = Helpers.createClient() as! SpreedlyClientImpl
         let info = Helpers.initCreditCard()
+        info.number?.clear()
+        info.number?.append("5555555555554444")
         info.address = Helpers.buildAddress()
         info.shippingAddress = Helpers.buildShippingAddress()
         info.email = "dolly@dog.com"
@@ -36,9 +38,10 @@ class ThreeDsTests: XCTestCase {
         let promise = client.createPaymentMethodFrom(creditCard: info)
         let transaction = try promise.assertResult(self)
         let token = transaction.creditCard!.token!
+        let cardType = transaction.creditCard!.cardType!
 
         try testInit()
-        let _3ds2 = try SpreedlyThreeDS.createTransactionRequest()
+        let _3ds2 = try SpreedlyThreeDS.createTransactionRequest(cardType: cardType)
 
         let session = client.session(authenticated: true)
         var request = URLRequest(url: client.authenticatedPurchaseUrl("BkXcmxRDv8gtMUwu5Buzb4ZbqGe"))
@@ -78,7 +81,11 @@ class ThreeDsTests: XCTestCase {
         print("Response")
         print(json ?? [:])
 
-        XCTAssertEqual(try json?.object(for: "transaction").string(for: "required_action"), "app_challenge")
+        let auth = json?.object(optional: "transaction")?.object(optional: "sca_authentication")
+        XCTAssertNotNil(auth?.string(optional: "xid"))
+        XCTAssertNotNil(auth?.string(optional: "acs_transaction_id"))
+        XCTAssertNotNil(auth?.string(optional: "acs_reference_number"))
+        XCTAssertNotNil(auth?.string(optional: "acs_signed_content"))
     }
 
 }
