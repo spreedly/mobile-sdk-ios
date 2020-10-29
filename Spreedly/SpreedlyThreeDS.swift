@@ -31,6 +31,8 @@ public class SpreedlyThreeDS {
         switch (cardType) {
 //        case "visa":
 //            return "A000000003"
+//        case "master":
+//            return "A000000004"
 //        case "mastercard":
 //            return "A000000004"
         default:
@@ -102,6 +104,7 @@ public class SpreedlyThreeDSTransactionRequest {
             DispatchQueue.main.async {
                 self.delegate?.error(.invalidInput(message: "Bad sca_authentication JSON"))
             }
+            return
         }
         DispatchQueue.main.async {
             do {

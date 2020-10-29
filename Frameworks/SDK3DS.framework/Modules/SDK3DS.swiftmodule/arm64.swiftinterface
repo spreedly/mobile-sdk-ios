@@ -125,9 +125,6 @@ open class CompletionEvent {
   public func getTransactionStatus() -> Swift.String
   @objc deinit
 }
-public protocol MultiSelectListener {
-  func callbackMultiSelect(text: Swift.String)
-}
 open class ConfigParameters {
   public init()
   public func addParam(_ group: Swift.String?, _ paramName: Swift.String, _ paramValue: Swift.String?) throws
@@ -146,11 +143,20 @@ open class ConfigParameters {
   required public init(from decoder: Swift.Decoder) throws
   public func encode(to encoder: Swift.Encoder) throws
 }
+@objc @_inheritsConvenienceInitializers public class MultiSelectFragment : UIKit.UIView {
+  public func setListener(listener: SDK3DS.MultiSelectListener)
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+}
 @objc @_inheritsConvenienceInitializers public class SingleSelectFragment : UIKit.UIView {
   public func setListener(listener: SDK3DS.SingleSelectListener)
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
   @objc deinit
+}
+public protocol MultiSelectListener {
+  func callbackMultiSelect(text: Swift.String)
 }
 @_hasMissingDesignatedInitializers public class CResValidator {
   @objc deinit
@@ -705,12 +711,6 @@ public protocol ThreeDS2Service {
   public static let API_URL: Swift.String
   public static let STATE_REFRESH_UI: Swift.String
   public static let urlAuthorize: Swift.String
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class MultiSelectFragment : UIKit.UIView {
-  public func setListener(listener: SDK3DS.MultiSelectListener)
-  @objc override dynamic public init(frame: CoreGraphics.CGRect)
-  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SDKDeviceInfo : Swift.Codable {

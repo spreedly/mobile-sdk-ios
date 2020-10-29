@@ -51,7 +51,7 @@
                                         <rect key="frame" x="0.0" y="152" width="414" height="30"/>
                                         <state key="normal" title="3DS2"/>
                                         <connections>
-                                            <action selector="start3DS2:" destination="mlm-g5-HBD" eventType="primaryActionTriggered" id="gwW-eY-o0u"/>
+                                            <segue destination="gt0-Xw-qJF" kind="show" id="asp-72-d6F"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -286,7 +286,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OY-8s-lT1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="599" y="858"/>
+            <point key="canvasLocation" x="43" y="951"/>
+        </scene>
+        <!--3DS2 Test Screen-->
+        <scene sceneID="uVd-AR-Oet">
+            <objects>
+                <viewController id="gt0-Xw-qJF" customClass="ThreeDS2ViewController" customModule="CocoaSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dfG-gW-BUo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y77-5q-pwA">
+                                <rect key="frame" x="10" y="98" width="394" height="159.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Po-rW-3Wt">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration" label="Credit Card Number"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RZd-Lz-3oN">
+                                        <rect key="frame" x="0.0" y="20.5" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount (in Euros)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcX-vg-vPd">
+                                        <rect key="frame" x="0.0" y="54.5" width="394" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-mK-u2p">
+                                        <rect key="frame" x="0.0" y="75" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTV-37-g1h">
+                                        <rect key="frame" x="0.0" y="109" width="394" height="30"/>
+                                        <state key="normal" title="Begin Purchase"/>
+                                        <connections>
+                                            <action selector="start3DS2:" destination="gt0-Xw-qJF" eventType="primaryActionTriggered" id="BeC-Qk-fsg"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvI-NQ-xF6">
+                                        <rect key="frame" x="0.0" y="139" width="394" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Y77-5q-pwA" firstAttribute="leading" secondItem="hkK-Sf-Tn9" secondAttribute="leading" constant="10" id="E3e-qh-uq2"/>
+                            <constraint firstItem="Y77-5q-pwA" firstAttribute="top" secondItem="hkK-Sf-Tn9" secondAttribute="top" constant="10" id="JD5-Mm-4Zc"/>
+                            <constraint firstItem="hkK-Sf-Tn9" firstAttribute="trailing" secondItem="Y77-5q-pwA" secondAttribute="trailing" constant="10" id="RgI-CE-9pw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hkK-Sf-Tn9"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="3DS2 Test Screen" id="P4H-iz-IBL"/>
+                    <connections>
+                        <outlet property="amount" destination="C0M-mK-u2p" id="5Gg-z5-QwY"/>
+                        <outlet property="cardNumber" destination="RZd-Lz-3oN" id="hHi-TT-bVu"/>
+                        <outlet property="status" destination="NvI-NQ-xF6" id="znA-Dp-PPL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5k-Dc-CwX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1133" y="948"/>
         </scene>
     </scenes>
 </document>

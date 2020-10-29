@@ -58,6 +58,16 @@
                ReferencedContainer = "container:SpreedlySdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A621F014254B50B500AFBD43"
+               BuildableName = "3ds2Tests.xctest"
+               BlueprintName = "3ds2Tests"
+               ReferencedContainer = "container:SpreedlySdk.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -91,15 +101,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "442A2CD52CC6A2C10B2623E8"
-            BuildableName = "Spreedly.framework"
-            BlueprintName = "Spreedly"
-            ReferencedContainer = "container:SpreedlySdk.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

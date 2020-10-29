@@ -39,6 +39,7 @@
 		3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */; };
 		3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */; };
 		4181D7259F8C7D598366B24E /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */; };
+		442A2046D4C9B7656E6F8A70 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
 		442A21FD64D1616717BB5CCF /* CodeResources in Resources */ = {isa = PBXBuildFile; fileRef = 442A22E770EAE1F4D61C3DF9 /* CodeResources */; };
@@ -50,6 +51,7 @@
 		442A23C356600951EC1503B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2C1ADA08DBE29D72B986 /* ViewController.swift */; };
 		442A2478A1C1936F7001E3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442A2DE45EA6692771D3B109 /* Assets.xcassets */; };
 		442A24BD208E1F48D39262F3 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A276DA1794F23A3DFCC13 /* Results.swift */; };
+		442A24CD5E390F37EEEFC401 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CB8C9D4B8CE905B35F73 /* Helpers.swift */; };
 		442A2516F3C1CA921025F830 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2022B280AC093C1962B8 /* BankAccountTests.swift */; };
 		442A25254E6AEBB165E1961C /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CB4AB12299CD8D31516 /* TestExtensions.swift */; };
 		442A25C735D1FD60A87FDD36 /* SpreedlyCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,13 +66,13 @@
 		442A279FBDD755EB67ABE264 /* CreditCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2A6EC68CE6D6024FA06C /* CreditCardTests.swift */; };
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
 		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
+		442A2B866B30A874872616CE /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2CB4AB12299CD8D31516 /* TestExtensions.swift */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */; };
 		442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		442A2E6669C7C8C9496FE756 /* SpreedlyThreeDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2B452270E0E9E9A836CE /* SpreedlyThreeDS.swift */; };
 		442A2E7FE53A19BC8DDDBFE5 /* PaymentMethodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* PaymentMethodInfo.swift */; };
-		442A2ED536E0541E082AA288 /* ThreeDSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */; };
 		442A2EF44D1AEC122D357547 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 442A24696C55832B1B4CB88E /* module.modulemap */; };
 		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
 		5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */; };
@@ -78,6 +80,8 @@
 		A621F00425474AB600AFBD43 /* SDK3DS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A639BBCF2540DC130008DFA5 /* SDK3DS.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A621F00B2547522200AFBD43 /* DLRadioButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */; };
 		A621F00C2547522200AFBD43 /* DLRadioButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A621F01F254B50C900AFBD43 /* ThreeDSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */; };
+		A621F021254B5ABF00AFBD43 /* ThreeDS2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A621F020254B5ABF00AFBD43 /* ThreeDS2ViewController.swift */; };
 		A639BCF02541F8240008DFA5 /* Pods_Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */; };
 		A6FEA50F247557FF004B1D9D /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		A6FEA510247557FF004B1D9D /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -151,6 +155,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 442A2CD52CC6A2C10B2623E8;
 			remoteInfo = Sdk;
+		};
+		A621F00D254B4CAF00AFBD43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 442A2FFF3C8CF6261881A39B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442A266B984463F40F3FE1D6;
+			remoteInfo = CocoaSample;
+		};
+		A621F01A254B50B600AFBD43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 442A2FFF3C8CF6261881A39B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442A266B984463F40F3FE1D6;
+			remoteInfo = CocoaSample;
 		};
 		A6FEA511247557FF004B1D9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -271,6 +289,9 @@
 		794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.debug.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.debug.xcconfig"; sourceTree = "<group>"; };
 		894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A621F015254B50B500AFBD43 /* 3ds2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 3ds2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A621F019254B50B600AFBD43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A621F020254B5ABF00AFBD43 /* ThreeDS2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDS2ViewController.swift; sourceTree = "<group>"; };
 		A639BBCF2540DC130008DFA5 /* SDK3DS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDK3DS.framework; path = Frameworks/SDK3DS.framework; sourceTree = "<group>"; };
 		A639BCB32541F3D20008DFA5 /* DLRadioButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DLRadioButton.framework; path = Frameworks/DLRadioButton.framework; sourceTree = "<group>"; };
 		B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +382,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A621F012254B50B500AFBD43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F076C82D6AA1997DB0811CFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +464,7 @@
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
 				442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */,
 				442A22CCCFC3C577EA667DEE /* DLRadioButton.framework */,
+				A621F015254B50B500AFBD43 /* 3ds2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -455,6 +484,7 @@
 				442A21723181F2D5F72F5B71 /* Spreedly-env.plist */,
 				442A2A96557532017197368D /* CreditCardFormViewController.swift */,
 				F076C34D44521D8C85A2B3EC /* BankAccountFormViewController.swift */,
+				A621F020254B5ABF00AFBD43 /* ThreeDS2ViewController.swift */,
 			);
 			path = CocoaSample;
 			sourceTree = "<group>";
@@ -564,6 +594,7 @@
 				442A222574418E0D3C31BD01 /* CocoaSample */,
 				442A240EC140D34D76A3C73E /* UnitTests */,
 				F076C1956F58D46CD96B24BB /* IntegrationTests */,
+				A621F016254B50B600AFBD43 /* 3ds2Tests */,
 				442A2206D806C97B75A00795 /* Products */,
 				AC0C8852183151056EC70EB9 /* Frameworks */,
 				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
@@ -604,6 +635,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A621F016254B50B600AFBD43 /* 3ds2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */,
+				A621F019254B50B600AFBD43 /* Info.plist */,
+			);
+			path = 3ds2Tests;
+			sourceTree = "<group>";
+		};
 		AC0C8852183151056EC70EB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,7 +666,6 @@
 				F076C13DBF12B3488EFCDE56 /* Info.plist */,
 				F076C9783EA29205F1021D9A /* Internal */,
 				442A21244C58460DB48ED6B3 /* Secrets.swift */,
-				442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -753,6 +792,24 @@
 			productReference = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		A621F014254B50B500AFBD43 /* 3ds2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A621F01C254B50B600AFBD43 /* Build configuration list for PBXNativeTarget "3ds2Tests" */;
+			buildPhases = (
+				A621F011254B50B500AFBD43 /* Sources */,
+				A621F012254B50B500AFBD43 /* Frameworks */,
+				A621F013254B50B500AFBD43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A621F01B254B50B600AFBD43 /* PBXTargetDependency */,
+			);
+			name = 3ds2Tests;
+			productName = 3ds2Tests;
+			productReference = A621F015254B50B500AFBD43 /* 3ds2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F076CF9042A128DEBCC6BDA2 /* IntegrationTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F076CB5759897D1A7F8925AC /* Build configuration list for PBXNativeTarget "IntegrationTests" */;
@@ -767,6 +824,7 @@
 			);
 			dependencies = (
 				F076C82917A686595CA2F8F2 /* PBXTargetDependency */,
+				A621F00E254B4CAF00AFBD43 /* PBXTargetDependency */,
 			);
 			name = IntegrationTests;
 			productName = SdkIntegrationTests;
@@ -779,6 +837,7 @@
 		442A2FFF3C8CF6261881A39B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1170;
 				LastUpgradeCheck = 1150;
 				TargetAttributes = {
 					442A245F082E0723AA955F94 = {
@@ -791,12 +850,16 @@
 					442A2CD52CC6A2C10B2623E8 = {
 						DevelopmentTeam = WA43VWR7LD;
 					};
+					A621F014254B50B500AFBD43 = {
+						CreatedOnToolsVersion = 11.7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 442A266B984463F40F3FE1D6;
+					};
 					A639BCC52541F5870008DFA5 = {
 						CreatedOnToolsVersion = 12.0;
 						ProvisioningStyle = Automatic;
 					};
 					F076CF9042A128DEBCC6BDA2 = {
-						DevelopmentTeam = LW36989798;
 						LastSwiftMigration = 1150;
 					};
 				};
@@ -822,6 +885,7 @@
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
 				442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */,
 				A639BCC52541F5870008DFA5 /* Frameworks */,
+				A621F014254B50B500AFBD43 /* 3ds2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -863,6 +927,13 @@
 			files = (
 				442A22398343DC9F0DD7CC73 /* DLRadioButton in Resources */,
 				442A21FD64D1616717BB5CCF /* CodeResources in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A621F013254B50B500AFBD43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1076,6 +1147,7 @@
 				442A23C356600951EC1503B4 /* ViewController.swift in Sources */,
 				442A26114E3DD843A2220A8E /* CreditCardFormViewController.swift in Sources */,
 				F076CE94061A25D71D7C7037 /* BankAccountFormViewController.swift in Sources */,
+				A621F021254B5ABF00AFBD43 /* ThreeDS2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,6 +1198,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A621F011254B50B500AFBD43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A621F01F254B50C900AFBD43 /* ThreeDSTests.swift in Sources */,
+				442A24CD5E390F37EEEFC401 /* Helpers.swift in Sources */,
+				442A2046D4C9B7656E6F8A70 /* Secrets.swift in Sources */,
+				442A2B866B30A874872616CE /* TestExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F076CFF997D6ACD474239B76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1143,7 +1226,6 @@
 				3CFE89C92491383D005E64B4 /* CreditCardCompatibilityTests.m in Sources */,
 				F076C57D7A6335766809B69B /* ObjCTransactionTests.swift in Sources */,
 				F076CCE40AF5366802515D06 /* RecacheCompatibilityTests.m in Sources */,
-				442A2ED536E0541E082AA288 /* ThreeDSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,6 +1251,16 @@
 			isa = PBXTargetDependency;
 			target = 442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */;
 			targetProxy = 442A25DEE2FE4712EA1D3FAB /* PBXContainerItemProxy */;
+		};
+		A621F00E254B4CAF00AFBD43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442A266B984463F40F3FE1D6 /* CocoaSample */;
+			targetProxy = A621F00D254B4CAF00AFBD43 /* PBXContainerItemProxy */;
+		};
+		A621F01B254B50B600AFBD43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442A266B984463F40F3FE1D6 /* CocoaSample */;
+			targetProxy = A621F01A254B50B600AFBD43 /* PBXContainerItemProxy */;
 		};
 		A6FEA512247557FF004B1D9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1891,6 +1983,87 @@
 			};
 			name = Release;
 		};
+		A621F01D254B50B600AFBD43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = 3ds2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.spreedly.-ds2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CocoaSample;
+			};
+			name = Debug;
+		};
+		A621F01E254B50B600AFBD43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = 3ds2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.spreedly.-ds2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CocoaSample;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		A639BCC62541F5870008DFA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1944,7 +2117,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = LW36989798;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2014,7 +2187,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = LW36989798;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2084,6 +2257,15 @@
 			buildConfigurations = (
 				442A2D17EDFC7C7324DEC900 /* Debug */,
 				442A23FA1958CC1851A18079 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A621F01C254B50B600AFBD43 /* Build configuration list for PBXNativeTarget "3ds2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A621F01D254B50B600AFBD43 /* Debug */,
+				A621F01E254B50B600AFBD43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
