@@ -29,7 +29,7 @@ class ThreeDsTests: XCTestCase {
     }
 
     func testInit() throws {
-        try SpreedlyThreeDS.initialize(uiViewController: vc!)
+        try SpreedlyThreeDS.initialize(uiViewController: UIViewController())
     }
 
     func testCreate() throws {
@@ -45,6 +45,56 @@ class ThreeDsTests: XCTestCase {
         app?.textFields.element(boundBy: 1).clearAndText("0.04")
         app?.buttons["Begin Purchase"].tap()
         XCTAssertTrue(app?.staticTexts["frictionless success"].waitForExistence(timeout: 30) ?? false)
+    }
+
+    func testSuccess() throws {
+        app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
+        app?.textFields.element(boundBy: 1).clearAndText("1000.00")
+        app?.buttons["Begin Purchase"].tap()
+        XCTAssertTrue(app?.buttons["Confirmar"].waitForExistence(timeout: 30) ?? false)
+        app?.textFields.element.clearAndText("123456")
+        app?.buttons["Confirmar"].tap()
+        XCTAssertTrue(app?.staticTexts["success"].waitForExistence(timeout: 30) ?? false)
+    }
+
+    func testFailedNoAuth1() throws {
+        app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
+        app?.textFields.element(boundBy: 1).clearAndText("99.96")
+        app?.buttons["Begin Purchase"].tap()
+        XCTAssertTrue(app?.buttons["Confirmar"].waitForExistence(timeout: 30) ?? false)
+        app?.textFields.element.clearAndText("123456")
+        app?.buttons["Confirmar"].tap()
+        XCTAssertTrue(app?.staticTexts["failed"].waitForExistence(timeout: 30) ?? false)
+    }
+
+    func testFailedNoAuth2() throws {
+        app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
+        app?.textFields.element(boundBy: 1).clearAndText("99.97")
+        app?.buttons["Begin Purchase"].tap()
+        XCTAssertTrue(app?.buttons["Confirmar"].waitForExistence(timeout: 30) ?? false)
+        app?.textFields.element.clearAndText("123456")
+        app?.buttons["Confirmar"].tap()
+        XCTAssertTrue(app?.staticTexts["failed"].waitForExistence(timeout: 30) ?? false)
+    }
+
+    func testFailedDenied() throws {
+        app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
+        app?.textFields.element(boundBy: 1).clearAndText("99.98")
+        app?.buttons["Begin Purchase"].tap()
+        XCTAssertTrue(app?.buttons["Confirmar"].waitForExistence(timeout: 30) ?? false)
+        app?.textFields.element.clearAndText("123456")
+        app?.buttons["Confirmar"].tap()
+        XCTAssertTrue(app?.staticTexts["failed"].waitForExistence(timeout: 30) ?? false)
+    }
+
+    func testFailedRejected() throws {
+        app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
+        app?.textFields.element(boundBy: 1).clearAndText("99.99")
+        app?.buttons["Begin Purchase"].tap()
+        XCTAssertTrue(app?.buttons["Confirmar"].waitForExistence(timeout: 30) ?? false)
+        app?.textFields.element.clearAndText("123456")
+        app?.buttons["Confirmar"].tap()
+        XCTAssertTrue(app?.staticTexts["failed"].waitForExistence(timeout: 30) ?? false)
     }
 
     func startForTransaction(_ card: String, _ amount: Double) throws -> [String: Any] {
