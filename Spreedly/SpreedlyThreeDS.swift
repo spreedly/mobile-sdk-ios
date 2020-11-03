@@ -36,7 +36,7 @@ public class SpreedlyThreeDS {
 //        case "mastercard":
 //            return "A000000004"
         default:
-            return "F000000000"
+            return "F000000001"
         }
     }
 

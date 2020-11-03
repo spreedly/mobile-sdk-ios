@@ -7,7 +7,6 @@ pod 'SwiftLint'
 
 target 'Spreedly' do
   use_frameworks!
-  pod 'DLRadioButton', '~> 1.4'
 end
 
 target 'SpreedlyCocoa' do

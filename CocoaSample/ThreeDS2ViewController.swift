@@ -64,7 +64,11 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
                 _3ds2.delegate = self
 
                 self.serversidePurchase(client as! SpreedlyClientImpl, device_info: _3ds2.serialize(), token: creditCard.token!, scaProviderKey: "M8k0FisOKdAmDgcQeIKlHE7R1Nf", onSuccess: { scaAuthentication in
-                    _3ds2.doChallenge(withScaAuthentication: scaAuthentication)
+                    if scaAuthentication.string(optional: "state") == "failed" {
+                        self.error(.runtimeError(message: scaAuthentication.string(optional: "flow_performed") ?? "oops"))
+                    } else {
+                        _3ds2.doChallenge(withScaAuthentication: scaAuthentication)
+                    }
                 }, onError: { error in
                     print(error)
                 })
@@ -111,6 +115,8 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
             if let data = data {
                 DispatchQueue.main.async {
                      self.success(status: "response: \(String(data: data, encoding: .utf8)) \(error)")
+                    print(String(data: data, encoding: .utf8))
+                    print(error)
                  }
                 let json = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
                 let trans: [String: Any]? = json?.object(optional: "transaction")
