@@ -17,10 +17,11 @@ swiftdoc-install:
 baseurl ?= "/"
 
 swiftdoc-generate: swiftdoc-install
-	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --module-name Spreedly --format html --base-url $(baseurl)
+	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --module-name Spreedly --format html --output docs/html --base-url $(baseurl)
+	swift-doc generate ./Spreedly ./SpreedlyCocoa --module-name SpreedlyCocoa --module-name Spreedly --format commonmark --output docs/md --base-url /reference/ios
 
 swiftdoc-server: swiftdoc-generate
-	pushd .build/documentation; python3 -m http.server; popd
+	pushd docs/html; python3 -m http.server; popd
 
 push-spreedly-pod:
 	pod repo push spreedly-spec-demo Spreedly.podspec --verbose

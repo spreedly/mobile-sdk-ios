@@ -14,11 +14,15 @@ public enum SpreedlyThreeDSError: Error {
 
 public class SpreedlyThreeDS {
     static let _3ds2service: ThreeDS2Service = ThreeDS2ServiceImpl.sdk
+    static var test: Bool!
 
-    public static func initialize(uiViewController: UIViewController, locale: String = "en_US") throws {
+    public static func initialize(uiViewController: UIViewController, locale: String = "en_US", test: Bool = false) throws {
+        SpreedlyThreeDS.test = test
         let config = ConfigParameters()
+        try? config.addParam("CONF", "ENV", test ? "test" : "prod")
+        let ui = UiCustomization()
         do {
-            try _3ds2service.initialize(uiViewController: uiViewController, configParameters: config, locale: locale, uiCustomization: nil)
+            try _3ds2service.initialize(uiViewController: uiViewController, configParameters: config, locale: locale, uiCustomization: ui)
         } catch SDK3DSError.InvalidInputException(let message) {
             throw SpreedlyThreeDSError.invalidInput(message: message)
         } catch SDK3DSError.SDKAlreadyInitializedException {
@@ -29,17 +33,23 @@ public class SpreedlyThreeDS {
 
     static func cardTypeToDirectoryServerId(_ cardType: String) -> String {
         switch (cardType) {
-//        case "visa":
-//            return "A000000003"
-//        case "master":
-//            return "A000000004"
-//        case "mastercard":
-//            return "A000000004"
+        case "visa":
+            return "A000000003"
+        case "master":
+            return "A000000004"
+        case "maestro":
+            return "A000000005"
+        case "american_express":
+            return "A000000025"
         default:
-            return "F000000001"
+            return "A000000003"
         }
     }
 
+    /// Creates a transaction request that can be used to tell Spreedly that a 3DS2 challenge is supported.
+    /// - Parameters:
+    ///   - cardType: The name of the card time. see https://docs.spreedly.com/reference/supported-payment-methods/
+    ///   - test: pass true for test transactions.
     public static func createTransactionRequest(cardType: String) throws -> SpreedlyThreeDSTransactionRequest {
         SpreedlyThreeDSTransactionRequest(_3ds2service, try _3ds2service.createTransaction(directoryServerID: cardTypeToDirectoryServerId(cardType), messageVersion: "2.1.0"))
     }

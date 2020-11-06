@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreedly - SpreedlySecureOpaqueString</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Spreedly
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="function"><a href="#spreedlysecureopaquestring.clear()">clear()</a></li><li class="function"><a href="#spreedlysecureopaquestring.append(_:)">append(_:​)</a></li><li class="function"><a href="#spreedlysecureopaquestring.removelastcharacter()">remove​Last​Character()</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Spreedly​Secure​Opaque​String</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span>(<span class="variable">SPRSecureOpaqueString</span>) <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">SpreedlySecureOpaqueString</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A representation of a String where the content of that String is intentionally obscured both reminding the
+developer that it should be carefully handled and to limit the possibility of it being recorded in logs, dumps,
+or prints.</p>
+
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="function" id="spreedlysecureopaquestring.clear()">
+    <h3>
+        <code>clear()</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">clear</span>()</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Clears the content.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="spreedlysecureopaquestring.append(_:)">
+    <h3>
+        <code>append(_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">append</span>(<span class="keyword">_</span> <span class="variable">string</span>: <span class="type">String</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Appends the given String to the content.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="spreedlysecureopaquestring.removelastcharacter()">
+    <h3>
+        <code>remove​Last​Character()</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">removeLastCharacter</span>()</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Removes the last character from the content.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-05T13:57:36-0500">November 5, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

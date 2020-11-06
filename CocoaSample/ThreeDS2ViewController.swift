@@ -52,7 +52,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         ))
 
         do {
-            try SpreedlyThreeDS.initialize(uiViewController: self)
+            try SpreedlyThreeDS.initialize(uiViewController: self, test: true)
         } catch {
             print(error)
         }
@@ -60,7 +60,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         tokenize(client).subscribe(onSuccess: { tokenized in
             do {
                 let creditCard = tokenized.creditCard!
-                let _3ds2 = try SpreedlyThreeDS.createTransactionRequest(cardType: creditCard.cardType ?? "mastercard")
+                let _3ds2 = try SpreedlyThreeDS.createTransactionRequest(cardType: creditCard.cardType ?? "master")
                 _3ds2.delegate = self
 
                 self.serversidePurchase(client as! SpreedlyClientImpl, device_info: _3ds2.serialize(), token: creditCard.token!, scaProviderKey: "M8k0FisOKdAmDgcQeIKlHE7R1Nf", onSuccess: { scaAuthentication in
@@ -70,12 +70,15 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
                         _3ds2.doChallenge(withScaAuthentication: scaAuthentication)
                     }
                 }, onError: { error in
+                    print("start depth 3")
                     print(error)
                 })
             } catch {
+                print("start depth 2")
                 print(error)
             }
         }, onError: { error in
+            print("start depth 1")
             print(error)
         })
     }

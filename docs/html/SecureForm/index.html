@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreedly - SecureForm</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Spreedly
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#secureform.delegate">delegate</a></li><li class="variable"><a href="#secureform.creditcarddefaults">credit​Card​Defaults</a></li><li class="variable"><a href="#secureform.bankaccountdefaults">bank​Account​Defaults</a></li><li class="variable"><a href="#secureform.paymentmethoddefaults">payment​Method​Defaults</a></li><li class="variable"><a href="#secureform.fullname">full​Name</a></li><li class="variable"><a href="#secureform.firstname">first​Name</a></li><li class="variable"><a href="#secureform.lastname">last​Name</a></li><li class="variable"><a href="#secureform.email">email</a></li><li class="variable"><a href="#secureform.company">company</a></li><li class="variable"><a href="#secureform.creditcardnumber">credit​Card​Number</a></li><li class="variable"><a href="#secureform.creditcardverificationnumber">credit​Card​Verification​Number</a></li><li class="variable"><a href="#secureform.expirationdate">expiration​Date</a></li><li class="variable"><a href="#secureform.expirationdateprovider">expiration​Date​Provider</a></li><li class="variable"><a href="#secureform.bankaccountnumber">bank​Account​Number</a></li><li class="variable"><a href="#secureform.bankaccountroutingnumber">bank​Account​Routing​Number</a></li><li class="variable"><a href="#secureform.bankaccounttype">bank​Account​Type</a></li><li class="variable"><a href="#secureform.bankaccountholdertype">bank​Account​Holder​Type</a></li><li class="variable"><a href="#secureform.address1">address1</a></li><li class="variable"><a href="#secureform.address2">address2</a></li><li class="variable"><a href="#secureform.city">city</a></li><li class="variable"><a href="#secureform.state">state</a></li><li class="variable"><a href="#secureform.zip">zip</a></li><li class="variable"><a href="#secureform.country">country</a></li><li class="variable"><a href="#secureform.phonenumber">phone​Number</a></li><li class="variable"><a href="#secureform.sameaddressforshipping">same​Address​For​Shipping</a></li><li class="variable"><a href="#secureform.shippingaddress1">shipping​Address1</a></li><li class="variable"><a href="#secureform.shippingaddress2">shipping​Address2</a></li><li class="variable"><a href="#secureform.shippingcity">shipping​City</a></li><li class="variable"><a href="#secureform.shippingstate">shipping​State</a></li><li class="variable"><a href="#secureform.shippingzip">shipping​Zip</a></li><li class="variable"><a href="#secureform.shippingcountry">shipping​Country</a></li><li class="variable"><a href="#secureform.shippingphonenumber">shipping​Phone​Number</a></li><li class="variable"><a href="#secureform.selectedholdertype">selected​Holder​Type</a></li><li class="variable"><a href="#secureform.selectedaccounttype">selected​Account​Type</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#secureform.createcreditcardpaymentmethod(sender:)">create​Credit​Card​Payment​Method(sender:​)</a></li><li class="function"><a href="#secureform.createbankaccountpaymentmethod(sender:)">create​Bank​Account​Payment​Method(sender:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Class</small>
+    <code class="name">Secure​Form</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span>(<span class="variable">SPRSecureForm</span>) <span class="keyword">public</span> <span class="keyword">class</span> <span class="type">SecureForm</span>: <span class="type">UIView</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Coordinates with form controls to collect user input, manage API calls with Spreedly, and validate inputs.</p>
+
+</div>
+<div class="discussion">
+    <p>Does not change presentation directly.</p>
+
+<h1>Use with a Storyboard</h1>
+
+<p>One way to use the <code>SecureForm</code> in a Storyboard is to set it as the custom class for your ViewController's view.
+Under that view, add all your form elements (e.g. card number, cardholder name, verification value, expiration date,
+address fields, email address, etc), then connect those elements to the <code>@IBOutlet</code> properties on the SecureForm.
+Finally, connect your call-to-action button to the SecureForm's create methods (either
+<code>createCreditCardPaymentMethod</code> or <code>createBankAccountPaymentMethod</code>) to tell the form to gather the field values
+and attempt payment method creation with Spreedly.</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        <figure>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.44.1 (20200629.0846)
+ -->
+<!-- Pages: 1 -->
+<svg width="872pt" height="116pt"
+ viewBox="0.00 0.00 872.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 868,-112 868,4 -4,4"/>
+<!-- SecureForm -->
+<g id="node1" class="node class current">
+<title>SecureForm</title>
+<g id="a_node1"><a xlink:href="/SecureForm" xlink:title="SecureForm">
+<path fill="none" stroke="black" stroke-width="3" d="M528,-108C528,-108 336,-108 336,-108 330,-108 324,-102 324,-96 324,-96 324,-84 324,-84 324,-78 330,-72 336,-72 336,-72 528,-72 528,-72 534,-72 540,-78 540,-84 540,-84 540,-96 540,-96 540,-102 534,-108 528,-108"/>
+<text text-anchor="middle" x="432" y="-86.3" font-family="Menlo" font-size="14.00">SecureForm</text>
+</a>
+</g>
+</g>
+<!-- UIView -->
+<g id="node2" class="node unknown">
+<title>UIView</title>
+<path fill="none" stroke="black" d="M528,-36C528,-36 336,-36 336,-36 330,-36 324,-30 324,-24 324,-24 324,-12 324,-12 324,-6 330,0 336,0 336,0 528,0 528,0 534,0 540,-6 540,-12 540,-12 540,-24 540,-24 540,-30 534,-36 528,-36"/>
+<text text-anchor="middle" x="432" y="-14.3" font-family="Menlo" font-size="14.00">UIView</text>
+</g>
+<!-- SecureForm&#45;&gt;UIView -->
+<g id="edge1" class="edge conformsTo">
+<title>SecureForm&#45;&gt;UIView</title>
+<path fill="none" stroke="black" d="M432,-71.7C432,-63.98 432,-54.71 432,-46.11"/>
+<polygon fill="black" stroke="black" points="435.5,-46.1 432,-36.1 428.5,-46.1 435.5,-46.1"/>
+</g>
+</g>
+</svg>
+
+
+    <figcaption hidden>Inheritance graph for SecureForm.</figcaption>
+</figure>
+        <h3>Conforms To</h3>
+<dl>
+    <dt class="unknown"><code>UIView</code></dt>
+</dl>
+</section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="secureform.delegate">
+    <h3>
+        <code>delegate</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">delegate</span>: <a href="/SecureFormDelegate"><span class="type">SecureFormDelegate</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.creditcarddefaults">
+    <h3>
+        <code>credit​Card​Defaults</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">creditCardDefaults</span>: <a href="/CreditCardInfo"><span class="type">CreditCardInfo</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Provides a set of default values used to populate any credit card fields not set by the form.
+When set, <code>SecureForm.paymentMethodDefaults</code> will be ignored.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="secureform.bankaccountdefaults">
+    <h3>
+        <code>bank​Account​Defaults</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">bankAccountDefaults</span>: <a href="/BankAccountInfo"><span class="type">BankAccountInfo</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Provides a set of default values used to populate any bank account fields not set by the form.
+When set, <code>paymentMethodDefaults</code> will be ignored.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="secureform.paymentmethoddefaults">
+    <h3>
+        <code>payment​Method​Defaults</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">paymentMethodDefaults</span>: <a href="/PaymentMethodInfo"><span class="type">PaymentMethodInfo</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Provides a set of default values used to populate any fields not set by the form.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="secureform.fullname">
+    <h3>
+        <code>full​Name</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">fullName</span>: <a href="/ValidatedTextField"><span class="type">ValidatedTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.firstname">
+    <h3>
+        <code>first​Name</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">firstName</span>: <a href="/ValidatedTextField"><span class="type">ValidatedTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.lastname">
+    <h3>
+        <code>last​Name</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">lastName</span>: <a href="/ValidatedTextField"><span class="type">ValidatedTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.email">
+    <h3>
+        <code>email</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">email</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.company">
+    <h3>
+        <code>company</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">company</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.creditcardnumber">
+    <h3>
+        <code>credit​Card​Number</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">creditCardNumber</span>: <a href="/CreditCardNumberTextField"><span class="type">CreditCardNumberTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.creditcardverificationnumber">
+    <h3>
+        <code>credit​Card​Verification​Number</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">creditCardVerificationNumber</span>: <a href="/SecureTextField"><span class="type">SecureTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.expirationdate">
+    <h3>
+        <code>expiration​Date</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">expirationDate</span>: <a href="/ValidatedTextField"><span class="type">ValidatedTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.expirationdateprovider">
+    <h3>
+        <code>expiration​Date​Provider</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">expirationDateProvider</span>: <a href="/ExpirationDateProvider"><span class="type">ExpirationDateProvider</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.bankaccountnumber">
+    <h3>
+        <code>bank​Account​Number</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">bankAccountNumber</span>: <a href="/SecureTextField"><span class="type">SecureTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.bankaccountroutingnumber">
+    <h3>
+        <code>bank​Account​Routing​Number</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">bankAccountRoutingNumber</span>: <a href="/ValidatedTextField"><span class="type">ValidatedTextField</span></a>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.bankaccounttype">
+    <h3>
+        <code>bank​Account​Type</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">bankAccountType</span>: <span class="type">UISegmentedControl</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.bankaccountholdertype">
+    <h3>
+        <code>bank​Account​Holder​Type</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">bankAccountHolderType</span>: <span class="type">UISegmentedControl</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.address1">
+    <h3>
+        <code>address1</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">address1</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.address2">
+    <h3>
+        <code>address2</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">address2</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.city">
+    <h3>
+        <code>city</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">city</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.state">
+    <h3>
+        <code>state</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">state</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.zip">
+    <h3>
+        <code>zip</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">zip</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.country">
+    <h3>
+        <code>country</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">country</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.phonenumber">
+    <h3>
+        <code>phone​Number</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">phoneNumber</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.sameaddressforshipping">
+    <h3>
+        <code>same​Address​For​Shipping</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">sameAddressForShipping</span>: <span class="type">UISwitch</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingaddress1">
+    <h3>
+        <code>shipping​Address1</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingAddress1</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingaddress2">
+    <h3>
+        <code>shipping​Address2</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingAddress2</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingcity">
+    <h3>
+        <code>shipping​City</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingCity</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingstate">
+    <h3>
+        <code>shipping​State</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingState</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingzip">
+    <h3>
+        <code>shipping​Zip</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingZip</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingcountry">
+    <h3>
+        <code>shipping​Country</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingCountry</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.shippingphonenumber">
+    <h3>
+        <code>shipping​Phone​Number</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">shippingPhoneNumber</span>: <span class="type">UITextField</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.selectedholdertype">
+    <h3>
+        <code>selected​Holder​Type</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">selectedHolderType</span>: <a href="/BankAccountHolderType"><span class="type">BankAccountHolderType</span></a></code></pre></body></html>
+</div>
+<div role="article" class="variable" id="secureform.selectedaccounttype">
+    <h3>
+        <code>selected​Account​Type</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">selectedAccountType</span>: <a href="/BankAccountType"><span class="type">BankAccountType</span></a></code></pre></body></html>
+</div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="secureform.createcreditcardpaymentmethod(sender:)">
+    <h3>
+        <code>create​Credit​Card​Payment​Method(sender:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">IBAction</span> <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">createCreditCardPaymentMethod</span>(<span class="variable">sender</span>: <span class="type">UIView</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Combines data from the defaults (<code>creditCardDefaults</code> if set otherwise <code>paymentMethodDefaults</code>) with
+the form's values and attempts to create a credit card payment method.</p>
+
+</div>
+<div class="discussion">
+    <p>If the create call returns any field validation errors, those fields are notified of the errors.
+If successful, calls <code>delegate.spreedly(secureForm:success:)</code> with the successful <code>Transaction</code>.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="secureform.createbankaccountpaymentmethod(sender:)">
+    <h3>
+        <code>create​Bank​Account​Payment​Method(sender:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">IBAction</span> <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">createBankAccountPaymentMethod</span>(<span class="variable">sender</span>: <span class="type">UIView</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Combines data from the defaults (<code>bankAccountDefaults</code> if set otherwise <code>paymentMethodDefaults</code>) with
+the form's values and attempts to create a credit card payment method.</p>
+
+</div>
+<div class="discussion">
+    <p>If the create call returns any field validation errors, those fields are notified of the errors.
+If successful, calls <code>delegate.spreedly(secureForm:success:)</code> with the successful <code>Transaction</code>.</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-05T13:57:36-0500">November 5, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

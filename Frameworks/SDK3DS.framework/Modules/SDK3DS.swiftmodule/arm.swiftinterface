@@ -35,7 +35,7 @@ open class ThreeDS2ServiceImpl : SDK3DS.ThreeDS2Service {
   public var initialized: Swift.Bool
   public var directoryServerID: Swift.String
   public var messageVersion: Swift.String?
-  public var uiCustomization: SDK3DS.UiCustomization?
+  public static var uiCustomization: SDK3DS.UiCustomization?
   public var configParameters: SDK3DS.ConfigParameters?
   public var locale: Swift.String?
   public var warnings: [SDK3DS.Warning]?
@@ -160,6 +160,9 @@ public protocol MultiSelectListener {
 }
 @_hasMissingDesignatedInitializers public class CResValidator {
   @objc deinit
+}
+extension UIColor {
+  convenience public init?(hex: Swift.String)
 }
 extension SecCertificate {
   public static func create(derEncodedFile file: Swift.String) -> Security.SecCertificate?
@@ -659,6 +662,7 @@ open class ProgressView {
 @_hasMissingDesignatedInitializers public class ChallengeService {
   public var cReq: SDK3DS.CReq?
   public var cRes: SDK3DS.CRes?
+  public static var cancelledByUser: Swift.Bool
   public static func getInstance() -> SDK3DS.ChallengeService
   public func getCounter() -> Swift.Int
   public static func initialize(acsUrl: Swift.String, authReq: SDK3DS.AuthenticationRequestParameters, challengeParameters: SDK3DS.ChallengeParameters, receiver: SDK3DS.ChallengeStatusReceiver, timeout: Swift.Int) -> SDK3DS.ChallengeService
@@ -705,7 +709,7 @@ public protocol ThreeDS2Service {
 @_hasMissingDesignatedInitializers public class BuildConfig {
   public static let VERSION: Swift.String
   public static let DEBUG_LOGGER_ENABLED: Swift.Bool
-  public static let ENCRYPT_DEVICE_INFO: Swift.Bool
+  public static var ENCRYPT_DEVICE_INFO: Swift.Bool
   public static let TEST_CRYPTO: Swift.Bool
   public static let UL_ENVIRONMENT: Swift.Bool
   public static let API_URL: Swift.String

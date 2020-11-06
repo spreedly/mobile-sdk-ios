@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreedly - Spreedly</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Spreedly
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#classes">Classes</a></li><li><a href="#enumerations">Enumerations</a></li><li><a href="#protocols">Protocols</a></li><li><a href="#typealiases">Typealiases</a></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+                <section id="classes">
+        <h2>Classes</h2>
+        <dl>
+            <dt class="class">
+    <a href="/ClientConfiguration" title="class - ClientConfiguration">
+        Client​Configuration
+    </a>
+</dt>
+<dd>
+    <p>Contains configuration values used by the SpreedlyClient implementation.</p>
+
+</dd>
+<dt class="class">
+    <a href="/ClientFactory" title="class - ClientFactory">
+        Client​Factory
+    </a>
+</dt>
+<dd>
+    <p>Creator class for creating instances of SpreedlyClient</p>
+
+</dd>
+<dt class="class">
+    <a href="/CreditCardNumberTextField" title="class - CreditCardNumberTextField">
+        Credit​Card​Number​Text​Field
+    </a>
+</dt>
+<dd>
+    <p>Handles credit card number input from the user.</p>
+
+</dd>
+<dt class="class">
+    <a href="/ExpirationPickerField" title="class - ExpirationPickerField">
+        Expiration​Picker​Field
+    </a>
+</dt>
+<dd>
+    <p>A <code>UITextField</code> with <code>UIPickerView</code> spinners allowing the user to select a month and year.</p>
+
+</dd>
+<dt class="class">
+    <a href="/SecureForm" title="class - SecureForm">
+        Secure​Form
+    </a>
+</dt>
+<dd>
+    <p>Coordinates with form controls to collect user input, manage API calls with Spreedly, and validate inputs.</p>
+
+</dd>
+<dt class="class">
+    <a href="/SecureTextField" title="class - SecureTextField">
+        Secure​Text​Field
+    </a>
+</dt>
+<dd>
+    <p>Allows this control to return it's text property as a SpreedlySecureOpaqueString.
+Recommended for use with card verification value.</p>
+
+</dd>
+<dt class="class">
+    <a href="/ValidatedTextField" title="class - ValidatedTextField">
+        Validated​Text​Field
+    </a>
+</dt>
+<dd>
+    <p>A UITextField which is aware of its validation state and updates its appearance commensurately.</p>
+
+</dd>
+<dt class="class">
+    <a href="/ApplePayHandler" title="class - ApplePayHandler">
+        Apple​Pay​Handler
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/ExpirationDate" title="class - ExpirationDate">
+        Expiration​Date
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/ExpressBuilder" title="class - ExpressBuilder">
+        Express​Builder
+    </a>
+</dt>
+<dd>
+    <p>ExpressBuilder is the entrypoint for the Express UI workflow.</p>
+
+</dd>
+<dt class="class">
+    <a href="/ExpressContext" title="class - ExpressContext">
+        Express​Context
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/PaymentMethodItem" title="class - PaymentMethodItem">
+        Payment​Method​Item
+    </a>
+</dt>
+<dd>
+    <p>Contains basic information about a payment method.</p>
+
+</dd>
+<dt class="class">
+    <a href="/SelectedPaymentMethod" title="class - SelectedPaymentMethod">
+        Selected​Payment​Method
+    </a>
+</dt>
+<dd>
+    <p>Contains data about the payment method selected by the user from the <code>PaymentSelectionViewController</code>.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Address" title="class - Address">
+        Address
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/ApplePayInfo" title="class - ApplePayInfo">
+        Apple​Pay​Info
+    </a>
+</dt>
+<dd>
+    <p>A set of information used when creating an Apple Pay payment method with Spreedly.</p>
+
+</dd>
+<dt class="class">
+    <a href="/BankAccountInfo" title="class - BankAccountInfo">
+        Bank​Account​Info
+    </a>
+</dt>
+<dd>
+    <p>A set of information used when creating a bank account payment method with Spreedly.</p>
+
+</dd>
+<dt class="class">
+    <a href="/CreditCardInfo" title="class - CreditCardInfo">
+        Credit​Card​Info
+    </a>
+</dt>
+<dd>
+    <p>A set of information used when creating a credit card payment method with Spreedly.</p>
+
+</dd>
+<dt class="class">
+    <a href="/PaymentMethodInfo" title="class - PaymentMethodInfo">
+        Payment​Method​Info
+    </a>
+</dt>
+<dd>
+    <p>A set of information used when creating payment methods with Spreedly.</p>
+
+</dd>
+<dt class="class">
+    <a href="/SpreedlyError" title="class - SpreedlyError">
+        Spreedly​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/PaymentMethodResult" title="class - PaymentMethodResult">
+        Payment​Method​Result
+    </a>
+</dt>
+<dd>
+    <p>Contains information returned from Spreedly after attempting to create a payment method.</p>
+
+</dd>
+<dt class="class">
+    <a href="/CreditCardResult" title="class - CreditCardResult">
+        Credit​Card​Result
+    </a>
+</dt>
+<dd>
+    <p>Contains information returned from Spreedly after attempting to create a credit card payment method.</p>
+
+</dd>
+<dt class="class">
+    <a href="/BankAccountResult" title="class - BankAccountResult">
+        Bank​Account​Result
+    </a>
+</dt>
+<dd>
+    <p>Contains information returned from Spreedly after attempting to create a bank account payment method.</p>
+
+</dd>
+<dt class="class">
+    <a href="/ApplePayResult" title="class - ApplePayResult">
+        Apple​Pay​Result
+    </a>
+</dt>
+<dd>
+    <p>Contains information returned from Spreedly after attempting to create an Apple Pay payment method.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Transaction" title="class - Transaction">
+        Transaction
+    </a>
+</dt>
+<dd>
+    <p>Contains response information and metadata pertaining to the payment method creation attempt.</p>
+
+</dd>
+<dt class="class">
+    <a href="/SingleTransactionSource" title="class - SingleTransactionSource">
+        Single​Transaction​Source
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/SingleTransaction" title="class - SingleTransaction">
+        Single​Transaction
+    </a>
+</dt>
+<dd>
+    <p>Represents a push style sequence containing one <code>Transaction</code> element.</p>
+
+</dd>
+<dt class="class">
+    <a href="/SpreedlySecureOpaqueStringBuilder" title="class - SpreedlySecureOpaqueStringBuilder">
+        Spreedly​Secure​Opaque​String​Builder
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/SpreedlyThreeDS" title="class - SpreedlyThreeDS">
+        Spreedly​Three​DS
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/SpreedlyThreeDSTransactionRequest" title="class - SpreedlyThreeDSTransactionRequest">
+        Spreedly​Three​DSTransaction​Request
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="enumerations">
+        <h2>Enumerations</h2>
+        <dl>
+            <dt class="enumeration">
+    <a href="/SpreedlySecurityError" title="enumeration - SpreedlySecurityError">
+        Spreedly​Security​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/ClientError" title="enumeration - ClientError">
+        Client​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/ValidationState" title="enumeration - ValidationState">
+        Validation​State
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/ExpressBuilder_PresentationStyle" title="enumeration - ExpressBuilder.PresentationStyle">
+        Express​Builder.​Presentation​Style
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/Address_AddressType" title="enumeration - Address.AddressType">
+        Address.​Address​Type
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/BankAccountType" title="enumeration - BankAccountType">
+        Bank​Account​Type
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/BankAccountHolderType" title="enumeration - BankAccountHolderType">
+        Bank​Account​Holder​Type
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/CardBrand" title="enumeration - CardBrand">
+        Card​Brand
+    </a>
+</dt>
+<dd>
+    <p>Card brands supported by Spreedly.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/StorageState" title="enumeration - StorageState">
+        Storage​State
+    </a>
+</dt>
+<dd>
+    <p>The current state of a gateway, receiver or payment method in the Spreedly database.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/_ObjCStorageState" title="enumeration - _ObjCStorageState">
+        _Obj​CStorage​State
+    </a>
+</dt>
+<dd>
+    <p>The current state of a gateway, receiver or payment method in the Spreedly database.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/PaymentMethodType" title="enumeration - PaymentMethodType">
+        Payment​Method​Type
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/_ObjCPaymentMethodType" title="enumeration - _ObjCPaymentMethodType">
+        _Obj​CPayment​Method​Type
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/SpreedlyThreeDSError" title="enumeration - SpreedlyThreeDSError">
+        Spreedly​Three​DSError
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="protocols">
+        <h2>Protocols</h2>
+        <dl>
+            <dt class="protocol">
+    <a href="/SpreedlyClient" title="protocol - SpreedlyClient">
+        Spreedly​Client
+    </a>
+</dt>
+<dd>
+    <p>A set of methods used to create payment methods and recache verification values.
+Returns single-element sequences of <code>Transaction</code> to be handled asynchronously.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/_ObjCClient" title="protocol - _ObjCClient">
+        _Obj​CClient
+    </a>
+</dt>
+<dd>
+    <p>A set of methods used to create payment methods and recache verification values.
+Returns single-element sequences of <code>SPRTransaction</code> to be handled asynchronously.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/CreditCardNumberTextFieldDelegate" title="protocol - CreditCardNumberTextFieldDelegate">
+        Credit​Card​Number​Text​Field​Delegate
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/SecureFormDelegate" title="protocol - SecureFormDelegate">
+        Secure​Form​Delegate
+    </a>
+</dt>
+<dd>
+    <p>A set of methods that you use to receive successfully created payment methods from Spreedly and provide
+client configuration for that communication.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/ExpirationDateProvider" title="protocol - ExpirationDateProvider">
+        Expiration​Date​Provider
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/UITextFieldXIBLocalizable" title="protocol - UITextFieldXIBLocalizable">
+        UIText​Field​XIBLocalizable
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/XIBMultiLocalizable" title="protocol - XIBMultiLocalizable">
+        XIBMulti​Localizable
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/SpreedlySecureOpaqueString" title="protocol - SpreedlySecureOpaqueString">
+        Spreedly​Secure​Opaque​String
+    </a>
+</dt>
+<dd>
+    <p>A representation of a String where the content of that String is intentionally obscured both reminding the
+developer that it should be carefully handled and to limit the possibility of it being recorded in logs, dumps,
+or prints.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/SpreedlyThreeDSTransactionRequestDelegate" title="protocol - SpreedlyThreeDSTransactionRequestDelegate">
+        Spreedly​Three​DSTransaction​Request​Delegate
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="typealiases">
+        <h2>Typealiases</h2>
+        <dl>
+            <dt class="typealias">
+    <a href="/PaymentCompletionHandler" title="typealias - PaymentCompletionHandler">
+        Payment​Completion​Handler
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Metadata" title="typealias - Metadata">
+        Metadata
+    </a>
+</dt>
+<dd>
+    <p>Metadata key-value pairs (limit 25). Keys are limited to 50 characters.
+Values are limited to 500 characters and cannot contain compounding data types.</p>
+
+</dd>
+        </dl>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-05T13:57:36-0500">November 5, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

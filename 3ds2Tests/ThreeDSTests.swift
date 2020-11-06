@@ -29,7 +29,7 @@ class ThreeDsTests: XCTestCase {
     }
 
     func testInit() throws {
-        try SpreedlyThreeDS.initialize(uiViewController: UIViewController())
+        try SpreedlyThreeDS.initialize(uiViewController: UIViewController(), test: true)
     }
 
     func testCreate() throws {
