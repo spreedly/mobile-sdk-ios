@@ -84,6 +84,7 @@ public protocol HTMLListener {
 }
 public protocol TextListener {
   func callbackText(text: Swift.String)
+  func resendChallenge()
 }
 open class ProtocolErrorEvent {
   public var ErrorMsg: SDK3DS.ErrorMessage
@@ -670,7 +671,7 @@ open class ProgressView {
   public func getcRes() -> SDK3DS.CRes
   public static func cleanInstance()
   public func setCallback(callback: SDK3DS.IChallengeCallback)
-  public func incrementCounter()
+  public func incrementCounter(value: Swift.Int)
   public func initChallenge()
   public func challengeTimedOut()
   public func sendChallengeRequest() throws
@@ -727,6 +728,7 @@ public protocol ThreeDS2Service {
   public func setChallengeHTMLDataEntry(text: Swift.String)
   public func setOobContinue(oobContinue: Swift.Bool)
   public func setChallengeCancel(cause: SDK3DS.ChallengeCancelEnumValue)
+  public func setResendChallenge(value: SDK3DS.BooleanYesNoEnum)
   required public init(from decoder: Swift.Decoder) throws
   @objc deinit
   public func encode(to encoder: Swift.Encoder) throws
@@ -772,6 +774,15 @@ public protocol SDKNativeUIActivityCallback {
   public func getCallback() -> SDK3DS.SDKNativeUIActivityCallback
   @objc deinit
 }
+public enum BooleanYesNoEnum : Swift.String, Swift.Codable {
+  case NO
+  case YES
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+}
 public enum ChallengeCancelEnumValue : Swift.String, Swift.Codable {
   case CANCELED_BY_CARDHOLDER
   case CH_CANCEL_AND_CONTINUE
@@ -814,6 +825,7 @@ public protocol SingleSelectListener {
   public func callbackHTML(text: Swift.String)
   public func callbackCResFinished()
   public func callbackText(text: Swift.String)
+  public func resendChallenge()
   public func callbackOOB(oobContinue: Swift.Bool)
   public func refreshText()
   public func callbackMultiSelect(text: Swift.String)
@@ -918,6 +930,9 @@ extension SDK3DS.CC.CRC.Mode : Swift.RawRepresentable {}
 extension SDK3DS.CC.KeyDerivation.PRFAlg : Swift.Equatable {}
 extension SDK3DS.CC.KeyDerivation.PRFAlg : Swift.Hashable {}
 extension SDK3DS.CC.KeyDerivation.PRFAlg : Swift.RawRepresentable {}
+extension SDK3DS.BooleanYesNoEnum : Swift.Equatable {}
+extension SDK3DS.BooleanYesNoEnum : Swift.Hashable {}
+extension SDK3DS.BooleanYesNoEnum : Swift.RawRepresentable {}
 extension SDK3DS.ChallengeCancelEnumValue : Swift.Equatable {}
 extension SDK3DS.ChallengeCancelEnumValue : Swift.Hashable {}
 extension SDK3DS.ChallengeCancelEnumValue : Swift.RawRepresentable {}

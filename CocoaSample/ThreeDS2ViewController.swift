@@ -44,6 +44,30 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
 
 
     @IBAction func start3DS2(_ sender: Any) {
+        start3DS2(withTheme: nil)
+    }
+
+
+    @IBAction func start3DS2BlackAndWhite(_ sender: Any) {
+        let white = "FFFFFF"
+        let gray = "7f7f7f"
+        let black = "060606"
+        var theme = SpreedlyTheme()
+        theme.buttonPositiveBackgroundColor = black
+        theme.buttonNeutralBackgroundColor = black
+        theme.buttonPositiveTextColor = white
+        theme.buttonNeutralTextColor = white
+        theme.textBoxBorderColor = black
+        theme.toolbarTextColor = white
+        theme.toolbarColor = black
+        theme.headingTextColor = black
+        theme.textColor = black
+        theme.textBoxCornerRadius = 0
+        theme.buttonCornerRadius = 0
+        start3DS2(withTheme: theme)
+    }
+
+    func start3DS2(withTheme theme: SpreedlyTheme?) {
         self.status?.text = "starting"
         let client = ClientFactory.create(with: ClientConfiguration(
                 envKey: ProcessInfo.processInfo.environment["ENV_KEY"] ?? "A54wvT9knP8Sc6ati68epUcq72l",
@@ -52,7 +76,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         ))
 
         do {
-            try SpreedlyThreeDS.initialize(uiViewController: self, test: true)
+            try SpreedlyThreeDS.initialize(uiViewController: self, test: true, theme: theme)
         } catch {
             print(error)
         }
@@ -104,7 +128,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         request.httpBody = try? JSONSerialization.data(withJSONObject: [
             "transaction": [
                 "payment_method_token": token,
-                "amount":  Int((Double(amount.text ?? "1000.00") ?? 1000.00) * 100),
+                "amount": Int((Double(amount.text ?? "1000.00") ?? 1000.00) * 100),
                 "currency_code": "EUR",
                 "redirect_url": "http://test.com/",
                 "callback_url": "http://test.com/",
@@ -117,10 +141,10 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         let task = session.dataTask(with: request) { data, response, error in
             if let data = data {
                 DispatchQueue.main.async {
-                     self.success(status: "response: \(String(data: data, encoding: .utf8)) \(error)")
+                    self.success(status: "response: \(String(data: data, encoding: .utf8)) \(error)")
                     print(String(data: data, encoding: .utf8))
                     print(error)
-                 }
+                }
                 let json = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
                 let trans: [String: Any]? = json?.object(optional: "transaction")
                 if (try? trans?.string(for: "state")) == "succeeded" {
