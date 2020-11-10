@@ -15,6 +15,7 @@ class ThreeDS2ViewController: UIViewController {
     @IBOutlet weak var cardNumber: SecureTextField!
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var status: UILabel?
+    @IBOutlet weak var challengeType: UISegmentedControl?
 
     override func viewDidLoad() {
         cardNumber.text = "5555555555554444"
@@ -115,7 +116,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         info.number = SpreedlySecureOpaqueStringBuilder.build(from: cardNumber.text)
         info.verificationValue = SpreedlySecureOpaqueStringBuilder.build(from: "919")
         info.year = 2029
-        info.month = 1
+        info.month = (challengeType?.selectedSegmentIndex ?? 0) + 1
         info.email = "dolly@dog.com"
 
         return client.createPaymentMethodFrom(creditCard: info)
