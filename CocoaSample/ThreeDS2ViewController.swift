@@ -27,6 +27,7 @@ class ThreeDS2ViewController: UIViewController {
 extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
     func success(status: String) {
         self.status?.text = "success: \(status)"
+        print(self.status?.text)
     }
 
     func cancelled() {

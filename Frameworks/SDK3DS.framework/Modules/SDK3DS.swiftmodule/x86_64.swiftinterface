@@ -663,7 +663,6 @@ open class ProgressView {
 @_hasMissingDesignatedInitializers public class ChallengeService {
   public var cReq: SDK3DS.CReq?
   public var cRes: SDK3DS.CRes?
-  public static var cancelledByUser: Swift.Bool
   public static func getInstance() -> SDK3DS.ChallengeService
   public func getCounter() -> Swift.Int
   public static func initialize(acsUrl: Swift.String, authReq: SDK3DS.AuthenticationRequestParameters, challengeParameters: SDK3DS.ChallengeParameters, receiver: SDK3DS.ChallengeStatusReceiver, timeout: Swift.Int) -> SDK3DS.ChallengeService
@@ -676,7 +675,6 @@ open class ProgressView {
   public func challengeTimedOut()
   public func sendChallengeRequest() throws
   public func cancelChallenge()
-  public func challengeTimeout()
   @objc deinit
 }
 public protocol IChallengeCallback {
@@ -728,6 +726,7 @@ public protocol ThreeDS2Service {
   public func setChallengeHTMLDataEntry(text: Swift.String)
   public func setOobContinue(oobContinue: Swift.Bool)
   public func setChallengeCancel(cause: SDK3DS.ChallengeCancelEnumValue)
+  public func getResendChallenge() -> SDK3DS.BooleanYesNoEnum?
   public func setResendChallenge(value: SDK3DS.BooleanYesNoEnum)
   required public init(from decoder: Swift.Decoder) throws
   @objc deinit
