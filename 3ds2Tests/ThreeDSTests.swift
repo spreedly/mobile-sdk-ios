@@ -59,6 +59,15 @@ class ThreeDsTests: XCTestCase {
         XCTAssertTrue(app?.staticTexts["success: Y"].waitForExistence(timeout: 30) ?? false)
     }
 
+    func testCancel() throws {
+        app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
+        app?.textFields.element(boundBy: 1).clearAndText("1000.00")
+        app?.buttons["Begin Purchase"].tap()
+        XCTAssertTrue(app?.buttons["Confirmar"].waitForExistence(timeout: 60) ?? false)
+        app?.buttons["CANCEL"].tap()
+        XCTAssertTrue(app?.staticTexts["cancelled"].waitForExistence(timeout: 30) ?? false)
+    }
+
     func testFailedNoAuth1() throws {
         app?.textFields.element(boundBy: 0).clearAndText("5555555555554444")
         app?.textFields.element(boundBy: 1).clearAndText("99.96")
