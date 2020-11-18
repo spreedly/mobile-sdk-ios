@@ -5,6 +5,7 @@
 import Foundation
 import XCTest
 @testable import Spreedly
+import Spreedly3DS2
 @testable import CocoaSample
 
 
@@ -29,12 +30,12 @@ class ThreeDsTests: XCTestCase {
     }
 
     func testInit() throws {
-        try SpreedlyThreeDS.initialize(uiViewController: UIViewController(), test: true)
+        try ThreeDS.initialize(uiViewController: UIViewController(), test: true)
     }
 
     func testCreate() throws {
         try testInit()
-        let trans = try SpreedlyThreeDS.createTransactionRequest(cardType: "mastercard")
+        let trans = try ThreeDS.createTransactionRequest(cardType: "mastercard")
         let data = trans.serialize()
         print(data)
         XCTAssertNotNil(data)
@@ -117,7 +118,7 @@ class ThreeDsTests: XCTestCase {
         let cardType = transaction.creditCard!.cardType!
 
         try testInit()
-        let _3ds2 = try SpreedlyThreeDS.createTransactionRequest(cardType: cardType)
+        let _3ds2 = try ThreeDS.createTransactionRequest(cardType: cardType)
 
         let session = client.session(authenticated: true)
         var request = URLRequest(url: client.authenticatedPurchaseUrl("BkXcmxRDv8gtMUwu5Buzb4ZbqGe"))

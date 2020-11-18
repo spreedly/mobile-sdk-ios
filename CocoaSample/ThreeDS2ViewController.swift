@@ -9,6 +9,7 @@ import Foundation
 import PassKit
 import UIKit
 @testable import Spreedly
+import Spreedly3DS2
 import SpreedlyCocoa
 
 class ThreeDS2ViewController: UIViewController {
@@ -25,7 +26,7 @@ class ThreeDS2ViewController: UIViewController {
 
 }
 
-extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
+extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
     func success(status: String) {
         self.status?.text = "success: \(status)"
         print(self.status?.text)
@@ -39,7 +40,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         self.status?.text = "timeout"
     }
 
-    func error(_ error: SpreedlyThreeDSError) {
+    func error(_ error: ThreeDSError) {
         print(error)
         self.status?.text = "error: \(error)"
     }
@@ -78,7 +79,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         ))
 
         do {
-            try SpreedlyThreeDS.initialize(uiViewController: self, test: true, theme: theme)
+            try ThreeDS.initialize(uiViewController: self, test: true, theme: theme)
         } catch {
             print(error)
         }
@@ -86,7 +87,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
         tokenize(client).subscribe(onSuccess: { tokenized in
             do {
                 let creditCard = tokenized.creditCard!
-                let _3ds2 = try SpreedlyThreeDS.createTransactionRequest(cardType: creditCard.cardType ?? "master")
+                let _3ds2 = try ThreeDS.createTransactionRequest(cardType: creditCard.cardType ?? "master")
                 _3ds2.delegate = self
 
                 self.serversidePurchase(client as! SpreedlyClientImpl, device_info: _3ds2.serialize(), token: creditCard.token!, scaProviderKey: "M8k0FisOKdAmDgcQeIKlHE7R1Nf", onSuccess: { scaAuthentication in
@@ -163,7 +164,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
                 }
                 print(String(data: data, encoding: .utf8) ?? "bad utf8")
                 DispatchQueue.main.async {
-                    onError(SpreedlyThreeDSError.protocolError(message: "bad json"))
+                    onError(ThreeDSError.protocolError(message: "bad json"))
                 }
             } else if let error = error {
                 DispatchQueue.main.async {
@@ -171,7 +172,7 @@ extension ThreeDS2ViewController: SpreedlyThreeDSTransactionRequestDelegate {
                 }
             } else {
                 DispatchQueue.main.async {
-                    onError(SpreedlyThreeDSError.protocolError(message: "unknown"))
+                    onError(ThreeDSError.protocolError(message: "unknown"))
                 }
             }
         }

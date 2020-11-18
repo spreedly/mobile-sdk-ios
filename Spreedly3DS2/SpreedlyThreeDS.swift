@@ -5,26 +5,42 @@
 import Foundation
 import SDK3DS
 
-public enum SpreedlyThreeDSError: Error {
+/// 3DS2 Errors
+public enum ThreeDSError: Error {
     case invalidInput(message: String)
     case protocolError(message: String)
     case runtimeError(message: String)
     case unknownError(error: Error)
 }
 
-public class SpreedlyThreeDS {
+///
+/// 3DS2 Service
+///
+/// Used to start a 3DS2 challenge transaction
+///
+public class ThreeDS {
     static let _3ds2service: ThreeDS2Service = ThreeDS2ServiceImpl.sdk
     static var test: Bool!
 
+    /// initialize
+    ///
+    /// Prepares the 3DS2 service for work.
+    ///
+    /// - Parameters:
+    ///   - uiViewController: A visible view controller. Most often you'll call this from a method on a view controller, and you can just pass self.
+    ///   - locale: (optional) a locale string in the same format as "en_US"
+    ///   - test: (optional) pass true when using test mode
+    ///   - theme: (optional) allows tweaking the colors and button themes of the challenge screen.
+    /// - Throws: ThreeDSError.invalidInput
     public static func initialize(uiViewController: UIViewController, locale: String = "en_US", test: Bool = false, theme: SpreedlyTheme? = nil) throws {
-        SpreedlyThreeDS.test = test
+        ThreeDS.test = test
         let config = ConfigParameters()
         try? config.addParam("CONF", "ENV", test ? "test" : "prod")
         let ui = theme.toSeglanTheme()
         do {
             try _3ds2service.initialize(uiViewController: uiViewController, configParameters: config, locale: locale, uiCustomization: ui)
         } catch SDK3DSError.InvalidInputException(let message) {
-            throw SpreedlyThreeDSError.invalidInput(message: message)
+            throw ThreeDSError.invalidInput(message: message)
         } catch SDK3DSError.SDKAlreadyInitializedException {
             ThreeDS2ServiceImpl.uiCustomization = ui
             print("ERROR Already init")
@@ -50,34 +66,52 @@ public class SpreedlyThreeDS {
     /// Creates a transaction request that can be used to tell Spreedly that a 3DS2 challenge is supported.
     /// - Parameters:
     ///   - cardType: The name of the card time. see https://docs.spreedly.com/reference/supported-payment-methods/
-    ///   - test: pass true for test transactions.
-    public static func createTransactionRequest(cardType: String) throws -> SpreedlyThreeDSTransactionRequest {
-        SpreedlyThreeDSTransactionRequest(_3ds2service, try _3ds2service.createTransaction(directoryServerID: cardTypeToDirectoryServerId(cardType), messageVersion: "2.1.0"))
+    public static func createTransactionRequest(cardType: String) throws -> ThreeDSTransactionRequest {
+        ThreeDSTransactionRequest(_3ds2service, try _3ds2service.createTransaction(directoryServerID: cardTypeToDirectoryServerId(cardType), messageVersion: "2.1.0"))
     }
 }
 
-public protocol SpreedlyThreeDSTransactionRequestDelegate {
+/// Protocol for recieveing challenge results.
+public protocol ThreeDSTransactionRequestDelegate {
     func success(status: String)
 
     func cancelled()
 
     func timeout()
 
-    func error(_ error: SpreedlyThreeDSError)
+    func error(_ error: ThreeDSError)
 }
 
-public class SpreedlyThreeDSTransactionRequest {
+/// A transaction challenge request
+public class ThreeDSTransactionRequest {
 
     let service: SDK3DS.ThreeDS2Service
     let transaction: SDK3DS.Transaction
 
-    public var delegate: SpreedlyThreeDSTransactionRequestDelegate?
+    public var delegate: ThreeDSTransactionRequestDelegate?
 
-    public init(_ service: SDK3DS.ThreeDS2Service, _ transaction: SDK3DS.Transaction) {
+    init(_ service: SDK3DS.ThreeDS2Service, _ transaction: SDK3DS.Transaction) {
         self.service = service
         self.transaction = transaction
     }
 
+    /// Serializes the device information needed to start a 3DS2 challenge
+    ///
+    /// Send the result to your server and then send it to Spreedly in your payment request.
+    /// 
+    /// {
+    ///    "transaction": {
+    ///     "payment_method_token": token,
+    ///     "amount": <AMOUNT IN CENTS>,
+    ///     "currency_code": "<CURRENCY>",
+    ///     "redirect_url": "<REDIRECT_URL>",
+    ///     "callback_url": "<CALLBACK_URL>",
+    ///     "device_info": transactionRequest.serialize(),
+    ///     "channel": "app",
+    ///     "sca_provider_key": <YOUR SCA PROVIDER KEY>
+    ///   }
+    /// }
+    /// - Returns: device_info
     public func serialize() -> String {
         let request = transaction.getAuthenticationRequestParameters()
         return (try? JSONSerialization.data(withJSONObject: [
@@ -94,6 +128,8 @@ public class SpreedlyThreeDSTransactionRequest {
         ] as [String: Any]).base64EncodedString()) ?? ""
     }
 
+    /// Displays the 3DS2 challenge to the user.
+    /// - Parameter auth: the 'sca_authentication' object from the Spreedly payment response
     public func doChallenge(withScaAuthenticationJson auth: Data) {
         do {
             doChallenge(withScaAuthentication: try JSONSerialization.jsonObject(with: auth) as! [String: Any])
@@ -104,6 +140,8 @@ public class SpreedlyThreeDSTransactionRequest {
         }
     }
 
+    /// Displays the 3DS2 challenge to the user.
+    /// - Parameter auth: the 'sca_authentication' object from the Spreedly payment response
     public func doChallenge(withScaAuthentication auth: [String: Any]) {
         let parameters = SDK3DS.ChallengeParameters()
         do {
@@ -130,7 +168,7 @@ public class SpreedlyThreeDSTransactionRequest {
 
 }
 
-extension SpreedlyThreeDSTransactionRequest: ChallengeStatusReceiver {
+extension ThreeDSTransactionRequest: ChallengeStatusReceiver {
 
     public func completed(_ e: CompletionEvent) {
         DispatchQueue.main.async {
@@ -188,6 +226,10 @@ public class SpreedlyTheme {
     public var textBoxBorderWidth: Int?
     public var textBoxBorderColor: String?
     public var textBoxCornerRadius: Int?
+
+    public init() {
+
+    }
 }
 
 extension Optional where Wrapped: SpreedlyTheme {
