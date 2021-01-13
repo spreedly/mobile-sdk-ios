@@ -8,7 +8,7 @@
 
 import PassKit
 import UIKit
-@testable import Spreedly
+import Spreedly
 import SpreedlyCocoa
 
 class ViewController: UIViewController {

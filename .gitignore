@@ -1,5 +1,6 @@
 
 build/
+derived_data/
 *.swp
 trash
 .DS_Store

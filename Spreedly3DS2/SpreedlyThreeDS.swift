@@ -114,7 +114,7 @@ public class ThreeDSTransactionRequest {
     /// - Returns: device_info
     public func serialize() -> String {
         let request = transaction.getAuthenticationRequestParameters()
-        return (try? JSONSerialization.data(withJSONObject: [
+        let json = [
             "sdk_app_id": request.getSDKAppID(),
             "sdk_enc_data": request.getDeviceData(),
             "sdk_ephem_pub_key": (try? JSONSerialization.jsonObject(with: request.sdkEphemeralPublicKey.data(using: .utf8)!, options: .allowFragments)) ?? "bad public key",
@@ -125,7 +125,11 @@ public class ThreeDSTransactionRequest {
                 "sdk_interface": "03",
                 "sdk_ui_type": "01"
             ]
-        ] as [String: Any]).base64EncodedString()) ?? ""
+        ] as [String: Any]
+        if ThreeDS.test {
+            print("serialize", json)
+        }
+        return (try? JSONSerialization.data(withJSONObject: json).base64EncodedString()) ?? ""
     }
 
     /// Displays the 3DS2 challenge to the user.
@@ -143,6 +147,9 @@ public class ThreeDSTransactionRequest {
     /// Displays the 3DS2 challenge to the user.
     /// - Parameter auth: the 'sca_authentication' object from the Spreedly payment response
     public func doChallenge(withScaAuthentication auth: [String: Any]) {
+        if ThreeDS.test {
+            print("doChallenge", auth)
+        }
         let parameters = SDK3DS.ChallengeParameters()
         do {
             parameters.threeDSServerTransactionID = try auth.string(for: "three_ds_server_trans_id")
@@ -171,30 +178,51 @@ public class ThreeDSTransactionRequest {
 extension ThreeDSTransactionRequest: ChallengeStatusReceiver {
 
     public func completed(_ e: CompletionEvent) {
+        if ThreeDS.test {
+            print("ChallengeStatusReceiver.completed", e.getSDKTransactionID(), e.getTransactionStatus())
+        }
         DispatchQueue.main.async {
             self.delegate?.success(status: e.transactionStatus)
         }
     }
 
     public func cancelled() {
+        if ThreeDS.test {
+            print("ChallengeStatusReceiver.cancelled")
+        }
         DispatchQueue.main.async {
             self.delegate?.cancelled()
         }
     }
 
     public func timedout() {
+        if ThreeDS.test {
+            print("ChallengeStatusReceiver.timedout")
+        }
         DispatchQueue.main.async {
             self.delegate?.timeout()
         }
     }
 
     public func protocolError(_ e: ProtocolErrorEvent) {
+        if ThreeDS.test {
+            print("ChallengeStatusReceiver.protocolError",
+                  e.getSDKTransactionID(),
+                  e.ErrorMsg.getErrorCode(),
+                  e.ErrorMsg.getErrorDetails(),
+                  e.ErrorMsg.getErrorDescription(),
+                  e.ErrorMsg.getTransactionID()
+            )
+        }
         DispatchQueue.main.async {
             self.delegate?.error(.protocolError(message: e.ErrorMsg.getErrorDescription()))
         }
     }
 
     public func runtimeError(_ e: RuntimeErrorEvent) {
+        if ThreeDS.test {
+            print("ChallengeStatusReceiver.runtimeError", e.getErrorCode() ?? "", e.getErrorMessage())
+        }
         DispatchQueue.main.async {
             self.delegate?.error(.runtimeError(message: e.getErrorMessage()))
         }

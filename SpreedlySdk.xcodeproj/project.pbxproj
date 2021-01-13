@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -25,7 +25,6 @@
 		3C0553E124ABFCB000F31DA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553E024ABF8FC00F31DA3 /* Localizable.strings */; };
 		3C31533C24770C9C00C86272 /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		3C31533D24770C9C00C86272 /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */; };
 		3C9420EE249C0CC700D2B5E1 /* PaymentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420ED249C0CC700D2B5E1 /* PaymentSelectionViewController.swift */; };
 		3C9420F0249D485B00D2B5E1 /* ExpirationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */; };
 		3C9420F224A1294200D2B5E1 /* ExpressBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */; };
@@ -38,7 +37,6 @@
 		3CFE89CD2491E045005E64B4 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CC2491E045005E64B4 /* ClientFactory.swift */; };
 		3CFE89CF2492CD63005E64B4 /* ApplePayCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */; };
 		3CFE89D52497F542005E64B4 /* SPCreditCardNumberTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */; };
-		4181D7259F8C7D598366B24E /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */; };
 		442A2046D4C9B7656E6F8A70 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
 		442A21648BB1EC0625E9A0BE /* SpreedlyCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442A21C810151C966C2C9AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */; };
@@ -73,10 +71,8 @@
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
 		442A2E7FE53A19BC8DDDBFE5 /* PaymentMethodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A206A9CCC17119C549F35 /* PaymentMethodInfo.swift */; };
 		442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */; };
-		5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */; };
 		A621F01F254B50C900AFBD43 /* ThreeDSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */; };
 		A621F021254B5ABF00AFBD43 /* ThreeDS2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A621F020254B5ABF00AFBD43 /* ThreeDS2ViewController.swift */; };
-		A639BCF02541F8240008DFA5 /* Pods_Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */; };
 		A66CF2962551B66B009CE96C /* DLRadioButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A66CF2942551B66B009CE96C /* DLRadioButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A66CF29B2551B6DB009CE96C /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A66CF29A2551B6DA009CE96C /* DLRadioButton.m */; };
 		A6739BB525659ACC00A69F5C /* Spreedly3DS2.h in Headers */ = {isa = PBXBuildFile; fileRef = A6739BB325659ACC00A69F5C /* Spreedly3DS2.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,11 +82,10 @@
 		A6739BBE25659B2100A69F5C /* DLRadioButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A66CF2922551B66B009CE96C /* DLRadioButton.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A6739BC225659B3700A69F5C /* SDK3DS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A639BBCF2540DC130008DFA5 /* SDK3DS.framework */; };
 		A6739BC325659B3700A69F5C /* SDK3DS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A639BBCF2540DC130008DFA5 /* SDK3DS.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A6739BC425659E5F00A69F5C /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; platformFilter = ios; };
-		A6739BC525659E5F00A69F5C /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A6739BC425659E5F00A69F5C /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
+		A6739BC525659E5F00A69F5C /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A6FEA50F247557FF004B1D9D /* Spreedly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; };
 		A6FEA510247557FF004B1D9D /* Spreedly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D2CEA1127B40DA767537FD03 /* Pods_SpreedlyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */; };
 		F076C12BA6F3E33F83E1FB90 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8000037AE096B5E0E09 /* CardBrandTests.swift */; };
 		F076C1694FD1264F4FBC16E5 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076C8101E3C373825B4F415 /* CardBrand.swift */; };
 		F076C173A9A43B3D981E555A /* ErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076CE8AB1F10B662B8EEA71 /* ErrorsTests.swift */; };
@@ -252,12 +247,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		122C5B24DD663A4EDE043002 /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32609A19B5B1FF30B778304D /* Pods-IntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C0553D724ABF6DF00F31DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Express.storyboard; sourceTree = "<group>"; };
 		3C0553E224ABFDFD00F31DA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C0553E524ABFE5500F31DA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Express.strings; sourceTree = "<group>"; };
-		3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9420ED249C0CC700D2B5E1 /* PaymentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSelectionViewController.swift; sourceTree = "<group>"; };
 		3C9420EF249D485B00D2B5E1 /* ExpirationPickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpirationPickerField.swift; sourceTree = "<group>"; };
 		3C9420F124A1294200D2B5E1 /* ExpressBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressBuilder.swift; sourceTree = "<group>"; };
@@ -271,7 +263,6 @@
 		3CFE89CC2491E045005E64B4 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
 		3CFE89CE2492CD63005E64B4 /* ApplePayCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayCompatibilityTests.m; sourceTree = "<group>"; };
 		3CFE89D124943A60005E64B4 /* SPCreditCardNumberTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCreditCardNumberTextFieldTests.swift; sourceTree = "<group>"; };
-		419B256B7052CB16E3131835 /* Pods-SpreedlyCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.release.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.release.xcconfig"; sourceTree = "<group>"; };
 		442A2022B280AC093C1962B8 /* BankAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		442A206A9CCC17119C549F35 /* PaymentMethodInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodInfo.swift; sourceTree = "<group>"; };
 		442A20C6B829B5A2F6F5D8B2 /* ThreeDSTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDSTests.swift; sourceTree = "<group>"; };
@@ -312,11 +303,6 @@
 		442A2EA4177990821F65EA06 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		442A2F11C1E2D8471A4F0D8A /* SpreedlyCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpreedlyCocoa.h; sourceTree = "<group>"; };
 		442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreedlyClientImpl.swift; sourceTree = "<group>"; };
-		5AA2BAE78AD453E4457D01A1 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
-		762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpreedlyCocoa.debug.xcconfig"; path = "Target Support Files/Pods-SpreedlyCocoa/Pods-SpreedlyCocoa.debug.xcconfig"; sourceTree = "<group>"; };
-		894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A621F015254B50B500AFBD43 /* 3ds2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 3ds2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A621F019254B50B600AFBD43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A621F020254B5ABF00AFBD43 /* ThreeDS2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDS2ViewController.swift; sourceTree = "<group>"; };
@@ -328,10 +314,6 @@
 		A6739BB125659ACC00A69F5C /* Spreedly3DS2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spreedly3DS2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6739BB325659ACC00A69F5C /* Spreedly3DS2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spreedly3DS2.h; sourceTree = "<group>"; };
 		A6739BB425659ACC00A69F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDF1D2BFCA64275E2BAF79F6 /* Pods-Spreedly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spreedly.debug.xcconfig"; path = "Target Support Files/Pods-Spreedly/Pods-Spreedly.debug.xcconfig"; sourceTree = "<group>"; };
-		E0D70D97D7634E9195905812 /* Pods-CocoaSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSample.release.xcconfig"; path = "Target Support Files/Pods-CocoaSample/Pods-CocoaSample.release.xcconfig"; sourceTree = "<group>"; };
 		F076C01B32752F1BF35F1FDA /* CardRanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardRanges.swift; sourceTree = "<group>"; };
 		F076C0612AC1EBFC034D3DC8 /* CreditCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTests.swift; sourceTree = "<group>"; };
 		F076C08DC0FAE8689BD37423 /* PaymentMethodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodItem.swift; sourceTree = "<group>"; };
@@ -372,9 +354,6 @@
 		F076CEBF9498611D49D23B08 /* PaymentMethodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
 		F076CEF2BE0BCBCF8530EDAD /* ExpirationDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationDateProvider.swift; sourceTree = "<group>"; };
 		F076CF76119C6C1C8A8D3795 /* ClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
-		F0E51F7017C6B8322253CD08 /* Pods-CocoaSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaSample.debug.xcconfig"; path = "Target Support Files/Pods-CocoaSample/Pods-CocoaSample.debug.xcconfig"; sourceTree = "<group>"; };
-		F56C116DCE05827C53008538 /* Pods-Spreedly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spreedly.release.xcconfig"; path = "Target Support Files/Pods-Spreedly/Pods-Spreedly.release.xcconfig"; sourceTree = "<group>"; };
-		F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,7 +361,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C6C5F64247EF33700ADFFE7 /* Pods_CocoaSample.framework in Frameworks */,
 				3C31533C24770C9C00C86272 /* Spreedly.framework in Frameworks */,
 				A6739BB825659ACC00A69F5C /* Spreedly3DS2.framework in Frameworks */,
 				442A2FAC57F6FBC681333736 /* SpreedlyCocoa.framework in Frameworks */,
@@ -394,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				442A27963A108ADEB2607311 /* Spreedly.framework in Frameworks */,
-				4181D7259F8C7D598366B24E /* Pods_UnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +380,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FEA50F247557FF004B1D9D /* Spreedly.framework in Frameworks */,
-				D2CEA1127B40DA767537FD03 /* Pods_SpreedlyCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +387,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A639BCF02541F8240008DFA5 /* Pods_Spreedly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +419,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F076CC40AA0952D6E52623F9 /* Spreedly.framework in Frameworks */,
-				5C30DF63FC1DD549A9CAD846 /* Pods_IntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +624,6 @@
 				A6739BB225659ACC00A69F5C /* Spreedly3DS2 */,
 				442A2206D806C97B75A00795 /* Products */,
 				AC0C8852183151056EC70EB9 /* Frameworks */,
-				8FAC8BD86AB9E8CAD63A5EF0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -669,23 +642,6 @@
 				442A2299A575C8B64F691D1A /* DLRadioButton-umbrella.h */,
 			);
 			path = Headers;
-			sourceTree = "<group>";
-		};
-		8FAC8BD86AB9E8CAD63A5EF0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F0E51F7017C6B8322253CD08 /* Pods-CocoaSample.debug.xcconfig */,
-				E0D70D97D7634E9195905812 /* Pods-CocoaSample.release.xcconfig */,
-				894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */,
-				32609A19B5B1FF30B778304D /* Pods-IntegrationTests.release.xcconfig */,
-				794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */,
-				419B256B7052CB16E3131835 /* Pods-SpreedlyCocoa.release.xcconfig */,
-				8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */,
-				5AA2BAE78AD453E4457D01A1 /* Pods-UnitTests.release.xcconfig */,
-				CDF1D2BFCA64275E2BAF79F6 /* Pods-Spreedly.debug.xcconfig */,
-				F56C116DCE05827C53008538 /* Pods-Spreedly.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		A621F016254B50B600AFBD43 /* 3ds2Tests */ = {
@@ -721,12 +677,6 @@
 			isa = PBXGroup;
 			children = (
 				A639BBCF2540DC130008DFA5 /* SDK3DS.framework */,
-				122C5B24DD663A4EDE043002 /* Pods_Sample.framework */,
-				B73D09377AD59491496913B6 /* Pods_CocoaSample.framework */,
-				F85430E4886883A0E46F44B1 /* Pods_IntegrationTests.framework */,
-				CB2636378C20528281E31A18 /* Pods_SpreedlyCocoa.framework */,
-				3C8C8C11325E198B76402E6F /* Pods_UnitTests.framework */,
-				762277996A5ED3858FB276D0 /* Pods_Spreedly.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -800,7 +750,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 442A2A58998EEC7E4874B1B6 /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				48CECBACD34719A8B19BE1EA /* [CP] Check Pods Manifest.lock */,
 				442A2B28B1CE6BDB9FB6A6AC /* Sources */,
 				442A22734359841B673B10DF /* Frameworks */,
 				442A2BEF2DB34FFD654B47CB /* Resources */,
@@ -820,7 +769,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 442A2E18C4C21BEEF2E0D8FD /* Build configuration list for PBXNativeTarget "CocoaSample" */;
 			buildPhases = (
-				606C285A39A88383E032B430 /* [CP] Check Pods Manifest.lock */,
 				442A25E19A468F7924321959 /* Sources */,
 				442A20AFCDAA6C0673BA422A /* Frameworks */,
 				442A227B11366C7E9994A78D /* Resources */,
@@ -842,7 +790,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 442A2E77FE11EB3DCF565A60 /* Build configuration list for PBXNativeTarget "Spreedly" */;
 			buildPhases = (
-				C2C23B61232A610909CEBA4A /* [CP] Check Pods Manifest.lock */,
 				442A24EBD75D36D55E8CAEEE /* Headers */,
 				442A208AED5CF87B64845ED3 /* Sources */,
 				442A26F1744BF26616669CB8 /* Frameworks */,
@@ -861,7 +808,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 442A28F75727EB0E8ED85EAC /* Build configuration list for PBXNativeTarget "SpreedlyCocoa" */;
 			buildPhases = (
-				930AEB6E5556461AB7FB0865 /* [CP] Check Pods Manifest.lock */,
 				442A249123D109C1412F8664 /* Headers */,
 				442A2B54564713828EF481BB /* Sources */,
 				442A2308D3A9F0A769E5CAB6 /* Frameworks */,
@@ -939,7 +885,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F076CB5759897D1A7F8925AC /* Build configuration list for PBXNativeTarget "IntegrationTests" */;
 			buildPhases = (
-				11ACFF8058D8BBEDA3AE150A /* [CP] Check Pods Manifest.lock */,
 				F076CFF997D6ACD474239B76 /* Sources */,
 				F076C82D6AA1997DB0811CFB /* Frameworks */,
 				F076C4E4A921D74A2AF9A029 /* Resources */,
@@ -969,10 +914,11 @@
 						LastSwiftMigration = 1150;
 					};
 					442A266B984463F40F3FE1D6 = {
+						DevelopmentTeam = 6FBAK4HRQ7;
 						ProvisioningStyle = Automatic;
 					};
 					442A2CD52CC6A2C10B2623E8 = {
-						DevelopmentTeam = WA43VWR7LD;
+						DevelopmentTeam = 6FBAK4HRQ7;
 					};
 					A621F014254B50B500AFBD43 = {
 						CreatedOnToolsVersion = 11.7;
@@ -1091,119 +1037,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		11ACFF8058D8BBEDA3AE150A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IntegrationTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48CECBACD34719A8B19BE1EA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UnitTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		606C285A39A88383E032B430 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CocoaSample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		930AEB6E5556461AB7FB0865 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpreedlyCocoa-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C2C23B61232A610909CEBA4A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Spreedly-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		442A208AED5CF87B64845ED3 /* Sources */ = {
@@ -1381,7 +1214,6 @@
 		};
 		A6739BC725659E5F00A69F5C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 442A2CD52CC6A2C10B2623E8 /* Spreedly */;
 			targetProxy = A6739BC625659E5F00A69F5C /* PBXContainerItemProxy */;
 		};
@@ -1436,7 +1268,6 @@
 /* Begin XCBuildConfiguration section */
 		442A201F1C32C669C33E28F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 419B256B7052CB16E3131835 /* Pods-SpreedlyCocoa.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -1495,19 +1326,14 @@
 				INFOPLIST_FILE = SpreedlyCocoa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.SpreedlyCocoa;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1518,7 +1344,6 @@
 		};
 		442A21DC6AF1B72D7A6CA8B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F56C116DCE05827C53008538 /* Pods-Spreedly.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -1556,7 +1381,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_TEAM = WA43VWR7LD;
+				DEVELOPMENT_TEAM = 6FBAK4HRQ7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1578,11 +1403,7 @@
 				INFOPLIST_FILE = Spreedly/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.Spreedly;
@@ -1592,8 +1413,7 @@
 				SPREEDLY_CORE = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SPREEDLY_CORE;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1604,7 +1424,6 @@
 		};
 		442A23BB30FB0DB9AADCC2F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 794D563B9A84B25EC59DEBCB /* Pods-SpreedlyCocoa.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -1669,11 +1488,7 @@
 				INFOPLIST_FILE = SpreedlyCocoa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1726,7 +1541,6 @@
 		};
 		442A244785C6AF8593A2566A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0D70D97D7634E9195905812 /* Pods-CocoaSample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1763,7 +1577,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WA43VWR7LD;
+				DEVELOPMENT_TEAM = 6FBAK4HRQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1780,18 +1594,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = CocoaSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.CocoaSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1800,7 +1610,6 @@
 		};
 		442A24C655492DBEBD24B71E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDF1D2BFCA64275E2BAF79F6 /* Pods-Spreedly.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -1838,7 +1647,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_TEAM = WA43VWR7LD;
+				DEVELOPMENT_TEAM = 6FBAK4HRQ7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1866,11 +1675,7 @@
 				INFOPLIST_FILE = Spreedly/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1891,7 +1696,6 @@
 		};
 		442A287150D5C13EDFC2203D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0E51F7017C6B8322253CD08 /* Pods-CocoaSample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1928,7 +1732,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6FBAK4HRQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1951,10 +1755,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = CocoaSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1971,7 +1772,6 @@
 		};
 		442A29F4BD05970BAB9D7793 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F3BFD66B8EB6C43F2B1D07F /* Pods-UnitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2023,11 +1823,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2079,7 +1875,6 @@
 		};
 		442A2FC9F31920EF83B1F700 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AA2BAE78AD453E4457D01A1 /* Pods-UnitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2125,18 +1920,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Spreedly.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2172,11 +1962,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = 3ds2Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.spreedly.-ds2Tests";
@@ -2214,18 +2000,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = 3ds2Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.spreedly.-ds2Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CocoaSample;
@@ -2284,11 +2065,7 @@
 				INFOPLIST_FILE = DLRadioButton/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.DLRadioButton;
@@ -2331,11 +2108,7 @@
 				INFOPLIST_FILE = DLRadioButton/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.DLRadioButton;
@@ -2390,11 +2163,7 @@
 				INFOPLIST_FILE = Spreedly3DS2/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.Spreedly3DS2;
@@ -2446,19 +2215,14 @@
 				INFOPLIST_FILE = Spreedly3DS2/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.Spreedly3DS2;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2469,7 +2233,6 @@
 		};
 		F076C73062F1B837C0F1E91D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 894EB18B67210099277B4AE1 /* Pods-IntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2523,11 +2286,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = IntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2543,7 +2302,6 @@
 		};
 		F076CC1C007F48612813AC46 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32609A19B5B1FF30B778304D /* Pods-IntegrationTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2591,18 +2349,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = IntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spreedly.IntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

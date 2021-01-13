@@ -8,7 +8,7 @@
 import Foundation
 import PassKit
 import UIKit
-@testable import Spreedly
+import Spreedly
 import Spreedly3DS2
 import SpreedlyCocoa
 
@@ -26,25 +26,30 @@ class ThreeDS2ViewController: UIViewController {
 
 }
 
+func safeDebugPrint(_ item: Any?, separator: String = " ", terminator: String = "\n") {
+    if let item = item {
+        debugPrint(item, separator: separator, terminator: terminator)
+    }
+}
+
 extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
     func success(status: String) {
         self.status?.text = "success: \(status)"
-        print(self.status?.text)
+        safeDebugPrint(self.status?.text)
     }
 
     func cancelled() {
-        self.status?.text = "cancelled"
+        status?.text = "cancelled"
     }
 
     func timeout() {
-        self.status?.text = "timeout"
+        status?.text = "timeout"
     }
 
     func error(_ error: ThreeDSError) {
-        print(error)
-        self.status?.text = "error: \(error)"
+        safeDebugPrint(error)
+        status?.text = "error: \(error)"
     }
-
 
     @IBAction func start3DS2(_ sender: Any) {
         start3DS2(withTheme: nil)
@@ -55,7 +60,7 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
         let white = "FFFFFF"
         let gray = "7f7f7f"
         let black = "060606"
-        var theme = SpreedlyTheme()
+        let theme = SpreedlyTheme()
         theme.buttonPositiveBackgroundColor = black
         theme.buttonNeutralBackgroundColor = black
         theme.buttonPositiveTextColor = white
@@ -71,7 +76,7 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
     }
 
     func start3DS2(withTheme theme: SpreedlyTheme?) {
-        self.status?.text = "starting"
+        status?.text = "starting"
         let client = ClientFactory.create(with: ClientConfiguration(
                 envKey: ProcessInfo.processInfo.environment["ENV_KEY"] ?? "A54wvT9knP8Sc6ati68epUcq72l",
                 envSecret: ProcessInfo.processInfo.environment["ENV_SECRET"] ?? "0f0Cpq17bb5mAAUxtx0QmY2mXyHnEk26uYTrPttn4PIMKZC4zdTJVJSk4YHbe1Ij",
@@ -81,7 +86,7 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
         do {
             try ThreeDS.initialize(uiViewController: self, test: true, theme: theme)
         } catch {
-            print(error)
+            safeDebugPrint(error)
         }
 
         tokenize(client).subscribe(onSuccess: { tokenized in
@@ -90,23 +95,23 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
                 let _3ds2 = try ThreeDS.createTransactionRequest(cardType: creditCard.cardType ?? "master")
                 _3ds2.delegate = self
 
-                self.serversidePurchase(client as! SpreedlyClientImpl, device_info: _3ds2.serialize(), token: creditCard.token!, scaProviderKey: "M8k0FisOKdAmDgcQeIKlHE7R1Nf", onSuccess: { scaAuthentication in
-                    if scaAuthentication.string(optional: "state") == "failed" {
-                        self.error(.runtimeError(message: scaAuthentication.string(optional: "flow_performed") ?? "oops"))
+                self.serversidePurchase(client, device_info: _3ds2.serialize(), token: creditCard.token!, scaProviderKey: "M8k0FisOKdAmDgcQeIKlHE7R1Nf", onSuccess: { scaAuthentication in
+                    if scaAuthentication["state"] as? String == "failed" {
+                        self.error(ThreeDSError.runtimeError(message: (scaAuthentication["flow_performed"] as? String) ?? "oops"))
                     } else {
                         _3ds2.doChallenge(withScaAuthentication: scaAuthentication)
                     }
                 }, onError: { error in
-                    print("start depth 3")
-                    print(error)
+                    safeDebugPrint("start depth 3")
+                    safeDebugPrint(error)
                 })
             } catch {
-                print("start depth 2")
-                print(error)
+                safeDebugPrint("start depth 2")
+                safeDebugPrint(error)
             }
         }, onError: { error in
-            print("start depth 1")
-            print(error)
+            safeDebugPrint("start depth 1")
+            safeDebugPrint(error)
         })
     }
 
@@ -123,10 +128,10 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
         return client.createPaymentMethodFrom(creditCard: info)
     }
 
-    func serversidePurchase(_ client: SpreedlyClientImpl, device_info: String, token: String, scaProviderKey: String, onSuccess: @escaping (([String: Any]) -> Void), onError: @escaping ((Error) -> Void)) {
+    func serversidePurchase(_ client: SpreedlyClient, device_info: String, token: String, scaProviderKey: String, onSuccess: @escaping (([String: Any]) -> Void), onError: @escaping ((Error) -> Void)) {
         self.status?.text = "serverSideStuff"
-        let session = client.session(authenticated: true)
-        var request = URLRequest(url: client.authenticatedPurchaseUrl("BkXcmxRDv8gtMUwu5Buzb4ZbqGe"))
+        let session = self.session(client.config)
+        var request = URLRequest(url: URL(string: "https://core.spreedly.com/v1/gateways/BkXcmxRDv8gtMUwu5Buzb4ZbqGe/purchase.json")!)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: [
             "transaction": [
@@ -145,24 +150,24 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
             if let data = data {
                 DispatchQueue.main.async {
                     self.success(status: "response: \(String(data: data, encoding: .utf8)) \(error)")
-                    print(String(data: data, encoding: .utf8))
-                    print(error)
+                    safeDebugPrint(String(data: data, encoding: .utf8))
+                    safeDebugPrint(error)
                 }
                 let json = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
-                let trans: [String: Any]? = json?.object(optional: "transaction")
-                if (try? trans?.string(for: "state")) == "succeeded" {
+                let trans: [String: Any]? = json?["transaction"] as? [String: Any]
+                if (try? trans?["state"] as? String) == "succeeded" {
                     DispatchQueue.main.async {
                         self.success(status: "frictionless success")
                     }
                     return
                 }
-                if let scaAuth = trans?.object(optional: "sca_authentication") {
+                if let scaAuth = trans?["sca_authentication"] as? [String: Any] {
                     DispatchQueue.main.async {
                         onSuccess(scaAuth)
                     }
                     return
                 }
-                print(String(data: data, encoding: .utf8) ?? "bad utf8")
+                safeDebugPrint(String(data: data, encoding: .utf8) ?? "bad utf8")
                 DispatchQueue.main.async {
                     onError(ThreeDSError.protocolError(message: "bad json"))
                 }
@@ -177,5 +182,21 @@ extension ThreeDS2ViewController: ThreeDSTransactionRequestDelegate {
             }
         }
         task.resume()
+    }
+
+    private func session(_ config: ClientConfiguration) -> URLSession {
+        var headers: [String: String] = ["Content-Type": "application/json"]
+        headers["Authorization"] = "Basic \(encodedCredentials(config))"
+
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = headers
+        let session = URLSession(configuration: config)
+        return session
+    }
+
+    private func encodedCredentials(_ config: ClientConfiguration) -> String {
+        let userPasswordString = "\(config.envKey):\(config.envSecret ?? "")"
+        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
+        return userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
     }
 }

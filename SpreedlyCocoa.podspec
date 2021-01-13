@@ -26,8 +26,6 @@ Pod::Spec.new do |s|
         ]
     }
 
-    s.dependency 'RxSwift', '~> 5'
-    s.dependency 'RxCocoa', '~> 5'
     s.dependency 'Spreedly', '>= ' + s.version.to_s
 end
 

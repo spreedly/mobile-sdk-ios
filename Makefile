@@ -1,6 +1,9 @@
 .PHONY: test coverage bundle eli swiftdoc-install swiftdoc-generate swiftdoc-server push-spreedly-pod push-spreedlycocoa-pod lint
 
-test:
+assert-xcodebuild:
+	(xcodebuild -version | grep 'Xcode 11.7') || { echo 'use Xcode 11.7'; exit 2; }
+
+test: assert-xcodebuild
 	xcodebuild test -workspace SpreedlySdk.xcworkspace -scheme Spreedly -destination 'name=iPhone 11' -enableCodeCoverage YES
 
 coverage: bundle test
@@ -29,5 +32,29 @@ push-spreedly-pod:
 push-spreedlycocoa-pod:
 	pod repo push spreedly-spec-demo SpreedlyCocoa.podspec --verbose
 
+push-spreedly3ds2-pod:
+	pod repo push spreedly-spec-demo Spreedly3DS2.podspec --verbose
+
+push-pods: push-spreedly-pod push-spreedlycocoa-pod push-spreedly3ds2-pod
+
 lint:
 	./Pods/SwiftLint/swiftlint --config .swiftlint.yml
+
+libs-simulator: assert-xcodebuild
+	xcodebuild clean build -workspace SpreedlySdk.xcworkspace -scheme Frameworks -configuration Release -sdk iphonesimulator -derivedDataPath derived_data
+	mkdir -p build/simulator
+	cp -a derived_data/Build/Products/Release-iphonesimulator/. build/simulator
+
+libs: assert-xcodebuild
+	xcodebuild clean build -workspace SpreedlySdk.xcworkspace -scheme Frameworks -configuration Release -sdk iphoneos -derivedDataPath derived_data
+	mkdir -p build/iphone
+	cp -a derived_data/Build/Products/Release-iphoneos/. build/iphone
+
+libs-merged: libs-simulator libs
+	mkdir -p build/universal
+	cp -a build/iphone/. build/universal
+	for lib in $(shell cd build/universal; find . | grep '\([a-zA-Z0-9]*\)\.framework/\1$$') ; do \
+		lipo -create build/simulator/$$lib build/iphone/$$lib -output build/universal/$$lib ;\
+	done
+
+

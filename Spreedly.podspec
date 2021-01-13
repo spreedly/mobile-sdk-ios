@@ -18,6 +18,5 @@ Pod::Spec.new do |s|
 
     s.source_files     = 'Spreedly/**/*.swift', 'Spreedly/**/*.{m,h}'
 
-    s.dependency 'RxSwift', '~> 5'
     s.dependency 'RxCocoa', '~> 5'
 end
