@@ -1,11 +1,3 @@
-# DO NOT EDIT
-# Edit the version in podspecs or version.podspec
-$version = '1.0.0-beta'
-$repo = 'https://github.com/ergonlabs/spreedly-ios-frameworks.git'
-$tag = "version_#{$version}"
-$copyright = <<-LICENSE
-Copyright 2020-2021, Spreedly Inc.
-LICENSE
 Pod::Spec.new do |s|
     s.name             = "Spreedly3DS2"
     s.version          = $version

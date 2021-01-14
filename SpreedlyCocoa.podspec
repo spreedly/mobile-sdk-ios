@@ -1,6 +1,14 @@
+# DO NOT EDIT
+# Edit the version in podspecs or version.podspec
+$version = '1.0.0-beta'
+$repo = 'https://github.com/ergonlabs/spreedly-ios-frameworks.git'
+$tag = "version_#{$version}"
+$copyright = <<-LICENSE
+Copyright 2020-2021, Spreedly Inc.
+LICENSE
 Pod::Spec.new do |s|
     s.name             = "SpreedlyCocoa"
-    s.version          = "1.0.0"
+    s.version          = $version
     s.summary          = "Spreedly iOS SDK with UI controls"
     s.description      = <<-DESC
                             The Spreedly iOS SDK makes it easy for you to accept a users credit card details inside your iOS app.
@@ -9,23 +17,18 @@ Pod::Spec.new do |s|
                             Spreedly Express UI provide additional features simplifying payment method collection.
                             DESC
     s.homepage         = "https://docs.spreedly.com/guides/mobile/ios/"
-    s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.authors          = { "Spreedly" => "support@spreedly.com" }
-    s.source           = { :git => 'https://github.com/ergonlabs/spreedly-ios.git', :tag => "podspec_#{s.version}" }
+    s.source           = { :git => $repo, :tag => $tag }
     s.swift_version    = '5.0'
-
     s.platform         = :ios, '12.2'
     s.requires_arc     = true
 
-    s.source_files     = 'SpreedlyCocoa/**/*.swift', 'SpreedlyCocoa/**/*.{m,h}'
-
-    s.ios.resource_bundle = {
-        'SpreedlyCocoaResources' => [
-            'SpreedlyCocoa/**/*.{json,png,xcassets,storyboard}',
-            'SpreedlyCocoa/*.lproj'
-        ]
-    }
-
-    s.dependency 'Spreedly', '>= ' + s.version.to_s
+    s.license = { :type => 'Copyright', :text => $copyright }
+    s.vendored_frameworks = 'SpreedlyCocoa.framework'
+    s.public_header_files = "SpreedlyCocoa.framework/Headers/*.h"
+    s.source_files = "SpreedlyCocoa.framework/Headers/*.h"
+    s.user_target_xcconfig = {
+          'SWIFT_INCLUDE_PATHS' => '"\$(PODS_ROOT)/SpreedlyCocoa/SpreedlyCocoa.framework"'
+        }
 end
 
