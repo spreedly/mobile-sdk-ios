@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreedly - _ObjCClient</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Spreedly
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="function"><a href="#_objcclient._objccreatepaymentmethod(from:)">_obj​CCreate​Payment​Method(from:​)</a></li><li class="function"><a href="#_objcclient._objcrecache(token:verificationvalue:)">_obj​CRecache(token:​verification​Value:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">_Obj​CClient</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span>(<span class="variable">SPRClient</span>) <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">_ObjCClient</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A set of methods used to create payment methods and recache verification values.
+Returns single-element sequences of <code>SPRTransaction</code> to be handled asynchronously.</p>
+
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="function" id="_objcclient._objccreatepaymentmethod(from:)">
+    <h3>
+        <code>_obj​CCreate​Payment​Method(from:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span>(<span class="variable">createPaymentMethodFrom</span>) <span class="keyword">func</span> <span class="function">_objCCreatePaymentMethod</span>(<span class="variable">from</span>: <a href="/PaymentMethodInfo"><span class="type">PaymentMethodInfo</span></a>) -&gt; <a href="/SingleTransaction"><span class="type">SingleTransaction</span></a></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Attempts to create a payment method.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="_objcclient._objcrecache(token:verificationvalue:)">
+    <h3>
+        <code>_obj​CRecache(token:​verification​Value:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span>(<span class="variable">recacheWithToken</span>: <span class="type">verificationValue</span>:) <span class="keyword">func</span> <span class="function">_objCRecache</span>(<span class="variable">token</span>: <span class="type">String</span>, <span class="variable">verificationValue</span>: <a href="/SpreedlySecureOpaqueString"><span class="type">SpreedlySecureOpaqueString</span></a>) -&gt; <a href="/SingleTransaction"><span class="type">SingleTransaction</span></a></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Attempts to recache the verification value for a payment method identified by the token.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-05T13:57:33-0500">November 5, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>
