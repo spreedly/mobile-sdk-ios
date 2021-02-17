@@ -1,0 +1,11 @@
+framework module SpreedlyCocoa {
+  umbrella header "SpreedlyCocoa.h"
+
+  export *
+  module * { export * }
+}
+
+module SpreedlyCocoa.Swift {
+    header "SpreedlyCocoa-Swift.h"
+    requires objc
+}
