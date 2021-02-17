@@ -6,19 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		A639BCC52541F5870008DFA5 /* Frameworks */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = A639BCC82541F5870008DFA5 /* Build configuration list for PBXAggregateTarget "Frameworks" */;
-			buildPhases = (
-			);
-			dependencies = (
-			);
-			name = Frameworks;
-			productName = Frameworks;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		3C0553D624ABF6DF00F31DA3 /* Express.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553D824ABF6DF00F31DA3 /* Express.storyboard */; };
 		3C0553DE24ABF8FC00F31DA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C0553E024ABF8FC00F31DA3 /* Localizable.strings */; };
@@ -711,10 +698,6 @@
 					442A2CD52CC6A2C10B2623E8 = {
 						DevelopmentTeam = 6FBAK4HRQ7;
 					};
-					A639BCC52541F5870008DFA5 = {
-						CreatedOnToolsVersion = 12.0;
-						ProvisioningStyle = Automatic;
-					};
 					F076CF9042A128DEBCC6BDA2 = {
 						LastSwiftMigration = 1150;
 					};
@@ -740,7 +723,6 @@
 				F076CF9042A128DEBCC6BDA2 /* IntegrationTests */,
 				442A266B984463F40F3FE1D6 /* CocoaSample */,
 				442A2CE4EFF32CF9B02D6A78 /* SpreedlyCocoa */,
-				A639BCC52541F5870008DFA5 /* Frameworks */,
 			);
 		};
 /* End PBXProject section */
@@ -1213,6 +1195,7 @@
 		442A23FA1958CC1851A18079 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1240,7 +1223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				VALID_ARCHS = "arm armv7 $(ARCHS_STANDARD) i386 x86_64 iossim";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -1545,6 +1528,7 @@
 		442A2D17EDFC7C7324DEC900 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1573,8 +1557,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				VALID_ARCHS = "arm armv7 $(ARCHS_STANDARD) i386 x86_64 iossim";
+				ONLY_ACTIVE_ARCH = NO;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -1635,22 +1619,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A639BCC62541F5870008DFA5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		A639BCC72541F5870008DFA5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1829,15 +1797,6 @@
 			buildConfigurations = (
 				442A2D17EDFC7C7324DEC900 /* Debug */,
 				442A23FA1958CC1851A18079 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A639BCC82541F5870008DFA5 /* Build configuration list for PBXAggregateTarget "Frameworks" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A639BCC62541F5870008DFA5 /* Debug */,
-				A639BCC72541F5870008DFA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

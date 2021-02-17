@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A639BCC52541F5870008DFA5"
-               BuildableName = "Frameworks"
-               BlueprintName = "Frameworks"
-               ReferencedContainer = "container:SpreedlySdk.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "442A2CE4EFF32CF9B02D6A78"
                BuildableName = "SpreedlyCocoa.framework"
                BlueprintName = "SpreedlyCocoa"
@@ -75,15 +61,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A639BCC52541F5870008DFA5"
-            BuildableName = "Frameworks"
-            BlueprintName = "Frameworks"
-            ReferencedContainer = "container:SpreedlySdk.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Release">
