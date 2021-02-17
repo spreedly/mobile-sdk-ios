@@ -84,7 +84,13 @@ pod 'SpreedlyCocoa'
 Follow the instructions for installation, but add the following to the top of your PodFile.
 
 ```ruby
-source 'https://github.com/spreedly/spreedly-ios-sdk-beta.git'
+source 'https://github.com/spreedly/mobile-sdk-ios.git'
+```
+
+And run the following command from the command line:
+
+```shell
+pod repo add spreedly https://github.com/spreedly/mobile-sdk-ios.git podspecs_repo
 ```
 
 ## Express
