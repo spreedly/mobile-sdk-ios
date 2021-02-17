@@ -17,10 +17,5 @@ Pod::Spec.new do |s|
 
     s.license = { :type => 'Copyright', :text => $copyright }
     s.vendored_frameworks = 'SpreedlyCocoa.xcframework'
-#     s.public_header_files = "SpreedlyCocoa.framework/Headers/*.h"
-#     s.source_files = "SpreedlyCocoa.framework/Headers/*.h"
-#     s.user_target_xcconfig = {
-#           'SWIFT_INCLUDE_PATHS' => '"\$(PODS_ROOT)/SpreedlyCocoa/SpreedlyCocoa.xcframework"'
-#         }
 end
 
