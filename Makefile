@@ -1,7 +1,7 @@
 .PHONY: test coverage bundle eli swiftdoc-install swiftdoc-generate swiftdoc-server push-spreedly-pod push-spreedlycocoa-pod lint
 
 assert-xcodebuild:
-	(xcodebuild -version | grep 'Xcode 11.7') || { echo 'use Xcode 11.7'; exit 2; }
+	(xcodebuild -version | grep 'Xcode 12.4') || { echo 'use Xcode 12.4'; exit 2; }
 	-mkdir build
 
 test: assert-xcodebuild

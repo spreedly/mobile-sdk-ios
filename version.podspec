@@ -1,4 +1,4 @@
-$version = '1.0.0-beta'
+$version = '1.0.0-beta1'
 $repo = 'https://github.com/spreedly/mobile-sdk-ios.git'
 $tag = "version_#{$version}"
 $copyright = <<-LICENSE
