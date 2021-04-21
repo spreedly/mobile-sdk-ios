@@ -1,0 +1,266 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target x86_64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SpreedlyCocoa
+import Foundation
+import PassKit
+import Spreedly
+@_exported import SpreedlyCocoa
+import Swift
+import UIKit
+import os
+@objc(SPRSecureFormDelegate) public protocol SecureFormDelegate : AnyObject {
+  @objc func spreedly(secureForm: SpreedlyCocoa.SecureForm, success: Spreedly.Transaction)
+  @objc optional func willCallSpreedly(secureForm: SpreedlyCocoa.SecureForm)
+  @objc optional func didCallSpreedly(secureForm: SpreedlyCocoa.SecureForm)
+  @objc optional func clientConfiguration(secureForm: SpreedlyCocoa.SecureForm) -> Spreedly.ClientConfiguration?
+}
+@_inheritsConvenienceInitializers @objc(SPRSecureForm) public class SecureForm : UIKit.UIView {
+  @objc weak public var delegate: SpreedlyCocoa.SecureFormDelegate?
+  @objc public var creditCardDefaults: Spreedly.CreditCardInfo?
+  @objc public var bankAccountDefaults: Spreedly.BankAccountInfo?
+  @objc public var paymentMethodDefaults: Spreedly.PaymentMethodInfo?
+  @objc @IBOutlet weak public var fullName: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet weak public var firstName: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet weak public var lastName: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet weak public var email: UIKit.UITextField?
+  @objc @IBOutlet weak public var company: UIKit.UITextField?
+  @objc @IBOutlet weak public var creditCardNumber: SpreedlyCocoa.CreditCardNumberTextField?
+  @objc @IBOutlet weak public var creditCardVerificationNumber: SpreedlyCocoa.SecureTextField?
+  @objc @IBOutlet weak public var expirationDate: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet weak public var expirationDateProvider: SpreedlyCocoa.ExpirationDateProvider?
+  @objc @IBOutlet weak public var bankAccountNumber: SpreedlyCocoa.SecureTextField?
+  @objc @IBOutlet weak public var bankAccountRoutingNumber: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet weak public var bankAccountType: UIKit.UISegmentedControl?
+  @objc @IBOutlet weak public var bankAccountHolderType: UIKit.UISegmentedControl?
+  @objc @IBOutlet weak public var address1: UIKit.UITextField?
+  @objc @IBOutlet weak public var address2: UIKit.UITextField?
+  @objc @IBOutlet weak public var city: UIKit.UITextField?
+  @objc @IBOutlet weak public var state: UIKit.UITextField?
+  @objc @IBOutlet weak public var zip: UIKit.UITextField?
+  @objc @IBOutlet weak public var country: UIKit.UITextField?
+  @objc @IBOutlet weak public var phoneNumber: UIKit.UITextField?
+  @objc @IBOutlet weak public var sameAddressForShipping: UIKit.UISwitch?
+  @objc @IBOutlet weak public var shippingAddress1: UIKit.UITextField?
+  @objc @IBOutlet weak public var shippingAddress2: UIKit.UITextField?
+  @objc @IBOutlet weak public var shippingCity: UIKit.UITextField?
+  @objc @IBOutlet weak public var shippingState: UIKit.UITextField?
+  @objc @IBOutlet weak public var shippingZip: UIKit.UITextField?
+  @objc @IBOutlet weak public var shippingCountry: UIKit.UITextField?
+  @objc @IBOutlet weak public var shippingPhoneNumber: UIKit.UITextField?
+  @objc @IBAction public func createCreditCardPaymentMethod(sender: UIKit.UIView)
+  @objc @IBAction public func createBankAccountPaymentMethod(sender: UIKit.UIView)
+  public var selectedHolderType: Spreedly.BankAccountHolderType {
+    get
+    set
+  }
+  public var selectedAccountType: Spreedly.BankAccountType {
+    get
+    set
+  }
+  @objc deinit
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc(SPRValidationState) public enum ValidationState : Swift.Int {
+  case none
+  case valid
+  case error
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(SPRValidatedTextField) open class ValidatedTextField : UIKit.UITextField {
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc public var validationState: SpreedlyCocoa.ValidationState {
+    get
+  }
+  @objc public var reason: Swift.String?
+  @objc public func clearValidation()
+  @objc public func setError(because reason: Swift.String)
+  @objc public func setValid()
+  @objc deinit
+}
+extension ValidatedTextField : UIKit.UITextFieldDelegate {
+  @objc override dynamic public var delegate: UIKit.UITextFieldDelegate? {
+    @objc get
+    @objc set
+  }
+  @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+}
+public protocol CreditCardNumberTextFieldDelegate : AnyObject {
+  func cardBrandDetermined(brand: Spreedly.CardBrand)
+}
+@_inheritsConvenienceInitializers @objc(SPRCreditCardNumberTextField) open class CreditCardNumberTextField : SpreedlyCocoa.SecureTextField {
+  @objc @IBInspectable open var maskCharacter: Swift.String
+  weak public var cardNumberTextFieldDelegate: SpreedlyCocoa.CreditCardNumberTextFieldDelegate?
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc override public func secureText() -> Spreedly.SpreedlySecureOpaqueString?
+  open func formatCardNumber(_ string: Swift.String) -> Swift.String
+  @objc deinit
+}
+extension CreditCardNumberTextField {
+  @objc dynamic open func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+  @objc dynamic open func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  open func generateMasked(from string: Swift.String) -> Swift.String
+  @objc override dynamic open func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+}
+@objc(SPRExpirationPickerField) public class ExpirationPickerField : SpreedlyCocoa.ValidatedTextField {
+  @objc dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc public func showPicker()
+  @objc deinit
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+}
+extension ExpirationPickerField : UIKit.UIPickerViewDataSource {
+  @objc dynamic public func numberOfComponents(in pickerView: UIKit.UIPickerView) -> Swift.Int
+  @objc dynamic public func pickerView(_ pickerView: UIKit.UIPickerView, numberOfRowsInComponent component: Swift.Int) -> Swift.Int
+}
+extension ExpirationPickerField : UIKit.UIPickerViewDelegate {
+  @objc dynamic public func pickerView(_ pickerView: UIKit.UIPickerView, titleForRow row: Swift.Int, forComponent component: Swift.Int) -> Swift.String?
+  @objc dynamic public func pickerView(_ pickerView: UIKit.UIPickerView, didSelectRow row: Swift.Int, inComponent component: Swift.Int)
+}
+extension ExpirationPickerField : SpreedlyCocoa.ExpirationDateProvider {
+  @objc dynamic public func expirationDate() -> SpreedlyCocoa.ExpirationDate?
+}
+@_inheritsConvenienceInitializers @objc(SPRExpressBuilder) public class ExpressBuilder : ObjectiveC.NSObject {
+  @objc(SPRPresentationStyle) public enum PresentationStyle : Swift.Int {
+    case withinNavigationView = 0
+    case asModal
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public var clientConfiguration: Spreedly.ClientConfiguration?
+  @objc public var allowCard: Swift.Bool
+  @objc public var allowBankAccount: Swift.Bool
+  @objc public var allowApplePay: Swift.Bool
+  @objc public var paymentMethods: [SpreedlyCocoa.PaymentMethodItem]?
+  @objc public var didSelectPaymentMethod: ((SpreedlyCocoa.SelectedPaymentMethod) -> Swift.Void)?
+  @objc public var defaultPaymentMethodInfo: Spreedly.PaymentMethodInfo?
+  @objc public var defaultCreditCardInfo: Spreedly.CreditCardInfo?
+  @objc public var defaultBankAccountInfo: Spreedly.BankAccountInfo?
+  @objc public var defaultApplePayInfo: Spreedly.PaymentMethodInfo?
+  @objc public var paymentRequest: PassKit.PKPaymentRequest?
+  @objc public var presentationStyle: SpreedlyCocoa.ExpressBuilder.PresentationStyle
+  @objc public var paymentSelectionHeader: UIKit.UIView?
+  @objc public var paymentSelectionHeaderHeight: CoreGraphics.CGFloat
+  @objc public var paymentSelectionFooter: UIKit.UIView?
+  @objc public var paymentSelectionFooterHeight: CoreGraphics.CGFloat
+  public func buildViewController() -> UIKit.UIViewController
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc(SPRExpressContext) public class ExpressContext : ObjectiveC.NSObject {
+  @objc public var clientConfiguration: Spreedly.ClientConfiguration?
+  @objc public var paymentMethods: [SpreedlyCocoa.PaymentMethodItem]?
+  @objc public var allowCard: Swift.Bool
+  @objc public var allowBankAccount: Swift.Bool
+  @objc public var allowApplePay: Swift.Bool
+  @objc public var didSelectPaymentMethod: ((SpreedlyCocoa.SelectedPaymentMethod) -> Swift.Void)?
+  @objc public var paymentMethodDefaults: Spreedly.PaymentMethodInfo?
+  @objc public var creditCardDefaults: Spreedly.CreditCardInfo?
+  @objc public var bankAccountDefaults: Spreedly.BankAccountInfo?
+  @objc public var applePayDefaults: Spreedly.PaymentMethodInfo?
+  @objc public var paymentRequest: PassKit.PKPaymentRequest?
+  @objc public var paymentSelectionHeader: UIKit.UIView?
+  @objc public var paymentSelectionHeaderHeight: CoreGraphics.CGFloat
+  @objc public var paymentSelectionFooter: UIKit.UIView?
+  @objc public var paymentSelectionFooterHeight: CoreGraphics.CGFloat
+  @objc public var fullNamePaymentMethod: Swift.String? {
+    @objc get
+  }
+  @objc public var fullNameCreditCard: Swift.String? {
+    @objc get
+  }
+  @objc public var fullNameBankAccount: Swift.String? {
+    @objc get
+  }
+  @objc public var fullNameApplePay: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(SPRSecureTextField) open class SecureTextField : SpreedlyCocoa.ValidatedTextField {
+  @objc public func secureText() -> Spreedly.SpreedlySecureOpaqueString?
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc deinit
+}
+@objc(SPRPaymentMethodItem) public class PaymentMethodItem : ObjectiveC.NSObject {
+  final public let type: Spreedly.PaymentMethodType
+  @objc final public let shortDescription: Swift.String
+  @objc final public let token: Swift.String
+  public var cardBrand: Spreedly.CardBrand?
+  public init(type: Spreedly.PaymentMethodType, description: Swift.String, token: Swift.String)
+  public init(type: Spreedly.PaymentMethodType, cardBrand: Spreedly.CardBrand, description: Swift.String, token: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension PaymentMethodItem {
+  @objc(type) dynamic public var _objCType: Spreedly._ObjCPaymentMethodType {
+    @objc get
+  }
+}
+@objc(SPRExpirationDateProvider) public protocol ExpirationDateProvider : AnyObject {
+  @objc func expirationDate() -> SpreedlyCocoa.ExpirationDate?
+}
+@_hasMissingDesignatedInitializers @objc(SPRExpirationDate) public class ExpirationDate : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol UITextFieldXIBLocalizable {
+  var xibPlaceholderLocKey: Swift.String? { get set }
+}
+extension UITextField : SpreedlyCocoa.UITextFieldXIBLocalizable {
+  @objc @IBInspectable dynamic public var xibPlaceholderLocKey: Swift.String? {
+    @objc get
+    @objc set(key)
+  }
+}
+public protocol XIBMultiLocalizable {
+  var xibLocKeys: Swift.String? { get set }
+}
+extension UISegmentedControl : SpreedlyCocoa.XIBMultiLocalizable {
+  @objc @IBInspectable dynamic public var xibLocKeys: Swift.String? {
+    @objc get
+    @objc set(keys)
+  }
+}
+public typealias PaymentCompletionHandler = (Swift.Bool, Spreedly.Transaction?) -> Swift.Void
+@objc(SPRApplePayHandler) public class ApplePayHandler : ObjectiveC.NSObject {
+  public init(client: Spreedly.SpreedlyClient, defaults: Spreedly.PaymentMethodInfo? = nil)
+  @objc public init(client: Spreedly._ObjCClient)
+  @objc public func startPayment(request: PassKit.PKPaymentRequest, completion: @escaping SpreedlyCocoa.PaymentCompletionHandler)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ApplePayHandler : PassKit.PKPaymentAuthorizationControllerDelegate {
+  @objc dynamic public func paymentAuthorizationController(_ controller: PassKit.PKPaymentAuthorizationController, didAuthorizePayment payment: PassKit.PKPayment, completion: @escaping (PassKit.PKPaymentAuthorizationStatus) -> Swift.Void)
+  @objc dynamic public func paymentAuthorizationControllerDidFinish(_ controller: PassKit.PKPaymentAuthorizationController)
+}
+@objc(SPRSelectedPaymentMethod) public class SelectedPaymentMethod : ObjectiveC.NSObject {
+  @objc final public let token: Swift.String
+  final public let type: Spreedly.PaymentMethodType
+  @objc public var paymentMethod: Spreedly.PaymentMethodResult?
+  public init(token: Swift.String, type: Spreedly.PaymentMethodType)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension SelectedPaymentMethod {
+  @objc(type) dynamic public var _objCType: Spreedly._ObjCPaymentMethodType {
+    @objc get
+  }
+}
+extension SpreedlyCocoa.ValidationState : Swift.Equatable {}
+extension SpreedlyCocoa.ValidationState : Swift.Hashable {}
+extension SpreedlyCocoa.ValidationState : Swift.RawRepresentable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.Equatable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.Hashable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.RawRepresentable {}
