@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
 // swift-module-flags: -target arm64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Spreedly
 import Foundation
 import PassKit
@@ -15,10 +15,10 @@ public protocol SpreedlyClient {
 public enum SpreedlySecurityError : Swift.Error {
   case invalidOpaqueString
   public static func == (a: Spreedly.SpreedlySecurityError, b: Spreedly.SpreedlySecurityError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
-  public func hash(into hasher: inout Swift.Hasher)
 }
 @objc(SPRClient) public protocol _ObjCClient {
   @objc(createPaymentMethodFrom:) func _objCCreatePaymentMethod(from: Spreedly.PaymentMethodInfo) -> Spreedly.SingleTransaction
@@ -27,8 +27,8 @@ public enum SpreedlySecurityError : Swift.Error {
 @_inheritsConvenienceInitializers @objc(SPRClientFactory) public class ClientFactory : ObjectiveC.NSObject {
   public static func create(with config: Spreedly.ClientConfiguration) -> Spreedly.SpreedlyClient
   @objc(createWithConfig:) public static func _objCCreate(with config: Spreedly.ClientConfiguration) -> Spreedly._ObjCClient
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 extension Dictionary where Key == Swift.String, Value == Any {
 }
@@ -36,8 +36,8 @@ public enum StorageState : Swift.String {
   case cached
   case retained
   case redacted
-  public typealias RawValue = Swift.String
   public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
@@ -47,8 +47,8 @@ public enum StorageState : Swift.String {
   case cached
   case retained
   case redacted
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
@@ -59,8 +59,8 @@ public enum PaymentMethodType : Swift.String {
   case applePay
   case googlePay
   case thirdPartyToken
-  public typealias RawValue = Swift.String
   public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
@@ -73,8 +73,8 @@ public enum PaymentMethodType : Swift.String {
   case googlePay
   case thirdPartyToken
   public static func from(_ source: Spreedly.PaymentMethodType?) -> Spreedly._ObjCPaymentMethodType
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
@@ -83,8 +83,8 @@ public enum PaymentMethodType : Swift.String {
   @objc final public let key: Swift.String
   @objc final public let message: Swift.String
   @objc final public let attribute: Swift.String?
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 @_hasMissingDesignatedInitializers @objc(SPRPaymentMethodResultBase) public class PaymentMethodResult : ObjectiveC.NSObject {
   @objc final public let token: Swift.String?
@@ -103,8 +103,8 @@ public enum PaymentMethodType : Swift.String {
   @objc public var shortDescription: Swift.String {
     @objc get
   }
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 extension PaymentMethodResult {
   @objc(paymentMethodType) dynamic public var _objCPaymentMethodType: Spreedly._ObjCPaymentMethodType {
@@ -163,10 +163,10 @@ extension PaymentMethodResult {
     case billing
     case shipping
     public static func == (a: Spreedly.Address.AddressType, b: Spreedly.Address.AddressType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
-    public func hash(into hasher: inout Swift.Hasher)
   }
   @objc override dynamic public init()
   @objc public init(from other: Spreedly.Address)
@@ -194,8 +194,8 @@ extension PaymentMethodResult {
   @objc public var applePay: Spreedly.ApplePayResult? {
     @objc get
   }
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SingleTransactionSource {
   @objc deinit
@@ -245,11 +245,11 @@ public enum CardBrand : Swift.String {
   public var maxLength: Swift.Int {
     get
   }
+  public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
-  public init?(rawValue: Swift.String)
 }
 @objc(SPRSecureOpaqueString) public protocol SpreedlySecureOpaqueString {
   @objc func clear()
@@ -258,8 +258,8 @@ public enum CardBrand : Swift.String {
 }
 @_inheritsConvenienceInitializers @objc(SPRSecureOpaqueStringBuilder) public class SpreedlySecureOpaqueStringBuilder : ObjectiveC.NSObject {
   @objc public static func build(from string: Swift.String?) -> Spreedly.SpreedlySecureOpaqueString
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 @objc(SPRClientConfiguration) public class ClientConfiguration : ObjectiveC.NSObject {
   @objc final public let envKey: Swift.String
@@ -268,19 +268,19 @@ public enum CardBrand : Swift.String {
   @objc final public let testCardNumber: Swift.String?
   @objc public init(envKey: Swift.String, envSecret: Swift.String? = nil, test: Swift.Bool = false, testCardNumber: Swift.String? = nil)
   @objc public static func getConfiguration() throws -> Spreedly.ClientConfiguration
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 @objc(SPRClientError) public enum ClientError : Swift.Int, Swift.Error {
   case noSpreedlyCredentials
   case parseError
   case invalidRequestData
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
-  public var rawValue: Swift.Int {
+  public typealias RawValue = Swift.Int
+  public static var _nsErrorDomain: Swift.String {
     get
   }
-  public static var _nsErrorDomain: Swift.String {
+  public var rawValue: Swift.Int {
     get
   }
 }
@@ -289,9 +289,9 @@ public enum CardBrand : Swift.String {
   @objc convenience public init(payment: PassKit.PKPayment)
   @objc public init(paymentTokenData: Foundation.Data)
   public init(copyFrom info: Spreedly.PaymentMethodInfo?, payment: PassKit.PKPayment)
-  @objc deinit
   @objc override dynamic public init()
   override public init(copyFrom info: Spreedly.PaymentMethodInfo?)
+  @objc deinit
 }
 @objc public enum BankAccountType : Swift.Int, Swift.CaseIterable {
   case unknown
@@ -300,13 +300,13 @@ public enum CardBrand : Swift.String {
   public var stringValue: Swift.String? {
     get
   }
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
-  public var rawValue: Swift.Int {
+  public typealias AllCases = [Spreedly.BankAccountType]
+  public typealias RawValue = Swift.Int
+  public static var allCases: [Spreedly.BankAccountType] {
     get
   }
-  public typealias AllCases = [Spreedly.BankAccountType]
-  public static var allCases: [Spreedly.BankAccountType] {
+  public var rawValue: Swift.Int {
     get
   }
 }
@@ -317,13 +317,13 @@ public enum CardBrand : Swift.String {
   public var stringValue: Swift.String? {
     get
   }
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
-  public var rawValue: Swift.Int {
+  public typealias AllCases = [Spreedly.BankAccountHolderType]
+  public typealias RawValue = Swift.Int
+  public static var allCases: [Spreedly.BankAccountHolderType] {
     get
   }
-  public typealias AllCases = [Spreedly.BankAccountHolderType]
-  public static var allCases: [Spreedly.BankAccountHolderType] {
+  public var rawValue: Swift.Int {
     get
   }
 }

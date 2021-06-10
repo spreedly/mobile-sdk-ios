@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
 // swift-module-flags: -target arm64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SpreedlyCocoa
 import Foundation
 import PassKit
@@ -8,7 +8,7 @@ import Spreedly
 import Swift
 import UIKit
 import os
-@objc(SPRSecureFormDelegate) public protocol SecureFormDelegate : AnyObject {
+@objc(SPRSecureFormDelegate) public protocol SecureFormDelegate {
   @objc func spreedly(secureForm: SpreedlyCocoa.SecureForm, success: Spreedly.Transaction)
   @objc optional func willCallSpreedly(secureForm: SpreedlyCocoa.SecureForm)
   @objc optional func didCallSpreedly(secureForm: SpreedlyCocoa.SecureForm)
@@ -57,16 +57,16 @@ import os
     get
     set
   }
-  @objc deinit
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
 }
 @objc(SPRValidationState) public enum ValidationState : Swift.Int {
   case none
   case valid
   case error
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
@@ -112,8 +112,8 @@ extension CreditCardNumberTextField {
   @objc dynamic public init()
   @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc public func showPicker()
-  @objc deinit
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc deinit
 }
 extension ExpirationPickerField : UIKit.UIPickerViewDataSource {
   @objc dynamic public func numberOfComponents(in pickerView: UIKit.UIPickerView) -> Swift.Int
@@ -130,8 +130,8 @@ extension ExpirationPickerField : SpreedlyCocoa.ExpirationDateProvider {
   @objc(SPRPresentationStyle) public enum PresentationStyle : Swift.Int {
     case withinNavigationView = 0
     case asModal
-    public typealias RawValue = Swift.Int
     public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
       get
     }
@@ -153,8 +153,8 @@ extension ExpirationPickerField : SpreedlyCocoa.ExpirationDateProvider {
   @objc public var paymentSelectionFooter: UIKit.UIView?
   @objc public var paymentSelectionFooterHeight: CoreGraphics.CGFloat
   public func buildViewController() -> UIKit.UIViewController
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 @_inheritsConvenienceInitializers @objc(SPRExpressContext) public class ExpressContext : ObjectiveC.NSObject {
   @objc public var clientConfiguration: Spreedly.ClientConfiguration?
@@ -208,7 +208,7 @@ extension PaymentMethodItem {
     @objc get
   }
 }
-@objc(SPRExpirationDateProvider) public protocol ExpirationDateProvider : AnyObject {
+@objc(SPRExpirationDateProvider) public protocol ExpirationDateProvider {
   @objc func expirationDate() -> SpreedlyCocoa.ExpirationDate?
 }
 @_hasMissingDesignatedInitializers @objc(SPRExpirationDate) public class ExpirationDate : ObjectiveC.NSObject {
