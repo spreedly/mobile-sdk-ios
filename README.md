@@ -83,7 +83,11 @@ func showPaymentSelection() {
 }
 ```
 
-If you support Apple Pay for pay-ins, you must create and configure a `PKPaymentRequest` instance then set it on the `ExpressBuilder` instance.
+### Apple Pay with `ExpressBuilder`
+
+You can use Apply Pay with either the Express UI or with a custom UI. Once you have followed the steps above, go to the [Apple Pay Developer](https://developer.apple.com/documentation/passkit/apple_pay/) site and follow the 'Setting up Apple Pay' steps.
+
+To use Apple Pay with Express you must create and configure a `PKPaymentRequest` instance then set it on the `ExpressBuilder` instance.
 
 ```swift
 let request = PKPaymentRequest()
@@ -110,7 +114,7 @@ The `SecureForm` expects to use some of the custom controls included with this S
 - `CreditCardNumberTextField` - A `SecureTextField` which auto-formats card number input, displays a card brand icon for identified brands, and masks the content when the user is not interacting with it.
 - `ExpirationPickerField` - A `ValidatedTextField` which allows the user to select a month and year using a `UIPickerView`.
 
-## Full custom
+## Build your own Payment UI
 If you prefer a completely customized payment method collection and selection experience, you can use the APIs within the `Spreedly` target for low-level interactions.
 
 For example, to create a new credit card payment method with Spreedly, create and configure a `CreditCardInfo` instance then use the `SpreedlyClient` to send it to Spreedly.
