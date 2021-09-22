@@ -10,11 +10,11 @@ We recommend using [CocoaPods](https://guides.cocoapods.org/using/getting-starte
 
 Add the following to your [Podfile](https://guides.cocoapods.org/syntax/podfile.html):
 ```ruby
-# Core SDK
-pod 'Spreedly'
+  # Core SDK
+  pod 'Spreedly', '~> 1.0.0-beta2'
 
-# Express prebuilt UIs and controls
-pod 'SpreedlyCocoa' 
+  # Express prebuilt UIs and controls
+  pod 'SpreedlyCocoa', '~> 1.0.0-beta2'
 ```
 
 ### Installing the BETA
