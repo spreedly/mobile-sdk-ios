@@ -6,15 +6,15 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		iSDjAfBAlQIy3fs3hPr/N2AV4kM=
+		acKDUZdBhmewP4kXTQwez8DKGWU=
 		</data>
 		<key>Base.lproj/Express.storyboardc/4d7-45-AKY-view-Xbx-bk-ami.nib/objects-14.0+.nib</key>
 		<data>
-		UdrBZIUJOZGj6e5j+kg0XMMVhlY=
+		AORGiUs+LOAyl1b4OmP54qdUswk=
 		</data>
 		<key>Base.lproj/Express.storyboardc/4d7-45-AKY-view-Xbx-bk-ami.nib/runtime.nib</key>
 		<data>
-		h0pT7JOuto0awHCtK15AsK18jrQ=
+		gx0oi9FeBX6UkGsdP71WSYGIq20=
 		</data>
 		<key>Base.lproj/Express.storyboardc/Info.plist</key>
 		<data>
@@ -22,67 +22,67 @@
 		</data>
 		<key>Base.lproj/Express.storyboardc/Navigation.nib/objects-14.0+.nib</key>
 		<data>
-		r1HkAi2t1mmGa2c/8xvX/Admuk8=
+		1pkLkh7qMHJVQy8tBhlXEz6fSNc=
 		</data>
 		<key>Base.lproj/Express.storyboardc/Navigation.nib/runtime.nib</key>
 		<data>
-		hyRmUCjfa3C954jxIVHq93Ili3Q=
+		1pkLkh7qMHJVQy8tBhlXEz6fSNc=
 		</data>
 		<key>Base.lproj/Express.storyboardc/PaymentSelection.nib/objects-14.0+.nib</key>
 		<data>
-		Y1moxSnySKz8KOvlsi2QQEmTtSk=
+		z0H2Li+P3Ay6pH323ImwxI6AFsg=
 		</data>
 		<key>Base.lproj/Express.storyboardc/PaymentSelection.nib/runtime.nib</key>
 		<data>
-		VRazAPRfVeJLxys8bmQ1cU3+GZM=
+		z0H2Li+P3Ay6pH323ImwxI6AFsg=
 		</data>
 		<key>Base.lproj/Express.storyboardc/Q1G-fJ-uL3-view-hg5-AU-gKT.nib/objects-14.0+.nib</key>
 		<data>
-		CERFmRvhoX0EKtWdHiP1qvuaGYQ=
+		95ZHsmre6DfvQI4uwjytGQe3AkU=
 		</data>
 		<key>Base.lproj/Express.storyboardc/Q1G-fJ-uL3-view-hg5-AU-gKT.nib/runtime.nib</key>
 		<data>
-		OwJWc6xPwPEHUDJS3K/jUXilxwc=
+		jGvFoCLXxVzF/kDu1EN85TKVmow=
 		</data>
 		<key>Base.lproj/Express.storyboardc/UIViewController-4d7-45-AKY.nib/objects-14.0+.nib</key>
 		<data>
-		W1VD4toYdw+hMhMstUc2DAkRFZY=
+		QVBf/uK0IPKg3/b628J3eqkdnLE=
 		</data>
 		<key>Base.lproj/Express.storyboardc/UIViewController-4d7-45-AKY.nib/runtime.nib</key>
 		<data>
-		6aK7Z8zQviWe775RtxmTzkjZ7qo=
+		QVBf/uK0IPKg3/b628J3eqkdnLE=
 		</data>
 		<key>Base.lproj/Express.storyboardc/UIViewController-Q1G-fJ-uL3.nib/objects-14.0+.nib</key>
 		<data>
-		k8aJrzg1ur1oIw5RLL60N7iny+w=
+		l3vE6DrEO+UBvtcjwQPLWXQdOFU=
 		</data>
 		<key>Base.lproj/Express.storyboardc/UIViewController-Q1G-fJ-uL3.nib/runtime.nib</key>
 		<data>
-		tqgqq/rkqUaMsNQxQcTzjto7wR4=
+		l3vE6DrEO+UBvtcjwQPLWXQdOFU=
 		</data>
 		<key>Base.lproj/Express.storyboardc/p0P-8y-uz6-view-ocx-fO-Vzh.nib/objects-14.0+.nib</key>
 		<data>
-		B8MTvzD/+yzRRw75mj4u3r+XhcQ=
+		YVL9PYX1zteLySsgxv93ZqlSeWc=
 		</data>
 		<key>Base.lproj/Express.storyboardc/p0P-8y-uz6-view-ocx-fO-Vzh.nib/runtime.nib</key>
 		<data>
-		ILc/l3kAvTFtwRbpsnc69eLF1WQ=
+		YVL9PYX1zteLySsgxv93ZqlSeWc=
 		</data>
 		<key>Frameworks/Spreedly.framework/Info.plist</key>
 		<data>
-		pi5tGbltK9q0U4ZwMva59W7qttg=
+		HLltjYaESFK15QHCpL39nNFJKnA=
 		</data>
 		<key>Frameworks/Spreedly.framework/Spreedly</key>
 		<data>
-		zARjVFVXGAMc+1lK9tRVyxzTeKk=
+		QMHnPgXKNu0n+fqGmeMh3CnPduA=
 		</data>
 		<key>Frameworks/Spreedly.framework/_CodeSignature/CodeResources</key>
 		<data>
-		ZTIT1ptXzQhm51UoV1WHeoQAdXU=
+		czt7QzZOeiqNd4Z2cKtTAb6YNXA=
 		</data>
 		<key>Headers/SpreedlyCocoa-Swift.h</key>
 		<data>
-		Ci+MjXRssZhUqUsEtilql20/N/k=
+		Q6PLgAvTJGLuZeFjK2vlDKlGb4M=
 		</data>
 		<key>Headers/SpreedlyCocoa.h</key>
 		<data>
@@ -90,71 +90,71 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		XifKtPaQNUa+9wUe+5R8gEPW+Z8=
+		jllMjQac1PB+Jm27aIsZHwUaQyA=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		gYJHkbl34PxTF+/Av2l75NDZRPM=
+		x9vTpcLrIflKbuxvGr80WJLbIJg=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<data>
-		gYJHkbl34PxTF+/Av2l75NDZRPM=
+		x9vTpcLrIflKbuxvGr80WJLbIJg=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		LyQp8GgSeuptTeYq2tBQazpJf5k=
+		9MoDAjirN5L6IjHpDvAY/tzCSGg=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		LyQp8GgSeuptTeYq2tBQazpJf5k=
+		9MoDAjirN5L6IjHpDvAY/tzCSGg=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		wYvyMPsjwTI1tyipeBDE3n2BKhA=
+		hnqQdQceFiifqCL6S2j1rIg9vGU=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		+pcYDL3umxUse39yntFyydlFAGI=
+		LItqvpxRcA+ZDN05/p+OZwb/lYA=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		OD/fmFs9Aaru4DYH9NNJKh8mlFk=
+		IlCNRUnAct+Ol+GyvSA30bKcZbU=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		wYvyMPsjwTI1tyipeBDE3n2BKhA=
+		hnqQdQceFiifqCL6S2j1rIg9vGU=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		+pcYDL3umxUse39yntFyydlFAGI=
+		LItqvpxRcA+ZDN05/p+OZwb/lYA=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		OD/fmFs9Aaru4DYH9NNJKh8mlFk=
+		IlCNRUnAct+Ol+GyvSA30bKcZbU=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		X6aysbTV8Y6UwehOZ7Y5Kr6kJg0=
+		ACOT/tYcN3Wn9kvEFX9hAys5VmY=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		bBjb6gKbcmwcPziaErWQyBHIbWs=
+		W2AiDuIK8gMYX2QEW3VO9J6HSm8=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		S/UDXBS+tJoJRXq4pEolntlfCMI=
+		np9nwzQQ3d95kKlH6zUQsigNlU0=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		X6aysbTV8Y6UwehOZ7Y5Kr6kJg0=
+		ACOT/tYcN3Wn9kvEFX9hAys5VmY=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		bBjb6gKbcmwcPziaErWQyBHIbWs=
+		W2AiDuIK8gMYX2QEW3VO9J6HSm8=
 		</data>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		S/UDXBS+tJoJRXq4pEolntlfCMI=
+		np9nwzQQ3d95kKlH6zUQsigNlU0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -185,21 +185,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dJMrPpG6q/V09kADJzCizfDyTlEaaZIvtSENdqieR4g=
+			tT4Dn0AMacO2DhdVSs3HfKZrB2djLGVVowkO+oZYox0=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/4d7-45-AKY-view-Xbx-bk-ami.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hmWncCHiKJdS/c+/jfheWYraEhjicunRARbOra+Y4LU=
+			SyZXruoSJZvJkiVpDpzKW75nKdi0M+IrLVFfcaXMMrE=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/4d7-45-AKY-view-Xbx-bk-ami.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o7GOhNGO/H2V7REqmnBsmVUQPjG+CJT+cHYGv64uplE=
+			Jqa0wPgiyP83LXFHmaMae24TQ9tKkvKj7TUFNrGWlJw=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/Info.plist</key>
@@ -213,112 +213,112 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MPHkuovDbqjnhW1aLLEcmKr/SM82sc1LtpCFarR/B0o=
+			a47DjtbmNlOOfYDfq0cd3S7P+3Rb8q1jHYC57UyVQC8=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/Navigation.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			t1AM0vKXQqLkoj/mTqM8x2Si/jxvwmckLe3yx4dFGhg=
+			a47DjtbmNlOOfYDfq0cd3S7P+3Rb8q1jHYC57UyVQC8=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/PaymentSelection.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MiCZbOEaG0cPiU3aUQZ7SnGd0tCQ97Zzf3RvIxCOZ5k=
+			oePTaxv7jsTN7CQl5IBPjfYOcfkuBnaVzj5PJyq48lA=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/PaymentSelection.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CrKBIFwHr29WAdtnU6bXN4LW9rxKqE8G+2VGPTEXjmY=
+			oePTaxv7jsTN7CQl5IBPjfYOcfkuBnaVzj5PJyq48lA=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/Q1G-fJ-uL3-view-hg5-AU-gKT.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Y2PCrOi+BqCyGbQ7gU04L7pYhSY/KGJqIAcxGm19ZWM=
+			jyOxkqmsbl9tKWAuIy7HYM7X4ax7xund27E9mSaxwnM=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/Q1G-fJ-uL3-view-hg5-AU-gKT.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jKCRx/+mS5y35Xe3BRXbBJf6vqFITbWFwNplgXDFi+Y=
+			OIF+VGZQ6vVTjswnro2tYE4BQXKU05UNk7ZqJxlYyts=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/UIViewController-4d7-45-AKY.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rQ87Nr4S/cBiuxpytakb6aurzuIRiz+/jnDAgQ8f8/M=
+			BsrPcARLsLzwyU2nJniaDoLTljbZnqufgVo2bgXRkfc=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/UIViewController-4d7-45-AKY.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YWI/3L53CSgtc2M42rj4sL7tNywuX/Uy+PcCTx/aMb4=
+			BsrPcARLsLzwyU2nJniaDoLTljbZnqufgVo2bgXRkfc=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/UIViewController-Q1G-fJ-uL3.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XD+y54v26tNiVTfaf0dlUA7HUE34DbpJnlXSuNP5suM=
+			fXSsv2BSeY6UCQmeRCYjuYJvzVJiBLWuTlpliRCr9X8=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/UIViewController-Q1G-fJ-uL3.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BKlBR6FyQU6r75XY8yIPQPWvDBd6ee0+HuVJD5yRG9Y=
+			fXSsv2BSeY6UCQmeRCYjuYJvzVJiBLWuTlpliRCr9X8=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/p0P-8y-uz6-view-ocx-fO-Vzh.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0vktdBf1FFt9w3DRS0XMAeTrbjLgkuKCG+LKKwGBU8M=
+			lVPr6y+SgvSMCfxQJBehSzT5xIDszbXzQ55Aw3EUTZU=
 			</data>
 		</dict>
 		<key>Base.lproj/Express.storyboardc/p0P-8y-uz6-view-ocx-fO-Vzh.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UfJWwH+BfGOJdNzG6+z0W1iCUNDYZTCV1iJJIDOVrL8=
+			lVPr6y+SgvSMCfxQJBehSzT5xIDszbXzQ55Aw3EUTZU=
 			</data>
 		</dict>
 		<key>Frameworks/Spreedly.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9uW8QrsbncT9nBwIK0XuiiuHpZ516O3aICe3QMraszM=
+			3tDEGdZuSsJx95ALAuyqyi5RPl28jev4W/r6YAhmIOc=
 			</data>
 		</dict>
 		<key>Frameworks/Spreedly.framework/Spreedly</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			epaBIP7lkih2lWc+q4biq1+y7/2h/YY3RDOnUC1XX+w=
+			dOBp8Cl6xUUmsqZYdE6oT9sWtsVEhz/cExaoejXDac8=
 			</data>
 		</dict>
 		<key>Frameworks/Spreedly.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OvfgTJsDHj9tAlJeusSqlbCXRAFhk29cvLaAbg46xdQ=
+			u6gIbk6zquz1t9daTDvnuy8kDmZ8Fv/aOBI57QN86Ss=
 			</data>
 		</dict>
 		<key>Headers/SpreedlyCocoa-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+a3peX/TRcn+r2RJ02Lfl4ykER2GIb5VIhA7yO73CV8=
+			zr4F0GfWvhp9KAsVYAZZRT6HNQCogdwn3PebQ+XWRsk=
 			</data>
 		</dict>
 		<key>Headers/SpreedlyCocoa.h</key>
@@ -332,112 +332,112 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			miyMefmVkvqxkS21QwbzY0TwmjXviVPdbqzZR+2DF+Y=
+			NVSlRcklD5dTRQbK5GNtrQ56iikT1vS6+h8TzCUAklA=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			miyMefmVkvqxkS21QwbzY0TwmjXviVPdbqzZR+2DF+Y=
+			NVSlRcklD5dTRQbK5GNtrQ56iikT1vS6+h8TzCUAklA=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TzQ6DtK67A8gpGskYOVekijEzSK/qppqyVi7QTMyhLU=
+			lMQtvmdmpxAarqbDzbj9jXtUEFAlhpigNVVp1aYENMA=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TzQ6DtK67A8gpGskYOVekijEzSK/qppqyVi7QTMyhLU=
+			lMQtvmdmpxAarqbDzbj9jXtUEFAlhpigNVVp1aYENMA=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mr7AUKCJrTNoPF7ODc0qfwHIITj0b6ViY5FEVjlsuMg=
+			baPgptp6KgBXkT7d8HquzxDDKhJvoYTQPnIfk1t6avk=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kjci7ed6aemvfE2XXj2vjgV4y++EW7F8MrSj4I9TXMY=
+			Re+pA2RGC6YNwAf7qA/QfMN7od1+w92b42tL5FdbRbM=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cBjYFsZN8vIOvzH9CV1dxXJcw7XSSSZYNUOBlHpUvrw=
+			BFs2A5Tq2ZDPF76S5Gv60+SXr+U2EBsUthILVhYAMfM=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mr7AUKCJrTNoPF7ODc0qfwHIITj0b6ViY5FEVjlsuMg=
+			baPgptp6KgBXkT7d8HquzxDDKhJvoYTQPnIfk1t6avk=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kjci7ed6aemvfE2XXj2vjgV4y++EW7F8MrSj4I9TXMY=
+			Re+pA2RGC6YNwAf7qA/QfMN7od1+w92b42tL5FdbRbM=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cBjYFsZN8vIOvzH9CV1dxXJcw7XSSSZYNUOBlHpUvrw=
+			BFs2A5Tq2ZDPF76S5Gv60+SXr+U2EBsUthILVhYAMfM=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RnRVIoYNVMuCVNesAjmvoBsquLrNTWcHLswmktBS2fM=
+			zGCpDQ3CCS3WWJtz+r/kR+Swc7R/IkQPkZdA0WCFiPQ=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KzVv8RimuhFSZwHtZaWmLNJzQMlBqCcprFeXyCn9g8w=
+			DH6ybVcvgrSzYAdm8775wUMmSxjIbvHOv3sR7iKI7Y8=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			D5jm09qfIOk1+jfp3BGsHbT5cHWzLAsGeVsMLYC0tdc=
+			0PRBb6Iy5+reRga+rWPG8nvSYXN9xoTCCOx2T0N8f8Y=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RnRVIoYNVMuCVNesAjmvoBsquLrNTWcHLswmktBS2fM=
+			zGCpDQ3CCS3WWJtz+r/kR+Swc7R/IkQPkZdA0WCFiPQ=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KzVv8RimuhFSZwHtZaWmLNJzQMlBqCcprFeXyCn9g8w=
+			DH6ybVcvgrSzYAdm8775wUMmSxjIbvHOv3sR7iKI7Y8=
 			</data>
 		</dict>
 		<key>Modules/SpreedlyCocoa.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			D5jm09qfIOk1+jfp3BGsHbT5cHWzLAsGeVsMLYC0tdc=
+			0PRBb6Iy5+reRga+rWPG8nvSYXN9xoTCCOx2T0N8f8Y=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
