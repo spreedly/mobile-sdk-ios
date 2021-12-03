@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.authors          = { "Spreedly" => "support@spreedly.com" }
     s.source           = { :git => $repo, :tag => $tag }
     s.swift_version    = '5.0'
-    s.platform         = :ios, '12.0'
+    s.platform         = :ios, '12.2'
     s.requires_arc     = true
 
     s.license = { :type => 'Copyright', :text => $copyright }
