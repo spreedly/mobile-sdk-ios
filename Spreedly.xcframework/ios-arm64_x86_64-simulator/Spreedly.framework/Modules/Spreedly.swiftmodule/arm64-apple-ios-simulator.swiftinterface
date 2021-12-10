@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
-// swift-module-flags: -target arm64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name Spreedly
+// swift-module-flags: -target arm64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Spreedly
 import Foundation
 import PassKit
 @_exported import Spreedly
@@ -280,7 +280,7 @@ public enum CardBrand : Swift.String {
 }
 @objc public class ApplePayInfo : Spreedly.PaymentMethodInfo {
   @objc public var testCardNumber: Swift.String?
-  @objc public convenience init(payment: PassKit.PKPayment)
+  @objc convenience public init(payment: PassKit.PKPayment)
   @objc public init(paymentTokenData: Foundation.Data)
   public init(copyFrom info: Spreedly.PaymentMethodInfo?, payment: PassKit.PKPayment)
   @objc deinit
@@ -340,10 +340,38 @@ public enum CardBrand : Swift.String {
 extension Spreedly.CreditCardInfo {
   @objc(year) dynamic public var _objCYear: Swift.Int {
     @objc get
-    @objc set(newValue)
+    @objc set
   }
   @objc(month) dynamic public var _objCMonth: Swift.Int {
     @objc get
-    @objc set(newValue)
+    @objc set
   }
 }
+extension Spreedly.SpreedlySecurityError : Swift.Equatable {}
+extension Spreedly.SpreedlySecurityError : Swift.Hashable {}
+extension Spreedly.StorageState : Swift.Equatable {}
+extension Spreedly.StorageState : Swift.Hashable {}
+extension Spreedly.StorageState : Swift.RawRepresentable {}
+extension Spreedly._ObjCStorageState : Swift.Equatable {}
+extension Spreedly._ObjCStorageState : Swift.Hashable {}
+extension Spreedly._ObjCStorageState : Swift.RawRepresentable {}
+extension Spreedly.PaymentMethodType : Swift.Equatable {}
+extension Spreedly.PaymentMethodType : Swift.Hashable {}
+extension Spreedly.PaymentMethodType : Swift.RawRepresentable {}
+extension Spreedly._ObjCPaymentMethodType : Swift.Equatable {}
+extension Spreedly._ObjCPaymentMethodType : Swift.Hashable {}
+extension Spreedly._ObjCPaymentMethodType : Swift.RawRepresentable {}
+extension Spreedly.Address.AddressType : Swift.Equatable {}
+extension Spreedly.Address.AddressType : Swift.Hashable {}
+extension Spreedly.CardBrand : Swift.Equatable {}
+extension Spreedly.CardBrand : Swift.Hashable {}
+extension Spreedly.CardBrand : Swift.RawRepresentable {}
+extension Spreedly.ClientError : Swift.Equatable {}
+extension Spreedly.ClientError : Swift.Hashable {}
+extension Spreedly.ClientError : Swift.RawRepresentable {}
+extension Spreedly.BankAccountType : Swift.Equatable {}
+extension Spreedly.BankAccountType : Swift.Hashable {}
+extension Spreedly.BankAccountType : Swift.RawRepresentable {}
+extension Spreedly.BankAccountHolderType : Swift.Equatable {}
+extension Spreedly.BankAccountHolderType : Swift.Hashable {}
+extension Spreedly.BankAccountHolderType : Swift.RawRepresentable {}

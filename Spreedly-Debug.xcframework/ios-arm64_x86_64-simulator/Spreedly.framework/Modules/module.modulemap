@@ -1,0 +1,11 @@
+framework module Spreedly {
+  umbrella header "Spreedly.h"
+
+  export *
+  module * { export * }
+}
+
+module Spreedly.Swift {
+    header "Spreedly-Swift.h"
+    requires objc
+}

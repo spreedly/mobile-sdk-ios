@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
-// swift-module-flags: -target arm64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name SpreedlyCocoa
+// swift-module-flags: -target arm64-apple-ios12.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SpreedlyCocoa
 import Foundation
 import PassKit
 import Spreedly
@@ -52,11 +52,11 @@ import os
   @objc @IBAction @_Concurrency.MainActor(unsafe) public func createBankAccountPaymentMethod(sender: UIKit.UIView)
   @_Concurrency.MainActor(unsafe) public var selectedHolderType: Spreedly.BankAccountHolderType {
     get
-    set(newValue)
+    set
   }
   @_Concurrency.MainActor(unsafe) public var selectedAccountType: Spreedly.BankAccountType {
     get
-    set(newValue)
+    set
   }
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
@@ -87,7 +87,7 @@ import os
 extension SpreedlyCocoa.ValidatedTextField : UIKit.UITextFieldDelegate {
   @objc @_Concurrency.MainActor(unsafe) override dynamic public var delegate: UIKit.UITextFieldDelegate? {
     @_Concurrency.MainActor(unsafe) @objc get
-    @_Concurrency.MainActor(unsafe) @objc set(newValue)
+    @_Concurrency.MainActor(unsafe) @objc set
   }
   @objc @_Concurrency.MainActor(unsafe) dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
 }
@@ -254,3 +254,9 @@ extension SpreedlyCocoa.SelectedPaymentMethod {
     @objc get
   }
 }
+extension SpreedlyCocoa.ValidationState : Swift.Equatable {}
+extension SpreedlyCocoa.ValidationState : Swift.Hashable {}
+extension SpreedlyCocoa.ValidationState : Swift.RawRepresentable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.Equatable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.Hashable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.RawRepresentable {}
