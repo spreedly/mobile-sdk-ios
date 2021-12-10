@@ -1,0 +1,262 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target arm64-apple-ios12.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SpreedlyCocoa
+import Foundation
+import PassKit
+import Spreedly
+@_exported import SpreedlyCocoa
+import Swift
+import UIKit
+import _Concurrency
+import os
+@objc(SPRSecureFormDelegate) public protocol SecureFormDelegate {
+  @objc func spreedly(secureForm: SpreedlyCocoa.SecureForm, success: Spreedly.Transaction)
+  @objc optional func willCallSpreedly(secureForm: SpreedlyCocoa.SecureForm)
+  @objc optional func didCallSpreedly(secureForm: SpreedlyCocoa.SecureForm)
+  @objc optional func clientConfiguration(secureForm: SpreedlyCocoa.SecureForm) -> Spreedly.ClientConfiguration?
+}
+@_inheritsConvenienceInitializers @objc(SPRSecureForm) @_Concurrency.MainActor(unsafe) public class SecureForm : UIKit.UIView {
+  @objc @_Concurrency.MainActor(unsafe) weak public var delegate: SpreedlyCocoa.SecureFormDelegate?
+  @objc @_Concurrency.MainActor(unsafe) public var creditCardDefaults: Spreedly.CreditCardInfo?
+  @objc @_Concurrency.MainActor(unsafe) public var bankAccountDefaults: Spreedly.BankAccountInfo?
+  @objc @_Concurrency.MainActor(unsafe) public var paymentMethodDefaults: Spreedly.PaymentMethodInfo?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var fullName: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var firstName: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var lastName: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var email: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var company: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var creditCardNumber: SpreedlyCocoa.CreditCardNumberTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var creditCardVerificationNumber: SpreedlyCocoa.SecureTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var expirationDate: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var expirationDateProvider: SpreedlyCocoa.ExpirationDateProvider?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var bankAccountNumber: SpreedlyCocoa.SecureTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var bankAccountRoutingNumber: SpreedlyCocoa.ValidatedTextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var bankAccountType: UIKit.UISegmentedControl?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var bankAccountHolderType: UIKit.UISegmentedControl?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var address1: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var address2: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var city: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var state: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var zip: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var country: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var phoneNumber: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var sameAddressForShipping: UIKit.UISwitch?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingAddress1: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingAddress2: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingCity: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingState: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingZip: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingCountry: UIKit.UITextField?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak public var shippingPhoneNumber: UIKit.UITextField?
+  @objc @IBAction @_Concurrency.MainActor(unsafe) public func createCreditCardPaymentMethod(sender: UIKit.UIView)
+  @objc @IBAction @_Concurrency.MainActor(unsafe) public func createBankAccountPaymentMethod(sender: UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) public var selectedHolderType: Spreedly.BankAccountHolderType {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var selectedAccountType: Spreedly.BankAccountType {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc(SPRValidationState) public enum ValidationState : Swift.Int {
+  case none
+  case valid
+  case error
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(SPRValidatedTextField) @_Concurrency.MainActor(unsafe) open class ValidatedTextField : UIKit.UITextField {
+  @objc @_Concurrency.MainActor(unsafe) required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor(unsafe) override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc @_Concurrency.MainActor(unsafe) public var validationState: SpreedlyCocoa.ValidationState {
+    get
+  }
+  @objc @_Concurrency.MainActor(unsafe) public var reason: Swift.String?
+  @objc @_Concurrency.MainActor(unsafe) public func clearValidation()
+  @objc @_Concurrency.MainActor(unsafe) public func setError(because reason: Swift.String)
+  @objc @_Concurrency.MainActor(unsafe) public func setValid()
+  @objc deinit
+}
+extension SpreedlyCocoa.ValidatedTextField : UIKit.UITextFieldDelegate {
+  @objc @_Concurrency.MainActor(unsafe) override dynamic public var delegate: UIKit.UITextFieldDelegate? {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
+  }
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+}
+public protocol CreditCardNumberTextFieldDelegate : AnyObject {
+  func cardBrandDetermined(brand: Spreedly.CardBrand)
+}
+@_inheritsConvenienceInitializers @objc(SPRCreditCardNumberTextField) @_Concurrency.MainActor(unsafe) open class CreditCardNumberTextField : SpreedlyCocoa.SecureTextField {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) open var maskCharacter: Swift.String
+  @_Concurrency.MainActor(unsafe) weak public var cardNumberTextFieldDelegate: SpreedlyCocoa.CreditCardNumberTextFieldDelegate?
+  @objc @_Concurrency.MainActor(unsafe) override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc @_Concurrency.MainActor(unsafe) required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override public func secureText() -> Spreedly.SpreedlySecureOpaqueString?
+  @_Concurrency.MainActor(unsafe) open func formatCardNumber(_ string: Swift.String) -> Swift.String
+  @objc deinit
+}
+extension SpreedlyCocoa.CreditCardNumberTextField {
+  @objc @_Concurrency.MainActor(unsafe) dynamic open func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+  @objc @_Concurrency.MainActor(unsafe) dynamic open func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) open func generateMasked(from string: Swift.String) -> Swift.String
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+}
+@objc(SPRExpirationPickerField) @_Concurrency.MainActor(unsafe) public class ExpirationPickerField : SpreedlyCocoa.ValidatedTextField {
+  @objc dynamic public init()
+  @objc @_Concurrency.MainActor(unsafe) required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor(unsafe) public func showPicker()
+  @objc deinit
+}
+extension SpreedlyCocoa.ExpirationPickerField : UIKit.UIPickerViewDataSource {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func numberOfComponents(in pickerView: UIKit.UIPickerView) -> Swift.Int
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func pickerView(_ pickerView: UIKit.UIPickerView, numberOfRowsInComponent component: Swift.Int) -> Swift.Int
+}
+extension SpreedlyCocoa.ExpirationPickerField : UIKit.UIPickerViewDelegate {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func pickerView(_ pickerView: UIKit.UIPickerView, titleForRow row: Swift.Int, forComponent component: Swift.Int) -> Swift.String?
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func pickerView(_ pickerView: UIKit.UIPickerView, didSelectRow row: Swift.Int, inComponent component: Swift.Int)
+}
+extension SpreedlyCocoa.ExpirationPickerField : SpreedlyCocoa.ExpirationDateProvider {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func expirationDate() -> SpreedlyCocoa.ExpirationDate?
+}
+@_inheritsConvenienceInitializers @objc(SPRExpressBuilder) public class ExpressBuilder : ObjectiveC.NSObject {
+  @objc(SPRPresentationStyle) public enum PresentationStyle : Swift.Int {
+    case withinNavigationView = 0
+    case asModal
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public var clientConfiguration: Spreedly.ClientConfiguration?
+  @objc public var allowCard: Swift.Bool
+  @objc public var allowBankAccount: Swift.Bool
+  @objc public var allowApplePay: Swift.Bool
+  @objc public var paymentMethods: [SpreedlyCocoa.PaymentMethodItem]?
+  @objc public var didSelectPaymentMethod: ((SpreedlyCocoa.SelectedPaymentMethod) -> Swift.Void)?
+  @objc public var defaultPaymentMethodInfo: Spreedly.PaymentMethodInfo?
+  @objc public var defaultCreditCardInfo: Spreedly.CreditCardInfo?
+  @objc public var defaultBankAccountInfo: Spreedly.BankAccountInfo?
+  @objc public var defaultApplePayInfo: Spreedly.PaymentMethodInfo?
+  @objc public var paymentRequest: PassKit.PKPaymentRequest?
+  @objc public var presentationStyle: SpreedlyCocoa.ExpressBuilder.PresentationStyle
+  @objc public var paymentSelectionHeader: UIKit.UIView?
+  @objc public var paymentSelectionHeaderHeight: CoreGraphics.CGFloat
+  @objc public var paymentSelectionFooter: UIKit.UIView?
+  @objc public var paymentSelectionFooterHeight: CoreGraphics.CGFloat
+  public func buildViewController() -> UIKit.UIViewController
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(SPRExpressContext) public class ExpressContext : ObjectiveC.NSObject {
+  @objc public var clientConfiguration: Spreedly.ClientConfiguration?
+  @objc public var paymentMethods: [SpreedlyCocoa.PaymentMethodItem]?
+  @objc public var allowCard: Swift.Bool
+  @objc public var allowBankAccount: Swift.Bool
+  @objc public var allowApplePay: Swift.Bool
+  @objc public var didSelectPaymentMethod: ((SpreedlyCocoa.SelectedPaymentMethod) -> Swift.Void)?
+  @objc public var paymentMethodDefaults: Spreedly.PaymentMethodInfo?
+  @objc public var creditCardDefaults: Spreedly.CreditCardInfo?
+  @objc public var bankAccountDefaults: Spreedly.BankAccountInfo?
+  @objc public var applePayDefaults: Spreedly.PaymentMethodInfo?
+  @objc public var paymentRequest: PassKit.PKPaymentRequest?
+  @objc public var paymentSelectionHeader: UIKit.UIView?
+  @objc public var paymentSelectionHeaderHeight: CoreGraphics.CGFloat
+  @objc public var paymentSelectionFooter: UIKit.UIView?
+  @objc public var paymentSelectionFooterHeight: CoreGraphics.CGFloat
+  @objc public var fullNamePaymentMethod: Swift.String? {
+    @objc get
+  }
+  @objc public var fullNameCreditCard: Swift.String? {
+    @objc get
+  }
+  @objc public var fullNameBankAccount: Swift.String? {
+    @objc get
+  }
+  @objc public var fullNameApplePay: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(SPRSecureTextField) @_Concurrency.MainActor(unsafe) open class SecureTextField : SpreedlyCocoa.ValidatedTextField {
+  @objc @_Concurrency.MainActor(unsafe) public func secureText() -> Spreedly.SpreedlySecureOpaqueString?
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc deinit
+}
+@objc(SPRPaymentMethodItem) public class PaymentMethodItem : ObjectiveC.NSObject {
+  final public let type: Spreedly.PaymentMethodType
+  @objc final public let shortDescription: Swift.String
+  @objc final public let token: Swift.String
+  public var cardBrand: Spreedly.CardBrand?
+  public init(type: Spreedly.PaymentMethodType, description: Swift.String, token: Swift.String)
+  public init(type: Spreedly.PaymentMethodType, cardBrand: Spreedly.CardBrand, description: Swift.String, token: Swift.String)
+  @objc deinit
+}
+extension SpreedlyCocoa.PaymentMethodItem {
+  @objc(type) dynamic public var _objCType: Spreedly._ObjCPaymentMethodType {
+    @objc get
+  }
+}
+@objc(SPRExpirationDateProvider) public protocol ExpirationDateProvider {
+  @objc func expirationDate() -> SpreedlyCocoa.ExpirationDate?
+}
+@_hasMissingDesignatedInitializers @objc(SPRExpirationDate) public class ExpirationDate : ObjectiveC.NSObject {
+  @objc deinit
+}
+public protocol UITextFieldXIBLocalizable {
+  var xibPlaceholderLocKey: Swift.String? { get set }
+}
+extension UIKit.UITextField : SpreedlyCocoa.UITextFieldXIBLocalizable {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) dynamic public var xibPlaceholderLocKey: Swift.String? {
+    @objc get
+    @objc set(key)
+  }
+}
+public protocol XIBMultiLocalizable {
+  var xibLocKeys: Swift.String? { get set }
+}
+extension UIKit.UISegmentedControl : SpreedlyCocoa.XIBMultiLocalizable {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) dynamic public var xibLocKeys: Swift.String? {
+    @objc get
+    @objc set(keys)
+  }
+}
+public typealias PaymentCompletionHandler = (Swift.Bool, Spreedly.Transaction?) -> Swift.Void
+@objc(SPRApplePayHandler) public class ApplePayHandler : ObjectiveC.NSObject {
+  public init(client: Spreedly.SpreedlyClient, defaults: Spreedly.PaymentMethodInfo? = nil)
+  @objc public init(client: Spreedly._ObjCClient)
+  @objc public func startPayment(request: PassKit.PKPaymentRequest, completion: @escaping SpreedlyCocoa.PaymentCompletionHandler)
+  @objc deinit
+}
+extension SpreedlyCocoa.ApplePayHandler : PassKit.PKPaymentAuthorizationControllerDelegate {
+  @objc dynamic public func paymentAuthorizationController(_ controller: PassKit.PKPaymentAuthorizationController, didAuthorizePayment payment: PassKit.PKPayment, completion: @escaping (PassKit.PKPaymentAuthorizationStatus) -> Swift.Void)
+  @objc dynamic public func paymentAuthorizationControllerDidFinish(_ controller: PassKit.PKPaymentAuthorizationController)
+}
+@objc(SPRSelectedPaymentMethod) public class SelectedPaymentMethod : ObjectiveC.NSObject {
+  @objc final public let token: Swift.String
+  final public let type: Spreedly.PaymentMethodType
+  @objc public var paymentMethod: Spreedly.PaymentMethodResult?
+  public init(token: Swift.String, type: Spreedly.PaymentMethodType)
+  @objc deinit
+}
+extension SpreedlyCocoa.SelectedPaymentMethod {
+  @objc(type) dynamic public var _objCType: Spreedly._ObjCPaymentMethodType {
+    @objc get
+  }
+}
+extension SpreedlyCocoa.ValidationState : Swift.Equatable {}
+extension SpreedlyCocoa.ValidationState : Swift.Hashable {}
+extension SpreedlyCocoa.ValidationState : Swift.RawRepresentable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.Equatable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.Hashable {}
+extension SpreedlyCocoa.ExpressBuilder.PresentationStyle : Swift.RawRepresentable {}
