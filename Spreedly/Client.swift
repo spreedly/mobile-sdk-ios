@@ -17,6 +17,8 @@ public protocol SpreedlyClient {
     func createPaymentMethodFrom(applePay: ApplePayInfo) -> SingleTransaction
     
     var config: ClientConfiguration { get }
+    
+    func getPlatformData() -> String
 }
 
 public enum SpreedlySecurityError: Error {

@@ -108,6 +108,8 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 url = self.unauthenticatedPaymentMethodUrl
                 request["environment_key"] = self.config.envKey
             }
+            
+            request["platform-meta"] = self.getPlatformData()
 
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
@@ -146,6 +148,32 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             }
             source.handleError(error: ClientError.invalidRequestData)
         }.resume()
+    }
+    
+    func getPlatformData() -> String {
+        let proc = ProcessInfo()
+#if (arch(i386) || arch(x86_64))
+  let arch = "x86"
+#else
+  let arch = "arm"
+#endif
+        let data = [
+            "core-version": SpreedlyVersion.podVersion,
+            "platform": "apple",
+            "locale": Locale.current.languageCode ?? "unknown",
+            "os": [
+                "name": proc.operatingSystemName(),
+                "arch": arch,
+                "version": proc.operatingSystemVersionString,
+            ] as [String : Any],
+            "git": [
+                "branch": SpreedlyVersion.gitBranch,
+                "tag": SpreedlyVersion.gitTag,
+                "commit": SpreedlyVersion.gitCommitId,
+            ] as [String : Any],
+        ] as [String : Any]
+        print(data)
+        return (try! data.encodeJson()).base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
     }
 }
 
