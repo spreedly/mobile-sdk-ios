@@ -1,6 +1,6 @@
 # DO NOT EDIT
 # Edit the version in podspecs or version.podspec
-$version = '1.0.0-beta5'
+$version = '1.0.0-beta10'
 $repo = 'https://github.com/spreedly/mobile-sdk-ios.git'
 $tag = "version_#{$version}"
 $copyright = <<-LICENSE
@@ -24,6 +24,8 @@ Pod::Spec.new do |s|
     s.requires_arc     = true
 
     s.license = { :type => 'Copyright', :text => $copyright }
-    s.vendored_frameworks = 'SpreedlyCocoa.xcframework'
+    s.vendored_frameworks = 'SpreedlyCocoa-Debug.xcframework', :configurations => ['Debug']
+    s.vendored_frameworks = 'SpreedlyCocoa.xcframework', :configurations => ['Release']
+
 end
 
