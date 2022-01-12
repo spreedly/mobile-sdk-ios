@@ -18,11 +18,11 @@
 		</data>
 		<key>Modules/Spreedly.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		IvfqxzbRJ2cgCjrTXFrxqz5enac=
+		Kcn+ZjPssfMqECIuMdQ4enwprDs=
 		</data>
 		<key>Modules/Spreedly.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<data>
-		IvfqxzbRJ2cgCjrTXFrxqz5enac=
+		Kcn+ZjPssfMqECIuMdQ4enwprDs=
 		</data>
 		<key>Modules/Spreedly.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/Spreedly.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		bL9waPpsaBsljf+61J42zwSyLyg=
+		TRpJJk7a/ssgWfSEwiwHT9iZcLM=
 		</data>
 		<key>Modules/Spreedly.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		x+h4fjG/0XOHJ1DtseK1JKzO9h4=
+		KeWM6YmfN10opNSuDHgjG8CtnOo=
 		</data>
 		<key>Modules/Spreedly.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -42,11 +42,11 @@
 		</data>
 		<key>Modules/Spreedly.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		bL9waPpsaBsljf+61J42zwSyLyg=
+		TRpJJk7a/ssgWfSEwiwHT9iZcLM=
 		</data>
 		<key>Modules/Spreedly.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		x+h4fjG/0XOHJ1DtseK1JKzO9h4=
+		KeWM6YmfN10opNSuDHgjG8CtnOo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -73,14 +73,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FNdv93RtRZrTGYYnsXVCo7Ipiz8xYoClFE/MLUC1A/0=
+			stNFAIhzf+A00jYW6PAkFnj5zRZaPnV4lbVShe0DoSI=
 			</data>
 		</dict>
 		<key>Modules/Spreedly.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FNdv93RtRZrTGYYnsXVCo7Ipiz8xYoClFE/MLUC1A/0=
+			stNFAIhzf+A00jYW6PAkFnj5zRZaPnV4lbVShe0DoSI=
 			</data>
 		</dict>
 		<key>Modules/Spreedly.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -94,14 +94,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IaftkxLNz/Z4YUVBP7ASfg8SD1htp2BFmCBp7up7ELk=
+			BBW8iJ9vJYlIbFvZRMRxhXRmaXOmlMQDLWd2wuM7qlg=
 			</data>
 		</dict>
 		<key>Modules/Spreedly.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+bT9DHMlG+aN2CBxy60V7vOn/ZCYUCTo1qw1xS7QpRY=
+			djKel/0Uuy0jtDAdw1rf7txgX4Pat6Gd1p7N7uYwLxg=
 			</data>
 		</dict>
 		<key>Modules/Spreedly.swiftmodule/arm64.swiftdoc</key>
@@ -115,14 +115,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IaftkxLNz/Z4YUVBP7ASfg8SD1htp2BFmCBp7up7ELk=
+			BBW8iJ9vJYlIbFvZRMRxhXRmaXOmlMQDLWd2wuM7qlg=
 			</data>
 		</dict>
 		<key>Modules/Spreedly.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+bT9DHMlG+aN2CBxy60V7vOn/ZCYUCTo1qw1xS7QpRY=
+			djKel/0Uuy0jtDAdw1rf7txgX4Pat6Gd1p7N7uYwLxg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

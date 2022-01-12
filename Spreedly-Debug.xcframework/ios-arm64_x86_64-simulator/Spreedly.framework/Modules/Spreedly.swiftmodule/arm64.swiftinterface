@@ -12,6 +12,7 @@ public protocol SpreedlyClient {
   func recache(token: Swift.String, verificationValue: Spreedly.SpreedlySecureOpaqueString) -> Spreedly.SingleTransaction
   func createPaymentMethodFrom(applePay: Spreedly.ApplePayInfo) -> Spreedly.SingleTransaction
   var config: Spreedly.ClientConfiguration { get }
+  func getPlatformDataLocal() -> Swift.String
 }
 public enum SpreedlySecurityError : Swift.Error {
   case invalidOpaqueString
@@ -28,6 +29,7 @@ public enum SpreedlySecurityError : Swift.Error {
 @_inheritsConvenienceInitializers @objc(SPRClientFactory) public class ClientFactory : ObjectiveC.NSObject {
   public static func create(with config: Spreedly.ClientConfiguration) -> Spreedly.SpreedlyClient
   @objc(createWithConfig:) public static func _objCCreate(with config: Spreedly.ClientConfiguration) -> Spreedly._ObjCClient
+  public static func getPlatformData() -> Swift.String
   @objc override dynamic public init()
   @objc deinit
 }
