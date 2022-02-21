@@ -109,7 +109,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 request["environment_key"] = self.config.envKey
             }
             
-            request["platform-meta"] = self.getPlatformData()
+            request["platform-meta"] = self.getPlatformDataLocal()
 
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
@@ -150,7 +150,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }.resume()
     }
     
-    func getPlatformData() -> String {
+    func getPlatformDataLocal() -> String {
+        SpreedlyClientImpl.getPlatformData()
+    }
+    
+    static func getPlatformData() -> String {
         let proc = ProcessInfo()
 #if (arch(i386) || arch(x86_64))
   let arch = "x86"
