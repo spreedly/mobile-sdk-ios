@@ -12,7 +12,7 @@ public protocol SpreedlyClient {
   func recache(token: Swift.String, verificationValue: Spreedly.SpreedlySecureOpaqueString) -> Spreedly.SingleTransaction
   func createPaymentMethodFrom(applePay: Spreedly.ApplePayInfo) -> Spreedly.SingleTransaction
   var config: Spreedly.ClientConfiguration { get }
-  func getPlatformDataLocal() -> Swift.String
+  func getPlatformData() -> Swift.String
 }
 public enum SpreedlySecurityError : Swift.Error {
   case invalidOpaqueString
@@ -29,7 +29,6 @@ public enum SpreedlySecurityError : Swift.Error {
 @_inheritsConvenienceInitializers @objc(SPRClientFactory) public class ClientFactory : ObjectiveC.NSObject {
   public static func create(with config: Spreedly.ClientConfiguration) -> Spreedly.SpreedlyClient
   @objc(createWithConfig:) public static func _objCCreate(with config: Spreedly.ClientConfiguration) -> Spreedly._ObjCClient
-  public static func getPlatformData() -> Swift.String
   @objc override dynamic public init()
   @objc deinit
 }
@@ -211,6 +210,7 @@ public typealias Metadata = [Swift.String : Any]
   @objc public var firstName: Swift.String?
   @objc public var lastName: Swift.String?
   @objc public var company: Swift.String?
+  @objc public var allowBlankName: Swift.Bool
   @objc public var address: Spreedly.Address
   @objc public var shippingAddress: Spreedly.Address
   public var retained: Swift.Bool?
@@ -335,6 +335,8 @@ public enum CardBrand : Swift.String {
   @objc public var verificationValue: Spreedly.SpreedlySecureOpaqueString?
   public var year: Swift.Int?
   public var month: Swift.Int?
+  @objc public var allowExpiredDate: Swift.Bool
+  @objc public var allowBlankDate: Swift.Bool
   @objc override dynamic public init()
   override public init(copyFrom info: Spreedly.PaymentMethodInfo?)
   @objc deinit

@@ -236,6 +236,7 @@ SWIFT_CLASS("_TtC8Spreedly17PaymentMethodInfo")
 @property (nonatomic, copy) NSString * _Nullable firstName;
 @property (nonatomic, copy) NSString * _Nullable lastName;
 @property (nonatomic, copy) NSString * _Nullable company;
+@property (nonatomic) BOOL allowBlankName;
 /// When provided, will pass <code>address1</code>, <code>address2</code>, <code>city</code>, <code>state</code>, <code>zip</code>, <code>country</code>,
 /// and <code>phone_number</code> properties to Spreedly when creating a payment method from this object.
 @property (nonatomic, strong) Address * _Nonnull address;
@@ -418,6 +419,8 @@ SWIFT_CLASS("_TtC8Spreedly14CreditCardInfo")
 @interface CreditCardInfo : PaymentMethodInfo
 @property (nonatomic, strong) id <SPRSecureOpaqueString> _Nullable number;
 @property (nonatomic, strong) id <SPRSecureOpaqueString> _Nullable verificationValue;
+@property (nonatomic) BOOL allowExpiredDate;
+@property (nonatomic) BOOL allowBlankDate;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -789,6 +792,7 @@ SWIFT_CLASS("_TtC8Spreedly17PaymentMethodInfo")
 @property (nonatomic, copy) NSString * _Nullable firstName;
 @property (nonatomic, copy) NSString * _Nullable lastName;
 @property (nonatomic, copy) NSString * _Nullable company;
+@property (nonatomic) BOOL allowBlankName;
 /// When provided, will pass <code>address1</code>, <code>address2</code>, <code>city</code>, <code>state</code>, <code>zip</code>, <code>country</code>,
 /// and <code>phone_number</code> properties to Spreedly when creating a payment method from this object.
 @property (nonatomic, strong) Address * _Nonnull address;
@@ -971,6 +975,8 @@ SWIFT_CLASS("_TtC8Spreedly14CreditCardInfo")
 @interface CreditCardInfo : PaymentMethodInfo
 @property (nonatomic, strong) id <SPRSecureOpaqueString> _Nullable number;
 @property (nonatomic, strong) id <SPRSecureOpaqueString> _Nullable verificationValue;
+@property (nonatomic) BOOL allowExpiredDate;
+@property (nonatomic) BOOL allowBlankDate;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
