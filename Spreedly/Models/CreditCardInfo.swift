@@ -15,6 +15,9 @@ public class CreditCardInfo: PaymentMethodInfo {
     /// Expiration month.
     public var month: Int?
 
+    @objc public var allowExpiredDate: Bool = false
+    @objc public var allowBlankDate: Bool = false
+
     @objc public override init() {
         super.init()
     }
@@ -38,8 +41,18 @@ public class CreditCardInfo: PaymentMethodInfo {
 
         try result.setOpaqueString("number", number)
         try result.setOpaqueString("verification_value", verificationValue)
-        result["year"] = year
-        result["month"] = month
+        if (!allowBlankDate || year != nil) {
+            result["year"] = year
+        }
+        if (!allowBlankDate || year != nil) {
+            result["month"] = month
+        }
+        if (allowExpiredDate) {
+            result["allow_expired_date"] = true
+        }
+        if (allowBlankDate) {
+            result["allow_blank_date"] = true
+        }
 
         return result
     }

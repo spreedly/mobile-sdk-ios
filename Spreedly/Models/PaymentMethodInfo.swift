@@ -13,6 +13,7 @@ public class PaymentMethodInfo: NSObject {
     @objc public var firstName: String?
     @objc public var lastName: String?
     @objc public var company: String?
+    @objc public var allowBlankName: Bool = false
 
     /// When provided, will pass `address1`, `address2`, `city`, `state`, `zip`, `country`,
     /// and `phone_number` properties to Spreedly when creating a payment method from this object.
@@ -61,6 +62,10 @@ public class PaymentMethodInfo: NSObject {
         result.maybeSet("first_name", firstName)
         result.maybeSet("last_name", lastName)
         result.maybeSet("company", company)
+
+        if (allowBlankName) {
+            result["allow_blank_name"] = true
+        }
 
         result.merge(address.toJson(type: .billing), uniquingKeysWith: { $1 })
         result.merge(shippingAddress.toJson(type: .shipping), uniquingKeysWith: { $1 })

@@ -57,6 +57,52 @@ class CreditCardInfoTests: XCTestCase {
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
 
+    func testCanEncodeWithoutName() throws {
+        let creditCard = initCreditCard()
+        creditCard.firstName = nil
+        creditCard.lastName = nil
+        creditCard.fullName = nil
+        creditCard.allowBlankName = true
+
+        let json = try creditCard.toJson()
+
+        let expected = try """
+                           {
+                             "allow_blank_name" : true,
+                             "month" : 12,
+                             "number" : "4111111111111111",
+                             "verification_value" : "919",
+                             "year" : 2029
+                           }
+                           """.data(using: .utf8)!.decodeJson()
+
+        XCTAssertEqual(expected as NSObject, json as NSObject)
+    }
+
+    func testCanEncodeWithoutNameOrExpiration() throws {
+        let creditCard = initCreditCard()
+        creditCard.firstName = nil
+        creditCard.lastName = nil
+        creditCard.fullName = nil
+        creditCard.allowBlankName = true
+        creditCard.month = nil
+        creditCard.year = nil
+        creditCard.allowBlankDate = true
+
+        let json = try creditCard.toJson()
+
+        let expected = try """
+                           {
+                             "allow_blank_name" : true,
+                             "allow_blank_date": true,
+                             "number" : "4111111111111111",
+                             "verification_value" : "919",
+                           }
+                           """.data(using: .utf8)!.decodeJson()
+
+        XCTAssertEqual(expected as NSObject, json as NSObject)
+    }
+
     func testFromShouldClone() {
         let source = initCreditCard()
         source.fullName = "Dolly Dog"
