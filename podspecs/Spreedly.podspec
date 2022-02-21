@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
     s.requires_arc     = true
 
     s.license = { :type => 'Copyright', :text => $copyright }
-    s.vendored_frameworks = 'Spreedly-Release.xcframework'
+    s.vendored_frameworks = 'Spreedly.xcframework'
 end
