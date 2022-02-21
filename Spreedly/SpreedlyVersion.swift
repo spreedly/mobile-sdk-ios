@@ -3,9 +3,9 @@
 import Foundation
 
 class SpreedlyVersion {
-    static let podVersion = "1.0.0-beta11"
+    static let podVersion = "1.0.0-beta12"
     static let gitBranch = "master";
     static let gitTag = "";
-    static let gitCommitId = "b13ac17311b321765feef79bad4f2e443efa6bf7";
+    static let gitCommitId = "1cc3de049893a187c8e3f8814e40641fb834ad9d";
 }
 

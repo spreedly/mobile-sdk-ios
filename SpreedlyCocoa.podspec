@@ -1,6 +1,6 @@
 # DO NOT EDIT
 # Edit the version in podspecs or version.podspec
-$version = '1.0.0-beta11'
+$version = '1.0.0-beta12'
 $repo = 'https://github.com/spreedly/mobile-sdk-ios.git'
 $tag = "version_#{$version}"
 $copyright = <<-LICENSE

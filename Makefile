@@ -92,7 +92,8 @@ libs: libs-simulator-debug libs-phone-debug libs-simulator libs-phone
 	xcodebuild -create-xcframework -framework build/iphone-debug/SpreedlyCocoa.framework -framework build/simulator-debug/SpreedlyCocoa.framework -output build/universal/SpreedlyCocoa-Debug.xcframework
 # 	for lib in $(shell cd build/universal; find . | grep '\([a-zA-Z0-9]*\)\.framework/\1$$') ; do \
 # 		lipo -create build/simulator/$$lib build/iphone/$$lib -output build/universal/$$lib ;\
-# 	done
+# 	doneccccccvkrtetigfdvrkebucgbgjcirincicvfedetfkh
+
 
 push-frameworks: libs
 	cd build; rm -rf pods
