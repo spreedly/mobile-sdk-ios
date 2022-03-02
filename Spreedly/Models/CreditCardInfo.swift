@@ -33,6 +33,9 @@ public class CreditCardInfo: PaymentMethodInfo {
         if let cci = info as? CreditCardInfo {
             year = cci.year
             month = cci.month
+
+            allowBlankDate = cci.allowBlankDate
+            allowExpiredDate = cci.allowExpiredDate
         }
     }
 
@@ -63,6 +66,9 @@ public class CreditCardInfo: PaymentMethodInfo {
                 "email": email ?? "",
                 "metadata": metadata ?? Metadata(),
                 "credit_card": try self.toJson(),
+                "allow_blank_name": allowBlankName,
+                "allow_blank_date": allowBlankDate,
+                "allow_expired_date": allowExpiredDate,
                 "retained": self.retained ?? false
             ]
         ]

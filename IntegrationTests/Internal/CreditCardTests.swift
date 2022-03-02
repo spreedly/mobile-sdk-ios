@@ -18,6 +18,38 @@ class CreditCardTests: XCTestCase {
         CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
     }
 
+    func testCanCreateMinimalCreditCardNoName() throws {
+        let client = Helpers.createClient()
+        let info = Helpers.initCreditCard()
+
+        info.allowBlankName = true
+        info.firstName = nil
+        info.lastName = nil
+
+        let promise = client.createPaymentMethodFrom(creditCard: info)
+        let transaction = try promise.assertResult(self)
+        let result = transaction.creditCard!
+
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
+        CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
+    }
+
+    func testCanCreateMinimalCreditCardNoDate() throws {
+        let client = Helpers.createClient()
+        let info = Helpers.initCreditCard()
+
+        info.allowBlankDate = true
+        info.year = nil
+        info.month = nil
+
+        let promise = client.createPaymentMethodFrom(creditCard: info)
+        let transaction = try promise.assertResult(self)
+        let result = transaction.creditCard!
+
+        CreditCardTests.assertPaymentMethodFieldsPopulate(result: result, info: info, type: .creditCard)
+        CreditCardTests.assertCardFieldsPopulate(result: result, info: info)
+    }
+
     func testCanCreateFullCreditCard() throws {
         let client = Helpers.createClient()
         let info = Helpers.initCreditCard()
@@ -71,7 +103,9 @@ extension CreditCardTests {
 
         XCTAssertEqual(result.firstName, info.firstName)
         XCTAssertEqual(result.lastName, info.lastName)
-        XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+        if (!info.allowBlankName) {
+            XCTAssertEqual(result.fullName, "\(info.firstName!) \(info.lastName!)")
+        }
         XCTAssertEqual(result.company, info.company)
     }
 

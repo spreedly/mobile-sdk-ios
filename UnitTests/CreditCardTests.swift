@@ -90,6 +90,7 @@ class CreditCardInfoTests: XCTestCase {
         creditCard.allowBlankDate = true
 
         let json = try creditCard.toJson()
+        try print(String(data: json.encodeJson(), encoding: .utf8)!)
 
         let expected = try """
                            {

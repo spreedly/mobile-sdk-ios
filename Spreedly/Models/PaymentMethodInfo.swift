@@ -43,6 +43,8 @@ public class PaymentMethodInfo: NSObject {
         email = info?.email
         metadata = info?.metadata
 
+        allowBlankName = info?.allowBlankName ?? false
+
         if let address = info?.address {
             self.address = Address(from: address)
         } else {
