@@ -100,6 +100,7 @@ push-frameworks: libs
 	git clone https://github.com/spreedly/mobile-sdk-ios.git --branch frameworks build/pods
 	cd build/pods; rm -rf Spreedly.framework Spreedly3DS2.framework SpreedlyCocoa.framework Spreedly.xcframework Spreedly3DS2.xcframework SpreedlyCocoa.xcframework
 	cp -a build/universal/*.xcframework build/pods
+	cp podspecs/Package.swift.template build/pods/Package.swift
 	cd build/pods; git add .; git commit -m 'version $(pod_version)'; git tag --force -a $(pod_tag) -m 'version $(pod_version)'
 	cd build/pods; git push; git push --tags --force
 

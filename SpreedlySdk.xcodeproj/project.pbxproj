@@ -48,6 +48,7 @@
 		442A286A0A671222E369442C /* SpreedlyClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2FFB6CFF85B8207B2668 /* SpreedlyClientImpl.swift */; };
 		442A2975DBA6BA44D577E271 /* Spreedly-env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442A21723181F2D5F72F5B71 /* Spreedly-env.plist */; };
 		442A2C50F647133D4E48C7FF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A21244C58460DB48ED6B3 /* Secrets.swift */; };
+		442A2D2E48133A09DBBD9299 /* Package.swift.template in Sources */ = {isa = PBXBuildFile; fileRef = 442A257AA5C4556A468C6045 /* Package.swift.template */; };
 		442A2D788057F47D67D550E6 /* RecacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2E6D7CB97F55DF7DE5F6 /* RecacheTests.swift */; };
 		442A2E09E5707DA5C0EC5A6D /* SecureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A2BB20D7CBBCE9E4DD568 /* SecureForm.swift */; };
 		442A2E1EB4A7C7F18EBAB464 /* SecureStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A218D2C643E6C4141E9D2 /* SecureStringTest.swift */; };
@@ -205,6 +206,7 @@
 		442A23A1FD67CFE29666D2C6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		442A24696C55832B1B4CB88E /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpreedlyCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		442A257AA5C4556A468C6045 /* Package.swift.template */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.template; name = Package.swift.template; path = podspecs/Package.swift.template; sourceTree = "<group>"; };
 		442A2585881CEB33C09F2B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		442A25DCEAAFEAAB21311ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		442A2615E8F5BEB94C0DD4C8 /* Spreedly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spreedly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,6 +381,7 @@
 				442A21BE94DE9C6F3D40ABA5 /* CocoaSample.app */,
 				442A2501917CBBD6FA6A9CF4 /* SpreedlyCocoa.framework */,
 				442A22CCCFC3C577EA667DEE /* DLRadioButton.framework */,
+				442A257AA5C4556A468C6045 /* Package.swift.template */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				F076C6D90DB36BC555C246AC /* BankAccountInfo.swift in Sources */,
 				A60A0240278796000044BD69 /* SpreedlyVersion.swift in Sources */,
 				F076CD7FF9E8D8C63D808B1A /* CreditCardInfo.swift in Sources */,
+				442A2D2E48133A09DBBD9299 /* Package.swift.template in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
