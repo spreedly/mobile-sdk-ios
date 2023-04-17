@@ -166,7 +166,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             "platform": "apple",
             "locale": Locale.current.languageCode ?? "unknown",
             "os": [
-                "name": proc.operatingSystemName(),
+                "name": proc.operatingSystemVersionString,
                 "arch": arch,
                 "version": proc.operatingSystemVersionString,
             ] as [String : Any],

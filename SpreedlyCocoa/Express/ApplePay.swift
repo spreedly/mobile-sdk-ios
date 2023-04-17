@@ -70,7 +70,7 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
 
         let info = ApplePayInfo(copyFrom: defaults, payment: payment)
         if let client = client {
-            _ = client.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: onSuccess, onError: onError)
+            client.createPaymentMethodFrom(applePay: info).subscribe(onSuccess: onSuccess, onError: onError)
         } else if let objcClient = objcClient {
             objcClient._objCCreatePaymentMethod(from: info).subscribe(onSuccess: onSuccess, onError: onError)
         }

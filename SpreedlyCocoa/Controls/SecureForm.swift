@@ -9,7 +9,7 @@ import Spreedly
 /// A set of methods that you use to receive successfully created payment methods from Spreedly and provide
 /// client configuration for that communication.
 @objc(SPRSecureFormDelegate)
-public protocol SecureFormDelegate: class {
+public protocol SecureFormDelegate: AnyObject {
     /// Tells the delegate that a payment methods was successfully created.
     func spreedly(secureForm: SecureForm, success: Transaction)
 
@@ -213,7 +213,7 @@ public class SecureForm: UIView {
         maybeSetShippingAddress(on: &info.shippingAddress, fallbackOn: info.address)
 
         let client = getClientOrDieTrying()
-        _ = client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
+        client.createPaymentMethodFrom(creditCard: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 self.delegate?.didCallSpreedly?(secureForm: self)
                 if let errors = transaction.errors, errors.count > 0 {
@@ -260,7 +260,7 @@ public class SecureForm: UIView {
         maybeSetShippingAddress(on: &info.shippingAddress, fallbackOn: info.address)
 
         let client = getClientOrDieTrying()
-        _ = client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
+        client.createPaymentMethodFrom(bankAccount: info).subscribe(onSuccess: { transaction in
             DispatchQueue.main.async {
                 self.delegate?.didCallSpreedly?(secureForm: self)
                 if let errors = transaction.errors, errors.count > 0 {
@@ -291,6 +291,8 @@ public class SecureForm: UIView {
                 bankAccountHolderType?.selectedSegmentIndex = 0
             case .business:
                 bankAccountHolderType?.selectedSegmentIndex = 1
+            @unknown default:
+                bankAccountHolderType?.selectedSegmentIndex = 0
             }
         }
     }
@@ -314,6 +316,8 @@ public class SecureForm: UIView {
                 bankAccountType?.selectedSegmentIndex = 0
             case .savings:
                 bankAccountType?.selectedSegmentIndex = 1
+            @unknown default:
+                bankAccountType?.selectedSegmentIndex = 0
             }
         }
     }
