@@ -2,7 +2,9 @@
 
 The Spreedly mobile SDK for iOS simplifies your mobile application's integration with Spreedly by providing pre-built UIs for a quick start and low-level APIs deeper integrations.
 
-Not actively maintained at this time. Contact Support with questions.
+> # **Warning**
+> Not actively maintained at this time. Contact Support with questions.
+
 
 # Integration
 All integration options require a Spreedly account and an environment key. See [Create Your API Credentials](https://docs.spreedly.com/basics/credentials/#environment-key) for details.
