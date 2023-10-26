@@ -31,7 +31,7 @@ public class ApplePayInfo: PaymentMethodInfo {
     internal override func toJson() throws -> [String: Any] {
         var result = [String: Any]()
 
-        result["payment_data"] = try paymentToken.decodeJson()
+        result["payment_data"] = try paymentToken.spr_decodeJson()
         result.maybeSet("test_card_number", testCardNumber)
         return result
     }

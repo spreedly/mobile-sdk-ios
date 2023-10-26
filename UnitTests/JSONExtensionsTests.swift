@@ -11,7 +11,7 @@ class DecodeJsonTests: XCTestCase {
     func testDecodeJsonWhenNotJsonShouldThrow() {
         let notJson = "<ul><li>list item</li></ul>"
         let data = notJson.data(using: .utf8)!
-        XCTAssertThrowsError(try data.decodeJson()) { error in
+        XCTAssertThrowsError(try data.spr_decodeJson()) { error in
             XCTAssertEqual(error as? JSONError, .expectedObject)
         }
     }
@@ -21,7 +21,7 @@ class DecodeJsonTests: XCTestCase {
                         "I'm just a string"
                         """
         let data = validJson.data(using: .utf8)!
-        XCTAssertThrowsError(try data.decodeJson()) { error in
+        XCTAssertThrowsError(try data.spr_decodeJson()) { error in
             XCTAssertEqual(error as? JSONError, .expectedObject)
         }
     }
@@ -31,7 +31,7 @@ class DecodeJsonTests: XCTestCase {
                         {"key": "value"}
                         """
         let data = validJson.data(using: .utf8)!
-        let decodedObject = try data.decodeJson()
+        let decodedObject = try data.spr_decodeJson()
         XCTAssertEqual("value", try decodedObject.string(for: "key"))
     }
 }
@@ -52,7 +52,7 @@ let json = try! """
                     "int": 42,
                     "stringInt": "9001"
                 }
-                """.data(using: .utf8)!.decodeJson()
+                """.data(using: .utf8)!.spr_decodeJson()
 
 class ObjectTests: XCTestCase {
     func testWhenMissingShouldThrow() {

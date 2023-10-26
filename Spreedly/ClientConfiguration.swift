@@ -54,4 +54,5 @@ public enum ClientError: Int, Error {
     case noSpreedlyCredentials
     case parseError
     case invalidRequestData
+    case encodingError
 }

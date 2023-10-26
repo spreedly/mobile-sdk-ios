@@ -31,7 +31,7 @@ class CreditCardInfoTests: XCTestCase {
                              "verification_value" : "919",
                              "year" : 2029
                            }
-                           """.data(using: .utf8)!.decodeJson()
+                           """.data(using: .utf8)!.spr_decodeJson()
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
@@ -52,7 +52,7 @@ class CreditCardInfoTests: XCTestCase {
                              "verification_value" : "919",
                              "year" : 2029
                            }
-                           """.data(using: .utf8)!.decodeJson()
+                           """.data(using: .utf8)!.spr_decodeJson()
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
@@ -74,7 +74,7 @@ class CreditCardInfoTests: XCTestCase {
                              "verification_value" : "919",
                              "year" : 2029
                            }
-                           """.data(using: .utf8)!.decodeJson()
+                           """.data(using: .utf8)!.spr_decodeJson()
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
@@ -90,7 +90,7 @@ class CreditCardInfoTests: XCTestCase {
         creditCard.allowBlankDate = true
 
         let json = try creditCard.toJson()
-        try print(String(data: json.encodeJson(), encoding: .utf8)!)
+        try NSLog(String(data: json.encodeJson(), encoding: .utf8)!)
 
         let expected = try """
                            {
@@ -99,7 +99,7 @@ class CreditCardInfoTests: XCTestCase {
                              "number" : "4111111111111111",
                              "verification_value" : "919",
                            }
-                           """.data(using: .utf8)!.decodeJson()
+                           """.data(using: .utf8)!.spr_decodeJson()
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }

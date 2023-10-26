@@ -19,7 +19,7 @@ import Spreedly
 /// ```swift
 /// var builder = ExpressBuilder()
 /// builder.didSelectPaymentMethod = { item in
-///     print("User wants to use a payment method with token: \(item.token)")
+///     NSLog("User wants to use a payment method with token: \(item.token)")
 /// }
 /// let controller = builder.buildViewController()
 /// navigationController?.show(controller, sender: self)

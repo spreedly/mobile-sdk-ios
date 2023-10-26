@@ -29,7 +29,7 @@ extension ViewController {
             PaymentMethodItem(type: .creditCard, description: "Mastercard 1111", token: "abc456")
         ]
         builder.didSelectPaymentMethod = { item in
-            print("Payment method selected token: \(item.token)")
+            NSLog("Payment method selected token: \(item.token)")
             self.navigationController?.popToViewController(self, animated: true)
         }
 
@@ -130,7 +130,7 @@ extension ViewController {
             PaymentMethodItem(type: .creditCard, description: "MC 4444", token: "abc456")
         ]
         builder.didSelectPaymentMethod = { item in
-            print("Payment method selected token: \(item.token)")
+            NSLog("Payment method selected token: \(item.token)")
             self.dismiss(animated: true)
         }
         builder.defaultCreditCardInfo = {

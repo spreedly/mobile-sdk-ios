@@ -73,7 +73,7 @@ public class Transaction: NSObject {
     }
 
     static func unwrap(from data: Data) throws -> Transaction {
-        let json = try data.decodeJson()
+        let json = try data.spr_decodeJson()
         if json.keys.contains("transaction") {
             return Transaction(from: try json.object(for: "transaction"))
         }

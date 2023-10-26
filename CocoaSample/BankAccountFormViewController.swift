@@ -72,7 +72,7 @@ extension BankAccountFormViewController: SecureFormDelegate {
             success transaction: Transaction
     ) {
         let token = transaction.paymentMethod?.token ?? "empty"
-        print("My payment token is \(token)")
+        NSLog("My payment token is \(token)")
 
         displayAlert(message: "Token: \(token)", title: "Success")
     }

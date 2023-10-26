@@ -11,7 +11,7 @@ enum JSONError: Error, Equatable {
 }
 
 extension Data {
-    func decodeJson() throws -> [String: Any] {
+    func spr_decodeJson() throws -> [String: Any] {
         guard let json = try? JSONSerialization.jsonObject(with: self) as? [String: Any] else {
             throw JSONError.expectedObject
         }

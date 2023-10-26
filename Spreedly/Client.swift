@@ -18,7 +18,7 @@ public protocol SpreedlyClient {
     
     var config: ClientConfiguration { get }
     
-    func getPlatformDataLocal() -> String
+    func getPlatformDataLocal() throws -> String
 }
 
 public enum SpreedlySecurityError: Error {

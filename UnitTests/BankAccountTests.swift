@@ -25,7 +25,7 @@ class BankAccountInfoTests: XCTestCase {
                              "bank_account_type" : "checking",
                              "bank_account_holder_type" : "personal"
                            }
-                           """.data(using: .utf8)!.decodeJson()
+                           """.data(using: .utf8)!.spr_decodeJson()
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }
@@ -48,7 +48,7 @@ class BankAccountInfoTests: XCTestCase {
                              "bank_account_type" : "checking",
                              "bank_account_holder_type" : "personal"
                            }
-                           """.data(using: .utf8)!.decodeJson()
+                           """.data(using: .utf8)!.spr_decodeJson()
 
         XCTAssertEqual(expected as NSObject, json as NSObject)
     }

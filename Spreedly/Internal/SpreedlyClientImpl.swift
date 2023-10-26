@@ -5,6 +5,7 @@
 import Foundation
 
 class SpreedlyClientImpl: NSObject, SpreedlyClient {
+    
     let config: ClientConfiguration
     static let baseUrl = URL(string: "https://core.spreedly.com/v1")!
     let authenticatedPaymentMethodUrl = SpreedlyClientImpl.baseUrl.appendingPathComponent(
@@ -27,20 +28,23 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
 
     func session(authenticated: Bool = false) -> URLSession {
         var headers: [String: String] = ["Content-Type": "application/json"]
-        if authenticated {
+        if authenticated,
+           let encodedCredentials = self.encodedCredentials
+        {
             headers["Authorization"] = "Basic \(encodedCredentials)"
         }
 
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = headers
+        config.timeoutIntervalForResource = 30
         let session = URLSession(configuration: config)
         return session
     }
 
-    private var encodedCredentials: String {
+    private var encodedCredentials: String? {
         let userPasswordString = "\(config.envKey):\(config.envSecret ?? "")"
-        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
-        return userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+        let userPasswordData = userPasswordString.data(using: .utf8)
+        return userPasswordData?.base64EncodedString(options: [])
     }
 
     func createPaymentMethodFrom(creditCard info: CreditCardInfo) -> SingleTransaction {
@@ -108,9 +112,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 url = self.unauthenticatedPaymentMethodUrl
                 request["environment_key"] = self.config.envKey
             }
-            
-            request["platform-meta"] = self.getPlatformDataLocal()
-
+            do {
+                request["platform-meta"] = try self.getPlatformDataLocal()
+            } catch {
+                source.handleError(error: error)
+            }
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = try? request.encodeJson()
@@ -133,7 +139,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         session.dataTask(with: request) { data, response, error in
             if let data = data {
                 let json = String(data: data, encoding: .utf8) ?? "unable to decode data"
-                print("Response was\n", json)
+                NSLog("Response was\n", json)
                 let transaction = try? Transaction.unwrap(from: data)
                 if let transaction = transaction {
                     source.handleSuccess(transaction: transaction)
@@ -150,11 +156,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
         }.resume()
     }
     
-    func getPlatformDataLocal() -> String {
-        SpreedlyClientImpl.getPlatformData()
+    func getPlatformDataLocal() throws -> String {
+        try SpreedlyClientImpl.getPlatformData()
     }
     
-    static func getPlatformData() -> String {
+    static func getPlatformData() throws -> String {
         let proc = ProcessInfo()
 #if (arch(i386) || arch(x86_64))
   let arch = "x86"
@@ -166,7 +172,7 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
             "platform": "apple",
             "locale": Locale.current.languageCode ?? "unknown",
             "os": [
-                "name": proc.operatingSystemName(),
+                "name": proc.operatingSystemVersionString,
                 "arch": arch,
                 "version": proc.operatingSystemVersionString,
             ] as [String : Any],
@@ -176,8 +182,11 @@ class SpreedlyClientImpl: NSObject, SpreedlyClient {
                 "commit": SpreedlyVersion.gitCommitId,
             ] as [String : Any],
         ] as [String : Any]
-        print(data)
-        return (try! data.encodeJson()).base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+        NSLog("\(data)")
+        guard let encodedData = try? data.encodeJson().base64EncodedString(options: [])
+        else { throw ClientError.encodingError }
+
+        return encodedData
     }
 }
 
