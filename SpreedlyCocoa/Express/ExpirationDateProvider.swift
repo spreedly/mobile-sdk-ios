@@ -3,7 +3,7 @@
 //
 
 @objc(SPRExpirationDateProvider)
-public protocol ExpirationDateProvider: class {
+public protocol ExpirationDateProvider: AnyObject {
     func expirationDate() -> ExpirationDate?
 }
 

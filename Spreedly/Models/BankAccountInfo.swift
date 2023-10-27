@@ -94,7 +94,7 @@ public class BankAccountInfo: PaymentMethodInfo {
                 "metadata": metadata ?? Metadata(),
                 "bank_account": try self.toJson(),
                 "retained": self.retained ?? false
-            ]
+            ] as [String : Any]
         ]
     }
 }

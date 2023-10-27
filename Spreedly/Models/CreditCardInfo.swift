@@ -70,7 +70,7 @@ public class CreditCardInfo: PaymentMethodInfo {
                 "allow_blank_date": allowBlankDate,
                 "allow_expired_date": allowExpiredDate,
                 "retained": self.retained ?? false
-            ]
+            ] as [String : Any]
         ]
     }
 }

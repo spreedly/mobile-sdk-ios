@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 import Spreedly
 
-public protocol CreditCardNumberTextFieldDelegate: class {
+public protocol CreditCardNumberTextFieldDelegate: AnyObject {
     /// Called whenever the card brand is determined based on the `CreditCardNumberTextField` content. May be
     /// called many times.
     func cardBrandDetermined(brand: CardBrand)
@@ -115,7 +115,7 @@ extension CreditCardNumberTextField {
     }
 
     /// Masks all digits except the last four with `maskCharacter`.
-    open func generateMasked(from string: String) -> String {
+    public func generateMasked(from string: String) -> String {
         let cardNumber = string.onlyNumbers()
         let maskCharacterCount = max(cardNumber.count - 4, 0)
 
